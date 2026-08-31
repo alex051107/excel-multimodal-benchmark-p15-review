@@ -1,0 +1,68 @@
+{
+  "split": "dev",
+  "split_group": "P15-A-FIN-DCF-001-HELDOUT-01",
+  "oracle": "tests/oracles/dev.py",
+  "input_files_dir": "data/input_files",
+  "criteria": [
+    {"id":"R001","description":"The workbook opens and contains every required DCF sheet.","weight":1,"type":"positive","dimension":"file_usability","method":"deterministic","method_params":{"implemented_check":"required_sheets"}},
+    {"id":"R002","description":"Each forecast-period revenue formula agrees with the independent replay.","weight":3,"type":"positive","dimension":"revenue_forecast","method":"deterministic","method_params":{"implemented_check":"forecast_revenue","oracle":"split_contract"}},
+    {"id":"R003","description":"The EBIT-to-NOPAT bridge agrees with the independent replay in every forecast period.","weight":3,"type":"positive","dimension":"operating_bridge","method":"deterministic","method_params":{"implemented_check":"forecast_operating_bridge","oracle":"split_contract"}},
+    {"id":"R004","description":"The D&A, capex, NWC, and UFCF bridge agrees with the independent replay in every forecast period.","weight":3,"type":"positive","dimension":"fcf_bridge","method":"deterministic","method_params":{"implemented_check":"forecast_fcf_bridge","oracle":"split_contract"}},
+    {"id":"R005","description":"Forecast discount factors and present values agree with the independent replay.","weight":2,"type":"positive","dimension":"discounting","method":"deterministic","method_params":{"implemented_check":"forecast_discount_pv","oracle":"split_contract"}},
+    {"id":"R006","description":"The terminal FCF, terminal value, and discounted terminal value agree with the independent replay.","weight":3,"type":"positive","dimension":"terminal_value","method":"deterministic","method_params":{"implemented_check":"terminal_value","oracle":"split_contract"}},
+    {"id":"R007","description":"The forecast-PV, enterprise-value, net-debt, and equity-value bridge agrees with the independent replay.","weight":3,"type":"positive","dimension":"valuation_bridge","method":"deterministic","method_params":{"implemented_check":"enterprise_equity_bridge","oracle":"split_contract"}},
+    {"id":"R008","description":"Every declared WACC-by-terminal-growth sensitivity coordinate is formula-linked and correct.","weight":3,"type":"positive","dimension":"sensitivity","method":"deterministic","method_params":{"implemented_check":"sensitivity_grid","oracle":"split_contract"}},
+    {"id":"R009","description":"The terminal forecast revenue responds correctly to the declared growth perturbation.","weight":2,"type":"positive","dimension":"growth_recalculation","method":"deterministic","method_params":{"implemented_check":"growth_perturbation"}},
+    {"id":"R010","description":"Enterprise value responds correctly to the declared WACC perturbation.","weight":2,"type":"positive","dimension":"wacc_recalculation","method":"deterministic","method_params":{"implemented_check":"wacc_perturbation"}},
+    {"id":"R011","description":"The declared historical source cells remain unchanged.","weight":2,"type":"positive","dimension":"change_locality","method":"deterministic","method_params":{"implemented_check":"historical_source_protection"}},
+    {"id":"P001","description":"Penalty for a material DCF value, formula, sensitivity, or source-integrity failure.","weight":-6,"type":"penalty","dimension":"critical_integrity","method":"deterministic","method_params":{"implemented_check":"material_failure_penalty_with_source_veto"}}
+  ],
+  "formula_cells": [
+    "Forecast!B5:F12",
+    "Forecast!B14:F15",
+    "Valuation!B5:B13",
+    "Valuation!D6:F8"
+  ],
+  "perturbations": [
+    {
+      "name": "growth",
+      "address": "Forecast!B5",
+      "oracle_key": "revenue_2029",
+      "overrides": {
+        "Assumptions!B4": 0.08
+      },
+      "expected_addresses": ["Forecast!B5", "Forecast!F5"]
+    },
+    {
+      "name": "wacc",
+      "address": "Valuation!B9",
+      "oracle_key": "enterprise_value",
+      "overrides": {
+        "Assumptions!B10": 0.095
+      },
+      "expected_addresses": ["Forecast!B14:F15", "Valuation!B9", "Valuation!B13"]
+    }
+  ],
+  "sensitivity_grid": {
+    "wacc_values": [0.075, 0.085, 0.095],
+    "terminal_growth_values": [0.02, 0.025, 0.03],
+    "row_start": 6,
+    "columns": ["D", "E", "F"]
+  },
+  "protected": {
+    "Source_Data!D4": 391035,
+    "Source_Data!D5": 123216,
+    "Source_Data!D6": 11445,
+    "Source_Data!D7": 9447,
+    "Source_Data!D8": 29943
+  },
+  "required_sheets": [
+    "Source_Data",
+    "Assumptions",
+    "Forecast",
+    "Valuation",
+    "Checks"
+  ],
+  "semantic_version": "p15_v2",
+  "task_id": "P15-A-FIN-DCF-001"
+}

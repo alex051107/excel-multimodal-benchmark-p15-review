@@ -1,0 +1,29 @@
+{
+  "task_id": "P15-C-QUOTE-001",
+  "split": "confirm",
+  "split_group": "P15-C-QUOTE-001",
+  "capability_invariant": [
+    "Normalize a scanned contractor quote into base scope and optional alternate structures.",
+    "Exclude alternates from formula-linked base, discount, tax, and total calculations.",
+    "Join each scope line to readable source provenance."
+  ],
+  "distinctness": {
+    "source_instance": "Granite Peak Facilities quote QT-9412",
+    "dev_values_reused": false,
+    "changed_drivers": ["vendor", "quote identity", "customer", "validity dates", "base lines", "optional alternate", "discount", "tax"],
+    "contamination_guard": "Confirm source, values, truth, oracle, perturbation, and reference are verifier-private and were fixed before target-agent evaluation."
+  },
+  "input_files_dir": "tests/confirm/input_files",
+  "reference_workbook": "tests/confirm/reference.xlsx",
+  "oracle": "tests/confirm/oracle_recompute.py",
+  "evaluator": {
+    "path": "tests/evaluate.py",
+    "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"],
+    "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}
+  },
+  "required_sheets": ["Quote_Header", "Groups", "Line_Items", "Alternates", "Provenance", "Checks"],
+  "formula_cells": ["Groups!B4", "Quote_Header!B12:B15"],
+  "protected": ["Alternates must remain excluded from the base-scope total"],
+  "perturbations": "tests/confirm/perturbations.json",
+  "private_truth_environment_copy": false
+}

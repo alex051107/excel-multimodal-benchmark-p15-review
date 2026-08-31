@@ -1,0 +1,47 @@
+[
+  {
+    "id": "CONFIRM_FLOW_METER_375_TO_400",
+    "target": {
+      "sheet": "Line_Items",
+      "match_column": "B",
+      "match_value": "Flow meter assembly",
+      "value_column": "D",
+      "baseline": 375,
+      "perturbed": 400
+    },
+    "expected": [
+      {
+        "sheet": "Invoice_Header",
+        "cell": "B12",
+        "value": 1875
+      },
+      {
+        "sheet": "Invoice_Header",
+        "cell": "B14",
+        "value": 150
+      },
+      {
+        "sheet": "Invoice_Header",
+        "cell": "B15",
+        "value": 1725
+      },
+      {
+        "sheet": "Invoice_Header",
+        "cell": "B17",
+        "value": 125.0625
+      },
+      {
+        "sheet": "Invoice_Header",
+        "cell": "B19",
+        "value": 1910.0625
+      }
+    ],
+    "protected": [
+      {
+        "sheet": "Invoice_Header",
+        "cell": "B18",
+        "value": 60
+      }
+    ]
+  }
+]

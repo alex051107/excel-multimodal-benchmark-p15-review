@@ -1,0 +1,19 @@
+{
+  "criteria": [
+    {"id":"R001","description":"The workbook opens and contains every required DCF sheet.","weight":1,"type":"positive","dimension":"file_usability","method":"deterministic","method_params":{"implemented_check":"required_sheets"}},
+    {"id":"R002","description":"Each forecast-period revenue formula agrees with the independent replay.","weight":3,"type":"positive","dimension":"revenue_forecast","method":"deterministic","method_params":{"implemented_check":"forecast_revenue","oracle":"split_contract"}},
+    {"id":"R003","description":"The EBIT-to-NOPAT bridge agrees with the independent replay in every forecast period.","weight":3,"type":"positive","dimension":"operating_bridge","method":"deterministic","method_params":{"implemented_check":"forecast_operating_bridge","oracle":"split_contract"}},
+    {"id":"R004","description":"The D&A, capex, NWC, and UFCF bridge agrees with the independent replay in every forecast period.","weight":3,"type":"positive","dimension":"fcf_bridge","method":"deterministic","method_params":{"implemented_check":"forecast_fcf_bridge","oracle":"split_contract"}},
+    {"id":"R005","description":"Forecast discount factors and present values agree with the independent replay.","weight":2,"type":"positive","dimension":"discounting","method":"deterministic","method_params":{"implemented_check":"forecast_discount_pv","oracle":"split_contract"}},
+    {"id":"R006","description":"The terminal FCF, terminal value, and discounted terminal value agree with the independent replay.","weight":3,"type":"positive","dimension":"terminal_value","method":"deterministic","method_params":{"implemented_check":"terminal_value","oracle":"split_contract"}},
+    {"id":"R007","description":"The forecast-PV, enterprise-value, net-debt, and equity-value bridge agrees with the independent replay.","weight":3,"type":"positive","dimension":"valuation_bridge","method":"deterministic","method_params":{"implemented_check":"enterprise_equity_bridge","oracle":"split_contract"}},
+    {"id":"R008","description":"Every declared WACC-by-terminal-growth sensitivity coordinate is formula-linked and correct.","weight":3,"type":"positive","dimension":"sensitivity","method":"deterministic","method_params":{"implemented_check":"sensitivity_grid","oracle":"split_contract"}},
+    {"id":"R009","description":"The terminal forecast revenue responds correctly to the declared growth perturbation.","weight":2,"type":"positive","dimension":"growth_recalculation","method":"deterministic","method_params":{"implemented_check":"growth_perturbation"}},
+    {"id":"R010","description":"Enterprise value responds correctly to the declared WACC perturbation.","weight":2,"type":"positive","dimension":"wacc_recalculation","method":"deterministic","method_params":{"implemented_check":"wacc_perturbation"}},
+    {"id":"R011","description":"The declared historical source cells remain unchanged.","weight":2,"type":"positive","dimension":"change_locality","method":"deterministic","method_params":{"implemented_check":"historical_source_protection"}},
+    {"id":"P001","description":"Penalty for a material DCF value, formula, sensitivity, or source-integrity failure.","weight":-6,"type":"penalty","dimension":"critical_integrity","method":"deterministic","method_params":{"implemented_check":"material_failure_penalty_with_source_veto"}}
+  ],
+  "pass_threshold": 0.7,
+  "rubric_version": "p15_v2",
+  "task_id": "P15-A-FIN-DCF-001"
+}

@@ -1,0 +1,18 @@
+{
+  "department": "Program Performance",
+  "difficulty_tier": "Very Hard",
+  "est_minutes": 105,
+  "multimodal": false,
+  "occupation": "Public Program Analyst",
+  "sector": "Public Administration",
+  "semantic_version": "p15_v3",
+  "skills": [
+    "PivotTable",
+    "PivotCache",
+    "chart binding",
+    "reporting aggregation"
+  ],
+  "status": "TASK_INVALID",
+  "task_id": "P15-B-PUBLIC-PIVOT-001",
+  "web_search_required": false
+}

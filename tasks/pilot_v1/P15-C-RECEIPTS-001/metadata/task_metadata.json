@@ -1,0 +1,18 @@
+{
+  "construction_mode": "ARTIFACT_RECORD_ONLY",
+  "department": "Expense Management",
+  "difficulty_tier": "Hard",
+  "est_minutes": 45,
+  "occupation": "Expense Analyst",
+  "sector": "Business operations",
+  "semantic_rebuild": true,
+  "skills": [
+    "receipt extraction",
+    "document identity",
+    "expense categorization",
+    "batch reconciliation"
+  ],
+  "source_family": "project-authored-receipt-template-family-v2",
+  "task_id": "P15-C-RECEIPTS-001",
+  "track": "C"
+}

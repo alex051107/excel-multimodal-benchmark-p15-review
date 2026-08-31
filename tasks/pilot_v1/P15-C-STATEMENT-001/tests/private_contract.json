@@ -1,0 +1,11 @@
+{
+  "task_id": "P15-C-STATEMENT-001",
+  "schema": "p15_v2.1_semantic",
+  "required_sheets": ["Statement_Header","Transactions","Categories","Provenance","Reconciliation","Checks"],
+  "row_matching": "transactions by normalized calendar date plus normalized description; blank debit or credit cells are the Excel-equivalent zero side of a typed transaction",
+  "identity_policy": "candidate-defined non-empty unique transaction IDs; IDs must join Transactions to Provenance",
+  "category_policy": "each transaction label must retain its business meaning; summary grouping and wording may differ from the oracle when every actual label is represented once by a formula-linked signed total",
+  "provenance_policy": "correct statement filename and page plus a non-empty readable locator containing both; common page forms such as p.1, p1, page 1, and page:1 are accepted",
+  "truth_visibility": "verifier_private_only",
+  "private_truth_environment_copy": false
+}

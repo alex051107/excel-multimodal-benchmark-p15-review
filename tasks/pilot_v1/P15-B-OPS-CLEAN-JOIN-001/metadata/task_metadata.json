@@ -1,0 +1,18 @@
+{
+  "department": "Operations and Supply Chain",
+  "difficulty_tier": "Hard",
+  "est_minutes": 85,
+  "multimodal": false,
+  "occupation": "Operations Analyst",
+  "sector": "Manufacturing",
+  "semantic_version": "p15_v3",
+  "skills": [
+    "data normalization",
+    "join cardinality",
+    "exception management",
+    "quality checks"
+  ],
+  "status": "LOCAL_READY",
+  "task_id": "P15-B-OPS-CLEAN-JOIN-001",
+  "web_search_required": false
+}

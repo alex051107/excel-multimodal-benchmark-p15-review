@@ -1,0 +1,32 @@
+[
+  {
+    "id": "PERTURB-FLOW-55",
+    "changed_source_cells": ["Inputs!B4"],
+    "overrides": {"Inputs!B4": 55},
+    "expected_outputs": {
+      "Calculations!B7": 31.298543572849443,
+      "Calculations!B9": 23.407437397724244,
+      "Calculations!B10": 63.24999999999999,
+      "Calculations!B11": 26.91855300738288,
+      "Equipment_Selection!B7": "P-250"
+    },
+    "expected_selected_pump": "P-250",
+    "invariant_protected_cells": {"Inputs!B7": 150, "Equipment_Selection!A4": "P-120", "Equipment_Selection!A6": "P-250"}
+  },
+  {
+    "id": "PERTURB-DIAMETER-125",
+    "changed_source_cells": ["Inputs!B7"],
+    "overrides": {"Inputs!B7": 125},
+    "expected_outputs": {
+      "Unit_Conversions!C5": 0.125,
+      "Unit_Conversions!C6": 0.01227184630308513,
+      "Calculations!B4": 3.4224678962481176,
+      "Calculations!B7": 36.07891234769983,
+      "Calculations!B9": 20.60486527578929,
+      "Calculations!B11": 23.695595067157683,
+      "Equipment_Selection!B7": "P-250"
+    },
+    "expected_eligibility": ["Ineligible", "Ineligible", "Eligible"],
+    "invariant_protected_cells": {"Inputs!B4": 42, "Equipment_Selection!A4": "P-120", "Equipment_Selection!A6": "P-250"}
+  }
+]

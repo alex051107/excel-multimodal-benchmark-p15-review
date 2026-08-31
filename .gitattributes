@@ -1,0 +1,9 @@
+*.pdf binary
+*.xlsx binary
+*.xlsm binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+tasks/pilot_v1/*/data/input_files/*.csv binary
+tasks/pilot_v1/*/environment/input/*.csv binary
+tasks/pilot_v1/*/tests/confirm/input_files/*.csv binary

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "EUR_2024_06_30_RATE_1_07_TO_1_08",
+    "changed_source_cells": ["FX_Rates!C6"],
+    "values": [1.08],
+    "expected_outputs": {"Normalized_Records!H5": 2160, "Normalized_Records!H10": 2160, "Variance_Bridge!B4": 4266, "Variance_Bridge!B5": 4160},
+    "invariant_protected_ranges": ["Ledger!A4:E8", "Subledger!A4:E8", "Adjustment_Evidence!A4:D4"]
+  },
+  {
+    "id": "APPROVED_ADJUSTMENT_MINUS_50_TO_MINUS_40",
+    "changed_source_cells": ["Adjustment_Evidence!C4"],
+    "values": [-40],
+    "expected_outputs": {"Matched_Items!E7": 260, "Matched_Items!F7": -10, "Matched_Items!G7": "OUT_OF_TOLERANCE"},
+    "invariant_protected_ranges": ["Ledger!A4:E8", "Subledger!A4:E8", "FX_Rates!A4:C6"]
+  }
+]

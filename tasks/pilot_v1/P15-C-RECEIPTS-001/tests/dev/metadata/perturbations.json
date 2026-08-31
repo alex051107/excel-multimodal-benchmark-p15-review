@@ -1,0 +1,26 @@
+[
+  {
+    "id": "CEDAR_COFFEE_5_20_TO_6_20",
+    "target": {"sheet": "Items", "match_column": "B", "match_value": "Iced coffee", "secondary_match_column": "F", "secondary_match_value": "receipt_photo_01.jpg", "value_column": "D", "baseline": 5.2, "perturbed": 6.2},
+    "expected_by_content": [
+      {"sheet": "Documents", "match_column": "H", "match_value": "receipt_photo_01.jpg", "value_column": "G", "value": 21.4025}
+    ],
+    "expected": [{"sheet": "Reconciliation", "cell": "B6", "value": 78.527}],
+    "protected_by_content": [
+      {"sheet": "Documents", "match_column": "H", "match_value": "receipt_photo_02.jpg", "value_column": "G", "value": 24.0}
+    ]
+  },
+  {
+    "id": "STATIONERY_MARKERS_18_60_TO_20_60",
+    "target": {"sheet": "Items", "match_column": "B", "match_value": "Markers", "secondary_match_column": "F", "secondary_match_value": "receipt_photo_03.jpg", "value_column": "D", "baseline": 18.6, "perturbed": 20.6},
+    "expected_by_content": [
+      {"sheet": "Documents", "match_column": "H", "match_value": "receipt_photo_03.jpg", "value_column": "G", "value": 35.2895},
+      {"sheet": "Categories", "match_column": "A", "match_value": "Office", "value_column": "B", "value": 35.2895}
+    ],
+    "expected": [{"sheet": "Reconciliation", "cell": "B6", "value": 79.6095}],
+    "protected_by_content": [
+      {"sheet": "Documents", "match_column": "H", "match_value": "receipt_photo_01.jpg", "value_column": "G", "value": 20.32},
+      {"sheet": "Documents", "match_column": "H", "match_value": "receipt_photo_02.jpg", "value_column": "G", "value": 24.0}
+    ]
+  }
+]

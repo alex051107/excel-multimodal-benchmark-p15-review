@@ -1,0 +1,2 @@
+record_id,region,product,stage,bookings,recognized_revenue,closed_won_flag
+Q1-01,North,Analytics,Closed Won,120000,90000,1

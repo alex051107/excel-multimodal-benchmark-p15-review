@@ -1,0 +1,46 @@
+schema_version = "1.4"
+artifacts = ["/app/output/answer.xlsx"]
+
+[task]
+name = "alex051107/p15-b-ops-clean-join-001"
+version = "3.0.0"
+description = "Clean an operations order extract, preserve exceptions, and produce joined operational totals."
+keywords = ["excel", "cleaning", "join", "operations", "pilot-v1"]
+
+[[task.authors]]
+name = "Excel Benchmark Team"
+
+[metadata]
+task_id = "P15-B-OPS-CLEAN-JOIN-001"
+track = "B"
+status = "LOCAL_READY"
+construction_mode = "EXPERT_AUTHORED_REALISTIC_CASE"
+source_family = "project_authored_operations_master_and_order_workspace"
+sector = "Manufacturing"
+department = "Operations and Supply Chain"
+occupation = "Operations Analyst"
+difficulty_tier = "Hard"
+multimodal = false
+web_search_required = false
+est_minutes = 85
+skills = ["data normalization", "join cardinality", "exception management", "quality checks"]
+benchmark_authored_instruction = true
+
+[verifier]
+timeout_sec = 300.0
+environment_mode = "separate"
+network_mode = "public"
+
+[environment]
+network_mode = "public"
+os = "linux"
+workdir = "/app"
+
+[verifier.env]
+JUDGE_MODEL = "${JUDGE_MODEL:-deterministic}"
+JUDGE_PROVIDER = "${JUDGE_PROVIDER:-local}"
+JUDGE_API_PROTOCOL = "${JUDGE_API_PROTOCOL:-none}"
+JUDGE_BASE_URL = "${JUDGE_BASE_URL:-}"
+JUDGE_API_KEY = "${JUDGE_API_KEY:-}"
+JUDGE_PER_TIMEOUT = "${JUDGE_PER_TIMEOUT:-300}"
+JUDGE_MAX_TRIES = "${JUDGE_MAX_TRIES:-1}"

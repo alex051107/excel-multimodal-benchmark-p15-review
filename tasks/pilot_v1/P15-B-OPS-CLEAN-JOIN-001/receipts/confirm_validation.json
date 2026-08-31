@@ -1,0 +1,36 @@
+{
+  "candidate": "tests/confirm/reference.xlsx",
+  "candidate_sha256": "99c0d9acd90195d60e8d198afe7a4d3592cf18e80195aaed25bfe7d1d904c2e6",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "criterion_scores": {
+    "P001": 0.0,
+    "R001": 1.0,
+    "R002": 1.0,
+    "R003": 1.0,
+    "R004": 1.0,
+    "R005": 1.0,
+    "R006": 1.0,
+    "R007": 1.0,
+    "R008": 1.0,
+    "R009": 1.0
+  },
+  "failure_codes": [],
+  "input_files_sha256": {
+    "context_note.md": "b64a56164d071b617462f66bf91f78b4dab0f189aba8df30c88f1fbb8485dbcb",
+    "data_policy.md": "92031c2dc5daee44ad54138bee9e8dcdcee3a77c36bc7cd24f184324b5ef4e07",
+    "exception_policy.md": "d67e89222a5baa095164632752ae2a5ad93846db2cec31b80700fd96dfcdd447",
+    "location_master.csv": "e88a83229cbed6fe4e34434b69979fb06e7519b90b25cf4966ea70f5b4380b71",
+    "product_master.csv": "13882b1cb89931d29f34195a3c21e084a2926e134554ab624645d6a372ac6d0b",
+    "raw_orders.csv": "e45f8a4f6f011a4948122e39cc7c5cd109bbb0c28bc4d39ed968c136af0961cf",
+    "starting_workbook.xlsx": "2e8244e3b1fc96d23c9ac89b499de90c526feeb6d70ba233c342a9cb65d17d4a"
+  },
+  "normalized_score": 1.0,
+  "pass": true,
+  "repetitions": 5,
+  "score_stddev": 0.0,
+  "signature_sha256": "e08ea465cc834275a0673a3c94f090ea3afde0b400eddbc7660090af82e10890",
+  "split": "confirm",
+  "stable": true,
+  "status": "CONFIRM_REFERENCE_VALIDATED",
+  "task_id": "P15-B-OPS-CLEAN-JOIN-001"
+}

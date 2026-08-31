@@ -1,0 +1,24 @@
+{
+  "agent_visible_hashes": {
+    "context_note.md": "ef643b0690920d4e3c2e8d6ceaf5dd912e20df27941bd310049b9dc759df180a",
+    "document_inventory.md": "ed07d49e3842c1a1bb967cfabf7d298f3436acbf856e4f25f1dcf6c117c59ab2",
+    "starting_workbook.xlsx": "42ac05e5990cea842e3e0e93496f3e502f198b16847cf6b5caec21d93d5e232e",
+    "statement_multipage.pdf": "f314a7a8ea773e91687e3cccba3c228eb3915b9298e811c817a99e064ab14119"
+  },
+  "assets": [
+    {
+      "license": "Project-owned original",
+      "path": "statement_multipage.pdf",
+      "role": "agent-visible statement"
+    },
+    {
+      "license": "Project-owned original",
+      "path": "starting_workbook.xlsx",
+      "role": "agent-visible delivery template without expected-result cells"
+    }
+  ],
+  "construction_mode": "TRACKED_SOURCE_RENDERER_AND_ARTIFACT_REFERENCE",
+  "rights": "Project-owned original truth, source documents, and workbook artifacts.",
+  "source_family": "project-authored-statement-template-family-v2",
+  "task_id": "P15-C-STATEMENT-001"
+}

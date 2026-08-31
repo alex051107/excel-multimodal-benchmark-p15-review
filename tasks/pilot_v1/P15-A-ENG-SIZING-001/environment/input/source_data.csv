@@ -1,0 +1,10 @@
+input,value,unit
+Design flow,42,L/s
+Static head,18,m
+Pipe length,140,m
+Pipe ID,150,mm
+Darcy friction factor,0.02,dimensionless
+Pump efficiency,0.72,fraction
+Safety factor,0.15,fraction
+Fluid density,998,kg/m3
+Gravity,9.81,m/s2

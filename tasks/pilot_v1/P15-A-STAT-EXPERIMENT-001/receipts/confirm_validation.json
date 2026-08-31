@@ -1,0 +1,36 @@
+{
+  "candidate": "tests/confirm/reference.xlsx",
+  "candidate_sha256": "e89e750dd88ce52d4bc049c7cdfde818b3b54b232853cccfe90cff75dcd2cfe9",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "criterion_scores": {
+    "P001": 0.0,
+    "R001": 1.0,
+    "R002": 1.0,
+    "R003": 1.0,
+    "R004": 1.0,
+    "R005": 1.0,
+    "R006": 1.0,
+    "R007": 1.0,
+    "R008": 1.0,
+    "R009": 1.0,
+    "R010": 1.0,
+    "R011": 1.0,
+    "R012": 0.0
+  },
+  "failure_codes": [],
+  "input_files_sha256": {
+    "analysis_plan.md": "f60a5bbf0f535483a9a4354f0bccc5596eeb395f0621043ab603b432c8873473",
+    "context_note.md": "78a213d2aecc468cc1269965b0eac0ef59b0b6e1a3735ff8e227b7b681314067",
+    "paired_measurements.csv": "8ced530e6057d23e2c196553276cf6b35407266a2842f2b5215977995f841ef5",
+    "starting_workbook.xlsx": "0df7dbb8e69b270a9214ac7689c78e8fc91d9fc83016cee7cbecc4e512bb266e"
+  },
+  "normalized_score": 1.0,
+  "pass": true,
+  "repetitions": 5,
+  "score_stddev": 0.0,
+  "signature_sha256": "ca171e5d73174041de7ea256051488c690d69d87255244beaba7b392209913a0",
+  "split": "confirm",
+  "stable": true,
+  "status": "CONFIRM_REFERENCE_VALIDATED",
+  "task_id": "P15-A-STAT-EXPERIMENT-001"
+}

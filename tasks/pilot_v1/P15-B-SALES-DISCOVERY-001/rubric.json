@@ -1,0 +1,17 @@
+{
+  "criteria": [
+    {"id": "R001", "description": "A readable workbook contains every requested operating-review sheet.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
+    {"id": "R002", "description": "The source-selection record identifies the only approved, complete 2024Q2 schema-1.1 release.", "weight": 3, "type": "positive", "dimension": "source_selection", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
+    {"id": "R003", "description": "Consolidated_Data contains exactly the six records from the selected release and no mixed-release records.", "weight": 4, "type": "positive", "dimension": "data_completeness", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
+    {"id": "R004", "description": "All four operating KPIs are formula-driven and equal the independent source replay.", "weight": 3, "type": "positive", "dimension": "metric_correctness", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
+    {"id": "R005", "description": "Changing the selected REV-100 bookings input by +100 flows to total bookings by exactly +100.", "weight": 3, "type": "positive", "dimension": "native_workbook_semantics", "method": "deterministic", "method_params": {"source_cell": "Consolidated_Data!E4"}},
+    {"id": "R006", "description": "Changing the selected REV-101 recognized-revenue input by +100 flows to total and South revenue by exactly +100.", "weight": 3, "type": "positive", "dimension": "native_workbook_semantics", "method": "deterministic", "method_params": {"source_cell": "Consolidated_Data!F5"}},
+    {"id": "R007", "description": "Regional record counts and recognized-revenue closures are formulas linked to the six consolidated records.", "weight": 3, "type": "positive", "dimension": "traceability", "method": "deterministic", "method_params": {}},
+    {"id": "R008", "description": "Every release-registry source field is preserved exactly from release_registry.csv.", "weight": 3, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {"source": "data/input_files/release_registry.csv"}},
+    {"id": "R009", "description": "The chosen-source reason, four required-region statuses, and evidence labels remain reviewable.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}},
+    {"id": "P001", "description": "Penalty for any invalid selection, mixed source, hardcoded/broken KPI chain, unlinked coverage, or registry alteration.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
+  ],
+  "pass_threshold": 0.7,
+  "rubric_version": "p15_v3",
+  "task_id": "P15-B-SALES-DISCOVERY-001"
+}

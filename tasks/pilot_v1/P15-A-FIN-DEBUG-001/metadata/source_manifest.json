@@ -1,0 +1,22 @@
+{
+  "asset_boundary": "Task-local extract or benchmark-authored input; no claim of an observed user request.",
+  "construction_mode": "CONTROLLED_DEFECT_FROM_VALID_GOLD",
+  "local_input_hashes": {
+    "context_note.md": "95eaa9a5b56096249fbbd39b9ece65a444c7c0af843c1840ac484f24d610b953",
+    "historical_operating_extract.csv": "7c7b1aeef329c2b0b553578fe5c89a87e30faa6164d1a432d6a70c9bad02cff6",
+    "model_issue_note.md": "0121d503c344dcd815a1447af523a3fc55a51f6a486b834d958235b08ae4edc3",
+    "planning_note.md": "f23ea8fd49ba46827b8653aaa6a4c85a95fbe9ba586f7107ab5025ea3162e943",
+    "source_data.csv": "e9342c82575aa68d35c8417c02b47aee8a258a9307290557b183fba7b2566fef",
+    "starting_workbook.xlsx": "2c7282d4a9e58ff958284295619e98a9956ab3cc2c6a3f7502bf0ca7a77b6d5b"
+  },
+  "semantic_version": "p15_v2",
+  "source_assets": [
+    {
+      "licence": "Project-owned controlled defect from valid gold",
+      "url": "project-authored",
+      "use": "Multi-sheet model"
+    }
+  ],
+  "source_family": "project_authored_multisheet_FPA_operating_model_family",
+  "task_id": "P15-A-FIN-DEBUG-001"
+}

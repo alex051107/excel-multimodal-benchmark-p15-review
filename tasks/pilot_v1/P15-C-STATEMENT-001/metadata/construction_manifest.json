@@ -1,0 +1,15 @@
+{
+  "task_id": "P15-C-STATEMENT-001",
+  "construction_mode": "TRACKED_SOURCE_RENDERER_AND_ARTIFACT_REFERENCE",
+  "source_family": "project-authored-statement-template-family-v2",
+  "tracked_builders": ["scripts/build_p15_c_source_pdfs.py"],
+  "artifact_evidence": {
+    "agent_visible_sources": ["data/input_files/statement_multipage.pdf","data/input_files/starting_workbook.xlsx"],
+    "source_hash_record": "metadata/source_manifest.json",
+    "reference_workbook": "solution/reference.xlsx",
+    "reference_hash_record": "metadata/gold_manifest.json",
+    "deterministic_oracle": "metadata/oracle_recompute.py"
+  },
+  "process_independence": "NOT_ASSERTED",
+  "limitation": "The source renderer is tracked at repository level. No reference-workbook builder is tracked, so source/reference process independence is not asserted."
+}

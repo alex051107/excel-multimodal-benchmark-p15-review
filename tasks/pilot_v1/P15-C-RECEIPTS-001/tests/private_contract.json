@@ -1,0 +1,10 @@
+{
+  "task_id": "P15-C-RECEIPTS-001",
+  "schema": "p15_v2.1_semantic",
+  "required_sheets": ["Documents","Items","Categories","Exceptions","Provenance","Reconciliation"],
+  "row_matching": "documents by source filename and items by source filename plus normalized item description",
+  "identity_policy": "candidate-defined non-empty unique document IDs; IDs must join Documents, Items, and Provenance",
+  "provenance_policy": "correct supplied receipt filename in the source-filename field plus a non-empty readable locator that identifies the item by description or a clear line, row, item, or entry marker; the locator cell need not repeat the filename or any private locator token",
+  "truth_visibility": "verifier_private_only",
+  "private_truth_environment_copy": false
+}

@@ -1,0 +1,4 @@
+pump_id,max_flow_lps,max_head_m,motor_kw
+P-120,45,25,11
+P-180,58,36,18.5
+P-250,80,48,30

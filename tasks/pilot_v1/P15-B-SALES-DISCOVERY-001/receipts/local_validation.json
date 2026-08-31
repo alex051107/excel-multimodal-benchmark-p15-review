@@ -1,0 +1,273 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "dropped_south_coverage": {
+      "candidate_sha256": "d658e276ecc2541a6959354ece8eb5bb6c984056a0a58efe8023216c9353b3ee",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [
+        "COVERAGE_CLOSURE_FAILED:TypeError",
+        "REVENUE_PERTURBATION_FAILED:TypeError",
+        "SELECTED_RECORD_SET_MISMATCH"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.08,
+      "score_stddev": 0.0,
+      "signature_sha256": "9018be18d18efb00f054ae30fd98307f056cfe4e7accc2e0ec1f17fbacb6fc16",
+      "stable": true
+    },
+    "equivalent": {
+      "candidate_sha256": "f0792103b5695c05d8b6cec17e4e9f47f17e8badd8b53129b2bc6db7b5005d0b",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "9e393a1d31b652c631686d55bdfe236d699388ac2b29974b476061e8ff4af24e",
+      "stable": true
+    },
+    "hardcoded_recognized_revenue": {
+      "candidate_sha256": "7a8f064e8fe953ac31279292e117c0ed386b0995f4e320f033f80c4ea240f56e",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.36,
+      "score_stddev": 0.0,
+      "signature_sha256": "4d2db5dbc1e4b53437fde73d266eca6c043016445f60fec7a0ca257b9b69bdba",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "6a0756b20c55152836275e75bbfd62946c21cf2c3c54bb0469ff3d9aebb40ed5",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "e51b2fff6589b10c50e50328cda30b97f1af8d8c44e9c1c4004fe0097fa2e82c",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "BOOKINGS_PERTURBATION_FAILED:TypeError",
+        "INVALID_RELEASE_SELECTION",
+        "REVENUE_PERTURBATION_FAILED:TypeError",
+        "SELECTED_RECORD_SET_MISMATCH"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "82a7b330a5389fcd2e35a9bc264cd328694c49670a9d9591f2675c99bef54e8f",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "33767e214efae5f153ad38088161193e7d9d9e11f86e43c002e9e727e225965c",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "9e393a1d31b652c631686d55bdfe236d699388ac2b29974b476061e8ff4af24e",
+      "stable": true
+    },
+    "registry_collateral_edit": {
+      "candidate_sha256": "a45806d16d67baff2590ccfa908face735f94b61c75c3e0b67f7c317c437bec2",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 1.0
+      },
+      "failure_codes": [
+        "REGISTRY_SOURCE_FIELDS_CHANGED"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.48,
+      "score_stddev": 0.0,
+      "signature_sha256": "cd46f24b12f1914d0ffe3c66d348730601c4d682678bce0339d9208bc3b5191a",
+      "stable": true
+    },
+    "wrong_source_release": {
+      "candidate_sha256": "bf5fd9e02064dc8d457a79509fb7e9d3cf87cd007c14e7cac41885f3d6a98f68",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [
+        "INVALID_RELEASE_SELECTION",
+        "SELECTED_RECORD_SET_MISMATCH"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "27f8e9c47995a93dc653ffafd3ec67a226609624fc0cd9882875aca7935dfb2f",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "bookings": 673000,
+    "closed_won": 4,
+    "revenue": 377000,
+    "rows": [
+      [
+        "REV-100",
+        "North",
+        "Analytics",
+        "Closed Won",
+        145000,
+        102000,
+        1
+      ],
+      [
+        "REV-101",
+        "South",
+        "Analytics",
+        "Closed Won",
+        132000,
+        88000,
+        1
+      ],
+      [
+        "REV-102",
+        "East",
+        "Platform",
+        "Closed Won",
+        168000,
+        126000,
+        1
+      ],
+      [
+        "REV-103",
+        "West",
+        "Platform",
+        "Pipeline",
+        98000,
+        0,
+        0
+      ],
+      [
+        "REV-104",
+        "North",
+        "Services",
+        "Closed Won",
+        76000,
+        61000,
+        1
+      ],
+      [
+        "REV-105",
+        "South",
+        "Services",
+        "Pipeline",
+        54000,
+        0,
+        0
+      ]
+    ],
+    "selection": [
+      "RLS-2024Q2-002",
+      "revenue_q2_corrected.csv",
+      "2024Q2",
+      "complete"
+    ],
+    "south_revenue": 88000
+  },
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY",
+  "task_id": "P15-B-SALES-DISCOVERY-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

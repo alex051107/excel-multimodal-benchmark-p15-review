@@ -1,0 +1,29 @@
+{
+  "task_id": "P15-C-PO-ADDENDUM-001",
+  "split": "confirm",
+  "split_group": "P15-C-PO-ADDENDUM-001",
+  "capability_invariant": [
+    "Apply a multipage purchase-order addendum to the supplied base schedule.",
+    "Preserve unlisted protected rows while applying quantity, insertion, and unit-price changes.",
+    "Produce formula-linked revised totals, a semantic revision log, and page provenance."
+  ],
+  "distinctness": {
+    "source_instance": "PO-8820 addendum 03 mechanical routing revision",
+    "dev_values_reused": false,
+    "changed_drivers": ["purchase order", "addendum", "deadline", "base schedule", "protected row", "quantity change", "inserted service", "price change", "page allocation"],
+    "contamination_guard": "Confirm source, values, truth, oracle, perturbation, and reference are verifier-private and were fixed before target-agent evaluation."
+  },
+  "input_files_dir": "tests/confirm/input_files",
+  "reference_workbook": "tests/confirm/reference.xlsx",
+  "oracle": "tests/confirm/oracle_recompute.py",
+  "evaluator": {
+    "path": "tests/evaluate.py",
+    "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"],
+    "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}
+  },
+  "required_sheets": ["PO_Header", "Base_Schedule", "Revised_Schedule", "Revision_Log", "Provenance", "Checks"],
+  "formula_cells": ["Revised_Schedule!F4:F8", "PO_Header!B9"],
+  "protected": ["Base_Schedule", "PO-14 Safety barriers"],
+  "perturbations": "tests/confirm/perturbations.json",
+  "private_truth_environment_copy": false
+}

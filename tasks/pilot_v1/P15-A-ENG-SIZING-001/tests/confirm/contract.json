@@ -1,0 +1,29 @@
+{
+  "task_id": "P15-A-ENG-SIZING-001",
+  "split": "confirm",
+  "split_group": "P15-A-ENG-SIZING-001-HELDOUT-01",
+  "capability_invariant": ["SI conversion", "Darcy-Weisbach hydraulic head", "shaft and motor sizing", "constraint-based catalog selection", "flow perturbation"],
+  "distinctness": {
+    "source_instance": "Secondary-loop process-water pump selection",
+    "dev_values_reused": false,
+    "changed_drivers": ["design flow", "static head and pipe run", "diameter and friction", "efficiency and safety factor", "fluid density", "complete equipment catalog"],
+    "contamination_guard": "CONFIRM design inputs, catalog, and oracle remain under tests/confirm and are not copied into environment/input."
+  },
+  "input_files_dir": "tests/confirm/input_files",
+  "reference_workbook": "tests/confirm/reference.xlsx",
+  "oracle": "tests/confirm/oracle_recompute.py",
+  "evaluator": {
+    "path": "tests/evaluate.py",
+    "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"],
+    "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}
+  },
+  "required_sheets": ["Inputs", "Unit_Conversions", "Calculations", "Equipment_Selection", "Checks"],
+  "formula_cells": ["Unit_Conversions!C4", "Unit_Conversions!C5", "Unit_Conversions!C6", "Calculations!B4:B11", "Equipment_Selection!E4:F6", "Equipment_Selection!B7"],
+  "perturbations": [{"name": "design_flow", "address": "Calculations!B10", "overrides": {"Inputs!B4": 48}}],
+  "protected": {
+    "Inputs!B4": 36, "Inputs!B5": 16, "Inputs!B6": 210, "Inputs!B7": 125, "Inputs!B8": 0.021, "Inputs!B9": 0.76, "Inputs!B10": 0.12, "Inputs!B11": 997, "Inputs!B12": 9.81,
+    "Equipment_Selection!A4": "H-080", "Equipment_Selection!B4": 38, "Equipment_Selection!C4": 28, "Equipment_Selection!D4": 15,
+    "Equipment_Selection!A5": "H-140", "Equipment_Selection!B5": 52, "Equipment_Selection!C5": 40, "Equipment_Selection!D5": 22,
+    "Equipment_Selection!A6": "H-220", "Equipment_Selection!B6": 74, "Equipment_Selection!C6": 52, "Equipment_Selection!D6": 30
+  }
+}

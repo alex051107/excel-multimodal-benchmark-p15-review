@@ -1,0 +1,36 @@
+{
+  "candidate": "tests/confirm/reference.xlsx",
+  "candidate_sha256": "5a75b7702d787db80306d11524e23828e7ccb9b45f8b509307ddbea7549e32fa",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "criterion_scores": {
+    "P001": 0.0,
+    "R001": 1.0,
+    "R002": 1.0,
+    "R003": 1.0,
+    "R004": 1.0,
+    "R005": 1.0,
+    "R006": 1.0,
+    "R007": 1.0,
+    "R008": 1.0,
+    "R009": 1.0
+  },
+  "failure_codes": [],
+  "input_files_sha256": {
+    "adjustments.csv": "608b47f69481cf505e6bc3e8a26ae6383f55ac47faa8558438595734fd05e991",
+    "context_note.md": "6a48b391c1b3f868ef302e9a7413642fbe0e963ee8c39e6b199dabe4e8f64ebc",
+    "fx_rates.csv": "8f15c1b450bba2d9c56ed27a0a70da875fd512f63ee4a7554d1666ea24076be9",
+    "ledger.csv": "3eefd1cc8da68a456166cbe9e1309772d6c66278d8949736b47ef8699979360f",
+    "reconciliation_policy.md": "7d5496e3b5f44bb75e7aca974f989c6279273d3c1d3ddd809766fa52407e08fb",
+    "starting_workbook.xlsx": "6e1d38acd98982875afa6a66d172c0c861594140d56ff7911121c842f5d189bd",
+    "subledger.csv": "7365f61a2bffd0c27791b2e6f0bf733662bddd038a6ac6247e36c0c0be75fa4e"
+  },
+  "normalized_score": 1.0,
+  "pass": true,
+  "repetitions": 5,
+  "score_stddev": 0.0,
+  "signature_sha256": "d9002532cd99d7c0bce76a75c265c01ff17d5e167fe98b461174013fc59af672",
+  "split": "confirm",
+  "stable": true,
+  "status": "CONFIRM_REFERENCE_VALIDATED",
+  "task_id": "P15-B-FIN-RECON-001"
+}

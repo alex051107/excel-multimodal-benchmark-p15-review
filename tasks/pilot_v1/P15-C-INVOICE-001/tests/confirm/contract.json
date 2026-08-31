@@ -1,0 +1,29 @@
+{
+  "task_id": "P15-C-INVOICE-001",
+  "split": "confirm",
+  "split_group": "P15-C-INVOICE-001",
+  "capability_invariant": [
+    "Extract a multipage vendor invoice into the supplied workbook structure.",
+    "Build formula-linked subtotal, discount, taxable amount, tax, freight, and payable calculations.",
+    "Preserve document page provenance for every extracted line."
+  ],
+  "distinctness": {
+    "source_instance": "Copperline Process Controls invoice INV-3175",
+    "dev_values_reused": false,
+    "changed_drivers": ["vendor", "invoice identity", "customer", "purchase order", "four line items", "discount", "tax", "freight", "page allocation"],
+    "contamination_guard": "Confirm source, values, truth, oracle, perturbation, and reference are verifier-private and were fixed before target-agent evaluation."
+  },
+  "input_files_dir": "tests/confirm/input_files",
+  "reference_workbook": "tests/confirm/reference.xlsx",
+  "oracle": "tests/confirm/oracle_recompute.py",
+  "evaluator": {
+    "path": "tests/evaluate.py",
+    "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"],
+    "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}
+  },
+  "required_sheets": ["Invoice_Header", "Line_Items", "Provenance", "Checks"],
+  "formula_cells": ["Line_Items!E4:E7", "Invoice_Header!B12", "Invoice_Header!B14:B15", "Invoice_Header!B17", "Invoice_Header!B19"],
+  "protected": [],
+  "perturbations": "tests/confirm/perturbations.json",
+  "private_truth_environment_copy": false
+}

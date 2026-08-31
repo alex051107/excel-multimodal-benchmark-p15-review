@@ -1,0 +1,1 @@
+Update the supplied purchase-order workbook from the addendum. Apply only documented changes, preserve unlisted base rows and supplied line IDs, and make the revised schedule recalculable and traceable. Readable file/page/line locators are valid; no hidden locator token is required.

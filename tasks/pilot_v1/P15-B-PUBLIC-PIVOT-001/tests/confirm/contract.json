@@ -1,0 +1,32 @@
+{
+  "task_id": "P15-B-PUBLIC-PIVOT-001",
+  "split": "confirm",
+  "split_group": "P15-B-PUBLIC-PIVOT-001-SIBLING",
+  "status": "TASK_INVALID",
+  "blocker": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "capability_invariant": ["create a genuine Excel Table and PivotCache", "use exact Region and Program axes", "filter Quarter to 2024Q2", "use native SUM measures", "refresh on open", "bind a true PivotChart"],
+  "distinctness": {
+    "source_instance": "held-out public-program instance with different events, East/West regions, Vaccination/Nutrition programs, participation counts, spend, and focus KPI",
+    "dev_values_reused": false,
+    "changed_drivers": ["event IDs", "regions", "program families", "participant counts", "spend", "focus region/program"],
+    "contamination_guard": "tests/confirm is verifier-private and is not copied to data/input_files, environment/input, solution, or fixtures"
+  },
+  "input_files_dir": "tests/confirm/input_files",
+  "reference_workbook": null,
+  "reference_artifact_status": "NOT_CREATED_PENDING_NATIVE_WINDOWS_EXCEL",
+  "truth": "tests/confirm/truth.json",
+  "oracle": "tests/confirm/oracle_recompute.py",
+  "criteria_source": "tests/private_contract.json",
+  "evaluator": {"path": "tests/evaluate.py", "invocation_after_native_build": ["python", "tests/evaluate.py", "<native-confirm-candidate.xlsx>", "--split", "confirm"], "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}},
+  "builder": {"path": "tests/confirm/windows/build_and_validate_confirm.ps1", "status": "DESIGNED_NOT_RUN"},
+  "required_sheets": ["Program_Data", "Pivot_Specification", "KPI_Summary", "Pivot_Chart_Requirement", "Checks"],
+  "expected_native_objects": {
+    "table": {"name": "ProgramEventsTable", "range": "Program_Data!A3:F11", "headers": ["Event ID", "Region", "Program", "Quarter", "Participants", "Spend"]},
+    "pivot_cache": {"source": "ProgramEventsTable", "field_indexes": {"Region": 1, "Program": 2, "Quarter": 3, "Participants": 4, "Spend": 5}, "refresh_on_open": true, "enable_refresh": true},
+    "pivot_table": {"name": "ProgramDeliveryPivot", "row_field": "Region", "column_field": "Program", "page_filter": "Quarter=2024Q2", "measures": ["Sum of Participants", "Sum of Spend"]},
+    "oracle": {"q2_participants": 122, "q2_spend": 341000, "focus_region": "East", "focus_program": "Vaccination", "focus_participants": 38},
+    "pivot_chart": {"pivot_layout_table": "ProgramDeliveryPivot", "chart_type": "clustered column"}
+  },
+  "protected": {"Program_Data!A3:F11": "exact tests/confirm/input_files/program_events.csv in ProgramEventsTable"},
+  "perturbations": "tests/confirm/perturbations.json"
+}

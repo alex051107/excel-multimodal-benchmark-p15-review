@@ -1,0 +1,13 @@
+{
+  "task_id": "P15-C-INVOICE-001",
+  "schema": "p15_v2.1_semantic",
+  "required_sheets": ["Invoice_Header","Line_Items","Provenance","Checks"],
+  "row_matching": "line rows by normalized description; header and summary fields by labeled template cells",
+  "identity_policy": "candidate-defined non-empty unique line IDs; IDs must join Line_Items to Provenance",
+  "header_policy": "typed Excel dates and semantically equal readable dates are accepted; other header text is compared case-insensitively after whitespace normalization",
+  "discount_policy": "the discount may be represented as a positive deduction or a negative signed amount when its magnitude, formula linkage, taxable amount, perturbation response, and final payable result are coherent",
+  "monetary_precision_policy": "formula-linked currency values may retain exact intermediates or round to cents; the deterministic tolerance is one cent",
+  "provenance_policy": "correct supplied filename and page plus a non-empty readable locator containing both; exact private locator strings are not required",
+  "truth_visibility": "verifier_private_only",
+  "private_truth_environment_copy": false
+}

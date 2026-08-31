@@ -1,0 +1,22 @@
+{
+  "asset_boundary": "Task-local input with construction mode stated explicitly; no observed company workflow is claimed.",
+  "construction_mode": "EXPERT_AUTHORED_REALISTIC_CASE",
+  "local_input_hashes": {
+    "context_note.md": "fc45bf476b76676bef586461904e1b140384f3d8f8973ec72af42ff294cf3bf4",
+    "program_events.csv": "b9838dbb83e97f9c4172228a1eaf68bd488fcb8d822c4d98e0637a9cbf89836c",
+    "reporting_specification.md": "44add3ac494b08840010bef5b532e078f2e509b32b462f2543750765732515ab",
+    "starting_workbook.xlsx": "55f158b58195e6017a49551faf58791c0604f97076eef0ca71b6684f70bce6dd"
+  },
+  "semantic_version": "p15_v3",
+  "source_assets": [
+    {
+      "licence": "Project-owned realistic reporting workspace",
+      "url": "project-authored",
+      "use": "Native-Pivot semantics and source range"
+    }
+  ],
+  "source_family": "project_authored_public_program_reporting_workspace",
+  "task_status": "TASK_INVALID",
+  "validation_blocker": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "task_id": "P15-B-PUBLIC-PIVOT-001"
+}

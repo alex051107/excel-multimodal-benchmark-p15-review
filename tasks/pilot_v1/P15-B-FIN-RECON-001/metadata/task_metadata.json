@@ -1,0 +1,19 @@
+{
+  "department": "Accounting",
+  "difficulty_tier": "Very Hard",
+  "est_minutes": 110,
+  "multimodal": true,
+  "occupation": "Financial Analyst",
+  "sector": "Professional, Scientific, and Technical Services",
+  "semantic_version": "p15_v3",
+  "skills": [
+    "reconciliation",
+    "FX normalization",
+    "matching",
+    "variance bridge",
+    "exception handling"
+  ],
+  "status": "LOCAL_READY",
+  "task_id": "P15-B-FIN-RECON-001",
+  "web_search_required": false
+}

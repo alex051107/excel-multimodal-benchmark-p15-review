@@ -1,0 +1,24 @@
+{
+  "agent_visible_hashes": {
+    "context_note.md": "eb8b5de7c523ec8b2093355e8f5ce3a86d8f06dbb9759e88052ce9692c01d482",
+    "document_inventory.md": "04573d7e28a11f739f3413803a9851e195e59f6524403b0dfaf4363df7f6d029",
+    "po_addendum.pdf": "1af7fac98ba52a35005a6db2de22d93e54aa4640115b5b21f096b19344dac679",
+    "starting_workbook.xlsx": "4ef7a52707fb2acd8aed5e8a377ba2a41b88377980c7cd1f92e83df909e1fe0d"
+  },
+  "assets": [
+    {
+      "license": "Project-owned original",
+      "path": "po_addendum.pdf",
+      "role": "agent-visible addendum"
+    },
+    {
+      "license": "Project-owned original",
+      "path": "starting_workbook.xlsx",
+      "role": "agent-visible delivery template without expected-result cells"
+    }
+  ],
+  "construction_mode": "TRACKED_SOURCE_RENDERER_AND_ARTIFACT_REFERENCE",
+  "rights": "Project-owned original truth, source documents, and workbook artifacts.",
+  "source_family": "project-authored-procurement-template-family-v2",
+  "task_id": "P15-C-PO-ADDENDUM-001"
+}

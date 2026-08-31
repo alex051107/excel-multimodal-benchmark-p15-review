@@ -1,0 +1,7 @@
+{
+  "split": "confirm",
+  "cases": [
+    {"id": "confirm_fx_lineage", "cell": "FX_Rates!C5", "baseline": 1.31, "mutated": 1.32, "invoice": "BILL-211", "expected_changes": {"Normalized_Records!H5": 8, "Normalized_Records!H10": 8, "Variance_Bridge!B4": 8, "Variance_Bridge!B5": 8}},
+    {"id": "confirm_adjustment_lineage", "cell": "Adjustment_Evidence!C4", "baseline": -45, "mutated": -35, "invoice": "BILL-215", "expected": {"Matched_Items!E7": 420, "Matched_Items!F7": -10, "Matched_Items!G7": "OUT_OF_TOLERANCE"}}
+  ]
+}

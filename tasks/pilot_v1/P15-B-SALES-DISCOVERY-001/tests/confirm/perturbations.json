@@ -1,0 +1,7 @@
+{
+  "split": "confirm",
+  "cases": [
+    {"id": "confirm_bookings_lineage", "cell": "Consolidated_Data!E4", "baseline": 215000, "mutated": 215100, "expected_changes": {"KPI_Summary!B4": 100}},
+    {"id": "confirm_revenue_lineage", "cell": "Consolidated_Data!F5", "baseline": 149500, "mutated": 149600, "expected_changes": {"KPI_Summary!B5": 100, "KPI_Summary!B7": 100, "Coverage_Checks!C5": 100}}
+  ]
+}

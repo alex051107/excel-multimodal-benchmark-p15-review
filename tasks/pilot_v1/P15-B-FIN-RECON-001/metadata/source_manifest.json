@@ -1,0 +1,23 @@
+{
+  "asset_boundary": "Task-local input with construction mode stated explicitly; no observed company workflow is claimed.",
+  "construction_mode": "PROCEDURAL_TYPED_TRUTH",
+  "local_input_hashes": {
+    "adjustments.csv": "5c214883d879f92774ee9d4014122c32b5f1cbd58361b40c4e930e0e90dc370d",
+    "context_note.md": "f1f698a9a4c23dd84bf397455142a215e0cb8f204d0c814f788d0c2b03132dd9",
+    "fx_rates.csv": "e892382a26457c6e86d8f22617b50567ab44f2a1c0046e48ec5397bc270d894a",
+    "ledger.csv": "2fa4784e996ee855771585075e194eec043330cce57d0e8568cdb5642ae13352",
+    "reconciliation_policy.md": "d164c0e45415273128bcfb3d97fc1fc730f57293dcb934bb69edbea7153f95b4",
+    "starting_workbook.xlsx": "e793dd0d3f5b4842c875c79bef022ed4d371f7a0e68daabe652fbc2c1adcd74c",
+    "subledger.csv": "fd60c5223ecd2ace12f39b29c8c914229a5db166d1477573d9891afbec657847"
+  },
+  "semantic_version": "p15_v3",
+  "source_assets": [
+    {
+      "licence": "Project-owned procedural reconciliation truth",
+      "url": "project-authored",
+      "use": "Independent ledger/subledger/FX/adjustment inputs"
+    }
+  ],
+  "source_family": "project_authored_invoice_fx_reconciliation_truth",
+  "task_id": "P15-B-FIN-RECON-001"
+}

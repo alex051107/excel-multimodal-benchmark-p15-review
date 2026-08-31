@@ -1,0 +1,4 @@
+record_id,region,product,stage,bookings,recognized_revenue,closed_won_flag
+REV-100,North,Analytics,Closed Won,145000,102000,1
+REV-102,East,Platform,Closed Won,168000,126000,1
+REV-103,West,Platform,Pipeline,98000,0,0

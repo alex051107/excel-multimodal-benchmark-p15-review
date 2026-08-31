@@ -1,0 +1,2 @@
+record_id,region,product,stage,bookings,recognized_revenue,closed_won_flag
+HIST-210,West,Cloud Operations,Closed Won,175000,141000,1

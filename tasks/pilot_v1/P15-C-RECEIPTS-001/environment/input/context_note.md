@@ -1,0 +1,1 @@
+Complete the supplied expense-reconciliation workbook from the three receipt images. Preserve receipt identity, item hierarchy, category assignment, and the batch total. Stable candidate IDs and readable image/item locators are valid when linked consistently.

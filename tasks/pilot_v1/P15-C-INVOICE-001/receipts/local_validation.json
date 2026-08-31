@@ -1,0 +1,271 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "duplicate_line_item": {
+      "candidate_sha256": "40ab9d0ef2de6b6c3c42018d47a7d48c4c3a94bf88260904ff6209adff36f249",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "6d6cb6c67d0d2d9f8891b02fa9e7ae93f0155506b68c54a2510d9389e5304d97",
+      "stable": true
+    },
+    "equivalent": {
+      "candidate_sha256": "7d33cd385abb28e8d7a212d5fc941fa096297d2d5d9234077cb31b45dd4c8548",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "53dbd5a5ad358ca9059ab62246ecc902c3ab27890167a3e04020e0e9f92c20ce",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "edf00527516af4721e20e620159c2f3579dd7723457bdf8df27acdc7f06274af",
+      "stable": true
+    },
+    "missing_line_item": {
+      "candidate_sha256": "ac2b1df6d7bfea3814d41a899e85978037a87c137571bdac15415db89112b889",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "6d6cb6c67d0d2d9f8891b02fa9e7ae93f0155506b68c54a2510d9389e5304d97",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "f4a1e980f907102bc627167843a8b608d7299cd82c8bf6dbacddee063e68d6b0",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "e1b661f7d35f023c977c91b8e047a37df5bcd6ffbcf81aa4779ddbb90e3e9b38",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "2e7228d48e6bca12fc2cae487b7c6387bd969fbce9637769138b3cb93f4a1e1f",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "53dbd5a5ad358ca9059ab62246ecc902c3ab27890167a3e04020e0e9f92c20ce",
+      "stable": true
+    },
+    "wrong_header_and_payable_total": {
+      "candidate_sha256": "52e54cdbc926fa7838719f5171ca755875d3a63f89f47781d140deb19cc00a09",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.310345,
+      "score_stddev": 0.0,
+      "signature_sha256": "4d1b75cb3cd3b6b3bcfbff19396f0a9ee151887619dda6cff5a50a923ae17790",
+      "stable": true
+    },
+    "wrong_page_provenance": {
+      "candidate_sha256": "bf6befbb33ae8709e5e6150df884995312725934413d137c2555065c91f3894d",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.62069,
+      "score_stddev": 0.0,
+      "signature_sha256": "ac4f420b170bb0523d8da1ac6d29759b14d29c3ea55cd040f2fc5272c0628b28",
+      "stable": true
+    },
+    "wrong_payable_total": {
+      "candidate_sha256": "5cc2cd51f27c6f21493a65c7d8fc11e36b6542b0f6604a38c46eae901d1f4c10",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.413793,
+      "score_stddev": 0.0,
+      "signature_sha256": "46c5db6558c60f0d95cd9671fcaca820b34838b29e70cb260d6211febda2ccd3",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "discount": 168.0,
+    "document": {
+      "filename": "invoice_multipage.pdf",
+      "pages": 2
+    },
+    "freight": 45.0,
+    "headers": {
+      "currency": "USD",
+      "customer": "Northstar Operations",
+      "invoice_date": "2026-06-18",
+      "invoice_id": "INV-2048",
+      "po_reference": "PO-7194",
+      "vendor": "Alder & Finch Supply"
+    },
+    "items": [
+      {
+        "description": "Thermal valve kit",
+        "line_id": "INV-2048-01",
+        "line_total": 720.0,
+        "page": 1,
+        "quantity": 4,
+        "text_locator": "invoice_multipage.pdf:p1:item-1",
+        "unit_price": 180.0
+      },
+      {
+        "description": "Pressure sensor",
+        "line_id": "INV-2048-02",
+        "line_total": 420.0,
+        "page": 1,
+        "quantity": 3,
+        "text_locator": "invoice_multipage.pdf:p1:item-2",
+        "unit_price": 140.0
+      },
+      {
+        "description": "Field commissioning",
+        "line_id": "INV-2048-03",
+        "line_total": 240.0,
+        "page": 1,
+        "quantity": 1,
+        "text_locator": "invoice_multipage.pdf:p1:item-3",
+        "unit_price": 240.0
+      },
+      {
+        "description": "Calibration certificate",
+        "line_id": "INV-2048-04",
+        "line_total": 300.0,
+        "page": 2,
+        "quantity": 1,
+        "text_locator": "invoice_multipage.pdf:p2:item-4",
+        "unit_price": 300.0
+      }
+    ],
+    "subtotal": 1680.0,
+    "tax": 124.74,
+    "taxable": 1512.0,
+    "total": 1681.74
+  },
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY",
+  "task_id": "P15-C-INVOICE-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "CONFIRM_PUMP_PAD_1750_TO_1850",
+    "target": {
+      "sheet": "Line_Items",
+      "match_column": "B",
+      "match_value": "Pump pad retrofit",
+      "value_column": "E",
+      "baseline": 1750,
+      "perturbed": 1850
+    },
+    "expected": [
+      {
+        "sheet": "Quote_Header",
+        "cell": "B12",
+        "value": 2775
+      },
+      {
+        "sheet": "Quote_Header",
+        "cell": "B13",
+        "value": 138.75
+      },
+      {
+        "sheet": "Quote_Header",
+        "cell": "B14",
+        "value": 191.128125
+      },
+      {
+        "sheet": "Quote_Header",
+        "cell": "B15",
+        "value": 2827.378125
+      }
+    ],
+    "protected": [
+      {
+        "sheet": "Quote_Header",
+        "cell": "B16",
+        "value": 420
+      }
+    ]
+  }
+]

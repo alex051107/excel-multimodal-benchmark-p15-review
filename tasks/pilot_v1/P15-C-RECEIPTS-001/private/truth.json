@@ -1,0 +1,79 @@
+{
+  "documents": [
+    {
+      "date": "2026-06-03",
+      "document_id": "R-001",
+      "filename": "receipt_photo_01.jpg",
+      "merchant": "Cedar Cafe",
+      "page": 1,
+      "tax_rate": 0.0825,
+      "text_locator": "receipt_photo_01.jpg:receipt-body",
+      "tip": 3.0
+    },
+    {
+      "date": "2026-06-07",
+      "document_id": "R-002",
+      "filename": "receipt_photo_02.jpg",
+      "merchant": "Central Parking",
+      "page": 1,
+      "tax_rate": 0.0,
+      "text_locator": "receipt_photo_02.jpg:receipt-body",
+      "tip": 0.0
+    },
+    {
+      "date": "2026-06-14",
+      "document_id": "R-003",
+      "filename": "receipt_photo_03.jpg",
+      "merchant": "Stationery Works",
+      "page": 1,
+      "tax_rate": 0.0825,
+      "text_locator": "receipt_photo_03.jpg:receipt-body",
+      "tip": 0.0
+    }
+  ],
+  "items": [
+    {
+      "amount": 5.2,
+      "category": "Meals",
+      "document_id": "R-001",
+      "item": "Iced coffee",
+      "modifier": "none",
+      "text_locator": "receipt_photo_01.jpg:line-1"
+    },
+    {
+      "amount": 10.8,
+      "category": "Meals",
+      "document_id": "R-001",
+      "item": "Sandwich",
+      "modifier": "none",
+      "text_locator": "receipt_photo_01.jpg:line-2"
+    },
+    {
+      "amount": 24.0,
+      "category": "Travel",
+      "document_id": "R-002",
+      "item": "Parking",
+      "modifier": "none",
+      "text_locator": "receipt_photo_02.jpg:line-1"
+    },
+    {
+      "amount": 18.6,
+      "category": "Office",
+      "document_id": "R-003",
+      "item": "Markers",
+      "modifier": "none",
+      "text_locator": "receipt_photo_03.jpg:line-1"
+    },
+    {
+      "amount": 12.0,
+      "category": "Office",
+      "document_id": "R-003",
+      "item": "Folders",
+      "modifier": "none",
+      "text_locator": "receipt_photo_03.jpg:line-2"
+    }
+  ],
+  "source_family": "project-authored-receipt-template-family-v2",
+  "task_id": "P15-C-RECEIPTS-001",
+  "template": "photo-style expense receipt batch"
+}

@@ -1,0 +1,76 @@
+{
+  "documents": [
+    {
+      "date": "2026-07-02",
+      "document_id": "CR-101",
+      "filename": "confirm_receipt_01.jpg",
+      "merchant": "Juniper Bakery",
+      "page": 1,
+      "tax_rate": 0.0825,
+      "text_locator": "confirm_receipt_01.jpg:receipt-body",
+      "tip": 2.5
+    },
+    {
+      "date": "2026-07-08",
+      "document_id": "CR-102",
+      "filename": "confirm_receipt_02.jpg",
+      "merchant": "Metro Transit Garage",
+      "page": 1,
+      "tax_rate": 0,
+      "text_locator": "confirm_receipt_02.jpg:receipt-body",
+      "tip": 0
+    },
+    {
+      "date": "2026-07-13",
+      "document_id": "CR-103",
+      "filename": "confirm_receipt_03.jpg",
+      "merchant": "Office Corner",
+      "page": 1,
+      "tax_rate": 0.0825,
+      "text_locator": "confirm_receipt_03.jpg:receipt-body",
+      "tip": 0
+    }
+  ],
+  "items": [
+    {
+      "amount": 4.5,
+      "category": "Meals",
+      "document_id": "CR-101",
+      "item": "Sparkling water",
+      "modifier": "none",
+      "text_locator": "confirm_receipt_01.jpg:line-1"
+    },
+    {
+      "amount": 13.25,
+      "category": "Meals",
+      "document_id": "CR-101",
+      "item": "Lunch bowl",
+      "modifier": "none",
+      "text_locator": "confirm_receipt_01.jpg:line-2"
+    },
+    {
+      "amount": 18,
+      "category": "Travel",
+      "document_id": "CR-102",
+      "item": "Parking",
+      "modifier": "none",
+      "text_locator": "confirm_receipt_02.jpg:line-1"
+    },
+    {
+      "amount": 9.75,
+      "category": "Office",
+      "document_id": "CR-103",
+      "item": "Label rolls",
+      "modifier": "none",
+      "text_locator": "confirm_receipt_03.jpg:line-1"
+    },
+    {
+      "amount": 22.4,
+      "category": "Office",
+      "document_id": "CR-103",
+      "item": "USB adapters",
+      "modifier": "none",
+      "text_locator": "confirm_receipt_03.jpg:line-2"
+    }
+  ]
+}

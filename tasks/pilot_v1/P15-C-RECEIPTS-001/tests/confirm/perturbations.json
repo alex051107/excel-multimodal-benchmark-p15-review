@@ -1,0 +1,40 @@
+[
+  {
+    "id": "CONFIRM_SPARKLING_WATER_4_50_TO_5_50",
+    "target": {
+      "sheet": "Items",
+      "match_column": "B",
+      "match_value": "Sparkling water",
+      "secondary_match_column": "F",
+      "secondary_match_value": "confirm_receipt_01.jpg",
+      "value_column": "D",
+      "baseline": 4.5,
+      "perturbed": 5.5
+    },
+    "expected_by_content": [
+      {
+        "sheet": "Documents",
+        "match_column": "H",
+        "match_value": "confirm_receipt_01.jpg",
+        "value_column": "G",
+        "value": 22.8
+      }
+    ],
+    "expected": [
+      {
+        "sheet": "Reconciliation",
+        "cell": "B6",
+        "value": 75.6
+      }
+    ],
+    "protected_by_content": [
+      {
+        "sheet": "Documents",
+        "match_column": "H",
+        "match_value": "confirm_receipt_02.jpg",
+        "value_column": "G",
+        "value": 18
+      }
+    ]
+  }
+]

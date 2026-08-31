@@ -1,0 +1,13 @@
+{
+  "task_id": "P15-C-QUOTE-001",
+  "schema": "p15_v2.1_semantic",
+  "required_sheets": ["Quote_Header","Groups","Line_Items","Alternates","Provenance","Checks"],
+  "row_matching": "scope and alternate rows by normalized description plus candidate-defined ID; row order and the literal private IDs are not scored; summary fields by labeled template cells",
+  "identity_policy": "candidate-defined non-empty unique scope IDs; IDs must join Line_Items, Alternates, and Provenance",
+  "header_policy": "typed Excel dates and semantically equal readable dates are accepted; header text is compared case-insensitively after whitespace normalization",
+  "formula_policy": "standard equivalent Excel formula strategies, including SUMIF/SUMIFS and percentage literals, are replayed from dependencies rather than matched to reference formula text",
+  "page_policy": "the source page may be a number or a readable page label such as p. 1 or page 1",
+  "provenance_policy": "the joined provenance row must identify the correct supplied scan, page, and a non-empty readable locator; exact private locator strings and a specific locator-cell format are not required",
+  "truth_visibility": "verifier_private_only",
+  "private_truth_environment_copy": false
+}

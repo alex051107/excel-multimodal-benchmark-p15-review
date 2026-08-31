@@ -1,0 +1,37 @@
+schema_version = "1.4"
+artifacts = ["/app/output/answer.xlsx"]
+
+[task]
+name = "alex051107/p15-c-receipts-001"
+version = "2.1.0"
+description = "Transform a receipt-image batch into a typed, categorized, formula-linked expense reconciliation workbook."
+keywords = ["excel", "pilot-v1", "track-c", "semantic-rebuild", "artifact-record-only"]
+
+[[task.authors]]
+name = "Excel Benchmark Team"
+
+[metadata]
+task_id = "P15-C-RECEIPTS-001"
+track = "C"
+status = "LOCAL_READY"
+construction_mode = "ARTIFACT_RECORD_ONLY"
+source_family = "project-authored-receipt-template-family-v2"
+benchmark_authored_instruction = true
+sector = "Business operations"
+department = "Expense Management"
+occupation = "Expense Analyst"
+difficulty_tier = "Hard"
+multimodal = true
+web_search_required = false
+est_minutes = 45
+skills = ["receipt extraction", "document identity", "expense categorization", "batch reconciliation"]
+
+[verifier]
+timeout_sec = 300.0
+environment_mode = "separate"
+network_mode = "public"
+
+[environment]
+network_mode = "public"
+os = "linux"
+workdir = "/app"

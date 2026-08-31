@@ -1,0 +1,318 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "collateral_health_source_edit": {
+      "candidate_sha256": "d21924c151e8eb667fe769f357fa8eb623e8f03046b33f23d332ad76bceab2e7",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "PROTECTED_HEALTH_SOURCE_CHANGED",
+        "REPORT_EVALUATION_FAILED:ValueError",
+        "VERMONT_SOURCE_PERTURBATION_FAILED:ValueError"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.074074,
+      "score_stddev": 0.0,
+      "signature_sha256": "894fc07af27ee8e919aac74c214e7f00c5138edc629b178afe7b9e583f8181dd",
+      "stable": true
+    },
+    "equivalent": {
+      "candidate_sha256": "248cff0eca8c05a4e19078cf843aa98101c0d89f52636a81d49a00a526f24a36",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "04cd636cd8c60237c6eec2bc6692066f58e0416eb09e8345714ae86fa1d9c0ce",
+      "stable": true
+    },
+    "hardcoded_report_claim": {
+      "candidate_sha256": "549f9dfdb7398e9be931d055fdc0e9b57832c59a53ce0916d05f2081648170d9",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "REPORT_EVALUATION_FAILED:ValueError"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.333333,
+      "score_stddev": 0.0,
+      "signature_sha256": "c82cc548ecfcd201ebd03a811652013f67530b9574ec9a86d501f837df674e8b",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "f62f0be46539c43618a1b0f48c9b252b18e1209ece3afbbd757939bd55661d55",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "d254d2262e3194acf118565fae78ffeec52ccad60ff6b16a8fd98ac89712be3d",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "NEW_HAMPSHIRE_SOURCE_PERTURBATION_FAILED:ValueError",
+        "REPORT_EVALUATION_FAILED:ValueError",
+        "VERMONT_SOURCE_PERTURBATION_FAILED:ValueError"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "b531c4efe901ee7afda90f368e860ce96b09fa1e09f2a580e97ea12162ed4dfa",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "647aa07837aeb756a80f727e9fb239748f46a3bb9eb08e90f8af8c8bfa319465",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "04cd636cd8c60237c6eec2bc6692066f58e0416eb09e8345714ae86fa1d9c0ce",
+      "stable": true
+    },
+    "stale_chart_data": {
+      "candidate_sha256": "fe536e1cce8bb79530a6a7d08f661eb282392b9d2be4e0fe94279a2a83633ce6",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 1.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.296296,
+      "score_stddev": 0.0,
+      "signature_sha256": "1d8dcb7b344ce48b210596379f1e6329236372e86df3bdea5113f1a9b6d7adf7",
+      "stable": true
+    },
+    "wrong_geography_mapping": {
+      "candidate_sha256": "bd02be77ec70388d867cc74b1f0cbc1cc8b73fd42efae533ab23400ca5b0d456",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "VERMONT_SOURCE_PERTURBATION_FAILED:ValueError"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.296296,
+      "score_stddev": 0.0,
+      "signature_sha256": "9cc0f2ee4fe71fc7c3c54a69f8f421b437ceae8b0e9ea7e52d08fc9a5235687f",
+      "stable": true
+    },
+    "wrong_time_alignment": {
+      "candidate_sha256": "2aec5f6fd1693bc29cba7e817ec46a89d900791610e79d0b0e0757c5a277a81a",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "REPORT_EVALUATION_FAILED:ValueError"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.185185,
+      "score_stddev": 0.0,
+      "signature_sha256": "cd0073bbd356808ef60d6fd1b2d4766f430fb1b20327a13e80109f61fa5016e8",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "highest_current": "Vermont",
+    "metrics": {
+      "New Hampshire": [
+        147.63333333333333,
+        149.9333333333333,
+        2.299999999999983,
+        0.015579137502822193
+      ],
+      "Vermont": [
+        152.26666666666665,
+        154.6,
+        2.333333333333343,
+        0.015323992994746124
+      ]
+    },
+    "rows": [
+      [
+        "Vermont",
+        2012,
+        1206,
+        150.6
+      ],
+      [
+        "Vermont",
+        2013,
+        1220,
+        149.6
+      ],
+      [
+        "Vermont",
+        2014,
+        1311,
+        156.6
+      ],
+      [
+        "Vermont",
+        2015,
+        1311,
+        152.5
+      ],
+      [
+        "Vermont",
+        2016,
+        1366,
+        158.8
+      ],
+      [
+        "Vermont",
+        2017,
+        1332,
+        152.5
+      ],
+      [
+        "New Hampshire",
+        2012,
+        2324,
+        146.1
+      ],
+      [
+        "New Hampshire",
+        2013,
+        2434,
+        148.9
+      ],
+      [
+        "New Hampshire",
+        2014,
+        2464,
+        147.9
+      ],
+      [
+        "New Hampshire",
+        2015,
+        2571,
+        149.0
+      ],
+      [
+        "New Hampshire",
+        2016,
+        2631,
+        151.1
+      ],
+      [
+        "New Hampshire",
+        2017,
+        2721,
+        149.7
+      ]
+    ]
+  },
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY",
+  "task_id": "P15-B-HEALTH-REPORT-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

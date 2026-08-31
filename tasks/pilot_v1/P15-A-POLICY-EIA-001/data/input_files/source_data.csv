@@ -1,0 +1,6 @@
+category,gwh_2023,emission_factor_t_per_mwh
+Coal,675000,1.0
+Natural gas,1802000,0.4
+Wind,425000,0
+Solar,238000,0
+Demand,4000000,

@@ -1,0 +1,18 @@
+{
+  "construction_mode": "ARTIFACT_RECORD_ONLY",
+  "department": "Procurement Operations",
+  "difficulty_tier": "Very Hard",
+  "est_minutes": 55,
+  "occupation": "Procurement Analyst",
+  "sector": "Public procurement",
+  "semantic_rebuild": true,
+  "skills": [
+    "document revision interpretation",
+    "row identity preservation",
+    "formula-linked schedule update",
+    "change locality"
+  ],
+  "source_family": "project-authored-procurement-template-family-v2",
+  "task_id": "P15-C-PO-ADDENDUM-001",
+  "track": "C"
+}

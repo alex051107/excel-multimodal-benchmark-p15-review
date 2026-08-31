@@ -1,0 +1,246 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "collateral_damage": {
+      "candidate_sha256": "00634e7eb780b8b42e0371c609ec75307a6378e4bdf006ab17b12e5fbe2f6ef7",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "failure_codes": [
+        "COLLATERAL_EDIT:Assumptions!C4",
+        "MODEL_REPLAY_MISMATCH:Summary!D8",
+        "MODEL_REPLAY_MISMATCH:Summary!D9"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.230769,
+      "score_stddev": 0.0,
+      "signature_sha256": "d4559b058309774e2155da1aa777a1340c903f8b0ccb073ec147b0289b578c79",
+      "stable": true
+    },
+    "equivalent": {
+      "candidate_sha256": "abf2efcf1df9628b847570f6aa7daaf63660b008e62aa356bf8229c2391e18e7",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "f10f6e759c1352d08bf400ed571c328b2c4778bdb9c8a90842ec68230e92a2e9",
+      "stable": true
+    },
+    "hardcoded_summary": {
+      "candidate_sha256": "c63448dfb2cd1bf972f064ac5a60e6e4b86eb8d7f012a32809baf10aa68c5504",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 1.0,
+        "R011": 0.0,
+        "R012": 0.0
+      },
+      "failure_codes": [
+        "COLLATERAL_EDIT:Summary!D8",
+        "FORMULA_REQUIRED:Summary!D8",
+        "MODEL_REPLAY_MISMATCH:Summary!D8",
+        "MODEL_REPLAY_MISMATCH:Summary!D9"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.153846,
+      "score_stddev": 0.0,
+      "signature_sha256": "3ae369916189296b64a468ea44b0f4ef027497848c52914c13d5f072c2fe5c8a",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 0.0,
+        "R012": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "0e14ec39ec66d7dfb4debee94cb11d542fd798c262f7cee3459055d3665d5512",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "cf4a63d913525ef34aaa6e9c2059dae4d15786300ab44f7a896572e8150cb703",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "failure_codes": [
+        "MODEL_REPLAY_MISMATCH:Revenue_Build!D6",
+        "MODEL_REPLAY_MISMATCH:Summary!D8",
+        "MODEL_REPLAY_MISMATCH:Summary!D9",
+        "MODEL_REPLAY_MISMATCH:Working_Capital!D5"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.192308,
+      "score_stddev": 0.0,
+      "signature_sha256": "2d90e3f40d4266392210b55fe572a08ecfb44937cc4b3c15af5222d20368645b",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "09258d0a39f48271aab5f01ccd7c82ee68f87f8a747bd30e7527585e1328d4ab",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "f10f6e759c1352d08bf400ed571c328b2c4778bdb9c8a90842ec68230e92a2e9",
+      "stable": true
+    },
+    "wrong_period_reference": {
+      "candidate_sha256": "e9132fad67e80c088a183b28ef67c94b21016cab91d0d2d6f0cb34f379ea86dd",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "failure_codes": [
+        "MODEL_REPLAY_MISMATCH:Revenue_Build!D6",
+        "MODEL_REPLAY_MISMATCH:Summary!D8",
+        "MODEL_REPLAY_MISMATCH:Summary!D9",
+        "MODEL_REPLAY_MISMATCH:Working_Capital!D5"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.192308,
+      "score_stddev": 0.0,
+      "signature_sha256": "2d90e3f40d4266392210b55fe572a08ecfb44937cc4b3c15af5222d20368645b",
+      "stable": true
+    },
+    "wrong_working_capital_sign": {
+      "candidate_sha256": "2c62e9e7fd6c9bdd0e4cded78b93c7408a3c7d660862150e05aae52adc67ecba",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 0.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "failure_codes": [
+        "COLLATERAL_EDIT:Working_Capital!D7",
+        "MODEL_REPLAY_MISMATCH:Summary!D8"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.384615,
+      "score_stddev": 0.0,
+      "signature_sha256": "22f8d3b8f1ed2272d487ef0bbedf98ad8340e7afa1222257f7ab060c49d1585f",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "ar_2027": 80698.6301369863,
+    "contribution_2027": 183950.0,
+    "dscr_2027": 8.364736301369863,
+    "fcf_2027": 167294.72602739726,
+    "interest_2027": 12155.0,
+    "revenue_2027": 685000,
+    "wc_cash_2027": -4500.27397260275
+  },
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY",
+  "task_id": "P15-A-FIN-DEBUG-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

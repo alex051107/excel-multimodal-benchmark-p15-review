@@ -1,0 +1,32 @@
+{
+  "release": "p15-review-v1.1",
+  "release_date": "2026-08-30",
+  "repository_scope": "private reviewer repository",
+  "primary_tasks": 15,
+  "track_counts": {
+    "A": 5,
+    "B": 5,
+    "C": 5
+  },
+  "reserve_designs": 9,
+  "local_ready_tasks": 14,
+  "task_invalid": [
+    "P15-B-PUBLIC-PIVOT-001"
+  ],
+  "development_attempts": {
+    "codex_gpt56sol": 56,
+    "claude_opus48": 14,
+    "qwen38max": 14,
+    "claude_opus5_supplemental": 1
+  },
+  "external_evidence_pending": [
+    "Windows Microsoft Excel validation",
+    "native Pivot object construction and readback",
+    "held-out Agent CONFIRM runs",
+    "standard per-task pass@8",
+    "external human review"
+  ],
+  "accepted_hard_tasks": 0,
+  "human_review_receipts": 0,
+  "secrets_in_repository": false
+}

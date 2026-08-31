@@ -1,0 +1,16 @@
+[
+  {
+    "id": "BOOKINGS_SOURCE_PLUS_100",
+    "changed_source_cells": ["Consolidated_Data!E4"],
+    "values": [145100],
+    "expected_outputs": {"KPI_Summary!B4": 673100},
+    "invariant_protected_ranges": ["Release_Registry!A4:G7"]
+  },
+  {
+    "id": "SOUTH_REVENUE_SOURCE_PLUS_100",
+    "changed_source_cells": ["Consolidated_Data!F5"],
+    "values": [88100],
+    "expected_outputs": {"KPI_Summary!B5": 377100, "KPI_Summary!B7": 88100},
+    "invariant_protected_ranges": ["Release_Registry!A4:G7"]
+  }
+]

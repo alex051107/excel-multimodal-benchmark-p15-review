@@ -1,0 +1,68 @@
+schema: p15_reserve_manifest_v1
+release: P15
+status: DESIGN_FROZEN
+package_not_built: true
+reserve_count: 9
+track_counts:
+  A: 3
+  B: 3
+  C: 3
+
+reserves:
+  - id: R15-A-PROJECT-FINANCE-001
+    track: A
+    card: reserves/p15_v1/R15-A-PROJECT-FINANCE-001.md
+    status: DESIGN_FROZEN
+    package_not_built: true
+  - id: R15-A-MASS-BALANCE-001
+    track: A
+    card: reserves/p15_v1/R15-A-MASS-BALANCE-001.md
+    status: DESIGN_FROZEN
+    package_not_built: true
+  - id: R15-A-FORECAST-QC-001
+    track: A
+    card: reserves/p15_v1/R15-A-FORECAST-QC-001.md
+    status: DESIGN_FROZEN
+    package_not_built: true
+  - id: R15-B-INVENTORY-RECON-001
+    track: B
+    card: reserves/p15_v1/R15-B-INVENTORY-RECON-001.md
+    status: DESIGN_FROZEN
+    package_not_built: true
+  - id: R15-B-BUDGET-VARIANCE-001
+    track: B
+    card: reserves/p15_v1/R15-B-BUDGET-VARIANCE-001.md
+    status: DESIGN_FROZEN
+    package_not_built: true
+  - id: R15-B-GRANT-MONITORING-001
+    track: B
+    card: reserves/p15_v1/R15-B-GRANT-MONITORING-001.md
+    status: DESIGN_FROZEN
+    package_not_built: true
+  - id: R15-C-INSURANCE-EOB-001
+    track: C
+    card: reserves/p15_v1/R15-C-INSURANCE-EOB-001.md
+    status: DESIGN_FROZEN
+    package_not_built: true
+  - id: R15-C-UTILITY-BILL-001
+    track: C
+    card: reserves/p15_v1/R15-C-UTILITY-BILL-001.md
+    status: DESIGN_FROZEN
+    package_not_built: true
+  - id: R15-C-CHANGE-ORDER-001
+    track: C
+    card: reserves/p15_v1/R15-C-CHANGE-ORDER-001.md
+    status: DESIGN_FROZEN
+    package_not_built: true
+
+activation_policy:
+  trigger: A matching PRIMARY is invalid beyond repair, remains VALID_BUT_EASY after three professional-complexity revisions, or senior review selects the reserve as a more distinct capability.
+  requirement: Build and independently validate the complete task before any PRIMARY substitution; no validity or difficulty evidence transfers from a design card.
+
+built_assets:
+  task_directories: 0
+  harbor_packages: 0
+  xlsx_workbooks: 0
+  fixtures: 0
+  judges: 0
+  references: 0

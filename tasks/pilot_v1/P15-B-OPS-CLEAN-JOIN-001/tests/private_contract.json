@@ -1,0 +1,31 @@
+{
+  "split": "dev",
+  "split_group": "P15-B-OPS-CLEAN-JOIN-001-SIBLING",
+  "input_files_dir": "tests/dev/data/input_files",
+  "reference_workbook": "solution/reference.xlsx",
+  "oracle": "tests/dev/metadata/oracle_recompute.py",
+  "perturbations_file": "tests/dev/metadata/perturbations.json",
+  "semantic_acceptance": {
+    "disposition_labels": "Accept Included in Joined_Data as Join, duplicate excluded as exact duplicate, and non-numeric units as invalid units when the row's other cleaning flags and normalized values agree with the oracle.",
+    "boundary": "This label normalization does not waive formula lineage, source preservation, perturbation response, exception closure, or summary/check linkage."
+  },
+  "evaluator": {"path": "tests/evaluate.py", "selection": {"cli": "--split dev", "env": "P15_EVAL_SPLIT=dev"}},
+  "criteria": [
+    {"id": "R001", "description": "A readable workbook contains every requested operations sheet.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
+    {"id": "R002", "description": "Clean_Data classifies each raw order with the required normalization and duplicate policy.", "weight": 4, "type": "positive", "dimension": "data_cleaning", "method": "deterministic", "method_params": {"oracle": "tests/dev/metadata/oracle_recompute.py"}},
+    {"id": "R003", "description": "Joined_Data contains exactly the valid one-to-one joins with correct product, region, units, unit cost, and extended cost.", "weight": 4, "type": "positive", "dimension": "join_correctness", "method": "deterministic", "method_params": {"oracle": "tests/dev/metadata/oracle_recompute.py"}},
+    {"id": "R004", "description": "Valid-order units and product costs flow through formula-linked clean, join, and extended-cost cells.", "weight": 3, "type": "positive", "dimension": "lineage", "method": "deterministic", "method_params": {}},
+    {"id": "R005", "description": "Changing Raw_Orders ORD-100 units from 10 to 11 changes its extended cost and total by exactly $150.", "weight": 3, "type": "positive", "dimension": "native_workbook_semantics", "method": "deterministic", "method_params": {"source_cell": "Raw_Orders!D4"}},
+    {"id": "R006", "description": "Changing Product_Master P-200 unit cost from $420 to $500 changes ORD-101 and the total by exactly $400.", "weight": 3, "type": "positive", "dimension": "native_workbook_semantics", "method": "deterministic", "method_params": {"source_cell": "Product_Master!D5"}},
+    {"id": "R007", "description": "The four task-specific exceptions are complete and summary counts/totals close to their underlying records through formulas.", "weight": 3, "type": "positive", "dimension": "exception_integrity", "method": "deterministic", "method_params": {}},
+    {"id": "R008", "description": "Every raw-order, product-master, and location-master source field is preserved exactly.", "weight": 3, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {}},
+    {"id": "R009", "description": "Checks link to the calculated summary and report the valid count, exception count, and total cost.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}},
+    {"id": "P001", "description": "Penalty for a cleaning, join, source-lineage, exception-closure, or protected-source failure.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
+  ],
+  "formula_cells": ["Clean_Data!D4:D6", "Joined_Data!D4:F6", "Summary!B4:B7", "Checks!B4:B6"],
+  "perturbations": ["Raw_Orders!D4 units 10 to 11", "Product_Master!D5 unit cost 420 to 500"],
+  "protected": {"Raw_Orders!A4:E10": "exact raw_orders.csv", "Product_Master!A4:D6": "exact product_master.csv", "Location_Master!A4:C6": "exact location_master.csv"},
+  "required_sheets": ["Raw_Orders", "Product_Master", "Location_Master", "Clean_Data", "Joined_Data", "Exceptions", "Summary", "Checks"],
+  "semantic_version": "p15_v3",
+  "task_id": "P15-B-OPS-CLEAN-JOIN-001"
+}

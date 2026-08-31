@@ -1,0 +1,27 @@
+{
+  "task_id": "P15-A-POLICY-EIA-001",
+  "split": "confirm",
+  "split_group": "P15-A-POLICY-EIA-001-HELDOUT-01",
+  "capability_invariant": ["generation-scenario construction", "renewable and coal assumptions", "gas balancing", "emissions-factor linkage", "absolute and intensity comparison", "assumption perturbation"],
+  "distinctness": {
+    "source_instance": "Regional electricity generation verifier-private case",
+    "dev_values_reused": false,
+    "changed_drivers": ["generation mix", "demand", "emissions factors", "coal displacement", "renewable uplift schedules", "demand growth"],
+    "contamination_guard": "CONFIRM source values, scenario settings, reference, and oracle remain under tests/confirm and are not copied into environment/input."
+  },
+  "input_files_dir": "tests/confirm/input_files",
+  "reference_workbook": "tests/confirm/reference.xlsx",
+  "oracle": "tests/confirm/oracle_recompute.py",
+  "evaluator": {
+    "path": "tests/evaluate.py",
+    "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"],
+    "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}
+  },
+  "required_sheets": ["Generation_Data", "Policy_Assumptions", "Scenario_Model", "Policy_Results", "Checks"],
+  "formula_cells": ["Scenario_Model!C5", "Scenario_Model!C6", "Scenario_Model!C7", "Scenario_Model!C8", "Scenario_Model!C9", "Policy_Results!B4", "Policy_Results!B5", "Policy_Results!B6"],
+  "perturbations": [{"name": "coal_displacement", "address": "Policy_Assumptions!C4", "value": 0.14, "output": "Policy_Results!B4", "oracle_key": "emissions_reduction"}],
+  "protected": {
+    "Generation_Data!D4": 510000, "Generation_Data!D5": 1420000, "Generation_Data!D6": 515000, "Generation_Data!D7": 305000, "Generation_Data!D8": 3300000,
+    "Generation_Data!E4": 0.96, "Generation_Data!E5": 0.38
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "claim_boundary": "Harbor smoke proves package and deterministic Judge execution only; it does not measure target-Agent difficulty.",
+  "difficulty_evidence": false,
+  "evidence_scope": "FINAL_JUDGE_PACKAGE_AND_EXECUTION_SMOKE_ONLY",
+  "expected_gates": {
+    "malformed": 0.0,
+    "nop_max_exclusive": 0.3,
+    "oracle": 1.0
+  },
+  "latest_judge_smoke_complete": true,
+  "observed": {
+    "malformed": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:46:23.645373Z",
+      "job_name": "p15_smoke_all_malformed_final_judges_v4",
+      "judge_failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "judge_pass": false,
+      "judge_result_sha256": "98416f57eb89ab53ee7f5ced103238352eca103cca4794e2d73001cc13562be5",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 0.0,
+      "task_checksum": "2eb45e559bdfe9a1495bd25b0f5aa016ba01b219d55fcc7908a7983972d2a43d",
+      "trial_id": "00439232-36c5-4d56-8c90-532f3f9fc9cc",
+      "trial_name": "P15-B-OPS-CLEAN-JOIN-001__GdX2S7R",
+      "verifier_environment_mode": "separate"
+    },
+    "nop": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:44:43.651448Z",
+      "job_name": "p15_smoke_all_nop_final_judges_v4",
+      "judge_failure_codes": [
+        "OUTPUT_MISSING"
+      ],
+      "judge_pass": false,
+      "judge_result_sha256": "66cd9abc6cc5fb2c16937c33ddf39a4ee1505641a708234d2e0ecb4693376c35",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 0.0,
+      "task_checksum": "fc7ac416d6a15ec11b3842bebc92dbebcbf8680eca900add291af591de665816",
+      "trial_id": "1b2eef34-4fb4-46cf-b623-df3e4b8f035f",
+      "trial_name": "P15-B-OPS-CLEAN-JOIN-001__jaoumsc",
+      "verifier_environment_mode": "separate"
+    },
+    "oracle": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:43:29.759350Z",
+      "job_name": "p15_smoke_all_oracle_final_judges_v4",
+      "judge_failure_codes": [],
+      "judge_pass": true,
+      "judge_result_sha256": "979eb842b8ff78833e50ddba3cba71172d6deea4e0d7b8ff68210d914cd7788e",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 1.0,
+      "task_checksum": "fc7ac416d6a15ec11b3842bebc92dbebcbf8680eca900add291af591de665816",
+      "trial_id": "bb018139-941e-41a9-9161-ee025b6595a6",
+      "trial_name": "P15-B-OPS-CLEAN-JOIN-001__4JE2zT4",
+      "verifier_environment_mode": "separate"
+    }
+  },
+  "pivot_blocker": null,
+  "schema_version": "1.0",
+  "task_id": "P15-B-OPS-CLEAN-JOIN-001",
+  "task_status_at_smoke": "LOCAL_READY"
+}

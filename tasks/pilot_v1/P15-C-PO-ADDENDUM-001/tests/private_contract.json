@@ -1,0 +1,13 @@
+{
+  "task_id": "P15-C-PO-ADDENDUM-001",
+  "schema": "p15_v2.1_semantic",
+  "required_sheets": ["PO_Header","Base_Schedule","Revised_Schedule","Revision_Log","Provenance","Checks"],
+  "row_matching": "PO rows by supplied line ID; summary fields by labeled template cells",
+  "identity_policy": "supplied PO line IDs are authoritative and must remain unique across schedule, log, and provenance",
+  "status_policy": "Accept readable status vocabulary by semantic role: changed/modified/revised, inserted/new/added, or unchanged/retained. Revision-log change types must still distinguish quantity, insertion, and unit-price changes.",
+  "page_policy": "Accept a numeric page or a readable page expression such as p. 1, page 1, or a composite source-page-line string.",
+  "provenance_policy": "The authoritative line-ID column and the rest of the provenance row are evaluated together. The row must uniquely identify the changed line, correct addendum filename, correct page, and a non-empty readable locator; no single field must repeat every component and exact private locator strings are not required.",
+  "formula_policy": "Formula-linked line and schedule totals are evaluated independently of optional status wording when the keyed revised rows and numeric semantics are correct.",
+  "truth_visibility": "verifier_private_only",
+  "private_truth_environment_copy": false
+}

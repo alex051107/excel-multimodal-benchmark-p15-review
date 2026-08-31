@@ -1,0 +1,1 @@
+Complete the supplied transaction workbook from the two-page statement. Preserve debit/credit direction, page continuation, and a formula-linked opening-to-closing reconciliation. Candidate-defined transaction IDs, semantically equivalent category labels, and readable file/page/transaction locators are valid when linked consistently.

@@ -1,0 +1,20 @@
+{
+  "input_sha256": {
+    "context_note.md": "eb8b5de7c523ec8b2093355e8f5ce3a86d8f06dbb9759e88052ce9692c01d482",
+    "document_inventory.md": "04573d7e28a11f739f3413803a9851e195e59f6524403b0dfaf4363df7f6d029",
+    "po_addendum.pdf": "1af7fac98ba52a35005a6db2de22d93e54aa4640115b5b21f096b19344dac679",
+    "starting_workbook.xlsx": "4ef7a52707fb2acd8aed5e8a377ba2a41b88377980c7cd1f92e83df909e1fe0d"
+  },
+  "known_assumptions": [
+    "Sources and private truth are project-authored benchmark assets; the request is not an observed historical business communication."
+  ],
+  "oracle": "metadata/oracle_recompute.py",
+  "reference_sha256": "361af872c92b50a2a4635c9dbe9d9dd2485d8173c5b2c8edab1d8372e659ef04",
+  "reference_workbook": "solution/reference.xlsx",
+  "task_id": "P15-C-PO-ADDENDUM-001",
+  "truth": "private/truth.json",
+  "construction_evidence": "The task-local truth drives the tracked source renderer at scripts/build_p15_c_source_pdfs.py. The reference workbook remains artifact-level evidence, so source/reference process independence is not asserted.",
+  "unsupported_claims": [
+    "No Windows Excel, blind-human, target-Agent, or fresh Harbor result is asserted by this manifest."
+  ]
+}

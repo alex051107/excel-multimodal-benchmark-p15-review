@@ -1,0 +1,376 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "collateral_ledger_edit": {
+      "candidate_sha256": "4a679affea04b7439a3ffcd3013261278b8523b4d57eef8e9b2e6231b6d7ea98",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0
+      },
+      "failure_codes": [
+        "ADJUSTMENT_SOURCE_PERTURBATION_FAILED:ValueError",
+        "PROTECTED_FINANCE_SOURCE_CHANGED"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.346154,
+      "score_stddev": 0.0,
+      "signature_sha256": "6ed4628797b23e2394e307ba431ec063e2f41f25af1fbb7d95f0691cdc282388",
+      "stable": true
+    },
+    "dropped_unmatched_item": {
+      "candidate_sha256": "2cdb0c7f69b73732ce46b3a5c3c3c62cd7b103f55987ce81c82dbf09389f94bf",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.5,
+      "score_stddev": 0.0,
+      "signature_sha256": "e5d12a38b8389233e44e5f18e7791e9ba9d13becb87581ebd1123c74eb7275bf",
+      "stable": true
+    },
+    "equivalent": {
+      "candidate_sha256": "2ebb05021425a9aa70fd968ef43bceed50dbffa879f7318955909cbe6abc003a",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "d9002532cd99d7c0bce76a75c265c01ff17d5e167fe98b461174013fc59af672",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "032894cf0190a5dcee5a040ef57f7c971f00a48581d2a51eea53fd59c14881fa",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "8d2276a03c8eb3a8b39c743e317654d77c2f940930b3b7865eecd8fa8312b2cf",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "ADJUSTMENT_SOURCE_PERTURBATION_FAILED:ValueError",
+        "FX_SOURCE_PERTURBATION_FAILED:StopIteration"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "9ac5668f66401cd9b7adb4b492ace36c5ed542c768fc07ad20b07c0398a741d0",
+      "stable": true
+    },
+    "omitted_adjustment": {
+      "candidate_sha256": "bd40587304857160268757edca3b2979952202af5d0ff7a3790abe5af10bc17e",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.038462,
+      "score_stddev": 0.0,
+      "signature_sha256": "ba7eafd90d3c19f5e2131eee1ae3f752b123e268dd19af336b7c04ce1cf1a4b9",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "b70b531bf9c01305c586332484719db70966168c7771b874298497ce713ee70f",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "d9002532cd99d7c0bce76a75c265c01ff17d5e167fe98b461174013fc59af672",
+      "stable": true
+    },
+    "wrong_fx_date": {
+      "candidate_sha256": "ad84e407dbaf4520ba36947f80e233469d81391042921d5569bcc47ceffdf162",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.192308,
+      "score_stddev": 0.0,
+      "signature_sha256": "7f12b766765e9e8a4ffe6982778af3bad1bf99a07d69bbfd15f59cd6f4e18bd8",
+      "stable": true
+    },
+    "wrong_transaction_match": {
+      "candidate_sha256": "fed1a2a3b997abf269e39ef9a4074a20ee84f907ae94020ac56e119e4329a30f",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [
+        "ADJUSTMENT_SOURCE_PERTURBATION_FAILED:ValueError"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.461538,
+      "score_stddev": 0.0,
+      "signature_sha256": "81caf4b0d7ac32fef70aa0128ff38332a1c9cf8d5f9bd8c7d0125839efd64acf",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "investigation": 614.0,
+    "ledger_only": 106.0,
+    "ledger_total": 4246.0,
+    "matched": [
+      [
+        "INV-100",
+        1250.0,
+        1250.0,
+        0.0,
+        1250.0,
+        0.0
+      ],
+      [
+        "INV-101",
+        2140.0,
+        2140.0,
+        0.0,
+        2140.0,
+        0.0
+      ],
+      [
+        "INV-102",
+        500.0,
+        500.0,
+        0.0,
+        500.0,
+        0.0
+      ],
+      [
+        "INV-105",
+        250.0,
+        300.0,
+        -50.0,
+        250.0,
+        0.0
+      ]
+    ],
+    "matched_total": 4140.0,
+    "normalized": [
+      [
+        "Ledger",
+        "LG-100",
+        "INV-100",
+        "2024-06-28",
+        "GBP",
+        1000.0,
+        1.25,
+        1250.0
+      ],
+      [
+        "Ledger",
+        "LG-101",
+        "INV-101",
+        "2024-06-30",
+        "EUR",
+        2000.0,
+        1.07,
+        2140.0
+      ],
+      [
+        "Ledger",
+        "LG-102",
+        "INV-102",
+        "2024-07-02",
+        "USD",
+        500.0,
+        1.0,
+        500.0
+      ],
+      [
+        "Ledger",
+        "LG-105",
+        "INV-105",
+        "2024-06-30",
+        "USD",
+        250.0,
+        1.0,
+        250.0
+      ],
+      [
+        "Ledger",
+        "LG-106",
+        "INV-106",
+        "2024-06-29",
+        "EUR",
+        100.0,
+        1.06,
+        106.0
+      ],
+      [
+        "Subledger",
+        "SL-100",
+        "INV-100",
+        "2024-06-28",
+        "GBP",
+        1000.0,
+        1.25,
+        1250.0
+      ],
+      [
+        "Subledger",
+        "SL-101",
+        "INV-101",
+        "2024-06-30",
+        "EUR",
+        2000.0,
+        1.07,
+        2140.0
+      ],
+      [
+        "Subledger",
+        "SL-102",
+        "INV-102",
+        "2024-07-02",
+        "USD",
+        500.0,
+        1.0,
+        500.0
+      ],
+      [
+        "Subledger",
+        "SL-103",
+        "INV-103",
+        "2024-06-30",
+        "USD",
+        720.0,
+        1.0,
+        720.0
+      ],
+      [
+        "Subledger",
+        "SL-105",
+        "INV-105",
+        "2024-06-30",
+        "USD",
+        300.0,
+        1.0,
+        300.0
+      ]
+    ],
+    "subledger_only": 720.0,
+    "unmatched": [
+      [
+        "INV-103",
+        "Subledger",
+        720.0
+      ],
+      [
+        "INV-106",
+        "Ledger",
+        106.0
+      ]
+    ]
+  },
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY",
+  "task_id": "P15-B-FIN-RECON-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

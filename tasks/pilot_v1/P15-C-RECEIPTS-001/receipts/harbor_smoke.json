@@ -1,0 +1,66 @@
+{
+  "claim_boundary": "Harbor smoke proves package and deterministic Judge execution only; it does not measure target-Agent difficulty.",
+  "difficulty_evidence": false,
+  "evidence_scope": "FINAL_JUDGE_PACKAGE_AND_EXECUTION_SMOKE_ONLY",
+  "expected_gates": {
+    "malformed": 0.0,
+    "nop_max_exclusive": 0.3,
+    "oracle": 1.0
+  },
+  "latest_judge_smoke_complete": true,
+  "observed": {
+    "malformed": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:45:50.103421Z",
+      "job_name": "p15_smoke_all_malformed_final_judges_v4",
+      "judge_failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "judge_pass": false,
+      "judge_result_sha256": "1a05401f84c2795478231ae3f95167c7b64bb7f7b32de612d2bfaac8fa340000",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 0.0,
+      "task_checksum": "5b439b413ed65f2be9a94713de8662c0a077fed8cb697abded35bba903cd7244",
+      "trial_id": "b5231063-aa07-45ab-9dac-ec815af19ff0",
+      "trial_name": "P15-C-RECEIPTS-001__jKNM4tA",
+      "verifier_environment_mode": "separate"
+    },
+    "nop": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:44:11.226869Z",
+      "job_name": "p15_smoke_all_nop_final_judges_v4",
+      "judge_failure_codes": [
+        "OUTPUT_MISSING"
+      ],
+      "judge_pass": false,
+      "judge_result_sha256": "e7e9293ad3d30e554ee284f21add0a75546a506e6fd4c2a7e8f6b480ea5da810",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 0.0,
+      "task_checksum": "c53b789f34e931b163ee6ba10ad156a1162d229770d5b60360bb5c4c63669401",
+      "trial_id": "54dca6a6-6390-411f-ac77-24345c3d9476",
+      "trial_name": "P15-C-RECEIPTS-001__Uv6cN93",
+      "verifier_environment_mode": "separate"
+    },
+    "oracle": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:42:55.461666Z",
+      "job_name": "p15_smoke_all_oracle_final_judges_v4",
+      "judge_failure_codes": [],
+      "judge_pass": true,
+      "judge_result_sha256": "145b49f62a567c4a1d8be2fd357ca3f1f3a156b6f8461a141a752ea17241e229",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 1.0,
+      "task_checksum": "c53b789f34e931b163ee6ba10ad156a1162d229770d5b60360bb5c4c63669401",
+      "trial_id": "decd09e9-19b4-4eac-9ffb-29398a129869",
+      "trial_name": "P15-C-RECEIPTS-001__UUHw3iB",
+      "verifier_environment_mode": "separate"
+    }
+  },
+  "pivot_blocker": null,
+  "schema_version": "1.0",
+  "task_id": "P15-C-RECEIPTS-001",
+  "task_status_at_smoke": "LOCAL_READY"
+}

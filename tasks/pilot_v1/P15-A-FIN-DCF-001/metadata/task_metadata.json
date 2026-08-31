@@ -1,0 +1,18 @@
+{
+  "department": "Corporate Development",
+  "difficulty_tier": "Hard",
+  "est_minutes": 90,
+  "multimodal": true,
+  "occupation": "Investment Analyst",
+  "sector": "Professional, Scientific, and Technical Services",
+  "semantic_version": "p15_v2",
+  "skills": [
+    "financial modeling",
+    "DCF valuation",
+    "formula auditing",
+    "scenario analysis"
+  ],
+  "status": "LOCAL_READY",
+  "task_id": "P15-A-FIN-DCF-001",
+  "web_search_required": false
+}

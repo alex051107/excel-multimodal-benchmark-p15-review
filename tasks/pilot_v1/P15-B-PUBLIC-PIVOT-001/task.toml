@@ -1,0 +1,46 @@
+schema_version = "1.4"
+artifacts = ["/app/output/answer.xlsx"]
+
+[task]
+name = "alex051107/p15-b-public-pivot-001"
+version = "3.0.0"
+description = "Create and refresh a genuine native Excel PivotTable and PivotChart for a program review."
+keywords = ["excel", "pivot", "chart", "public-program", "pilot-v1"]
+
+[[task.authors]]
+name = "Excel Benchmark Team"
+
+[metadata]
+task_id = "P15-B-PUBLIC-PIVOT-001"
+track = "B"
+status = "TASK_INVALID"
+construction_mode = "EXPERT_AUTHORED_REALISTIC_CASE"
+source_family = "project_authored_public_program_reporting_workspace"
+sector = "Public Administration"
+department = "Program Performance"
+occupation = "Public Program Analyst"
+difficulty_tier = "Very Hard"
+multimodal = false
+web_search_required = false
+est_minutes = 105
+skills = ["PivotTable", "PivotCache", "chart binding", "reporting aggregation"]
+benchmark_authored_instruction = true
+
+[verifier]
+timeout_sec = 300.0
+environment_mode = "separate"
+network_mode = "public"
+
+[environment]
+network_mode = "public"
+os = "linux"
+workdir = "/app"
+
+[verifier.env]
+JUDGE_MODEL = "${JUDGE_MODEL:-deterministic}"
+JUDGE_PROVIDER = "${JUDGE_PROVIDER:-local}"
+JUDGE_API_PROTOCOL = "${JUDGE_API_PROTOCOL:-none}"
+JUDGE_BASE_URL = "${JUDGE_BASE_URL:-}"
+JUDGE_API_KEY = "${JUDGE_API_KEY:-}"
+JUDGE_PER_TIMEOUT = "${JUDGE_PER_TIMEOUT:-300}"
+JUDGE_MAX_TRIES = "${JUDGE_MAX_TRIES:-1}"

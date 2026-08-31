@@ -1,0 +1,33 @@
+{
+  "candidate": "tests/confirm/reference.xlsx",
+  "candidate_sha256": "f84f9d8e55b31838bdc7b0d55f7aaf23b8495d37500fd9022793189419cd8d11",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "criterion_scores": {
+    "P001": 0.0,
+    "R001": 1.0,
+    "R002": 1.0,
+    "R003": 1.0,
+    "R004": 1.0,
+    "R005": 1.0,
+    "R006": 1.0,
+    "R007": 1.0,
+    "R008": 1.0,
+    "R009": 1.0
+  },
+  "failure_codes": [],
+  "input_files_sha256": {
+    "confirm_invoice_multipage.pdf": "473a992a1d2e62217ec4ed9db9c3e4f556480de5bd5ae3e5d4ecf297008639ef",
+    "context_note.md": "384a8f5569cf71ea8c0acecafc6c79c2ad1e925623fa8f275b67726bd56a510c",
+    "document_inventory.md": "bc9c1de6c6d5c64f5bdeb94aa0abf318829dbe7bdb8ec34c73df02b57cfa97c8",
+    "starting_workbook.xlsx": "290da00ea87beb551a6b58e01e9fea80aaf2c58afff1c04acd906dd3a74b4462"
+  },
+  "normalized_score": 1.0,
+  "pass": true,
+  "repetitions": 5,
+  "score_stddev": 0.0,
+  "signature_sha256": "53dbd5a5ad358ca9059ab62246ecc902c3ab27890167a3e04020e0e9f92c20ce",
+  "split": "confirm",
+  "stable": true,
+  "status": "CONFIRM_REFERENCE_VALIDATED",
+  "task_id": "P15-C-INVOICE-001"
+}

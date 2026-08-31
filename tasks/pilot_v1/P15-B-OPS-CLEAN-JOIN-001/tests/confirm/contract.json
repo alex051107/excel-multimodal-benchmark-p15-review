@@ -1,0 +1,23 @@
+{
+  "task_id": "P15-B-OPS-CLEAN-JOIN-001",
+  "split": "confirm",
+  "split_group": "P15-B-OPS-CLEAN-JOIN-001-SIBLING",
+  "capability_invariant": ["normalize product and location keys", "deduplicate exact normalized records", "join only valid master records", "preserve four exception classes", "reconcile counts and costs"],
+  "distinctness": {
+    "source_instance": "held-out maintenance-order population with different products, locations, costs, duplicate fingerprint, and invalid value",
+    "dev_values_reused": false,
+    "changed_drivers": ["order IDs and dates", "product and location codes", "master descriptions and costs", "duplicate record", "invalid-units token", "regional summary"],
+    "contamination_guard": "tests/confirm is verifier-private and is not copied to data/input_files, environment/input, solution, or fixtures"
+  },
+  "input_files_dir": "tests/confirm/input_files",
+  "reference_workbook": "tests/confirm/reference.xlsx",
+  "truth": "tests/confirm/truth.json",
+  "oracle": "tests/confirm/oracle_recompute.py",
+  "criteria_source": "tests/private_contract.json",
+  "evaluator": {"path": "tests/evaluate.py", "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"], "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}},
+  "required_sheets": ["Raw_Orders", "Product_Master", "Location_Master", "Clean_Data", "Joined_Data", "Exceptions", "Summary", "Checks"],
+  "formula_cells": ["Clean_Data!D4:D6", "Joined_Data!D4:F6", "Summary!B4:B7", "Checks!B4:B6"],
+  "protected": {"Raw_Orders!A4:E10": "exact raw_orders.csv", "Product_Master!A4:D6": "exact product_master.csv", "Location_Master!A4:C5": "exact location_master.csv"},
+  "drivers": {"units_order_id": "WO-210", "raw_units_source_cell": "Raw_Orders!D4", "units_new_value": 13, "units_delta_cost": 275, "cost_order_id": "WO-211", "product_cost_source_cell": "Product_Master!D5", "product_cost_new_value": 710, "product_cost_delta": 240, "summary_region": "West"},
+  "perturbations": "tests/confirm/perturbations.json"
+}

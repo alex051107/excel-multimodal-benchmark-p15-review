@@ -1,0 +1,24 @@
+{
+  "construction_mode": "EXPERT_AUTHORED_AUTHENTIC_DATA",
+  "known_assumptions": [
+    "The user instruction is benchmark-authored.",
+    "The reference workbook is checked against the independent task-specific oracle."
+  ],
+  "oracle_implementation": "metadata/oracle_recompute.py",
+  "oracle_reads_reference_workbook": false,
+  "reference_sha256": "3ce4760c7052a7b6357fa5ec91de5dd7bc176d6ebbc622b4b01a78a8ae3b80e4",
+  "reference_workbook": "solution/reference.xlsx",
+  "semantic_version": "p15_v2",
+  "source_inputs": {
+    "context_note.md": "010415478542da5652428b1c9c6afae51647a52207ce35ff1feb75975b38d7bc",
+    "investment_assumption_memo.md": "c46e400ec44404229e374cd3da80cbdb30582940ee5e83aac71d87f218ca92aa",
+    "public_financial_facts.csv": "bfe7fabc67f23a6a8d2fe9dcab2aee39474070443e35c51a6004c106e03f4ee8",
+    "source_data.csv": "bfe7fabc67f23a6a8d2fe9dcab2aee39474070443e35c51a6004c106e03f4ee8",
+    "starting_workbook.xlsx": "1f22619487f2a751466864b80c3115e57b6d00dd3f9a0ff27ab869809b18d116"
+  },
+  "task_id": "P15-A-FIN-DCF-001",
+  "unsupported_claims": [
+    "No Windows Excel validation is claimed.",
+    "No blind human review or Agent difficulty result is claimed."
+  ]
+}

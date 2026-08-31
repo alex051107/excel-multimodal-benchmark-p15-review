@@ -1,0 +1,7 @@
+{
+  "split": "confirm",
+  "cases": [
+    {"id": "confirm_units_lineage", "cell": "Raw_Orders!D4", "baseline": 12, "mutated": 13, "order_id": "WO-210", "expected_changes": {"Joined_Data!F4": 275, "Summary!B5": 275}},
+    {"id": "confirm_cost_lineage", "cell": "Product_Master!D5", "baseline": 630, "mutated": 710, "order_id": "WO-211", "expected_changes": {"Joined_Data!F5": 240, "Summary!B5": 240}}
+  ]
+}

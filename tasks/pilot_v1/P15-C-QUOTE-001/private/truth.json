@@ -1,0 +1,50 @@
+{
+  "document": {
+    "filename": "quote_scan.png",
+    "pages": 1
+  },
+  "headers": {
+    "currency": "USD",
+    "customer": "Northstar Operations",
+    "quote_date": "2026-06-15",
+    "quote_id": "QT-7781",
+    "valid_through": "2026-07-15",
+    "vendor": "Moss Ridge Contractors"
+  },
+  "line_items": [
+    {
+      "amount": 1400.0,
+      "description": "Equipment foundation package",
+      "group": "Base scope",
+      "line_id": "Q-01",
+      "optional": false,
+      "page": 1,
+      "text_locator": "quote_scan.png:base-scope-1"
+    },
+    {
+      "amount": 840.0,
+      "description": "Site mobilization",
+      "group": "Base scope",
+      "line_id": "Q-02",
+      "optional": false,
+      "page": 1,
+      "text_locator": "quote_scan.png:base-scope-2"
+    },
+    {
+      "amount": 310.0,
+      "description": "Extended warranty",
+      "group": "Optional alternate",
+      "line_id": "Q-03",
+      "optional": true,
+      "page": 1,
+      "text_locator": "quote_scan.png:alternate-1"
+    }
+  ],
+  "source_family": "project-authored-quote-template-family-v2",
+  "task_id": "P15-C-QUOTE-001",
+  "template": "scanned contractor quotation",
+  "terms": {
+    "discount_rate": 0.06,
+    "tax_rate": 0.075
+  }
+}

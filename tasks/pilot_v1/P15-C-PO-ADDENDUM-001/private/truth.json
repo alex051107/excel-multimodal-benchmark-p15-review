@@ -1,0 +1,70 @@
+{
+  "base_lines": [
+    {
+      "description": "Valve kits",
+      "line_id": "PO-01",
+      "protected": false,
+      "quantity": 20,
+      "unit": "each",
+      "unit_price": 120.0
+    },
+    {
+      "description": "Cable trays",
+      "line_id": "PO-03",
+      "protected": false,
+      "quantity": 56,
+      "unit": "USD per unit",
+      "unit_price": 56.0
+    },
+    {
+      "description": "Site safety signage",
+      "line_id": "PO-04",
+      "protected": true,
+      "quantity": 4,
+      "unit": "each",
+      "unit_price": 16.0
+    }
+  ],
+  "changes": [
+    {
+      "change_type": "quantity changed",
+      "line_id": "PO-01",
+      "page": 1,
+      "quantity": 22,
+      "text_locator": "po_addendum.pdf:p1:valve-kits",
+      "unit_price": 120.0
+    },
+    {
+      "change_type": "inserted",
+      "description": "Commissioning",
+      "line_id": "PO-02",
+      "page": 1,
+      "quantity": 1,
+      "text_locator": "po_addendum.pdf:p1:commissioning",
+      "unit": "visit",
+      "unit_price": 140.0
+    },
+    {
+      "change_type": "unit price changed",
+      "line_id": "PO-03",
+      "page": 1,
+      "quantity": 56,
+      "text_locator": "po_addendum.pdf:p1:cable-trays",
+      "unit_price": 61.0
+    }
+  ],
+  "document": {
+    "filename": "po_addendum.pdf",
+    "pages": 2
+  },
+  "headers": {
+    "addendum": "02",
+    "currency": "USD",
+    "effective_deadline": "2026-07-02",
+    "po_id": "PO-7194",
+    "reason": "site layout update"
+  },
+  "source_family": "project-authored-procurement-template-family-v2",
+  "task_id": "P15-C-PO-ADDENDUM-001",
+  "template": "purchase-order addendum and revision workbook"
+}

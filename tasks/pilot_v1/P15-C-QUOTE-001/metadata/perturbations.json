@@ -1,0 +1,24 @@
+[
+  {
+    "id": "BASE_SCOPE_FOUNDATION_1400_TO_1500",
+    "target": {"sheet": "Line_Items", "match_column": "B", "match_value": "Equipment foundation package", "value_column": "E", "baseline": 1400.0, "perturbed": 1500.0},
+    "expected": [
+      {"sheet": "Quote_Header", "cell": "B12", "value": 2340.0},
+      {"sheet": "Quote_Header", "cell": "B13", "value": 140.4},
+      {"sheet": "Quote_Header", "cell": "B14", "value": 164.97},
+      {"sheet": "Quote_Header", "cell": "B15", "value": 2364.57}
+    ],
+    "protected": [{"sheet": "Quote_Header", "cell": "B16", "value": 310.0}]
+  },
+  {
+    "id": "OPTIONAL_WARRANTY_310_TO_350",
+    "target": {"sheet": "Alternates", "match_column": "B", "match_value": "Extended warranty", "value_column": "C", "baseline": 310.0, "perturbed": 350.0},
+    "expected": [{"sheet": "Quote_Header", "cell": "B16", "value": 350.0}],
+    "protected": [
+      {"sheet": "Quote_Header", "cell": "B12", "value": 2240.0},
+      {"sheet": "Quote_Header", "cell": "B13", "value": 134.4},
+      {"sheet": "Quote_Header", "cell": "B14", "value": 157.92},
+      {"sheet": "Quote_Header", "cell": "B15", "value": 2263.52}
+    ]
+  }
+]

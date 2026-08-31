@@ -1,0 +1,340 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "dropped_exception": {
+      "candidate_sha256": "6fa682a6f145181328018ede568fb91faec7be819408d318920ec447256eed3a",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.269231,
+      "score_stddev": 0.0,
+      "signature_sha256": "fd1998168d0e3f7d41743907ab3b8a5e7241b13d41e0c12e5269c3549d00bb8f",
+      "stable": true
+    },
+    "duplicate_included": {
+      "candidate_sha256": "196277f617629040d2bb5af8f9adb442f204068107c08e2dc8c975ca30ed0af6",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.230769,
+      "score_stddev": 0.0,
+      "signature_sha256": "bdbca5c8931c9b258520a44d0232f9aa245c106ee6e2cb128b0d38ddd96ce398",
+      "stable": true
+    },
+    "equivalent": {
+      "candidate_sha256": "42a2c0cf0d5d1a16ff131029703c8e3b98788031811c1e1b6e34daa51179237f",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "e08ea465cc834275a0673a3c94f090ea3afde0b400eddbc7660090af82e10890",
+      "stable": true
+    },
+    "hardcoded_extended_cost": {
+      "candidate_sha256": "483ce91df4723cf357d870ad027833693d4a0f108dab9d050df16ded97ff5b38",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.384615,
+      "score_stddev": 0.0,
+      "signature_sha256": "630bd47c408541282b7d7ca081e270d72a427957116f105e3754b37605599256",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "80ca52b88b31194ead7f555141abf0ee1f951aa090660188754132f5aea7ccec",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "8f8ad5b42a025da3c59a8cfc771b57500401a7d804fdfed280a91b3f9283a299",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "CLEAN_RECORDS_MISMATCH",
+        "MASTER_COST_PERTURBATION_FAILED:ValueError",
+        "RAW_UNITS_PERTURBATION_FAILED:ValueError"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "f4a2b41bdb6797b0d6775dd14c959d66433faaab8e8c1edb631e8423aaf69de2",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "c7455b48e95efa217d46efa4006fda4e527b29545969d5955df166ff042f1d94",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "e08ea465cc834275a0673a3c94f090ea3afde0b400eddbc7660090af82e10890",
+      "stable": true
+    },
+    "wrong_cleaning_and_source_edit": {
+      "candidate_sha256": "37ae11f27b5444572f78ca15ed56910e1df7e2f4aeb9e240206f086bbe686ce4",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "CLEAN_RECORDS_MISMATCH",
+        "PROTECTED_SOURCE_TABLE_CHANGED"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "f9e47232acac7455afb766f7677e2c56e0424bbcefcf5527cefb86b8476b0aee",
+      "stable": true
+    },
+    "wrong_product_join": {
+      "candidate_sha256": "129e982df33219c81d5608dd4f7b0b98f7b1888cc3d15b56d5d76051ebd26f6e",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.038462,
+      "score_stddev": 0.0,
+      "signature_sha256": "f9569ca5ba7ca124f8e5a54d711443b3eb5c5f346647905cebfeb3ba3a8a3aed",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "clean": [
+      [
+        "ORD-100",
+        "P-100",
+        "NY-01",
+        10,
+        "No",
+        "Yes",
+        "Yes",
+        "Join"
+      ],
+      [
+        "ORD-101",
+        "P-200",
+        "TX-01",
+        5,
+        "No",
+        "Yes",
+        "Yes",
+        "Join"
+      ],
+      [
+        "ORD-102",
+        "P-300",
+        "NY-01",
+        4,
+        "No",
+        "Yes",
+        "Yes",
+        "Join"
+      ],
+      [
+        "ORD-103",
+        "P-999",
+        "NY-01",
+        6,
+        "No",
+        "No",
+        "Yes",
+        "Exception: unmatched product"
+      ],
+      [
+        "ORD-104",
+        "P-100",
+        "ZZ-09",
+        8,
+        "No",
+        "Yes",
+        "No",
+        "Exception: unmatched location"
+      ],
+      [
+        "ORD-105",
+        "P-100",
+        "NY-01",
+        10,
+        "Yes",
+        "Yes",
+        "Yes",
+        "Exception: exact duplicate"
+      ],
+      [
+        "ORD-106",
+        "P-200",
+        "TX-01",
+        null,
+        "No",
+        "Yes",
+        "Yes",
+        "Exception: invalid units"
+      ]
+    ],
+    "exceptions": [
+      [
+        "ORD-103",
+        "UNMATCHED_PRODUCT"
+      ],
+      [
+        "ORD-104",
+        "UNMATCHED_LOCATION"
+      ],
+      [
+        "ORD-105",
+        "DUPLICATE"
+      ],
+      [
+        "ORD-106",
+        "INVALID_UNITS"
+      ]
+    ],
+    "joined": [
+      [
+        "ORD-100",
+        "Valve kit",
+        "Northeast",
+        10,
+        150,
+        1500
+      ],
+      [
+        "ORD-101",
+        "Sensor module",
+        "South",
+        5,
+        420,
+        2100
+      ],
+      [
+        "ORD-102",
+        "Filter cartridge",
+        "Northeast",
+        4,
+        85,
+        340
+      ]
+    ],
+    "northeast": 1840,
+    "total": 3940
+  },
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY",
+  "task_id": "P15-B-OPS-CLEAN-JOIN-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

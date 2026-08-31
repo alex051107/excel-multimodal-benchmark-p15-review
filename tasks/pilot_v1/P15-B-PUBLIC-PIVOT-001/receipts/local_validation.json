@@ -1,0 +1,29 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "blocker": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "north_outreach": 50,
+    "q2_participants": 132,
+    "q2_spend": 396000,
+    "source_range": "Program_Data!A3:F11"
+  },
+  "native_reference": {
+    "candidate_sha256": "90f9b52a14da941411c37011cde4ac4f4b2df6e50650f0859350178e8918d6df",
+    "failure_codes": [
+      "PENDING_EXTERNAL_WINDOWS_EXCEL:MISSING_PIVOT_CACHE",
+      "SOURCE_TABLE_OR_RECORD_MISMATCH"
+    ],
+    "repetitions": 5,
+    "score": 0.0,
+    "score_stddev": 0.0,
+    "signature_sha256": "4fd0df1accce35490ad198b905f779a95e38c2389a7e37ffe9ffd16df5e540d5",
+    "stable": true
+  },
+  "reason": "A genuine native PivotCache/PivotTable/PivotChart must be authored and validated in Windows Excel before this candidate can be LOCAL_READY.",
+  "status": "TASK_INVALID",
+  "task_id": "P15-B-PUBLIC-PIVOT-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

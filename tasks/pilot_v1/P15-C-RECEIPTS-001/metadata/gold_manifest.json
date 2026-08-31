@@ -1,0 +1,22 @@
+{
+  "input_sha256": {
+    "context_note.md": "8a47bca3b1c442e161178343930bbca815514ce7f9275dc0ae510e96ae0cda41",
+    "document_inventory.md": "498bee7825c0d598f984632a33affae41015ca98cd8590dee9a8ef658920fe98",
+    "receipt_photo_01.jpg": "c1b4b76d02cb021b184a76c49f1032f292f9bd7385b060fe7c998a41ec714e46",
+    "receipt_photo_02.jpg": "2dff046e4cc0aaf9575f8ec0aa73aea566095bed9a5be717b6ddc41f9f7ba470",
+    "receipt_photo_03.jpg": "5908cd9730c9e4b288354d47cbdfd85e48ff12a382bbb840e31d5d8eb0920365",
+    "starting_workbook.xlsx": "518901f2ebc11eb51fb54bdde8a91b742f39950b309f90195999a24f861d295c"
+  },
+  "known_assumptions": [
+    "Sources and private truth are project-authored benchmark assets; the request is not an observed historical business communication."
+  ],
+  "oracle": "metadata/oracle_recompute.py",
+  "reference_sha256": "03116715a578b2bc049079cb7433446fad291e7d404cf92cd00cb0647a9a865c",
+  "reference_workbook": "solution/reference.xlsx",
+  "task_id": "P15-C-RECEIPTS-001",
+  "truth": "private/truth.json",
+  "construction_evidence": "Artifact-level records only; no tracked source renderer or reference-workbook builder is available, and process independence is not asserted.",
+  "unsupported_claims": [
+    "No Windows Excel, blind-human, target-Agent, or fresh Harbor result is asserted by this manifest."
+  ]
+}

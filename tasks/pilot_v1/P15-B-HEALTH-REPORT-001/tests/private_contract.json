@@ -1,0 +1,38 @@
+{
+  "split": "dev",
+  "split_group": "P15-B-HEALTH-REPORT-001-SIBLING",
+  "input_files_dir": "tests/dev/data/input_files",
+  "reference_workbook": "solution/reference.xlsx",
+  "oracle": "tests/dev/metadata/oracle_recompute.py",
+  "perturbations_file": "tests/dev/metadata/perturbations.json",
+  "evaluator": {"path": "tests/evaluate.py", "selection": {"cli": "--split dev", "env": "P15_EVAL_SPLIT=dev"}},
+  "semantic_layout_acceptance": {
+    "table_discovery": "Require one unambiguous header row per requested semantic table; column order and additional public-source or provenance columns may differ.",
+    "row_identity": "Match analytical and metric records by normalized state plus year/state keys, independent of row order.",
+    "source_preservation": "State, year, deaths, AADR, reporting region, and source key must equal the supplied CSVs; when cause_name is represented it must also equal the supplied CSV.",
+    "report_patterns": ["state-by-metric table", "claim-and-value rows"],
+    "fail_closed": "Missing or ambiguous semantic headers, duplicate keys, source changes, wrong formulas, or wrong replay values fail the affected criterion."
+  },
+  "semantic_drivers": {
+    "vermont": {"raw_sheet": "Raw_Vermont", "state": "Vermont", "year": 2012, "field": "aadr", "new_value": 151.6},
+    "new_hampshire": {"raw_sheet": "Raw_New_Hampshire", "state": "New Hampshire", "year": 2015, "field": "aadr", "new_value": 150.0}
+  },
+  "criteria": [
+    {"id": "R001", "description": "A readable workbook contains every requested analytical and report sheet.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
+    {"id": "R002", "description": "Analytical_Data contains exactly the Vermont and New Hampshire 2012-2017 records with correct state/year alignment.", "weight": 4, "type": "positive", "dimension": "data_alignment", "method": "deterministic", "method_params": {"oracle": "tests/dev/metadata/oracle_recompute.py"}},
+    {"id": "R003", "description": "Both states' baseline mean, current mean, absolute change, and percent change equal the independent replay.", "weight": 4, "type": "positive", "dimension": "metric_correctness", "method": "deterministic", "method_params": {"oracle": "tests/dev/metadata/oracle_recompute.py"}},
+    {"id": "R004", "description": "Changing Raw_Vermont 2012 AADR from 150.6 to 151.6 flows through Analytical_Data and the Vermont baseline metric.", "weight": 3, "type": "positive", "dimension": "native_workbook_semantics", "method": "deterministic", "method_params": {"source_cell": "Raw_Vermont!D4"}},
+    {"id": "R005", "description": "Changing Raw_New_Hampshire 2015 AADR from 149.0 to 150.0 flows through current metrics, report, and chart source cells.", "weight": 3, "type": "positive", "dimension": "native_workbook_semantics", "method": "deterministic", "method_params": {"source_cell": "Raw_New_Hampshire!D7"}},
+    {"id": "R006", "description": "All numerical briefing claims and the highest-current-state claim are formulas linked to Period_Metrics.", "weight": 3, "type": "positive", "dimension": "report_traceability", "method": "deterministic", "method_params": {}},
+    {"id": "R007", "description": "A column chart on Visualization has categories bound exactly to A4:A5 and values bound exactly to formula-linked B4:B5.", "weight": 4, "type": "positive", "dimension": "chart_binding", "method": "ooxml", "method_params": {}},
+    {"id": "R008", "description": "Every supplied Vermont, New Hampshire, and geography-map source field is preserved exactly.", "weight": 3, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {}},
+    {"id": "R009", "description": "Checks formula-link the 12 analytical records, two metric rows, and zero report-to-metric closure residual.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}},
+    {"id": "P001", "description": "Penalty for time/geography mixing, broken raw-data lineage, wrong metrics, hardcoded report claims, stale chart binding, or source alteration.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
+  ],
+  "formula_cells": ["Analytical_Data!D4:D15", "Period_Metrics!B4:E5", "Report!B4:B6", "Visualization!B4:B5", "Checks!B4:B6"],
+  "perturbations": ["Raw_Vermont!D4 150.6 to 151.6", "Raw_New_Hampshire!D7 149.0 to 150.0"],
+  "protected": {"Raw_Vermont!A4:D9": "exact vermont_heart_disease.csv", "Raw_New_Hampshire!A4:D9": "exact new_hampshire_heart_disease.csv", "Geo_Map!A4:C5": "exact geography_map.csv"},
+  "required_sheets": ["Raw_Vermont", "Raw_New_Hampshire", "Geo_Map", "Analytical_Data", "Period_Metrics", "Report", "Visualization", "Checks"],
+  "semantic_version": "p15_v3",
+  "task_id": "P15-B-HEALTH-REPORT-001"
+}

@@ -1,0 +1,73 @@
+{
+  "document": {
+    "filename": "confirm_po_addendum.pdf",
+    "pages": 2
+  },
+  "headers": {
+    "addendum": "03",
+    "currency": "USD",
+    "effective_deadline": "2026-07-29",
+    "po_id": "PO-8820",
+    "reason": "mechanical routing revision"
+  },
+  "base_lines": [
+    {
+      "description": "Pump skids",
+      "line_id": "PO-11",
+      "protected": false,
+      "quantity": 12,
+      "unit": "each",
+      "unit_price": 310
+    },
+    {
+      "description": "Conduit bundles",
+      "line_id": "PO-13",
+      "protected": false,
+      "quantity": 40,
+      "unit": "USD per unit",
+      "unit_price": 48
+    },
+    {
+      "description": "Safety barriers",
+      "line_id": "PO-14",
+      "protected": true,
+      "quantity": 6,
+      "unit": "each",
+      "unit_price": 75
+    }
+  ],
+  "changes": [
+    {
+      "change_type": "quantity changed",
+      "line_id": "PO-11",
+      "page": 1,
+      "quantity": 14,
+      "text_locator": "confirm_po_addendum.pdf:p1:pump-skids",
+      "unit_price": 310
+    },
+    {
+      "change_type": "inserted",
+      "description": "Factory acceptance test",
+      "line_id": "PO-12",
+      "page": 2,
+      "quantity": 1,
+      "text_locator": "confirm_po_addendum.pdf:p2:factory-test",
+      "unit": "visit",
+      "unit_price": 520
+    },
+    {
+      "change_type": "unit price changed",
+      "line_id": "PO-13",
+      "page": 1,
+      "quantity": 40,
+      "text_locator": "confirm_po_addendum.pdf:p1:conduit-bundles",
+      "unit_price": 53
+    }
+  ],
+  "revised_order": [
+    "PO-11",
+    "PO-12",
+    "PO-13",
+    "PO-14"
+  ]
+}

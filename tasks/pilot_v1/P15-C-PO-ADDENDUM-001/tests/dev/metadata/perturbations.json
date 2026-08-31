@@ -1,0 +1,28 @@
+[
+  {
+    "id": "REVISED_PO01_QUANTITY_22_TO_23",
+    "target": {"sheet": "Revised_Schedule", "match_column": "A", "match_value": "PO-01", "value_column": "C", "baseline": 22.0, "perturbed": 23.0},
+    "expected": [
+      {"sheet": "Revised_Schedule", "cell": "F8", "value": 6380.0},
+      {"sheet": "PO_Header", "cell": "B9", "value": 6380.0}
+    ],
+    "protected_by_content": [
+      {"sheet": "Revised_Schedule", "match_column": "A", "match_value": "PO-04", "value_column": "F", "value": 64.0}
+    ]
+  },
+  {
+    "id": "REVISED_PO03_UNIT_PRICE_61_TO_63",
+    "target": {"sheet": "Revised_Schedule", "match_column": "A", "match_value": "PO-03", "value_column": "D", "baseline": 61.0, "perturbed": 63.0},
+    "expected_by_content": [
+      {"sheet": "Revised_Schedule", "match_column": "A", "match_value": "PO-03", "value_column": "F", "value": 3528.0}
+    ],
+    "expected": [
+      {"sheet": "Revised_Schedule", "cell": "F8", "value": 6372.0},
+      {"sheet": "PO_Header", "cell": "B9", "value": 6372.0}
+    ],
+    "protected_by_content": [
+      {"sheet": "Revised_Schedule", "match_column": "A", "match_value": "PO-01", "value_column": "F", "value": 2640.0},
+      {"sheet": "Revised_Schedule", "match_column": "A", "match_value": "PO-04", "value_column": "F", "value": 64.0}
+    ]
+  }
+]

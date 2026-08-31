@@ -1,0 +1,66 @@
+{
+  "claim_boundary": "Harbor smoke proves package and deterministic Judge execution only; it does not measure target-Agent difficulty.",
+  "difficulty_evidence": false,
+  "evidence_scope": "FINAL_JUDGE_PACKAGE_AND_EXECUTION_SMOKE_ONLY",
+  "expected_gates": {
+    "malformed": 0.0,
+    "nop_max_exclusive": 0.3,
+    "oracle": 1.0
+  },
+  "latest_judge_smoke_complete": true,
+  "observed": {
+    "malformed": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:46:06.787869Z",
+      "job_name": "p15_smoke_all_malformed_final_judges_v4",
+      "judge_failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "judge_pass": false,
+      "judge_result_sha256": "cc711f47908c6611b1653560f6fce3bc14acdd9a1826d53c3dfb5246d853a2ad",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 0.0,
+      "task_checksum": "cad8befea15b1e4081d1387f2aafa1a1d6710fccd50d7beb536beb2040004c4b",
+      "trial_id": "197f090e-cc7d-4c3a-88ac-ee07a26f836a",
+      "trial_name": "P15-A-FIN-DEBUG-001__4UtzexS",
+      "verifier_environment_mode": "separate"
+    },
+    "nop": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:44:27.308304Z",
+      "job_name": "p15_smoke_all_nop_final_judges_v4",
+      "judge_failure_codes": [
+        "OUTPUT_MISSING"
+      ],
+      "judge_pass": false,
+      "judge_result_sha256": "b9b640ba5d398aa5ba345ad18d77f0ff2bca18326574b0a82a6cd27333ce17e0",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 0.0,
+      "task_checksum": "4848c428d5bf4c78be482fead31adc3139ecd31bca193280f112b2ae8004ccf4",
+      "trial_id": "0c68c39b-a90a-41c3-b4b8-331bafc570c5",
+      "trial_name": "P15-A-FIN-DEBUG-001__H6s35W6",
+      "verifier_environment_mode": "separate"
+    },
+    "oracle": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:43:12.574773Z",
+      "job_name": "p15_smoke_all_oracle_final_judges_v4",
+      "judge_failure_codes": [],
+      "judge_pass": true,
+      "judge_result_sha256": "2f405d8ebb1943b3d1bcd1583e4a04ee33668c1ce8c3115ff4cd9fbbcb2aeaf8",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 1.0,
+      "task_checksum": "4848c428d5bf4c78be482fead31adc3139ecd31bca193280f112b2ae8004ccf4",
+      "trial_id": "4286960d-b685-4e48-8e08-dcf15b775665",
+      "trial_name": "P15-A-FIN-DEBUG-001__xs7BTao",
+      "verifier_environment_mode": "separate"
+    }
+  },
+  "pivot_blocker": null,
+  "schema_version": "1.0",
+  "task_id": "P15-A-FIN-DEBUG-001",
+  "task_status_at_smoke": "LOCAL_READY"
+}

@@ -1,0 +1,66 @@
+{
+  "claim_boundary": "Harbor smoke proves package and deterministic Judge execution only; it does not measure target-Agent difficulty.",
+  "difficulty_evidence": false,
+  "evidence_scope": "FINAL_JUDGE_PACKAGE_AND_EXECUTION_SMOKE_ONLY",
+  "expected_gates": {
+    "malformed": 0.0,
+    "nop_max_exclusive": 0.3,
+    "oracle": 1.0
+  },
+  "latest_judge_smoke_complete": true,
+  "observed": {
+    "malformed": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:46:14.622562Z",
+      "job_name": "p15_smoke_all_malformed_final_judges_v4",
+      "judge_failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "judge_pass": false,
+      "judge_result_sha256": "3dbf61b6a91628c7ab735e9439f6bbd4149ef42d0841bbddbe4c577a9a8e5257",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 0.0,
+      "task_checksum": "f1cb483138209ed48825c374ca95797077c75f7062c6c9d8ac4c964d90b8617c",
+      "trial_id": "2301783a-31c6-4cf6-9195-50f0b3af4631",
+      "trial_name": "P15-A-ENG-SIZING-001__ANeijM5",
+      "verifier_environment_mode": "separate"
+    },
+    "nop": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:44:35.316697Z",
+      "job_name": "p15_smoke_all_nop_final_judges_v4",
+      "judge_failure_codes": [
+        "OUTPUT_MISSING"
+      ],
+      "judge_pass": false,
+      "judge_result_sha256": "ce8a7684faa3ca7514fec753d9ff46c02979780a87769d7412a712969a47ebe2",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 0.0,
+      "task_checksum": "b69a4d4ea8dc140553b5c7ad68a1bd09ec853d202755e35aeac3f82bdf7800bf",
+      "trial_id": "14c1fdea-c3b6-40c6-bc80-4a7159d62e72",
+      "trial_name": "P15-A-ENG-SIZING-001__7jV3t6y",
+      "verifier_environment_mode": "separate"
+    },
+    "oracle": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:43:20.574781Z",
+      "job_name": "p15_smoke_all_oracle_final_judges_v4",
+      "judge_failure_codes": [],
+      "judge_pass": true,
+      "judge_result_sha256": "82f5756e9773d4414f83396c85dcdb4bac1f33a4a2469175edc4a5c42f2b8e8e",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 1.0,
+      "task_checksum": "b69a4d4ea8dc140553b5c7ad68a1bd09ec853d202755e35aeac3f82bdf7800bf",
+      "trial_id": "674936d6-4b56-437a-a320-7a97f7ea0297",
+      "trial_name": "P15-A-ENG-SIZING-001__Zt76EDH",
+      "verifier_environment_mode": "separate"
+    }
+  },
+  "pivot_blocker": null,
+  "schema_version": "1.0",
+  "task_id": "P15-A-ENG-SIZING-001",
+  "task_status_at_smoke": "LOCAL_READY"
+}

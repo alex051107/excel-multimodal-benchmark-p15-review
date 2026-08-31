@@ -1,0 +1,35 @@
+{
+  "candidate": "tests/confirm/reference.xlsx",
+  "candidate_sha256": "036ecd87d1f988ec78ca2628cedf39e21c6c2c5fc97ce0aae0c811c53b11c674",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "criterion_scores": {
+    "P001": 0.0,
+    "R001": 1.0,
+    "R002": 1.0,
+    "R003": 1.0,
+    "R004": 1.0,
+    "R005": 1.0,
+    "R006": 1.0,
+    "R007": 1.0,
+    "R008": 1.0,
+    "R009": 1.0
+  },
+  "failure_codes": [],
+  "input_files_sha256": {
+    "confirm_receipt_01.jpg": "21298861fa949eb6033ad98be1294d2f641b60e5fe5dde0cfe09e7f10ce0210b",
+    "confirm_receipt_02.jpg": "b25a5ccbcd6b302aa57a9028763665fd111d8a7210efdee1a22d104a34718e54",
+    "confirm_receipt_03.jpg": "a827aeb47ed147154a9aef03a2ba3bad366eaf95645f3ddd2853a190091710e5",
+    "context_note.md": "1b13170762093f2a25976d91f1324c99e9a3b47e8c5216a12dbc1c9e38eb4132",
+    "document_inventory.md": "0a33494ce341310bfd40446d1c44efeeb4d40d5d0e49f882787f3056efa9fddd",
+    "starting_workbook.xlsx": "46df8118933d26018825b857aa015c3e59c42b3a0b4046e2159b2554fa77da7c"
+  },
+  "normalized_score": 1.0,
+  "pass": true,
+  "repetitions": 5,
+  "score_stddev": 0.0,
+  "signature_sha256": "4917c71eedd894c9992b6d4c05a0f17aabe523150732856885015b59889f1956",
+  "split": "confirm",
+  "stable": true,
+  "status": "CONFIRM_REFERENCE_VALIDATED",
+  "task_id": "P15-C-RECEIPTS-001"
+}

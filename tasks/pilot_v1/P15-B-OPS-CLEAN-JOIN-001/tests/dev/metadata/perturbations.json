@@ -1,0 +1,16 @@
+[
+  {
+    "id": "RAW_ORDER_UNITS_10_TO_11",
+    "changed_source_cells": ["Raw_Orders!D4"],
+    "values": [11],
+    "expected_outputs": {"Joined_Data!F4": 1650, "Summary!B5": 4090},
+    "invariant_protected_ranges": ["Product_Master!A4:D6", "Location_Master!A4:C6"]
+  },
+  {
+    "id": "PRODUCT_MASTER_COST_420_TO_500",
+    "changed_source_cells": ["Product_Master!D5"],
+    "values": [500],
+    "expected_outputs": {"Joined_Data!F5": 2500, "Summary!B5": 4340},
+    "invariant_protected_ranges": ["Raw_Orders!A4:E10", "Location_Master!A4:C6"]
+  }
+]

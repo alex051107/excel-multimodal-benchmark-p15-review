@@ -1,0 +1,1 @@
+Complete the supplied workbook from the scanned contractor quote. Separate base scope from optional alternates, retain group membership, and calculate the base-scope total. Candidate-defined unique IDs and readable scan locators are valid when linked consistently.

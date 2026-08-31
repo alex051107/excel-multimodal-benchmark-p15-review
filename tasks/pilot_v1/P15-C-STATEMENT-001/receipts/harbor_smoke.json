@@ -1,0 +1,66 @@
+{
+  "claim_boundary": "Harbor smoke proves package and deterministic Judge execution only; it does not measure target-Agent difficulty.",
+  "difficulty_evidence": false,
+  "evidence_scope": "FINAL_JUDGE_PACKAGE_AND_EXECUTION_SMOKE_ONLY",
+  "expected_gates": {
+    "malformed": 0.0,
+    "nop_max_exclusive": 0.3,
+    "oracle": 1.0
+  },
+  "latest_judge_smoke_complete": true,
+  "observed": {
+    "malformed": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:45:57.862032Z",
+      "job_name": "p15_smoke_all_malformed_final_judges_v4",
+      "judge_failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "judge_pass": false,
+      "judge_result_sha256": "eceeb4a963f4ec00e6715b8c3c9347eafdf83b80df0245654333c80ceea54ecb",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 0.0,
+      "task_checksum": "48d3285a99e76892377913ad7ee70e645deeae6562bda659ab8979768637f3fb",
+      "trial_id": "b8df01d6-c2ff-4f5c-8e6c-efb0bd748993",
+      "trial_name": "P15-C-STATEMENT-001__YSXdnSo",
+      "verifier_environment_mode": "separate"
+    },
+    "nop": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:44:19.106255Z",
+      "job_name": "p15_smoke_all_nop_final_judges_v4",
+      "judge_failure_codes": [
+        "OUTPUT_MISSING"
+      ],
+      "judge_pass": false,
+      "judge_result_sha256": "7959fde6df4f5031d39a61e3c63ea473a9b202d5a7db2d3bb7643ad9c105e56e",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 0.0,
+      "task_checksum": "8cd11606f680184a25f4d3143022fa8079a89186f9044518af9c7e3e7b25efa3",
+      "trial_id": "fd98c581-60de-4c72-86ef-959052ef36a9",
+      "trial_name": "P15-C-STATEMENT-001__keu4h7n",
+      "verifier_environment_mode": "separate"
+    },
+    "oracle": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:43:03.614436Z",
+      "job_name": "p15_smoke_all_oracle_final_judges_v4",
+      "judge_failure_codes": [],
+      "judge_pass": true,
+      "judge_result_sha256": "d1c0a40b9aa0bcc278b85051cc62eb9154d4c49a747bb61f9bf131fca6a2b4e6",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 1.0,
+      "task_checksum": "8cd11606f680184a25f4d3143022fa8079a89186f9044518af9c7e3e7b25efa3",
+      "trial_id": "996128f9-5037-493a-bcb1-1ccecbc2c95d",
+      "trial_name": "P15-C-STATEMENT-001__Vujbsqw",
+      "verifier_environment_mode": "separate"
+    }
+  },
+  "pivot_blocker": null,
+  "schema_version": "1.0",
+  "task_id": "P15-C-STATEMENT-001",
+  "task_status_at_smoke": "LOCAL_READY"
+}

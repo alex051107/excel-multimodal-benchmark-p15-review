@@ -1,0 +1,32 @@
+{
+  "task_id": "P15-A-STAT-EXPERIMENT-001",
+  "split": "confirm",
+  "split_group": "P15-A-STAT-EXPERIMENT-001-HELDOUT-01",
+  "capability_invariant": ["paired-row construction", "two-sided paired t inference", "95% confidence interval", "paired power planning", "chart binding", "raw-data perturbation"],
+  "distinctness": {
+    "source_instance": "Batch-release cycle-time paired intervention study",
+    "dev_values_reused": false,
+    "changed_drivers": ["professional domain", "all paired observations", "measurement scale", "raw-data perturbation", "labels and decision context"],
+    "contamination_guard": "CONFIRM observations, reference, and oracle remain under tests/confirm and are not copied into environment/input."
+  },
+  "input_files_dir": "tests/confirm/input_files",
+  "reference_workbook": "tests/confirm/reference.xlsx",
+  "oracle": "tests/confirm/oracle_recompute.py",
+  "baseline_workbook": "tests/confirm/input_files/starting_workbook.xlsx",
+  "semantic_acceptance": {
+    "metric_layout": "Resolve the declared paired-analysis metrics by their task-specific labels; professional row relocation is acceptable.",
+    "paired_difference": "One formula-linked raw paired-difference column is sufficient for the paired analysis.",
+    "formula_compatibility": "Treat Excel _xlfn. and _xlws. compatibility prefixes as semantically inert for supported paired-analysis functions.",
+    "chart_binding": "Accept either an exact full-source Data paired-difference series or the canonical formula-linked Visualization helper series.",
+    "source_gate": "The CONFIRM starting workbook's raw observations and inclusion flags remain protected."
+  },
+  "evaluator": {
+    "path": "tests/evaluate.py",
+    "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"],
+    "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}
+  },
+  "required_sheets": ["Data", "Plan", "Analysis", "Results", "Visualization", "Checks"],
+  "formula_cells": ["Data!D4:D13", "Data!H4:H13", "Analysis!B4:B13", "Results!B8", "Visualization!B4:B13"],
+  "perturbations": [{"name": "paired_observation", "address": "Analysis!B10", "overrides": {"Data!C9": 13.1}, "oracle_key": "p_value"}],
+  "protected_ranges": ["Data!B4:C13", "Data!E4:E13"]
+}

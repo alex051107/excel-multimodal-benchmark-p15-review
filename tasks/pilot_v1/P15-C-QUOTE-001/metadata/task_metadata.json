@@ -1,0 +1,18 @@
+{
+  "construction_mode": "ARTIFACT_RECORD_ONLY",
+  "department": "Procurement",
+  "difficulty_tier": "Hard",
+  "est_minutes": 40,
+  "occupation": "Procurement Analyst",
+  "sector": "Construction and facilities",
+  "semantic_rebuild": true,
+  "skills": [
+    "scan interpretation",
+    "scope grouping",
+    "optional-item treatment",
+    "quote normalization"
+  ],
+  "source_family": "project-authored-quote-template-family-v2",
+  "task_id": "P15-C-QUOTE-001",
+  "track": "C"
+}

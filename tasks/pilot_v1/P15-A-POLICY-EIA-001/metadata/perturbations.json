@@ -1,0 +1,32 @@
+[
+  {
+    "id": "PERTURB-COAL-DISPLACEMENT",
+    "changed_source_cells": ["Policy_Assumptions!C4"],
+    "overrides": {"Policy_Assumptions!C4": 0.1},
+    "expected_outputs": {
+      "Scenario_Model!C5": 607500,
+      "Scenario_Model!C8": 2719690,
+      "Scenario_Model!C9": 1695376,
+      "Policy_Results!B4": 60424,
+      "Policy_Results!B6": 17690
+    },
+    "invariant_protected_cells": {"Policy_Assumptions!C7": 0.01, "Scenario_Model!C6": 446250, "Scenario_Model!C7": 266560}
+  },
+  {
+    "id": "PERTURB-POLICY-DEMAND-GROWTH",
+    "changed_source_cells": ["Policy_Assumptions!C7"],
+    "overrides": {"Policy_Assumptions!C7": 0.025},
+    "expected_outputs": {
+      "Scenario_Model!C4": 4099999.9999999995,
+      "Scenario_Model!C5": 621000,
+      "Scenario_Model!C6": 446250,
+      "Scenario_Model!C7": 266560,
+      "Scenario_Model!C8": 2766189.9999999995,
+      "Scenario_Model!C9": 1727475.9999999998,
+      "Policy_Results!B4": 28324.000000000233,
+      "Policy_Results!B5": 0.013268350639942028,
+      "Policy_Results!B6": 64189.999999999534
+    },
+    "invariant_protected_cells": {"Policy_Assumptions!C4": 0.08, "Policy_Assumptions!C5": 0.05, "Policy_Assumptions!C6": 0.12}
+  }
+]

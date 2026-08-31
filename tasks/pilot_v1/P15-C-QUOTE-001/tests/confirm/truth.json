@@ -1,0 +1,47 @@
+{
+  "document": {
+    "filename": "confirm_quote_scan.png",
+    "pages": 1
+  },
+  "headers": {
+    "currency": "USD",
+    "customer": "Brightwell Water District",
+    "quote_date": "2026-07-06",
+    "quote_id": "QT-9412",
+    "valid_through": "2026-08-05",
+    "vendor": "Granite Peak Facilities"
+  },
+  "line_items": [
+    {
+      "amount": 1750,
+      "description": "Pump pad retrofit",
+      "group": "Base scope",
+      "line_id": "CQ-01",
+      "optional": false,
+      "page": 1,
+      "text_locator": "confirm_quote_scan.png:base-pump-pad"
+    },
+    {
+      "amount": 925,
+      "description": "Electrical mobilization",
+      "group": "Base scope",
+      "line_id": "CQ-02",
+      "optional": false,
+      "page": 1,
+      "text_locator": "confirm_quote_scan.png:base-electrical"
+    },
+    {
+      "amount": 420,
+      "description": "Two-year service plan",
+      "group": "Optional alternate",
+      "line_id": "CQ-03",
+      "optional": true,
+      "page": 1,
+      "text_locator": "confirm_quote_scan.png:alternate-service-plan"
+    }
+  ],
+  "terms": {
+    "discount_rate": 0.05,
+    "tax_rate": 0.0725
+  }
+}

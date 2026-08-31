@@ -1,0 +1,11 @@
+batch_id,baseline_cycle_time_h,intervention_cycle_time_h,include
+B01,14.2,12.8,Yes
+B02,13.8,12.9,Yes
+B03,15.1,13.7,Yes
+B04,12.9,12.1,Yes
+B05,14.7,13.0,Yes
+B06,13.5,12.4,Yes
+B07,16.0,14.2,Yes
+B08,15.4,13.6,Yes
+B09,14.0,12.9,Yes
+B10,13.2,12.0,Yes

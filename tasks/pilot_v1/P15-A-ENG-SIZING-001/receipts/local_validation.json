@@ -1,0 +1,256 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "equivalent": {
+      "candidate_sha256": "d298529467d6405712911463ed1d1776c03b82806da20a6eca591b0ff80a6832",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "664b76bb58d6dd60036c465c62eae6693069f43da5401181696577603f829949",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 0.0,
+        "R012": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "c85a52422c0b83b0b013b6d45fbc2f3937c5fbdb3af02687d7363e9fd4e440f4",
+      "stable": true
+    },
+    "millimeter_conversion_error": {
+      "candidate_sha256": "0b13ef6e4b7d465605d6bd6c46e299d86f21a2390c88817da34e1e7265e9e23a",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "failure_codes": [
+        "SIZING_VALUE_MISMATCH:Calculations!B11",
+        "SIZING_VALUE_MISMATCH:Calculations!B4",
+        "SIZING_VALUE_MISMATCH:Calculations!B5",
+        "SIZING_VALUE_MISMATCH:Calculations!B6",
+        "SIZING_VALUE_MISMATCH:Calculations!B7",
+        "SIZING_VALUE_MISMATCH:Calculations!B8",
+        "SIZING_VALUE_MISMATCH:Calculations!B9",
+        "SIZING_VALUE_MISMATCH:Unit_Conversions!C5",
+        "SIZING_VALUE_MISMATCH:Unit_Conversions!C6"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.208333,
+      "score_stddev": 0.0,
+      "signature_sha256": "0ad610fa13c0d2237483baf34e9c654fbf634ccc981438d027b2665170d288b0",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "1449d2bb30dd9fe89c689223d81cca0d1cc6c383a590af4f1f5a367661cb568e",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 0.0,
+        "R012": 0.0
+      },
+      "failure_codes": [
+        "SEMANTIC_EVALUATION_ERROR:TypeError:unsupported operand type(s) for -: 'NoneType' and 'float'"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.041667,
+      "score_stddev": 0.0,
+      "signature_sha256": "0bfac29d1214e98ff3bbd16da920972973f62c6220a50cb129047a18ffdda753",
+      "stable": true
+    },
+    "omitted_safety_factor": {
+      "candidate_sha256": "4575ee9526de2a256f4d8f22da80fe7dcb843ad4cf499df4c3aafa836cad3e8b",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "R010": 0.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "failure_codes": [
+        "SIZING_VALUE_MISMATCH:Calculations!B11",
+        "SIZING_VALUE_MISMATCH:Calculations!B7",
+        "SIZING_VALUE_MISMATCH:Calculations!B8",
+        "SIZING_VALUE_MISMATCH:Calculations!B9"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.291667,
+      "score_stddev": 0.0,
+      "signature_sha256": "6eadf7ccdb3a581cdf7df6103e1db7f944577466af10a29a1d62ccf40c5a199a",
+      "stable": true
+    },
+    "percentage_fraction_error": {
+      "candidate_sha256": "d5f2411a72d79758e579c553a0403d0a37b65660da825f1e2b341eec3e8918ec",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "R010": 0.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "failure_codes": [
+        "SIZING_VALUE_MISMATCH:Calculations!B11",
+        "SIZING_VALUE_MISMATCH:Calculations!B7",
+        "SIZING_VALUE_MISMATCH:Calculations!B8",
+        "SIZING_VALUE_MISMATCH:Calculations!B9"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.041667,
+      "score_stddev": 0.0,
+      "signature_sha256": "57f0977bf39ab2c0bb0648b5324f88412a553429e6d435e67851be0d441b4f51",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "3178b489578e8b0b0cc6b8a07d181a1a06ac18166373d9e5471a811cb8c7c517",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "664b76bb58d6dd60036c465c62eae6693069f43da5401181696577603f829949",
+      "stable": true
+    },
+    "wrong_candidate_selection": {
+      "candidate_sha256": "aa3a8d39d39895277a1cac3e4872c8aa2e0d3f5835f63965ee3a54d6310c5e34",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.5,
+      "score_stddev": 0.0,
+      "signature_sha256": "e9686c57ec453af89a379006366bcc1c2e47ea31278ec7c87dab560b7bac8add",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "area_m2": 0.017671458676442587,
+    "diameter_m": 0.15,
+    "eligibility": [
+      "Ineligible",
+      "Eligible",
+      "Eligible"
+    ],
+    "flow_m3s": 0.042,
+    "friction_head": 5.374295612650066,
+    "hydraulic_power": 11.053128312332547,
+    "minimum_flow": 48.3,
+    "minimum_motor": 17.65430216553115,
+    "selected_pump": "P-180",
+    "shaft_power": 15.351567100461871,
+    "tdh": 26.880439954547573,
+    "velocity": 2.3767138168389703,
+    "velocity_head": 0.28790869353482496
+  },
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY",
+  "task_id": "P15-A-ENG-SIZING-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

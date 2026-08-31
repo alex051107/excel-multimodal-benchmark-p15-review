@@ -1,0 +1,28 @@
+[
+  {
+    "id": "PERTURB-PRICE-2027",
+    "changed_source_cells": ["Assumptions!D5"],
+    "overrides": {"Assumptions!D5": 55},
+    "expected_outputs": {
+      "Revenue_Build!D6": 753500,
+      "Working_Capital!D5": 88768.49315068492,
+      "Working_Capital!D7": -12570.136986301368,
+      "Summary!D8": 191419.86301369863,
+      "Summary!D9": 9.57099315068493
+    },
+    "invariant_protected_cells": {"Assumptions!D8": 43, "Debt_Schedule!D5": 12155}
+  },
+  {
+    "id": "PERTURB-DSO-2027",
+    "changed_source_cells": ["Assumptions!D8"],
+    "overrides": {"Assumptions!D8": 50},
+    "expected_outputs": {
+      "Revenue_Build!D6": 685000,
+      "Working_Capital!D5": 93835.61643835617,
+      "Working_Capital!D7": -17637.260273972614,
+      "Summary!D8": 154157.7397260274,
+      "Summary!D9": 7.70788698630137
+    },
+    "invariant_protected_cells": {"Summary!D5": 183950, "Debt_Schedule!D5": 12155}
+  }
+]

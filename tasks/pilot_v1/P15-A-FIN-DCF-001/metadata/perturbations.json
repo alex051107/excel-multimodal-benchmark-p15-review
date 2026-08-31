@@ -1,0 +1,16 @@
+[
+  {
+    "id": "PERTURB-GROWTH-2025",
+    "changed_source_cells": ["Assumptions!B4"],
+    "overrides": {"Assumptions!B4": 0.08},
+    "expected_outputs": ["Forecast!B5", "Forecast!F5"],
+    "invariant_protected_cells": ["Source_Data!D4:D8"]
+  },
+  {
+    "id": "PERTURB-WACC",
+    "changed_source_cells": ["Assumptions!B10"],
+    "overrides": {"Assumptions!B10": 0.095},
+    "expected_outputs": ["Forecast!B14:F15", "Valuation!B9", "Valuation!B13"],
+    "invariant_protected_cells": ["Source_Data!D4:D8"]
+  }
+]

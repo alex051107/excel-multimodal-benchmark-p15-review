@@ -1,0 +1,36 @@
+{
+  "agent_visible_hashes": {
+    "context_note.md": "8a47bca3b1c442e161178343930bbca815514ce7f9275dc0ae510e96ae0cda41",
+    "document_inventory.md": "498bee7825c0d598f984632a33affae41015ca98cd8590dee9a8ef658920fe98",
+    "receipt_photo_01.jpg": "c1b4b76d02cb021b184a76c49f1032f292f9bd7385b060fe7c998a41ec714e46",
+    "receipt_photo_02.jpg": "2dff046e4cc0aaf9575f8ec0aa73aea566095bed9a5be717b6ddc41f9f7ba470",
+    "receipt_photo_03.jpg": "5908cd9730c9e4b288354d47cbdfd85e48ff12a382bbb840e31d5d8eb0920365",
+    "starting_workbook.xlsx": "518901f2ebc11eb51fb54bdde8a91b742f39950b309f90195999a24f861d295c"
+  },
+  "assets": [
+    {
+      "license": "Project-owned original",
+      "path": "receipt_photo_01.jpg",
+      "role": "agent-visible receipt image"
+    },
+    {
+      "license": "Project-owned original",
+      "path": "receipt_photo_02.jpg",
+      "role": "agent-visible receipt image"
+    },
+    {
+      "license": "Project-owned original",
+      "path": "receipt_photo_03.jpg",
+      "role": "agent-visible receipt image"
+    },
+    {
+      "license": "Project-owned original",
+      "path": "starting_workbook.xlsx",
+      "role": "agent-visible delivery template without expected-result cells"
+    }
+  ],
+  "construction_mode": "ARTIFACT_RECORD_ONLY",
+  "rights": "Project-owned original truth, source documents, and workbook artifacts.",
+  "source_family": "project-authored-receipt-template-family-v2",
+  "task_id": "P15-C-RECEIPTS-001"
+}

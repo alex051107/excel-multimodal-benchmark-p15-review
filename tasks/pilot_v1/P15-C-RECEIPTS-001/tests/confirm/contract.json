@@ -1,0 +1,29 @@
+{
+  "task_id": "P15-C-RECEIPTS-001",
+  "split": "confirm",
+  "split_group": "P15-C-RECEIPTS-001",
+  "capability_invariant": [
+    "Consolidate multiple receipt images into document, item, category, exception, and reconciliation structures.",
+    "Use formula-linked document totals with source-displayed currency rounding.",
+    "Maintain source-file provenance for every extracted item."
+  ],
+  "distinctness": {
+    "source_instance": "July three-receipt expense batch from Juniper Bakery, Metro Transit Garage, and Office Corner",
+    "dev_values_reused": false,
+    "changed_drivers": ["merchants", "dates", "items", "categories", "tax treatment", "tip", "batch total", "source filenames"],
+    "contamination_guard": "Confirm source, values, truth, oracle, perturbation, and reference are verifier-private and were fixed before target-agent evaluation."
+  },
+  "input_files_dir": "tests/confirm/input_files",
+  "reference_workbook": "tests/confirm/reference.xlsx",
+  "oracle": "tests/confirm/oracle_recompute.py",
+  "evaluator": {
+    "path": "tests/evaluate.py",
+    "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"],
+    "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}
+  },
+  "required_sheets": ["Documents", "Items", "Categories", "Exceptions", "Provenance", "Reconciliation"],
+  "formula_cells": ["Documents!D4:E6", "Documents!G4:G6", "Categories!B4:B6", "Reconciliation!B4:B6"],
+  "protected": ["A perturbation to one receipt must not change another receipt total"],
+  "perturbations": "tests/confirm/perturbations.json",
+  "private_truth_environment_copy": false
+}

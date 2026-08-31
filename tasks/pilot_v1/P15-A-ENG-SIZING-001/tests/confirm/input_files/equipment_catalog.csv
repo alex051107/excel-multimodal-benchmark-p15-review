@@ -1,0 +1,4 @@
+pump_id,flow_capacity_lps,head_capacity_m,motor_rating_kw
+H-080,38,28,15
+H-140,52,40,22
+H-220,74,52,30

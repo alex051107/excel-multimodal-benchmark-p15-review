@@ -1,0 +1,33 @@
+{
+  "task_id": "P15-A-FIN-DEBUG-001",
+  "split": "confirm",
+  "split_group": "P15-A-FIN-DEBUG-001-HELDOUT-01",
+  "capability_invariant": ["trace an integrated FP&A model", "repair one hidden revenue root cause", "preserve formula locality", "verify downstream recalculation"],
+  "distinctness": {
+    "source_instance": "Redwood wholesale-distributor FP&A forecast",
+    "dev_values_reused": false,
+    "changed_drivers": ["volume and price series", "margin and opex series", "DSO", "debt schedule", "opening AR", "price perturbation"],
+    "contamination_guard": "CONFIRM values, wrong-root baseline, and oracle remain under tests/confirm and are not copied into environment/input."
+  },
+  "input_files_dir": "tests/confirm/input_files",
+  "reference_workbook": "tests/confirm/reference.xlsx",
+  "oracle": "tests/confirm/oracle_recompute.py",
+  "baseline_workbook": "tests/confirm/input_files/starting_workbook.xlsx",
+  "evaluator": {
+    "path": "tests/evaluate.py",
+    "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"],
+    "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}
+  },
+  "required_sheets": ["Assumptions", "Revenue_Build", "Working_Capital", "Debt_Schedule", "Summary", "Checks"],
+  "formula_cells": ["Revenue_Build!D6", "Working_Capital!D5", "Working_Capital!D7", "Debt_Schedule!D5", "Summary!D8", "Summary!D9"],
+  "allowed_changed_formula_cells": ["Revenue_Build!D6"],
+  "perturbations": [{"name": "price_2027", "address": "Revenue_Build!D6", "overrides": {"Assumptions!D5": 72}}],
+  "protected": {
+    "Assumptions!B4": 8300, "Assumptions!C4": 8900, "Assumptions!D4": 9500,
+    "Assumptions!B5": 62, "Assumptions!C5": 64, "Assumptions!D5": 67,
+    "Assumptions!B6": 0.42, "Assumptions!C6": 0.425, "Assumptions!D6": 0.43,
+    "Assumptions!B7": 95000, "Assumptions!C7": 99000, "Assumptions!D7": 103000,
+    "Assumptions!B8": 41, "Assumptions!C8": 40, "Assumptions!D8": 39,
+    "Assumptions!B9": 0.07, "Assumptions!C9": 0.07, "Assumptions!D9": 0.068
+  }
+}

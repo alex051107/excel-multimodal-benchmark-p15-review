@@ -1,0 +1,37 @@
+{
+  "candidate": "tests/confirm/reference.xlsx",
+  "candidate_sha256": "a2bbfde23a5ddb8ac23f8b74c906e1b820ba226d46b4e8f776013698b080a434",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "criterion_scores": {
+    "P001": 0.0,
+    "R001": 1.0,
+    "R002": 1.0,
+    "R003": 1.0,
+    "R004": 1.0,
+    "R005": 1.0,
+    "R006": 1.0,
+    "R007": 1.0,
+    "R008": 1.0,
+    "R009": 1.0
+  },
+  "failure_codes": [],
+  "input_files_sha256": {
+    "context_note.md": "62415b54695cec59ad80958e3c4fdda5f815e5d5fdaf0b792714611178db836e",
+    "release_registry.csv": "5539494e2678b6a7fdd070007bc3bf1c835cc374ae7b92356924aa0e4c649494",
+    "revenue_q1_final.csv": "aef9258203588cd7e6c1fef0113031c12ef3d00e9f1434d1f15373b3238ec64f",
+    "revenue_q2_corrected.csv": "621e886215d4d40a2e84c5b2ade921dd323260b669dc4d9c149de4bf4cee6fd5",
+    "revenue_q2_draft.csv": "d57bb338a8337dcfb76b8fa4913fd43730e919d9043ee93cea42f364053c2881",
+    "revenue_q2_test_schema.csv": "775f9e389e870c414a54847251ddbcab18fa71e59f08fe011d828f66abb13405",
+    "selection_memo.md": "5fdbdca787c9ce90d63c4549300f3c459fd376864948032b4b8b9e52e812d800",
+    "starting_workbook.xlsx": "a88c239959fe5d34c185691ce0199b572b6d04d6f857cd621777a1aed08db3d6"
+  },
+  "normalized_score": 1.0,
+  "pass": true,
+  "repetitions": 5,
+  "score_stddev": 0.0,
+  "signature_sha256": "9e393a1d31b652c631686d55bdfe236d699388ac2b29974b476061e8ff4af24e",
+  "split": "confirm",
+  "stable": true,
+  "status": "CONFIRM_REFERENCE_VALIDATED",
+  "task_id": "P15-B-SALES-DISCOVERY-001"
+}

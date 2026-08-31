@@ -1,0 +1,18 @@
+{
+  "department": "Population Health Analytics",
+  "difficulty_tier": "Hard",
+  "est_minutes": 90,
+  "multimodal": true,
+  "occupation": "Health Data Analyst",
+  "sector": "Health Care and Social Assistance",
+  "semantic_version": "p15_v3",
+  "skills": [
+    "time-series alignment",
+    "public-health metrics",
+    "geography mapping",
+    "report traceability"
+  ],
+  "status": "LOCAL_READY",
+  "task_id": "P15-B-HEALTH-REPORT-001",
+  "web_search_required": false
+}

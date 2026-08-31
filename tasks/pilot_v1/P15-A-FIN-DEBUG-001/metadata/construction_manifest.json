@@ -1,0 +1,10 @@
+{
+  "canonical_excel_status": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "construction_mode": "CONTROLLED_DEFECT_FROM_VALID_GOLD",
+  "human_review_status": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "instruction_origin": "benchmark-authored professional request",
+  "old_calibration_package_reused": false,
+  "semantic_version": "p15_v2",
+  "task_id": "P15-A-FIN-DEBUG-001",
+  "task_semantic_rebuild": true
+}

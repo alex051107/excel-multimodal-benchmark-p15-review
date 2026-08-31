@@ -1,0 +1,2 @@
+adjustment_id,invoice,amount_usd,reason
+ADJ-105,INV-105,-50,Approved timing adjustment from $300 subledger to $250 ledger

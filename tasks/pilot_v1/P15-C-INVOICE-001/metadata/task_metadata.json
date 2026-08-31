@@ -1,0 +1,18 @@
+{
+  "construction_mode": "ARTIFACT_RECORD_ONLY",
+  "department": "Finance Operations",
+  "difficulty_tier": "Medium",
+  "est_minutes": 30,
+  "occupation": "Accounts Payable Specialist",
+  "sector": "Industrial supply and accounts payable",
+  "semantic_rebuild": true,
+  "skills": [
+    "document-to-table extraction",
+    "invoice validation",
+    "formula-linked totals",
+    "source traceability"
+  ],
+  "source_family": "project-authored-invoice-template-family-v2",
+  "task_id": "P15-C-INVOICE-001",
+  "track": "C"
+}

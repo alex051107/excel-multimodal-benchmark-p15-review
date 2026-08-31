@@ -1,0 +1,65 @@
+schema_version: p15_review_evaluation_config_v1
+as_of_utc: "2026-08-30T16:01:48Z"
+secrets_in_file: false
+pass_threshold: 0.70
+pass_at_8_formula: "1 - C(n-c, 8) / C(n, 8)"
+formal_candidate_target_n: 16
+
+systems:
+  codex_gpt56sol:
+    agent: Codex CLI
+    agent_version: 0.151.0
+    model: gpt-5.6-sol
+    provider: OpenAI
+    reasoning_effort: ultra
+    web_search: disabled
+    valid_development_attempts: 56
+    pass_count: 26
+    mean_score: 0.633973
+    framework_cost_estimate_usd: 38.785435
+
+  claude_opus48:
+    agent: Claude Code
+    agent_version: 2.1.251
+    model: anthropic/claude-opus-4.8
+    gateway: OpenRouter
+    endpoint_protocol: Anthropic-compatible
+    valid_development_attempts: 14
+    pass_count: 8
+    mean_score: 0.677932
+    formal_model_version_decision: pending
+
+  qwen38max:
+    agent: Qwen Code
+    agent_version: 0.22.3
+    model: qwen/qwen3.8-max
+    gateway: OpenRouter
+    endpoint_protocol: OpenAI-compatible
+    valid_development_attempts: 14
+    pass_count: 3
+    mean_score: 0.488385
+
+  claude_opus5_supplemental:
+    agent: Claude Code
+    agent_version: 2.1.251
+    model: anthropic/claude-opus-5
+    gateway: OpenRouter
+    role: supplemental DCF alignment run only
+    valid_development_attempts: 1
+    pass_count: 1
+    mean_score: 1.0
+    included_in_three_system_comparison: false
+
+cost_records:
+  codex_framework_estimate_usd: 38.785435
+  openrouter_paid_batch_usage_delta_usd: 15.80543476
+  direct_sum_allowed: false
+  reason: different accounting bases without invoice-level deduplication evidence
+
+evidence_policy:
+  current_results: development evidence
+  standard_pass_at_8_available: false
+  reason: per-task n is 4 for Codex and 1 for Claude and Qwen
+  windows_excel_validation: pending
+  held_out_agent_confirm: pending
+  external_human_review: pending

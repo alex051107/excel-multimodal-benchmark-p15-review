@@ -1,0 +1,18 @@
+{
+  "department": "Research Analytics",
+  "difficulty_tier": "Hard",
+  "est_minutes": 70,
+  "multimodal": false,
+  "occupation": "Statistical Analyst",
+  "sector": "Health Care and Social Assistance",
+  "semantic_version": "p15_v2",
+  "skills": [
+    "paired t-test",
+    "confidence interval",
+    "statistical planning",
+    "data visualization"
+  ],
+  "status": "LOCAL_READY",
+  "task_id": "P15-A-STAT-EXPERIMENT-001",
+  "web_search_required": false
+}

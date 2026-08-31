@@ -1,0 +1,35 @@
+{
+  "candidate": "tests/confirm/reference.xlsx",
+  "candidate_sha256": "e2ba0ba104f2d201a3e167d9389286d85d951a2f98b070acbf6238fc188f3846",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "criterion_scores": {
+    "P001": 0.0,
+    "R001": 1.0,
+    "R002": 1.0,
+    "R003": 1.0,
+    "R004": 1.0,
+    "R005": 1.0,
+    "R006": 1.0,
+    "R007": 1.0,
+    "R008": 1.0,
+    "R009": 1.0,
+    "R010": 1.0,
+    "R011": 1.0
+  },
+  "failure_codes": [],
+  "input_files_sha256": {
+    "context_note.md": "815160575b0d08750d66f9df83e745fd73a2819fd2aaf2912e3497bd6aedbba0",
+    "investment_assumption_memo.md": "ecdef1f359be6e7d6764d93dd1218aaae86114f5ecdb0b4df2392a8cb849f1d7",
+    "source_data.csv": "39c0f644245bab02dda6ebbd64d223ef76aeeb109bae518800b8bc3975634eb2",
+    "starting_workbook.xlsx": "abaf320d490097bebd9c0e75e29008466795fc45e06edfcfa2591e3f9905010b"
+  },
+  "normalized_score": 1.0,
+  "pass": true,
+  "repetitions": 5,
+  "score_stddev": 0.0,
+  "signature_sha256": "543ce6f70247c9244b54a0261cb2307d275afeb96cd4cfdbe45f1aac020b63ad",
+  "split": "confirm",
+  "stable": true,
+  "status": "CONFIRM_REFERENCE_VALIDATED",
+  "task_id": "P15-A-FIN-DCF-001"
+}

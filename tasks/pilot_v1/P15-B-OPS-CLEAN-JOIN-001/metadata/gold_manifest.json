@@ -1,0 +1,26 @@
+{
+  "known_assumptions": [
+    "The professional request is benchmark-authored.",
+    "Reference output is checked against a task-specific independent oracle."
+  ],
+  "native_pivot_gold_pending": false,
+  "oracle_implementation": "metadata/oracle_recompute.py",
+  "oracle_reads_reference_workbook": false,
+  "reference_sha256": "c7455b48e95efa217d46efa4006fda4e527b29545969d5955df166ff042f1d94",
+  "reference_workbook": "solution/reference.xlsx",
+  "semantic_version": "p15_v3",
+  "source_inputs": {
+    "context_note.md": "58d0c888abbb6ff757b49620341be30aed679ecde0e992e5ef2226c91d4c0b67",
+    "data_policy.md": "5899d0697ec758b07e619bf59fdee64e44e4fc742da98c35119e46a9e079e844",
+    "exception_policy.md": "1b54eb30f7de5e8f26dd30f26f5998075ab0ff34b37007d19d24aa6958a06b18",
+    "location_master.csv": "80551d36b803bc14356f9042586ccc28c03c9c93b8cfb6bc461d20a86131a1ce",
+    "product_master.csv": "26dde368c837bab161a2f5af8f1867244886640fa1a30fcad381f6411dfd1a7b",
+    "raw_orders.csv": "a0563174b9a9e98bc3c768c75a78456a400ae8d248bc3de0d0ddf9f4363c4446",
+    "starting_workbook.xlsx": "1757fa683bb3cc34af818eee355ac462fb947c5cf9d7b5805d818f7d560c8904"
+  },
+  "task_id": "P15-B-OPS-CLEAN-JOIN-001",
+  "unsupported_claims": [
+    "No Windows Excel validation is claimed.",
+    "No blind-human or Agent difficulty evidence is claimed."
+  ]
+}

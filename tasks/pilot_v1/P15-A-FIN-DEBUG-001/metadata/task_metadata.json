@@ -1,0 +1,18 @@
+{
+  "department": "Financial Planning and Analysis",
+  "difficulty_tier": "Very Hard",
+  "est_minutes": 95,
+  "multimodal": false,
+  "occupation": "Financial Modeling Analyst",
+  "sector": "Professional, Scientific, and Technical Services",
+  "semantic_version": "p15_v2",
+  "skills": [
+    "financial-model debugging",
+    "formula tracing",
+    "working capital",
+    "change control"
+  ],
+  "status": "LOCAL_READY",
+  "task_id": "P15-A-FIN-DEBUG-001",
+  "web_search_required": false
+}

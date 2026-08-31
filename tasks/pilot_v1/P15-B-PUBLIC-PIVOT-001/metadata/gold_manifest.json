@@ -1,0 +1,26 @@
+{
+  "known_assumptions": [
+    "The professional request is benchmark-authored.",
+    "Reference output is checked against a task-specific independent oracle."
+  ],
+  "native_pivot_gold_pending": true,
+  "oracle_implementation": "metadata/oracle_recompute.py",
+  "oracle_reads_reference_workbook": false,
+  "reference_artifact_status": "INVALID_PLACEHOLDER_NOT_GOLD",
+  "reference_sha256": "90f9b52a14da941411c37011cde4ac4f4b2df6e50650f0859350178e8918d6df",
+  "reference_workbook": "solution/reference.xlsx",
+  "semantic_version": "p15_v3",
+  "source_inputs": {
+    "context_note.md": "fc45bf476b76676bef586461904e1b140384f3d8f8973ec72af42ff294cf3bf4",
+    "program_events.csv": "b9838dbb83e97f9c4172228a1eaf68bd488fcb8d822c4d98e0637a9cbf89836c",
+    "reporting_specification.md": "44add3ac494b08840010bef5b532e078f2e509b32b462f2543750765732515ab",
+    "starting_workbook.xlsx": "55f158b58195e6017a49551faf58791c0604f97076eef0ca71b6684f70bce6dd"
+  },
+  "task_id": "P15-B-PUBLIC-PIVOT-001",
+  "unsupported_claims": [
+    "The current solution/reference.xlsx is an invalid placeholder, not native Pivot gold.",
+    "No Windows Excel validation or native Pivot package validity is claimed.",
+    "No blind-human or Agent difficulty evidence is claimed."
+  ],
+  "validation_blocker": "PENDING_EXTERNAL_WINDOWS_EXCEL"
+}

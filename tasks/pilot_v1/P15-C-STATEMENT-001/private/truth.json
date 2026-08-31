@@ -1,0 +1,69 @@
+{
+  "document": {
+    "filename": "statement_multipage.pdf",
+    "pages": 2
+  },
+  "headers": {
+    "account_suffix": "4821",
+    "bank": "Harbor Community Bank",
+    "currency": "USD",
+    "opening_balance": 8100.0,
+    "period_end": "2026-06-30",
+    "period_start": "2026-06-01"
+  },
+  "source_family": "project-authored-statement-template-family-v2",
+  "task_id": "P15-C-STATEMENT-001",
+  "template": "multipage financial statement",
+  "transactions": [
+    {
+      "category": "Customer receipts",
+      "credit": 1200.0,
+      "date": "2026-06-03",
+      "debit": 0.0,
+      "description": "ACH credit",
+      "page": 1,
+      "text_locator": "statement_multipage.pdf:p1:tx-1",
+      "transaction_id": "TX-001"
+    },
+    {
+      "category": "Equipment",
+      "credit": 0.0,
+      "date": "2026-06-08",
+      "debit": 860.0,
+      "description": "Equipment supply",
+      "page": 1,
+      "text_locator": "statement_multipage.pdf:p1:tx-2",
+      "transaction_id": "TX-002"
+    },
+    {
+      "category": "Customer receipts",
+      "credit": 1150.0,
+      "date": "2026-06-12",
+      "debit": 0.0,
+      "description": "Customer receipt",
+      "page": 1,
+      "text_locator": "statement_multipage.pdf:p1:tx-3",
+      "transaction_id": "TX-003"
+    },
+    {
+      "category": "Travel",
+      "credit": 0.0,
+      "date": "2026-06-19",
+      "debit": 1015.0,
+      "description": "Travel expense",
+      "page": 2,
+      "text_locator": "statement_multipage.pdf:p2:tx-4",
+      "transaction_id": "TX-004"
+    },
+    {
+      "category": "Bank fees",
+      "credit": 0.0,
+      "date": "2026-06-28",
+      "debit": 42.0,
+      "description": "Monthly fee",
+      "page": 2,
+      "text_locator": "statement_multipage.pdf:p2:tx-5",
+      "transaction_id": "TX-005"
+    }
+  ]
+}

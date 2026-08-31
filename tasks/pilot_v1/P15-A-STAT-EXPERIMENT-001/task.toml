@@ -1,0 +1,46 @@
+schema_version = "1.4"
+artifacts = ["/app/output/answer.xlsx"]
+
+[task]
+name = "alex051107/p15-a-stat-experiment-001"
+version = "2.0.0"
+description = "Execute and communicate a paired crossover statistical analysis from public sleep-study data."
+keywords = ["excel", "statistics", "paired-analysis", "pilot-v1"]
+
+[[task.authors]]
+name = "Excel Benchmark Team"
+
+[metadata]
+task_id = "P15-A-STAT-EXPERIMENT-001"
+track = "A"
+status = "LOCAL_READY"
+construction_mode = "EXPERT_AUTHORED_AUTHENTIC_DATA"
+source_family = "R_datasets_sleep_paired_crossover_data"
+sector = "Health Care and Social Assistance"
+department = "Research Analytics"
+occupation = "Statistical Analyst"
+difficulty_tier = "Hard"
+multimodal = false
+web_search_required = false
+est_minutes = 70
+skills = ["paired t-test", "confidence interval", "statistical planning", "data visualization"]
+benchmark_authored_instruction = true
+
+[verifier]
+timeout_sec = 300.0
+environment_mode = "separate"
+network_mode = "public"
+
+[environment]
+network_mode = "public"
+os = "linux"
+workdir = "/app"
+
+[verifier.env]
+JUDGE_MODEL = "${JUDGE_MODEL:-deterministic}"
+JUDGE_PROVIDER = "${JUDGE_PROVIDER:-local}"
+JUDGE_API_PROTOCOL = "${JUDGE_API_PROTOCOL:-none}"
+JUDGE_BASE_URL = "${JUDGE_BASE_URL:-}"
+JUDGE_API_KEY = "${JUDGE_API_KEY:-}"
+JUDGE_PER_TIMEOUT = "${JUDGE_PER_TIMEOUT:-300}"
+JUDGE_MAX_TRIES = "${JUDGE_MAX_TRIES:-1}"

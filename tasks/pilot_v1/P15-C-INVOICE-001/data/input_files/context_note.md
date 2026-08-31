@@ -1,0 +1,1 @@
+Complete the supplied accounts-payable workbook from the attached two-page invoice. Preserve a stable unique ID for each line, calculate the payable total, and provide page-level source traceability. Candidate-defined IDs and readable source locators are valid when they link consistently to the correct document row and page.

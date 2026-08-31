@@ -1,0 +1,35 @@
+{
+  "candidate": "tests/confirm/reference.xlsx",
+  "candidate_sha256": "cc71cc6ae693c3c7cabdd66bf12324b3ce562187847633e7544e88969cd12e35",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "criterion_scores": {
+    "P001": 0.0,
+    "R001": 1.0,
+    "R002": 1.0,
+    "R003": 1.0,
+    "R004": 1.0,
+    "R005": 1.0,
+    "R006": 1.0,
+    "R007": 1.0,
+    "R008": 1.0,
+    "R009": 1.0
+  },
+  "failure_codes": [],
+  "input_files_sha256": {
+    "briefing_request.md": "253e5e8ff85ce842e7b576a643558e36cd858201b7562552e61c83000fc69ca8",
+    "context_note.md": "83c54b5c7ce8b58f68d533f8c28b8561b0586996e7cd7131bca9b23a69b133ca",
+    "geography_map.csv": "42f8c532be7e1387b3991e8352ff812711e9e60858dbc48a04dfb61bdf1bcc9f",
+    "new_hampshire_heart_disease.csv": "eb9ec3375c0161efa1f7ec861e62e156a8804d36d7801ca49ad773939f0c8fbb",
+    "starting_workbook.xlsx": "4be0fd5a284d3245dcafb05756ce9b987c732a504c32acafe7da7470b24d3038",
+    "vermont_heart_disease.csv": "1ec0e0132515bd8dc60918dfb05be1e5725ecfd19f596a201275d9fb1304cdf8"
+  },
+  "normalized_score": 1.0,
+  "pass": true,
+  "repetitions": 5,
+  "score_stddev": 0.0,
+  "signature_sha256": "04cd636cd8c60237c6eec2bc6692066f58e0416eb09e8345714ae86fa1d9c0ce",
+  "split": "confirm",
+  "stable": true,
+  "status": "CONFIRM_REFERENCE_VALIDATED",
+  "task_id": "P15-B-HEALTH-REPORT-001"
+}

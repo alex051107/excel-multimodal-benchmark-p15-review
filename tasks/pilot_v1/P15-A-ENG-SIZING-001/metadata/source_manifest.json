@@ -1,0 +1,22 @@
+{
+  "asset_boundary": "Task-local extract or benchmark-authored input; no claim of an observed user request.",
+  "construction_mode": "EXPERT_AUTHORED_AUTHENTIC_DATA",
+  "local_input_hashes": {
+    "context_note.md": "076fc370ee98f190112e8d60103b6dcc692d467c5e736c8e979f7dab28b45352",
+    "design_brief.md": "f58f35f8dae5d4a5b0809f385b4294454a876c95b944898455330f3d8e197828",
+    "engineering_method_note.md": "3e95a54978fa5b212f99cc739659047d5f209d63a0d0e9eced7f1fea5ee0be18",
+    "equipment_catalog.csv": "54e02c07c71046e3c031a4dbfa55fd3977d2f8db94749f66bac2270522c46f54",
+    "source_data.csv": "91ac9df170bbc3bbe57ad19d9808cd5ceda56a98c39f70b6d785d50e9426e960",
+    "starting_workbook.xlsx": "65805899b50ebe8ab90fb65c482ad85f5e7e5785dbd4289bad7352f543eae310"
+  },
+  "semantic_version": "p15_v2",
+  "source_assets": [
+    {
+      "licence": "U.S. government guidance",
+      "url": "https://www.nist.gov/pml/owm/metric-si/si-units",
+      "use": "SI unit convention"
+    }
+  ],
+  "source_family": "NIST_SI_units_plus_project_authored_pump_catalog",
+  "task_id": "P15-A-ENG-SIZING-001"
+}

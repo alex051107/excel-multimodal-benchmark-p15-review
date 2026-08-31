@@ -1,0 +1,21 @@
+{
+  "asset_boundary": "Task-local extract or benchmark-authored input; no claim of an observed user request.",
+  "construction_mode": "EXPERT_AUTHORED_AUTHENTIC_DATA",
+  "local_input_hashes": {
+    "context_note.md": "010415478542da5652428b1c9c6afae51647a52207ce35ff1feb75975b38d7bc",
+    "investment_assumption_memo.md": "c46e400ec44404229e374cd3da80cbdb30582940ee5e83aac71d87f218ca92aa",
+    "public_financial_facts.csv": "bfe7fabc67f23a6a8d2fe9dcab2aee39474070443e35c51a6004c106e03f4ee8",
+    "source_data.csv": "bfe7fabc67f23a6a8d2fe9dcab2aee39474070443e35c51a6004c106e03f4ee8",
+    "starting_workbook.xlsx": "1f22619487f2a751466864b80c3115e57b6d00dd3f9a0ff27ab869809b18d116"
+  },
+  "semantic_version": "p15_v2",
+  "source_assets": [
+    {
+      "licence": "U.S. SEC public data",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json",
+      "use": "Historical input extract"
+    }
+  ],
+  "source_family": "SEC_Apple_Company_Facts_plus_benchmark_authored_forecast_case",
+  "task_id": "P15-A-FIN-DCF-001"
+}

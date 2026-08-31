@@ -1,0 +1,18 @@
+{
+  "construction_mode": "ARTIFACT_RECORD_ONLY",
+  "department": "Cash Management",
+  "difficulty_tier": "Medium",
+  "est_minutes": 35,
+  "occupation": "Reconciliation Analyst",
+  "sector": "Financial services operations",
+  "semantic_rebuild": true,
+  "skills": [
+    "statement extraction",
+    "debit-credit semantics",
+    "page continuation",
+    "balance reconciliation"
+  ],
+  "source_family": "project-authored-statement-template-family-v2",
+  "task_id": "P15-C-STATEMENT-001",
+  "track": "C"
+}

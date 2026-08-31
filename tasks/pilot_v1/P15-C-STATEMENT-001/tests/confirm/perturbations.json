@@ -1,0 +1,37 @@
+[
+  {
+    "id": "CONFIRM_CLIENT_ACH_1500_TO_1600",
+    "target": {
+      "sheet": "Transactions",
+      "match_column": "C",
+      "match_value": "Client ACH receipt",
+      "value_column": "E",
+      "baseline": 1500,
+      "perturbed": 1600
+    },
+    "expected": [
+      {
+        "sheet": "Reconciliation",
+        "cell": "B5",
+        "value": 2850
+      },
+      {
+        "sheet": "Reconciliation",
+        "cell": "B7",
+        "value": 10295
+      }
+    ],
+    "protected": [
+      {
+        "sheet": "Reconciliation",
+        "cell": "B4",
+        "value": 9200
+      },
+      {
+        "sheet": "Reconciliation",
+        "cell": "B6",
+        "value": 1755
+      }
+    ]
+  }
+]

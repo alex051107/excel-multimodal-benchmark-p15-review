@@ -1,0 +1,47 @@
+schema_version = "1.4"
+artifacts = ["/app/output/answer.xlsx"]
+
+[task]
+name = "alex051107/p15-a-policy-eia-001"
+version = "2.0.0"
+description = "Restore a dependency-aware electricity-policy scenario calculation from public generation inputs."
+keywords = ["excel", "policy-model", "energy", "pilot-v1"]
+
+[[task.authors]]
+name = "Excel Benchmark Team"
+
+[metadata]
+task_id = "P15-A-POLICY-EIA-001"
+legacy_task_id = "P15-A-POLICY-BEAC1-001"
+track = "A"
+status = "LOCAL_READY"
+construction_mode = "EXPERT_AUTHORED_AUTHENTIC_DATA"
+source_family = "EIA_public_electricity_generation_policy_model"
+sector = "Public Administration"
+department = "Energy Policy Modeling"
+occupation = "Energy Policy Analyst"
+difficulty_tier = "Medium"
+multimodal = true
+web_search_required = false
+est_minutes = 55
+skills = ["scenario modeling", "energy-policy analysis", "dependency restoration", "emissions calculation"]
+benchmark_authored_instruction = true
+
+[verifier]
+timeout_sec = 300.0
+environment_mode = "separate"
+network_mode = "public"
+
+[environment]
+network_mode = "public"
+os = "linux"
+workdir = "/app"
+
+[verifier.env]
+JUDGE_MODEL = "${JUDGE_MODEL:-deterministic}"
+JUDGE_PROVIDER = "${JUDGE_PROVIDER:-local}"
+JUDGE_API_PROTOCOL = "${JUDGE_API_PROTOCOL:-none}"
+JUDGE_BASE_URL = "${JUDGE_BASE_URL:-}"
+JUDGE_API_KEY = "${JUDGE_API_KEY:-}"
+JUDGE_PER_TIMEOUT = "${JUDGE_PER_TIMEOUT:-300}"
+JUDGE_MAX_TRIES = "${JUDGE_MAX_TRIES:-1}"

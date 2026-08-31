@@ -1,0 +1,66 @@
+{
+  "claim_boundary": "Harbor smoke proves package and deterministic Judge execution only; it does not measure target-Agent difficulty.",
+  "difficulty_evidence": false,
+  "evidence_scope": "FINAL_JUDGE_PACKAGE_AND_EXECUTION_SMOKE_ONLY",
+  "expected_gates": {
+    "malformed": 0.0,
+    "nop_max_exclusive": 0.3,
+    "oracle": 1.0
+  },
+  "latest_judge_smoke_complete": true,
+  "observed": {
+    "malformed": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:45:58.342012Z",
+      "job_name": "p15_smoke_all_malformed_final_judges_v4",
+      "judge_failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "judge_pass": false,
+      "judge_result_sha256": "2450be9bdaccf826151611f059abe160946ceed0f91332c503353681ac1dfd77",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 0.0,
+      "task_checksum": "ad64f4e3ad009065eca4a114374caa671c601a5c69183c8b28ca9cbf18683e42",
+      "trial_id": "34ac6786-3d37-4cde-88ec-e93292ca4fbf",
+      "trial_name": "P15-A-STAT-EXPERIMENT-001__9dwL3FQ",
+      "verifier_environment_mode": "separate"
+    },
+    "nop": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:44:19.264905Z",
+      "job_name": "p15_smoke_all_nop_final_judges_v4",
+      "judge_failure_codes": [
+        "OUTPUT_MISSING"
+      ],
+      "judge_pass": false,
+      "judge_result_sha256": "42f7c79cc9b72b7be643fa87285ef95230be351871d8651ad29e8059676e1183",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 0.0,
+      "task_checksum": "d7236c5585b4b9df5a52ba4dd80f0e98c7f34dc242d5f61ca9129783b9ff313d",
+      "trial_id": "2ceed3c4-f5f4-4f68-a4da-836b682bac93",
+      "trial_name": "P15-A-STAT-EXPERIMENT-001__EcU5J7J",
+      "verifier_environment_mode": "separate"
+    },
+    "oracle": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:43:04.140326Z",
+      "job_name": "p15_smoke_all_oracle_final_judges_v4",
+      "judge_failure_codes": [],
+      "judge_pass": true,
+      "judge_result_sha256": "f72dab36b9beaec08d33f4a24bd066e78453354da18d7b3689ccb0f8d3a4998e",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 1.0,
+      "task_checksum": "d7236c5585b4b9df5a52ba4dd80f0e98c7f34dc242d5f61ca9129783b9ff313d",
+      "trial_id": "36a1d816-5298-48d3-9e91-fd918bc885da",
+      "trial_name": "P15-A-STAT-EXPERIMENT-001__pardB9D",
+      "verifier_environment_mode": "separate"
+    }
+  },
+  "pivot_blocker": null,
+  "schema_version": "1.0",
+  "task_id": "P15-A-STAT-EXPERIMENT-001",
+  "task_status_at_smoke": "LOCAL_READY"
+}

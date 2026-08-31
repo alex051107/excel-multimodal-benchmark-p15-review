@@ -1,0 +1,61 @@
+{
+  "task_id":"P15-A-ENG-SIZING-001",
+  "semantic_version":"p15_v2",
+  "split":"dev",
+  "split_group":"P15-A-ENG-SIZING-001-HELDOUT-01",
+  "oracle":"tests/oracles/dev.py",
+  "input_files_dir":"data/input_files",
+  "criteria": [
+    {"id":"R001","description":"The workbook opens and contains every required sizing sheet.","weight":1,"type":"positive","dimension":"file_usability","method":"deterministic","method_params":{"implemented_check":"required_sheets"}},
+    {"id":"R002","description":"Flow, diameter, and cross-sectional-area conversions agree with the independent SI replay.","weight":3,"type":"positive","dimension":"unit_conversion","method":"deterministic","method_params":{"implemented_check":"si_conversions","oracle":"split_contract"}},
+    {"id":"R003","description":"Velocity, velocity head, friction head, and total dynamic head agree with the hydraulic replay.","weight":3,"type":"positive","dimension":"hydraulic_head","method":"deterministic","method_params":{"implemented_check":"hydraulic_head_chain","oracle":"split_contract"}},
+    {"id":"R004","description":"Hydraulic and shaft power agree with the independent replay.","weight":2,"type":"positive","dimension":"power_sizing","method":"deterministic","method_params":{"implemented_check":"power_chain","oracle":"split_contract"}},
+    {"id":"R005","description":"Safety-adjusted minimum flow and motor rating agree with the independent replay.","weight":2,"type":"positive","dimension":"safety_sizing","method":"deterministic","method_params":{"implemented_check":"safety_adjusted_requirements","oracle":"split_contract"}},
+    {"id":"R006","description":"Each catalog row's eligibility status matches all three sizing constraints.","weight":3,"type":"positive","dimension":"catalog_eligibility","method":"deterministic","method_params":{"implemented_check":"catalog_eligibility","oracle":"split_contract"}},
+    {"id":"R007","description":"The selected pump is the first eligible catalog option.","weight":3,"type":"positive","dimension":"constraint_selection","method":"deterministic","method_params":{"implemented_check":"selected_pump","oracle":"split_contract"}},
+    {"id":"R008","description":"Hydraulic sizing and pump selection respond correctly to the declared design-flow perturbation.","weight":2,"type":"positive","dimension":"native_recalculation","method":"deterministic","method_params":{"implemented_check":"flow_perturbation","split_weights":{"dev":2,"confirm":3}}},
+    {"id":"R009","description":"Every declared engineering output carries the required unit label.","weight":1,"type":"positive","dimension":"unit_labels","method":"deterministic","method_params":{"implemented_check":"unit_labels"}},
+    {"id":"R010","description":"All declared workbook check rows evaluate to PASS.","weight":1,"type":"positive","dimension":"model_checks","method":"deterministic","method_params":{"implemented_check":"check_rows"}},
+    {"id":"R011","description":"The declared design inputs and catalog capacity values remain unchanged.","weight":2,"type":"positive","dimension":"change_locality","method":"deterministic","method_params":{"implemented_check":"input_catalog_protection"}},
+    {"id":"R012","description":"The hydraulic head, motor requirement, eligibility, and selection respond correctly to a distinct internal-diameter perturbation while design flow and catalog values remain invariant.","weight":1,"type":"positive","dimension":"diameter_recalculation","method":"deterministic","method_params":{"implemented_check":"diameter_perturbation","applies_to":["dev"]}},
+    {"id":"P001","description":"Penalty for altered inputs, missing safety mechanics, invalid eligibility, or hardcoded selection.","weight":-6,"type":"penalty","dimension":"sizing_integrity","method":"deterministic","method_params":{"implemented_check":"sizing_integrity_penalty"}}
+  ],
+  "required_sheets":["Inputs","Unit_Conversions","Calculations","Equipment_Selection","Checks"],
+  "formula_cells":["Unit_Conversions!C4","Unit_Conversions!C5","Unit_Conversions!C6","Calculations!B4:B11","Equipment_Selection!E4:F6","Equipment_Selection!B7"],
+  "formula_equivalence_policy":"Standard Excel formulas that replay the same dependencies and engineering constraints are accepted, including nested IF and INDEX/MATCH/IFERROR/COUNTIF strategies for first-eligible selection; formula text is not matched to the reference implementation.",
+  "perturbations":[
+    {
+      "name":"design_flow",
+      "overrides":{"Inputs!B4":55},
+      "expected":{
+        "Calculations!B7":31.298543572849443,
+        "Calculations!B9":23.407437397724244,
+        "Calculations!B10":63.24999999999999,
+        "Calculations!B11":26.91855300738288,
+        "Equipment_Selection!B7":"P-250"
+      },
+      "invariants":{"Inputs!B7":150}
+    },
+    {
+      "name":"internal_diameter",
+      "overrides":{"Inputs!B7":125},
+      "expected":{
+        "Unit_Conversions!C5":0.125,
+        "Unit_Conversions!C6":0.01227184630308513,
+        "Calculations!B4":3.4224678962481176,
+        "Calculations!B7":36.07891234769983,
+        "Calculations!B9":20.60486527578929,
+        "Calculations!B11":23.695595067157683,
+        "Equipment_Selection!B7":"P-250"
+      },
+      "expected_eligibility":["Ineligible","Ineligible","Eligible"],
+      "invariants":{"Inputs!B4":42}
+    }
+  ],
+  "protected": {
+    "Inputs!B4":42,"Inputs!B5":18,"Inputs!B6":140,"Inputs!B7":150,"Inputs!B8":0.02,"Inputs!B9":0.72,"Inputs!B10":0.15,"Inputs!B11":998,"Inputs!B12":9.81,
+    "Equipment_Selection!A4":"P-120","Equipment_Selection!B4":45,"Equipment_Selection!C4":25,"Equipment_Selection!D4":11,
+    "Equipment_Selection!A5":"P-180","Equipment_Selection!B5":58,"Equipment_Selection!C5":36,"Equipment_Selection!D5":18.5,
+    "Equipment_Selection!A6":"P-250","Equipment_Selection!B6":80,"Equipment_Selection!C6":48,"Equipment_Selection!D6":30
+  }
+}

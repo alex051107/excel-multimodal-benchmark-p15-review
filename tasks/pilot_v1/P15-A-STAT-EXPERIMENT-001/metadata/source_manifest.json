@@ -1,0 +1,21 @@
+{
+  "asset_boundary": "Task-local extract or benchmark-authored input; no claim of an observed user request.",
+  "construction_mode": "EXPERT_AUTHORED_AUTHENTIC_DATA",
+  "local_input_hashes": {
+    "analysis_plan.md": "962a59739041766ce35eaf262311ecef6ebff28fe05145346526b3952aa37e81",
+    "context_note.md": "f9a2ad6d590e8a921c89172dd877e90d0c202eb20821efdbf7c13286affab025",
+    "sleep_source.csv": "6c3f7494edf269057174e1b6f597f54da706dbe62ecdb7ec848f20174a0e1bea",
+    "source_data.csv": "6c3f7494edf269057174e1b6f597f54da706dbe62ecdb7ec848f20174a0e1bea",
+    "starting_workbook.xlsx": "10bcc89839540867a18108d6ffec6d3b42b5d9b8bac6339a7314437e4f76dfc3"
+  },
+  "semantic_version": "p15_v2",
+  "source_assets": [
+    {
+      "licence": "R datasets package; benchmark redistributes a small documented data extract",
+      "url": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/sleep.html",
+      "use": "Paired crossover observations"
+    }
+  ],
+  "source_family": "R_datasets_sleep_paired_crossover_data",
+  "task_id": "P15-A-STAT-EXPERIMENT-001"
+}

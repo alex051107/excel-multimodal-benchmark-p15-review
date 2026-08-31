@@ -1,0 +1,29 @@
+[
+  {
+    "id": "UNIT_PRICE_THERMAL_VALVE_180_TO_200",
+    "target": {"sheet": "Line_Items", "match_column": "B", "match_value": "Thermal valve kit", "value_column": "D", "baseline": 180.0, "perturbed": 200.0},
+    "expected": [
+      {"sheet": "Invoice_Header", "cell": "B12", "value": 1760.0},
+      {"sheet": "Invoice_Header", "cell": "B14", "value": 176.0},
+      {"sheet": "Invoice_Header", "cell": "B15", "value": 1584.0},
+      {"sheet": "Invoice_Header", "cell": "B17", "value": 130.68},
+      {"sheet": "Invoice_Header", "cell": "B19", "value": 1759.68}
+    ],
+    "protected": [{"sheet": "Invoice_Header", "cell": "B18", "value": 45.0}]
+  },
+  {
+    "id": "QUANTITY_PRESSURE_SENSOR_3_TO_4",
+    "target": {"sheet": "Line_Items", "match_column": "B", "match_value": "Pressure sensor", "value_column": "C", "baseline": 3.0, "perturbed": 4.0},
+    "expected": [
+      {"sheet": "Invoice_Header", "cell": "B12", "value": 1820.0},
+      {"sheet": "Invoice_Header", "cell": "B14", "value": 182.0},
+      {"sheet": "Invoice_Header", "cell": "B15", "value": 1638.0},
+      {"sheet": "Invoice_Header", "cell": "B17", "value": 135.135},
+      {"sheet": "Invoice_Header", "cell": "B19", "value": 1818.135}
+    ],
+    "protected": [{"sheet": "Invoice_Header", "cell": "B18", "value": 45.0}],
+    "protected_by_content": [
+      {"sheet": "Line_Items", "match_column": "B", "match_value": "Calibration certificate", "value_column": "E", "value": 300.0}
+    ]
+  }
+]

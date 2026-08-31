@@ -1,0 +1,10 @@
+{
+  "task_id": "P15-C-RECEIPTS-001",
+  "artifact_status": "EXISTING_ARTIFACTS_ONLY",
+  "source_artifacts": ["data/input_files/receipt_photo_01.jpg","data/input_files/receipt_photo_02.jpg","data/input_files/receipt_photo_03.jpg","data/input_files/starting_workbook.xlsx"],
+  "reference_workbook": "solution/reference.xlsx",
+  "tracked_renderer": null,
+  "tracked_gold_writer": null,
+  "process_independence": "NOT_ASSERTED",
+  "truth_input": "private/truth.json"
+}

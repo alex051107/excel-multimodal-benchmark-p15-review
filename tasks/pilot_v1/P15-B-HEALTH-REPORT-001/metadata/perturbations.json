@@ -1,0 +1,16 @@
+[
+  {
+    "id": "VERMONT_2012_AADR_150_6_TO_151_6",
+    "changed_source_cells": ["Raw_Vermont!D4"],
+    "values": [151.6],
+    "expected_outputs": {"Analytical_Data!D4": 151.6, "Period_Metrics!B4": 152.6},
+    "invariant_protected_ranges": ["Raw_New_Hampshire!A4:D9", "Geo_Map!A4:C5"]
+  },
+  {
+    "id": "NEW_HAMPSHIRE_2015_AADR_149_TO_150",
+    "changed_source_cells": ["Raw_New_Hampshire!D7"],
+    "values": [150.0],
+    "expected_outputs": {"Analytical_Data!D13": 150.0, "Period_Metrics!C5": 150.2666666667, "Visualization!B5": 150.2666666667},
+    "invariant_protected_ranges": ["Raw_Vermont!A4:D9", "Geo_Map!A4:C5"]
+  }
+]

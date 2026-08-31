@@ -1,0 +1,17 @@
+{
+  "criteria": [
+    {"id": "R001", "description": "Workbook opens and contains PO_Header, Base_Schedule, Revised_Schedule, Revision_Log, Provenance, and Checks.", "weight": 2, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
+    {"id": "R002", "description": "The supplied base schedule remains intact with correct line IDs, descriptions, quantities, prices, and units.", "weight": 3, "type": "positive", "dimension": "base_preservation", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
+    {"id": "R003", "description": "The revised schedule contains every base line plus the insertion and applies each listed addendum change to the correct supplied line ID.", "weight": 5, "type": "positive", "dimension": "revision_semantics", "method": "deterministic", "method_params": {}},
+    {"id": "R004", "description": "The protected unlisted PO-04 row remains unchanged in the revised schedule.", "weight": 3, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {}},
+    {"id": "R005", "description": "Every revised line total and the schedule total are formula-linked and evaluate correctly.", "weight": 3, "type": "positive", "dimension": "revised_total_semantics", "method": "deterministic", "method_params": {}},
+    {"id": "R006", "description": "Both manifest-selected revised-schedule changes—a quantity and a distinct unit price—update the affected line and PO totals while preserving unrelated and protected rows.", "weight": 4, "type": "positive", "dimension": "perturbation_response", "method": "deterministic", "method_params": {"manifest": "metadata/perturbations.json", "perturbations": 2}},
+    {"id": "R007", "description": "The revision log records each changed/inserted line with correct change type and before/after evidence.", "weight": 4, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}},
+    {"id": "R008", "description": "Each changed supplied line ID links once to the correct addendum file/page with a candidate-readable locator.", "weight": 3, "type": "positive", "dimension": "provenance", "method": "deterministic", "method_params": {}},
+    {"id": "R009", "description": "Revised IDs are unique and the revised, log, and provenance populations are complete without duplicates.", "weight": 3, "type": "positive", "dimension": "completeness", "method": "deterministic", "method_params": {}},
+    {"id": "P001", "description": "Penalty for overwriting the protected row, omitting an addendum change, stale/non-formula total logic, or false provenance.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
+  ],
+  "pass_threshold": 0.7,
+  "rubric_version": "p15_v2.1",
+  "task_id": "P15-C-PO-ADDENDUM-001"
+}

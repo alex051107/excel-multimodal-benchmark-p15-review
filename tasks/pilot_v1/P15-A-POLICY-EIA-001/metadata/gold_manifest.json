@@ -1,0 +1,26 @@
+{
+  "construction_mode": "EXPERT_AUTHORED_AUTHENTIC_DATA",
+  "known_assumptions": [
+    "The user instruction is benchmark-authored.",
+    "The reference workbook is checked against the independent task-specific oracle."
+  ],
+  "oracle_implementation": "metadata/oracle_recompute.py",
+  "oracle_reads_reference_workbook": false,
+  "reference_sha256": "590c1bf491f89a3840ace331b50c72b2ab94005f9cc0c332b875a9a8bc6c0afe",
+  "reference_workbook": "solution/reference.xlsx",
+  "semantic_version": "p15_v2",
+  "source_inputs": {
+    "eia_model_scope.md": "ad4a924c281e2599ff88df46a908ebb13be1f48983c66f2434f3cfb6163617b9",
+    "context_note.md": "28861654bb6a9a8eeeeb8338553643a763c49e40a905ea4ca2afe299e478cb04",
+    "generation_source_extract.csv": "bb35b87950ce4e6ee5a6f740d964f7520110b334d6a7eafa6e6de85276d24d77",
+    "policy_case_note.md": "e6f0a75637cca22448c0d70b406f79041ba142aa6a42b7f44bac05f2d3221ab7",
+    "source_data.csv": "bb35b87950ce4e6ee5a6f740d964f7520110b334d6a7eafa6e6de85276d24d77",
+    "source_locator.md": "cd543ef0c394f1b9b9f890a45b68dda98d5f7dee4b0c9d9703aa3a37b90d83cb",
+    "starting_workbook.xlsx": "2d5a3a628e56b21c22681403dce54fdea163a8615fcb6db310cb655a89172a77"
+  },
+  "task_id": "P15-A-POLICY-EIA-001",
+  "unsupported_claims": [
+    "No Windows Excel validation is claimed.",
+    "No blind human review or Agent difficulty result is claimed."
+  ]
+}

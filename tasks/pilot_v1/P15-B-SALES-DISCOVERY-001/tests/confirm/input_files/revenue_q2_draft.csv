@@ -1,0 +1,4 @@
+record_id,region,product,stage,bookings,recognized_revenue,closed_won_flag
+CNF-210,North,Cloud Operations,Closed Won,210000,168000,1
+CNF-212,East,Security Platform,Pipeline,120000,0,0
+CNF-213,West,Cloud Operations,Closed Won,235000,190000,1

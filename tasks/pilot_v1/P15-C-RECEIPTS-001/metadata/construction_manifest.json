@@ -1,0 +1,15 @@
+{
+  "task_id": "P15-C-RECEIPTS-001",
+  "construction_mode": "ARTIFACT_RECORD_ONLY",
+  "source_family": "project-authored-receipt-template-family-v2",
+  "tracked_builders": [],
+  "artifact_evidence": {
+    "agent_visible_sources": ["data/input_files/receipt_photo_01.jpg","data/input_files/receipt_photo_02.jpg","data/input_files/receipt_photo_03.jpg","data/input_files/starting_workbook.xlsx"],
+    "source_hash_record": "metadata/source_manifest.json",
+    "reference_workbook": "solution/reference.xlsx",
+    "reference_hash_record": "metadata/gold_manifest.json",
+    "deterministic_oracle": "metadata/oracle_recompute.py"
+  },
+  "process_independence": "NOT_ASSERTED",
+  "limitation": "No source renderer or reference-workbook builder is tracked in this task directory; only existing artifacts, hashes, and deterministic evaluation code are asserted."
+}

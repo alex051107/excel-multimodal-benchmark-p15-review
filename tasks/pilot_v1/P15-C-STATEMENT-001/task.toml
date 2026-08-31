@@ -1,0 +1,37 @@
+schema_version = "1.4"
+artifacts = ["/app/output/answer.xlsx"]
+
+[task]
+name = "alex051107/p15-c-statement-001"
+version = "2.1.0"
+description = "Convert a multipage bank statement into a typed transaction workbook with debit-credit and opening-to-closing reconciliation semantics."
+keywords = ["excel", "pilot-v1", "track-c", "semantic-rebuild", "artifact-record-only"]
+
+[[task.authors]]
+name = "Excel Benchmark Team"
+
+[metadata]
+task_id = "P15-C-STATEMENT-001"
+track = "C"
+status = "LOCAL_READY"
+construction_mode = "ARTIFACT_RECORD_ONLY"
+source_family = "project-authored-statement-template-family-v2"
+benchmark_authored_instruction = true
+sector = "Financial services operations"
+department = "Cash Management"
+occupation = "Reconciliation Analyst"
+difficulty_tier = "Medium"
+multimodal = true
+web_search_required = false
+est_minutes = 35
+skills = ["statement extraction", "debit-credit semantics", "page continuation", "balance reconciliation"]
+
+[verifier]
+timeout_sec = 300.0
+environment_mode = "separate"
+network_mode = "public"
+
+[environment]
+network_mode = "public"
+os = "linux"
+workdir = "/app"

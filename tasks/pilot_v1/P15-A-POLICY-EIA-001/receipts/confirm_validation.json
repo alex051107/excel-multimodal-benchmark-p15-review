@@ -1,0 +1,36 @@
+{
+  "candidate": "tests/confirm/reference.xlsx",
+  "candidate_sha256": "771e5de926e691f68eeb61a415843e46e2e8609d47cce8c0e6ecaf5dc487b490",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "criterion_scores": {
+    "P001": 0.0,
+    "R001": 1.0,
+    "R002": 1.0,
+    "R003": 1.0,
+    "R004": 1.0,
+    "R005": 1.0,
+    "R006": 1.0,
+    "R007": 1.0,
+    "R008": 1.0,
+    "R009": 1.0,
+    "R010": 1.0,
+    "R011": 1.0,
+    "R012": 0.0
+  },
+  "failure_codes": [],
+  "input_files_sha256": {
+    "context_note.md": "4e725f754d41fa74400d668e216151acdc27c61f94b80254cab938d334920571",
+    "generation_source_extract.csv": "063578fb18c427caacc65d6eeb2009970e8b45b847a5079010db1f70f35882fe",
+    "policy_case_note.md": "a18d1b23225c1b64918bb29bdada5ffdc08672bf37a63cf4e77bc1761e75629b",
+    "starting_workbook.xlsx": "2a937444aa4084569d9b6e96e4c9211d5f80852ed259766509b970e69c6b96e2"
+  },
+  "normalized_score": 1.0,
+  "pass": true,
+  "repetitions": 5,
+  "score_stddev": 0.0,
+  "signature_sha256": "ddc2ba329dd4090869f7dac7ce185f5e06fb18cc4bdc391c6365000d1337927d",
+  "split": "confirm",
+  "stable": true,
+  "status": "CONFIRM_REFERENCE_VALIDATED",
+  "task_id": "P15-A-POLICY-EIA-001"
+}

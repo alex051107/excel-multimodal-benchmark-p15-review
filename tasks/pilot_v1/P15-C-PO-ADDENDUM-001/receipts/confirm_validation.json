@@ -1,0 +1,33 @@
+{
+  "candidate": "tests/confirm/reference.xlsx",
+  "candidate_sha256": "00e1ba484b8ced67ec7e65d74b89a7a35f5c40818ad9899e4dc7b255475045f3",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "criterion_scores": {
+    "P001": 0.0,
+    "R001": 1.0,
+    "R002": 1.0,
+    "R003": 1.0,
+    "R004": 1.0,
+    "R005": 1.0,
+    "R006": 1.0,
+    "R007": 1.0,
+    "R008": 1.0,
+    "R009": 1.0
+  },
+  "failure_codes": [],
+  "input_files_sha256": {
+    "confirm_po_addendum.pdf": "5235cb7cddcebb0350fc21b801125a79ff1bdbea01f50bce4733aaa60190980f",
+    "context_note.md": "7313d4f39597dd3c894fec6da6b972db637cec63c0d0d23563e558577a94fee1",
+    "document_inventory.md": "6a3e658a53d622056af2c4bb78311480a113b8fce7d963151794165bd72215a3",
+    "starting_workbook.xlsx": "2de4c3c875412391c966ee6aed5372220ff34f9a759b5c95501f2ad605d14236"
+  },
+  "normalized_score": 1.0,
+  "pass": true,
+  "repetitions": 5,
+  "score_stddev": 0.0,
+  "signature_sha256": "b94c328f0095a76bbb225452b62d92148f3971c5f4c65c7287eb3eebb4b5e545",
+  "split": "confirm",
+  "stable": true,
+  "status": "CONFIRM_REFERENCE_VALIDATED",
+  "task_id": "P15-C-PO-ADDENDUM-001"
+}

@@ -1,0 +1,37 @@
+{
+  "candidate": "tests/confirm/reference.xlsx",
+  "candidate_sha256": "6c45946f883ab16ddfa30e08ecc05f1cad0dd49e7457ece71a1275a96004d0c6",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "criterion_scores": {
+    "P001": 0.0,
+    "R001": 1.0,
+    "R002": 1.0,
+    "R003": 1.0,
+    "R004": 1.0,
+    "R005": 1.0,
+    "R006": 1.0,
+    "R007": 1.0,
+    "R008": 1.0,
+    "R009": 1.0,
+    "R010": 1.0,
+    "R011": 1.0,
+    "R012": 0.0
+  },
+  "failure_codes": [],
+  "input_files_sha256": {
+    "context_note.md": "d3270d4bc56af4af72d5c154d1af5014749184472c3dfdd663852792bcf4014f",
+    "design_brief.md": "0357ecc591e8d4240308cc94fffcbaeb781ad3ab6c755a867fd7e546f64ede65",
+    "equipment_catalog.csv": "d8394344b3333acc6e8449516265ead9f63d2aedb2cb94026ffaaebfc68d0a9c",
+    "source_data.csv": "401bbcd130d5cb6506094176deb1a95c4276419f1ba6f41538488186463f400b",
+    "starting_workbook.xlsx": "ede2d6c63b3df685685e47e5666fb27351f6767dc8cf79e58d0a20ac05025a57"
+  },
+  "normalized_score": 1.0,
+  "pass": true,
+  "repetitions": 5,
+  "score_stddev": 0.0,
+  "signature_sha256": "d676dde0e7e7dc60b8682b6ec8e65169f29e537fa217cf141227e91b10f857b3",
+  "split": "confirm",
+  "stable": true,
+  "status": "CONFIRM_REFERENCE_VALIDATED",
+  "task_id": "P15-A-ENG-SIZING-001"
+}

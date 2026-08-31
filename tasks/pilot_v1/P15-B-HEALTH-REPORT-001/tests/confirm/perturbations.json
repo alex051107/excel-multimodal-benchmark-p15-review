@@ -1,0 +1,7 @@
+{
+  "split": "confirm",
+  "cases": [
+    {"id": "confirm_vermont_baseline_lineage", "cell": "Raw_Vermont!D4", "baseline": 154.2, "mutated": 155.2, "expected_changes": {"Analytical_Data!D4": 1, "Period_Metrics!B4": 0.3333333333333333}},
+    {"id": "confirm_new_hampshire_current_lineage", "cell": "Raw_New_Hampshire!D7", "baseline": 158.2, "mutated": 159.2, "expected_changes": {"Analytical_Data!D13": 1, "Period_Metrics!C5": 0.3333333333333333, "Report!B5": 0.3333333333333333, "Visualization!B5": 0.3333333333333333}}
+  ]
+}

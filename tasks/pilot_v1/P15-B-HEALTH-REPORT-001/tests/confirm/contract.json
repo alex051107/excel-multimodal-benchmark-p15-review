@@ -1,0 +1,28 @@
+{
+  "task_id": "P15-B-HEALTH-REPORT-001",
+  "split": "confirm",
+  "split_group": "P15-B-HEALTH-REPORT-001-SIBLING",
+  "capability_invariant": ["preserve two public-health source series", "align identical six-year windows", "calculate unweighted three-year means and changes", "formula-link claims and exact chart bindings"],
+  "distinctness": {
+    "source_instance": "held-out CDC extract with a later six-year window, different rates/deaths, mapping keys, and opposite highest-current state branch",
+    "dev_values_reused": false,
+    "changed_drivers": ["years", "death counts", "age-adjusted rates", "reporting map keys", "baseline/current labels", "highest current state"],
+    "contamination_guard": "tests/confirm is verifier-private and is not copied to data/input_files, environment/input, solution, or fixtures"
+  },
+  "input_files_dir": "tests/confirm/input_files",
+  "reference_workbook": "tests/confirm/reference.xlsx",
+  "truth": "tests/confirm/truth.json",
+  "oracle": "tests/confirm/oracle_recompute.py",
+  "criteria_source": "tests/private_contract.json",
+  "evaluator": {"path": "tests/evaluate.py", "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"], "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}},
+  "semantic_layout_acceptance": "Same unique-header, keyed-row, formula-replay, and source-preservation contract as DEV; layout and optional public-source/provenance columns may differ.",
+  "semantic_drivers": {
+    "vermont": {"raw_sheet": "Raw_Vermont", "state": "Vermont", "year": 2018, "field": "aadr", "new_value": 155.2},
+    "new_hampshire": {"raw_sheet": "Raw_New_Hampshire", "state": "New Hampshire", "year": 2021, "field": "aadr", "new_value": 159.2}
+  },
+  "required_sheets": ["Raw_Vermont", "Raw_New_Hampshire", "Geo_Map", "Analytical_Data", "Period_Metrics", "Report", "Visualization", "Checks"],
+  "formula_cells": ["Analytical_Data!D4:D15", "Period_Metrics!B4:E5", "Report!B4:B6", "Visualization!B4:B5", "Checks!B4:B6"],
+  "protected": {"Raw_Vermont!A4:D9": "exact vermont_heart_disease.csv", "Raw_New_Hampshire!A4:D9": "exact new_hampshire_heart_disease.csv", "Geo_Map!A4:C5": "exact geography_map.csv"},
+  "drivers": {"vermont_source_cell": "Raw_Vermont!D4", "vermont_new_value": 155.2, "new_hampshire_source_cell": "Raw_New_Hampshire!D7", "new_hampshire_new_value": 159.2, "baseline_label": "Baseline 2018-2020", "current_label": "Current 2021-2023"},
+  "perturbations": "tests/confirm/perturbations.json"
+}

@@ -1,0 +1,61 @@
+{
+  "task_id": "P15-A-FIN-DEBUG-001",
+  "semantic_version": "p15_v2",
+  "split": "dev",
+  "split_group": "P15-A-FIN-DEBUG-001-HELDOUT-01",
+  "oracle": "tests/oracles/dev.py",
+  "input_files_dir": "data/input_files",
+  "baseline_workbook": "tests/dev_baseline.xlsx",
+  "criteria": [
+    {"id":"R001","description":"The workbook opens and retains every required model sheet.","weight":1,"type":"positive","dimension":"file_usability","method":"deterministic","method_params":{"implemented_check":"required_sheets"}},
+    {"id":"R002","description":"The repaired 2027 revenue formula produces the independent root-cause result.","weight":4,"type":"positive","dimension":"root_cause_debugging","method":"deterministic","method_params":{"implemented_check":"root_revenue","oracle":"split_contract"}},
+    {"id":"R003","description":"The 2027 accounts-receivable result reconciles to the independent operating-model replay.","weight":2,"type":"positive","dimension":"working_capital","method":"deterministic","method_params":{"implemented_check":"accounts_receivable","oracle":"split_contract"}},
+    {"id":"R004","description":"The 2027 interest expense reconciles to the independent debt-schedule replay.","weight":2,"type":"positive","dimension":"debt_schedule","method":"deterministic","method_params":{"implemented_check":"interest_expense","oracle":"split_contract"}},
+    {"id":"R005","description":"The 2027 free-cash-flow output reconciles to the independent operating-model replay.","weight":3,"type":"positive","dimension":"free_cash_flow","method":"deterministic","method_params":{"implemented_check":"free_cash_flow","oracle":"split_contract"}},
+    {"id":"R006","description":"The repaired revenue and downstream cash-flow chain respond correctly to the declared 2027 price perturbation.","weight":2,"type":"positive","dimension":"native_recalculation","method":"deterministic","method_params":{"implemented_check":"price_perturbation","split_weights":{"dev":2,"confirm":3}}},
+    {"id":"R007","description":"The summary free-cash-flow bridge ties exactly to contribution, working capital, and interest.","weight":2,"type":"positive","dimension":"fcf_bridge","method":"deterministic","method_params":{"implemented_check":"fcf_bridge"}},
+    {"id":"R008","description":"The 2027 debt-service coverage ratio agrees with the independent replay.","weight":2,"type":"positive","dimension":"debt_service_coverage","method":"deterministic","method_params":{"implemented_check":"debt_service_coverage","oracle":"split_contract"}},
+    {"id":"R009","description":"Only the declared root-cause formula cell differs from the starting workbook.","weight":3,"type":"positive","dimension":"repair_locality","method":"deterministic","method_params":{"implemented_check":"repair_locality"}},
+    {"id":"R010","description":"Every declared assumption cell remains unchanged.","weight":2,"type":"positive","dimension":"assumption_protection","method":"deterministic","method_params":{"implemented_check":"assumption_protection"}},
+    {"id":"R011","description":"Every declared downstream model output remains formula-linked.","weight":2,"type":"positive","dimension":"formula_integrity","method":"deterministic","method_params":{"implemented_check":"required_formulas"}},
+    {"id":"R012","description":"The receivables and free-cash-flow chain responds correctly to the distinct 2027 DSO perturbation while revenue, contribution, and interest remain invariant.","weight":1,"type":"positive","dimension":"working_capital_recalculation","method":"deterministic","method_params":{"implemented_check":"dso_perturbation","applies_to":["dev"]}},
+    {"id":"P001","description":"Penalty for a wrong or hardcoded root repair, collateral edits, or protected-assumption changes.","weight":-7,"type":"penalty","dimension":"repair_integrity","method":"deterministic","method_params":{"implemented_check":"repair_integrity_penalty"}}
+  ],
+  "required_sheets": ["Assumptions", "Revenue_Build", "Working_Capital", "Debt_Schedule", "Summary", "Checks"],
+  "formula_cells": ["Revenue_Build!D6", "Working_Capital!D5", "Working_Capital!D7", "Debt_Schedule!D5", "Summary!D8", "Summary!D9"],
+  "allowed_changed_formula_cells": ["Revenue_Build!D6"],
+  "perturbations": [
+    {
+      "name":"price_2027",
+      "overrides":{"Assumptions!D5":55},
+      "expected":{
+        "Revenue_Build!D6":753500,
+        "Working_Capital!D5":88768.49315068492,
+        "Working_Capital!D7":-12570.136986301368,
+        "Summary!D8":191419.86301369863,
+        "Summary!D9":9.57099315068493
+      },
+      "invariants":{"Assumptions!D8":43,"Debt_Schedule!D5":12155}
+    },
+    {
+      "name":"dso_2027",
+      "overrides":{"Assumptions!D8":50},
+      "expected":{
+        "Revenue_Build!D6":685000,
+        "Working_Capital!D5":93835.61643835617,
+        "Working_Capital!D7":-17637.260273972614,
+        "Summary!D8":154157.7397260274,
+        "Summary!D9":7.70788698630137
+      },
+      "invariants":{"Summary!D5":183950,"Debt_Schedule!D5":12155}
+    }
+  ],
+  "protected": {
+    "Assumptions!B4":12000, "Assumptions!C4":12900, "Assumptions!D4":13700,
+    "Assumptions!B5":48, "Assumptions!C5":49, "Assumptions!D5":50,
+    "Assumptions!B6":0.46, "Assumptions!C6":0.465, "Assumptions!D6":0.47,
+    "Assumptions!B7":130000, "Assumptions!C7":134000, "Assumptions!D7":138000,
+    "Assumptions!B8":44, "Assumptions!C8":44, "Assumptions!D8":43,
+    "Assumptions!B9":0.065, "Assumptions!C9":0.065, "Assumptions!D9":0.065
+  }
+}

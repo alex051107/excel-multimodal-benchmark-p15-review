@@ -1,0 +1,33 @@
+[
+  {
+    "id": "ACH_CREDIT_1200_TO_1300",
+    "target": {"sheet": "Transactions", "match_column": "C", "match_value": "ACH credit", "value_column": "E", "baseline": 1200.0, "perturbed": 1300.0},
+    "expected": [
+      {"sheet": "Reconciliation", "cell": "B5", "value": 2450.0},
+      {"sheet": "Reconciliation", "cell": "B7", "value": 8633.0}
+    ],
+    "protected": [
+      {"sheet": "Reconciliation", "cell": "B4", "value": 8100.0},
+      {"sheet": "Reconciliation", "cell": "B6", "value": 1917.0}
+    ]
+  },
+  {
+    "id": "MONTHLY_FEE_DEBIT_42_TO_52",
+    "target": {"sheet": "Transactions", "match_column": "C", "match_value": "Monthly fee", "value_column": "D", "baseline": 42.0, "perturbed": 52.0},
+    "expected": [
+      {"sheet": "Reconciliation", "cell": "B6", "value": 1927.0},
+      {"sheet": "Reconciliation", "cell": "B7", "value": 8523.0}
+    ],
+    "expected_by_content": [
+      {"sheet": "Categories", "match_column": "A", "match_value": "Travel and fees", "value_column": "B", "value": -1067.0}
+    ],
+    "protected": [
+      {"sheet": "Reconciliation", "cell": "B4", "value": 8100.0},
+      {"sheet": "Reconciliation", "cell": "B5", "value": 2350.0}
+    ],
+    "protected_by_content": [
+      {"sheet": "Categories", "match_column": "A", "match_value": "Customer receipts", "value_column": "B", "value": 2350.0},
+      {"sheet": "Categories", "match_column": "A", "match_value": "Equipment", "value_column": "B", "value": -860.0}
+    ]
+  }
+]

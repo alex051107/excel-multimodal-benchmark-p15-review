@@ -1,0 +1,8 @@
+metric,fiscal_year,value_millions,source_tag
+Revenue,2022,394328,us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax
+Revenue,2023,383285,us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax
+Revenue,2024,391035,us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax
+Operating income,2024,123216,us-gaap:OperatingIncomeLoss
+D&A,2024,11445,us-gaap:DepreciationDepletionAndAmortization
+Capex,2024,9447,us-gaap:PaymentsToAcquirePropertyPlantAndEquipment
+Cash,2024,29943,us-gaap:CashAndCashEquivalentsAtCarryingValue

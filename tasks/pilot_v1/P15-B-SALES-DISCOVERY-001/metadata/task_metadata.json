@@ -1,0 +1,18 @@
+{
+  "department": "Revenue Operations",
+  "difficulty_tier": "Hard",
+  "est_minutes": 70,
+  "multimodal": true,
+  "occupation": "Revenue Operations Analyst",
+  "sector": "Information",
+  "semantic_version": "p15_v3",
+  "skills": [
+    "release selection",
+    "source provenance",
+    "KPI consolidation",
+    "coverage checks"
+  ],
+  "status": "LOCAL_READY",
+  "task_id": "P15-B-SALES-DISCOVERY-001",
+  "web_search_required": false
+}

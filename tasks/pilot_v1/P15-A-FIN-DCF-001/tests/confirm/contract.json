@@ -1,0 +1,28 @@
+{
+  "task_id": "P15-A-FIN-DCF-001",
+  "split": "confirm",
+  "split_group": "P15-A-FIN-DCF-001-HELDOUT-01",
+  "capability_invariant": ["five-period unlevered DCF", "enterprise-to-equity bridge", "two-dimensional sensitivity", "native recalculation under assumption perturbation"],
+  "distinctness": {
+    "source_instance": "Seaboard Industrial Systems verifier-private calibration case",
+    "dev_values_reused": false,
+    "changed_drivers": ["historical financials", "forecast growth and margins", "capital intensity", "WACC and terminal growth", "cash and debt", "sensitivity coordinates"],
+    "contamination_guard": "CONFIRM values and oracle remain under tests/confirm and are not copied into environment/input."
+  },
+  "input_files_dir": "tests/confirm/input_files",
+  "reference_workbook": "tests/confirm/reference.xlsx",
+  "oracle": "tests/confirm/oracle_recompute.py",
+  "evaluator": {
+    "path": "tests/evaluate.py",
+    "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"],
+    "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}
+  },
+  "required_sheets": ["Source_Data", "Assumptions", "Forecast", "Valuation", "Checks"],
+  "formula_cells": ["Forecast!B5:F12", "Forecast!B14:F15", "Valuation!B5:B13", "Valuation!D6:F8"],
+  "perturbations": [
+    {"name": "growth", "address": "Forecast!B5", "oracle_key": "revenue_2029", "overrides": {"Assumptions!B4": 0.075}, "expected_addresses": ["Forecast!B5", "Forecast!F5"]},
+    {"name": "wacc", "address": "Valuation!B9", "oracle_key": "enterprise_value", "overrides": {"Assumptions!B10": 0.101}, "expected_addresses": ["Forecast!B14:F15", "Valuation!B9", "Valuation!B13"]}
+  ],
+  "sensitivity_grid": {"wacc_values": [0.082, 0.092, 0.102], "terminal_growth_values": [0.021, 0.026, 0.031], "row_start": 6, "columns": ["D", "E", "F"]},
+  "protected": {"Source_Data!D4": 215000, "Source_Data!D5": 32250, "Source_Data!D6": 9200, "Source_Data!D7": 10500, "Source_Data!D8": 18000}
+}

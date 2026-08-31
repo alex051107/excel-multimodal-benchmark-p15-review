@@ -1,0 +1,53 @@
+{
+  "document": {
+    "filename": "confirm_invoice_multipage.pdf",
+    "pages": 2
+  },
+  "headers": {
+    "currency": "USD",
+    "customer": "Brightwell Water District",
+    "invoice_date": "2026-07-09",
+    "invoice_id": "INV-3175",
+    "po_reference": "PO-8820",
+    "vendor": "Copperline Process Controls"
+  },
+  "line_items": [
+    {
+      "description": "Flow meter assembly",
+      "line_id": "CINV-01",
+      "page": 1,
+      "quantity": 2,
+      "text_locator": "confirm_invoice_multipage.pdf:p1:flow-meter",
+      "unit_price": 375
+    },
+    {
+      "description": "Control enclosure",
+      "line_id": "CINV-02",
+      "page": 1,
+      "quantity": 3,
+      "text_locator": "confirm_invoice_multipage.pdf:p1:control-enclosure",
+      "unit_price": 210
+    },
+    {
+      "description": "Startup verification",
+      "line_id": "CINV-03",
+      "page": 1,
+      "quantity": 1,
+      "text_locator": "confirm_invoice_multipage.pdf:p1:startup-verification",
+      "unit_price": 285
+    },
+    {
+      "description": "Calibration dossier",
+      "line_id": "CINV-04",
+      "page": 2,
+      "quantity": 1,
+      "text_locator": "confirm_invoice_multipage.pdf:p2:calibration-dossier",
+      "unit_price": 160
+    }
+  ],
+  "terms": {
+    "discount_rate": 0.08,
+    "tax_rate": 0.0725,
+    "freight": 60
+  }
+}

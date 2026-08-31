@@ -1,0 +1,34 @@
+[
+  {
+    "id": "CONFIRM_PO11_QUANTITY_14_TO_15",
+    "target": {
+      "sheet": "Revised_Schedule",
+      "match_column": "A",
+      "match_value": "PO-11",
+      "value_column": "C",
+      "baseline": 14,
+      "perturbed": 15
+    },
+    "expected": [
+      {
+        "sheet": "Revised_Schedule",
+        "cell": "F8",
+        "value": 7740
+      },
+      {
+        "sheet": "PO_Header",
+        "cell": "B9",
+        "value": 7740
+      }
+    ],
+    "protected_by_content": [
+      {
+        "sheet": "Revised_Schedule",
+        "match_column": "A",
+        "match_value": "PO-14",
+        "value_column": "F",
+        "value": 450
+      }
+    ]
+  }
+]

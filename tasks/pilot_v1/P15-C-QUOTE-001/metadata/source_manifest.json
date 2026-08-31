@@ -1,0 +1,24 @@
+{
+  "agent_visible_hashes": {
+    "context_note.md": "253d5e5c6aaee38f661a7427deb9374c54d666752280c8dae04c001dca21a9cc",
+    "document_inventory.md": "b3b57600df29366dc77b168399016b3f8eafa225173c92f1a6fa9ed863233a44",
+    "quote_scan.png": "3cab3346feb4a7b1c7723ac84fa0a39755df7e58b404530856fffc0d5c40ced7",
+    "starting_workbook.xlsx": "b77939f8b41ce724a287ad6e8141783cfaf7942e57a651111eddaf87f8b9f884"
+  },
+  "assets": [
+    {
+      "license": "Project-owned original",
+      "path": "quote_scan.png",
+      "role": "agent-visible scanned quote"
+    },
+    {
+      "license": "Project-owned original",
+      "path": "starting_workbook.xlsx",
+      "role": "agent-visible delivery template without expected-result cells"
+    }
+  ],
+  "construction_mode": "ARTIFACT_RECORD_ONLY",
+  "rights": "Project-owned original truth, source documents, and workbook artifacts.",
+  "source_family": "project-authored-quote-template-family-v2",
+  "task_id": "P15-C-QUOTE-001"
+}

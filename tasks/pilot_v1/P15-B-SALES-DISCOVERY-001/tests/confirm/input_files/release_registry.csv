@@ -1,0 +1,5 @@
+release_id,file,period,published,supersedes,schema,coverage
+RLS-2024Q1-014,revenue_q1_final.csv,2024Q1,2024-05-01,,1.1,complete
+RLS-2024Q2-011,revenue_q2_draft.csv,2024Q2,2024-07-18,,1.0,incomplete
+RLS-2024Q2-012,revenue_q2_corrected.csv,2024Q2,2024-08-09,RLS-2024Q2-011,1.1,complete
+RLS-2024Q2-013,revenue_q2_test_schema.csv,2024Q2,2024-08-12,RLS-2024Q2-012,2.1-pilot,partial

@@ -1,0 +1,27 @@
+{
+  "known_assumptions": [
+    "The professional request is benchmark-authored.",
+    "Reference output is checked against a task-specific independent oracle."
+  ],
+  "native_pivot_gold_pending": false,
+  "oracle_implementation": "metadata/oracle_recompute.py",
+  "oracle_reads_reference_workbook": false,
+  "reference_sha256": "33767e214efae5f153ad38088161193e7d9d9e11f86e43c002e9e727e225965c",
+  "reference_workbook": "solution/reference.xlsx",
+  "semantic_version": "p15_v3",
+  "source_inputs": {
+    "context_note.md": "76781a3a64fc1d7e4b18c74e5ab98de7b5cd5fc3e8089fc4c1ff40f6877454d0",
+    "release_registry.csv": "95c70c6eaf6195465c8be2e8584c965d328ac383a4feb40254854400d27ffd97",
+    "revenue_q1_final.csv": "5d2aad7c172539de0f776f15d2dc4cde43fead94d3e9dd5517987de493cda831",
+    "revenue_q2_corrected.csv": "c70b5a3c9e781c9504e36fedba4fbf53f20ccd2a378a6a8cfad62cf709a26c45",
+    "revenue_q2_draft.csv": "876511fb3f95524acbbe207129a4758bd7735967d48a72b45773abbecbd6da89",
+    "revenue_q2_test_schema.csv": "438ec05e5ca21395f27719fcf6e7ec88d492a57505ac497687357548f075ba91",
+    "selection_memo.md": "5617ccede48a090118579d06774ee5c320c216309217aaae0d0520851644c337",
+    "starting_workbook.xlsx": "556e1ce77318221cb871ea7d231c39e3967ba25d4535f295a5f880361331fc58"
+  },
+  "task_id": "P15-B-SALES-DISCOVERY-001",
+  "unsupported_claims": [
+    "No Windows Excel validation is claimed.",
+    "No blind-human or Agent difficulty evidence is claimed."
+  ]
+}

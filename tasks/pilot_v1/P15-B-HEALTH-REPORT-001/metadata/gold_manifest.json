@@ -1,0 +1,25 @@
+{
+  "known_assumptions": [
+    "The professional request is benchmark-authored.",
+    "Reference output is checked against a task-specific independent oracle."
+  ],
+  "native_pivot_gold_pending": false,
+  "oracle_implementation": "metadata/oracle_recompute.py",
+  "oracle_reads_reference_workbook": false,
+  "reference_sha256": "647aa07837aeb756a80f727e9fb239748f46a3bb9eb08e90f8af8c8bfa319465",
+  "reference_workbook": "solution/reference.xlsx",
+  "semantic_version": "p15_v3",
+  "source_inputs": {
+    "briefing_request.md": "c41abf9bf8a0ec69b18a5d3e2b14922d59c8e59a421ad6211e5a106a958efda0",
+    "context_note.md": "2542a1259ab017469e27afb5977e2dcb5f1681dbaca87895cb00ef34d11025d7",
+    "geography_map.csv": "0857e6cb3c7f8eaa3647d1fa138447d9f3e3e737cf0beedab8c0eea00f2b1ef1",
+    "new_hampshire_heart_disease.csv": "1d57bb14ff4af05cb61d3d6aaa6383637246a1ce002c2224cca384d025dba256",
+    "starting_workbook.xlsx": "d8d750850f5a117d17d178365aecf176da4014d7a9a8a183320307e892b00731",
+    "vermont_heart_disease.csv": "ec7adbed7485f7fad0e014f8f0f9133f721d18f482bd79777e2b78c123c4ce75"
+  },
+  "task_id": "P15-B-HEALTH-REPORT-001",
+  "unsupported_claims": [
+    "No Windows Excel validation is claimed.",
+    "No blind-human or Agent difficulty evidence is claimed."
+  ]
+}

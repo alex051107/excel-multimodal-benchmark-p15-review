@@ -1,0 +1,27 @@
+{
+  "task_id": "P15-B-SALES-DISCOVERY-001",
+  "split": "confirm",
+  "split_group": "P15-B-SALES-DISCOVERY-001-SIBLING",
+  "capability_invariant": ["select the only approved complete production release", "preserve one source release", "calculate formula-linked KPIs and regional closure", "protect the release registry"],
+  "distinctness": {
+    "source_instance": "held-out Q2 commercial close with different release chain, record identities, product mix, and values",
+    "dev_values_reused": false,
+    "changed_drivers": ["release IDs and dates", "record IDs", "offer families", "bookings and revenue", "regional record distribution"],
+    "contamination_guard": "tests/confirm is verifier-private and is not copied to data/input_files, environment/input, solution, or fixtures"
+  },
+  "input_files_dir": "tests/confirm/input_files",
+  "reference_workbook": "tests/confirm/reference.xlsx",
+  "truth": "tests/confirm/truth.json",
+  "oracle": "tests/confirm/oracle_recompute.py",
+  "criteria_source": "tests/private_contract.json",
+  "evaluator": {
+    "path": "tests/evaluate.py",
+    "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"],
+    "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}
+  },
+  "required_sheets": ["Release_Registry", "Selected_Sources", "Consolidated_Data", "KPI_Summary", "Coverage_Checks"],
+  "formula_cells": ["KPI_Summary!B4:B7", "Coverage_Checks!B4:C7"],
+  "protected": {"Release_Registry!A4:G7": "exact replay of tests/confirm/input_files/release_registry.csv"},
+  "drivers": {"bookings_source_cell": "Consolidated_Data!E4", "bookings_delta": 100, "revenue_source_cell": "Consolidated_Data!F5", "revenue_delta": 100},
+  "perturbations": "tests/confirm/perturbations.json"
+}

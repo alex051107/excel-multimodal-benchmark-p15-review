@@ -1,0 +1,24 @@
+{
+  "construction_mode": "EXPERT_AUTHORED_AUTHENTIC_DATA",
+  "known_assumptions": [
+    "The user instruction is benchmark-authored.",
+    "The reference workbook is checked against the independent task-specific oracle."
+  ],
+  "oracle_implementation": "metadata/oracle_recompute.py",
+  "oracle_reads_reference_workbook": false,
+  "reference_sha256": "0097df83031990bdb2f1ba8ed4e4a1b041e31a3164038d83b304435380df3fe2",
+  "reference_workbook": "solution/reference.xlsx",
+  "semantic_version": "p15_v2",
+  "source_inputs": {
+    "analysis_plan.md": "962a59739041766ce35eaf262311ecef6ebff28fe05145346526b3952aa37e81",
+    "context_note.md": "f9a2ad6d590e8a921c89172dd877e90d0c202eb20821efdbf7c13286affab025",
+    "sleep_source.csv": "6c3f7494edf269057174e1b6f597f54da706dbe62ecdb7ec848f20174a0e1bea",
+    "source_data.csv": "6c3f7494edf269057174e1b6f597f54da706dbe62ecdb7ec848f20174a0e1bea",
+    "starting_workbook.xlsx": "10bcc89839540867a18108d6ffec6d3b42b5d9b8bac6339a7314437e4f76dfc3"
+  },
+  "task_id": "P15-A-STAT-EXPERIMENT-001",
+  "unsupported_claims": [
+    "No Windows Excel validation is claimed.",
+    "No blind human review or Agent difficulty result is claimed."
+  ]
+}

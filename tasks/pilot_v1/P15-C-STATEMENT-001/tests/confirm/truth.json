@@ -1,0 +1,66 @@
+{
+  "document": {
+    "filename": "confirm_statement_multipage.pdf",
+    "pages": 2
+  },
+  "headers": {
+    "account_suffix": "7316",
+    "bank": "Summit Cooperative Bank",
+    "currency": "USD",
+    "opening_balance": 9200,
+    "period_end": "2026-07-31",
+    "period_start": "2026-07-01"
+  },
+  "transactions": [
+    {
+      "category": "Customer receipts",
+      "credit": 1500,
+      "date": "2026-07-03",
+      "debit": 0,
+      "description": "Client ACH receipt",
+      "page": 1,
+      "text_locator": "confirm_statement_multipage.pdf:p1:client-ach",
+      "transaction_id": "CTX-01"
+    },
+    {
+      "category": "Equipment",
+      "credit": 0,
+      "date": "2026-07-07",
+      "debit": 980,
+      "description": "Instrument purchase",
+      "page": 1,
+      "text_locator": "confirm_statement_multipage.pdf:p1:instrument-purchase",
+      "transaction_id": "CTX-02"
+    },
+    {
+      "category": "Customer receipts",
+      "credit": 1250,
+      "date": "2026-07-15",
+      "debit": 0,
+      "description": "Service receipt",
+      "page": 1,
+      "text_locator": "confirm_statement_multipage.pdf:p1:service-receipt",
+      "transaction_id": "CTX-03"
+    },
+    {
+      "category": "Travel",
+      "credit": 0,
+      "date": "2026-07-22",
+      "debit": 740,
+      "description": "Lodging expense",
+      "page": 2,
+      "text_locator": "confirm_statement_multipage.pdf:p2:lodging",
+      "transaction_id": "CTX-04"
+    },
+    {
+      "category": "Bank fees",
+      "credit": 0,
+      "date": "2026-07-30",
+      "debit": 35,
+      "description": "Account service fee",
+      "page": 2,
+      "text_locator": "confirm_statement_multipage.pdf:p2:service-fee",
+      "transaction_id": "CTX-05"
+    }
+  ]
+}

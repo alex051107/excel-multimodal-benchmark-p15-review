@@ -1,0 +1,19 @@
+{
+  "department": "Energy Policy Modeling",
+  "difficulty_tier": "Medium",
+  "est_minutes": 55,
+  "multimodal": true,
+  "occupation": "Energy Policy Analyst",
+  "sector": "Public Administration",
+  "semantic_version": "p15_v2",
+  "skills": [
+    "scenario modeling",
+    "energy-policy analysis",
+    "dependency restoration",
+    "emissions calculation"
+  ],
+  "status": "LOCAL_READY",
+  "task_id": "P15-A-POLICY-EIA-001",
+  "legacy_task_id": "P15-A-POLICY-BEAC1-001",
+  "web_search_required": false
+}

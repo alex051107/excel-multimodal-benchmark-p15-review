@@ -1,0 +1,56 @@
+{
+  "document": {
+    "filename": "invoice_multipage.pdf",
+    "pages": 2
+  },
+  "headers": {
+    "currency": "USD",
+    "customer": "Northstar Operations",
+    "invoice_date": "2026-06-18",
+    "invoice_id": "INV-2048",
+    "po_reference": "PO-7194",
+    "vendor": "Alder & Finch Supply"
+  },
+  "line_items": [
+    {
+      "description": "Thermal valve kit",
+      "line_id": "INV-2048-01",
+      "page": 1,
+      "quantity": 4,
+      "text_locator": "invoice_multipage.pdf:p1:item-1",
+      "unit_price": 180.0
+    },
+    {
+      "description": "Pressure sensor",
+      "line_id": "INV-2048-02",
+      "page": 1,
+      "quantity": 3,
+      "text_locator": "invoice_multipage.pdf:p1:item-2",
+      "unit_price": 140.0
+    },
+    {
+      "description": "Field commissioning",
+      "line_id": "INV-2048-03",
+      "page": 1,
+      "quantity": 1,
+      "text_locator": "invoice_multipage.pdf:p1:item-3",
+      "unit_price": 240.0
+    },
+    {
+      "description": "Calibration certificate",
+      "line_id": "INV-2048-04",
+      "page": 2,
+      "quantity": 1,
+      "text_locator": "invoice_multipage.pdf:p2:item-4",
+      "unit_price": 300.0
+    }
+  ],
+  "source_family": "project-authored-invoice-template-family-v2",
+  "task_id": "P15-C-INVOICE-001",
+  "template": "born-digital multipage invoice",
+  "terms": {
+    "discount_rate": 0.1,
+    "freight": 45.0,
+    "tax_rate": 0.0825
+  }
+}

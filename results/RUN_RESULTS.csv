@@ -1,0 +1,46 @@
+task_id,track,system,agent,model,provider,status,attempts,passes,mean,median,pass_at_1,pass_at_8,pass_at_8_status,runtime_errors,cost_usd,time_seconds,main_failure
+P15-A-FIN-DCF-001,A,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,AVAILABLE_DEV_N4,4,4,1.000000,1.000000,1.000000,,N_LT_8,0,3.644219,2907.816,NONE
+P15-A-FIN-DCF-001,A,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,REAL_PAID_PUBLIC_EGRESS_PASS1,1,1,1.000000,1.000000,1.000000,,N_LT_8,0,2.141572,107.220,NONE
+P15-A-FIN-DCF-001,A,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,REAL_PAID_PUBLIC_EGRESS_PASS1,1,1,1.000000,1.000000,1.000000,,N_LT_8,0,,496.792,NONE
+P15-A-FIN-DEBUG-001,A,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,AVAILABLE_DEV_N4,4,4,1.000000,1.000000,1.000000,,N_LT_8,0,2.420612,1199.422,NONE
+P15-A-FIN-DEBUG-001,A,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,REAL_PAID_PUBLIC_EGRESS_PASS1,1,1,1.000000,1.000000,1.000000,,N_LT_8,0,1.279673,65.656,NONE
+P15-A-FIN-DEBUG-001,A,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,REAL_PAID_PUBLIC_EGRESS_PASS1,1,1,1.000000,1.000000,1.000000,,N_LT_8,0,,360.056,NONE
+P15-A-ENG-SIZING-001,A,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,AVAILABLE_DEV_N4,4,4,1.000000,1.000000,1.000000,,N_LT_8,0,2.300292,2009.100,NONE
+P15-A-ENG-SIZING-001,A,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,REAL_PAID_PUBLIC_EGRESS_PASS1,1,1,1.000000,1.000000,1.000000,,N_LT_8,0,2.138917,107.263,NONE
+P15-A-ENG-SIZING-001,A,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,REAL_PAID_PUBLIC_EGRESS_PASS1,1,1,1.000000,1.000000,1.000000,,N_LT_8,0,,657.107,NONE
+P15-A-STAT-EXPERIMENT-001,A,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,AVAILABLE_DEV_N4,4,0,0.385417,0.458334,0.000000,,N_LT_8,0,2.952708,3815.905,QC_EXCLUSION_CHAIN_NOT_PRESERVED
+P15-A-STAT-EXPERIMENT-001,A,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,REAL_PAID_PUBLIC_EGRESS_PASS1,1,1,1.000000,1.000000,1.000000,,N_LT_8,0,1.829012,128.074,NONE
+P15-A-STAT-EXPERIMENT-001,A,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.666667,0.666667,0.000000,,N_LT_8,0,,847.737,QC_EXCLUSION_CHAIN_NOT_PRESERVED
+P15-A-POLICY-EIA-001,A,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,AVAILABLE_DEV_N4,4,2,0.780000,0.780000,0.500000,,N_LT_8,0,4.290926,2199.485,NONE
+P15-A-POLICY-EIA-001,A,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,REAL_PAID_PUBLIC_EGRESS_PASS1,1,1,1.000000,1.000000,1.000000,,N_LT_8,0,2.385814,170.549,NONE
+P15-A-POLICY-EIA-001,A,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.560000,0.560000,0.000000,,N_LT_8,0,,417.299,NONE
+P15-B-SALES-DISCOVERY-001,B,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,AVAILABLE_DEV_N4,4,2,0.580000,0.580000,0.500000,,N_LT_8,0,2.358572,1973.618,NONE
+P15-B-SALES-DISCOVERY-001,B,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.160000,0.160000,0.000000,,N_LT_8,0,0.877254,47.087,NONE
+P15-B-SALES-DISCOVERY-001,B,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.160000,0.160000,0.000000,,N_LT_8,0,,130.323,NONE
+P15-B-OPS-CLEAN-JOIN-001,B,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,AVAILABLE_DEV_N4,4,0,0.096154,0.076924,0.000000,,N_LT_8,0,4.697481,4807.997,CLEAN_RECORDS_MISMATCH
+P15-B-OPS-CLEAN-JOIN-001,B,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.038462,0.038462,0.000000,,N_LT_8,0,1.383159,94.316,CLEAN_RECORDS_MISMATCH
+P15-B-OPS-CLEAN-JOIN-001,B,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.038462,0.038462,0.000000,,N_LT_8,0,,105.538,CLEAN_RECORDS_MISMATCH
+P15-B-FIN-RECON-001,B,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,AVAILABLE_DEV_N4,4,0,0.173077,0.153846,0.000000,,N_LT_8,0,3.129838,6142.035,FX_SOURCE_PERTURBATION_FAILED:StopIteration
+P15-B-FIN-RECON-001,B,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.000000,0.000000,0.000000,,N_LT_8,0,2.859192,224.274,NONE
+P15-B-FIN-RECON-001,B,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.000000,0.000000,0.000000,,N_LT_8,0,,268.595,NONE
+P15-B-PUBLIC-PIVOT-001,B,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,TASK_INVALID,0,0,,,,,NOT_APPLICABLE,,,,NOT_RUN
+P15-B-PUBLIC-PIVOT-001,B,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,TASK_INVALID,0,0,,,,,NOT_APPLICABLE,,,,NOT_RUN
+P15-B-PUBLIC-PIVOT-001,B,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,TASK_INVALID,0,0,,,,,NOT_APPLICABLE,,,,NOT_RUN
+P15-B-HEALTH-REPORT-001,B,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,AVAILABLE_DEV_N4,4,1,0.259259,0.018519,0.250000,,N_LT_8,0,4.590290,9992.662,METRIC_REPLAY_FAILED:ValueError
+P15-B-HEALTH-REPORT-001,B,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,REAL_PAID_PUBLIC_EGRESS_PASS1,1,1,0.925926,0.925926,1.000000,,N_LT_8,0,5.176829,370.306,NONE
+P15-B-HEALTH-REPORT-001,B,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.444444,0.444444,0.000000,,N_LT_8,0,,942.048,NONE
+P15-C-INVOICE-001,C,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,AVAILABLE_DEV_N4,4,4,1.000000,1.000000,1.000000,,N_LT_8,0,1.108513,2269.364,NONE
+P15-C-INVOICE-001,C,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,REAL_PAID_PUBLIC_EGRESS_PASS1,1,1,1.000000,1.000000,1.000000,,N_LT_8,0,1.307236,67.941,NONE
+P15-C-INVOICE-001,C,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.620690,0.620690,0.000000,,N_LT_8,0,,201.880,NONE
+P15-C-QUOTE-001,C,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,AVAILABLE_DEV_N4,4,1,0.637931,0.517241,0.250000,,N_LT_8,0,0.901619,2273.120,NONE
+P15-C-QUOTE-001,C,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,REAL_PAID_PUBLIC_EGRESS_PASS1,1,1,1.000000,1.000000,1.000000,,N_LT_8,0,1.292879,87.341,NONE
+P15-C-QUOTE-001,C,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.413793,0.413793,0.000000,,N_LT_8,0,,105.739,NONE
+P15-C-RECEIPTS-001,C,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,AVAILABLE_DEV_N4,4,0,0.383333,0.333333,0.000000,,N_LT_8,0,1.773041,1361.123,NONE
+P15-C-RECEIPTS-001,C,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.333333,0.333333,0.000000,,N_LT_8,0,1.514089,94.937,NONE
+P15-C-RECEIPTS-001,C,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.333333,0.333333,0.000000,,N_LT_8,0,,190.330,NONE
+P15-C-PO-ADDENDUM-001,C,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,AVAILABLE_DEV_N4,4,2,0.758333,0.816666,0.500000,,N_LT_8,0,2.667447,2567.153,NONE
+P15-C-PO-ADDENDUM-001,C,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.633333,0.633333,0.000000,,N_LT_8,0,1.636857,101.200,NONE
+P15-C-PO-ADDENDUM-001,C,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.400000,0.400000,0.000000,,N_LT_8,0,,242.942,NONE
+P15-C-STATEMENT-001,C,codex_gpt56sol,codex,gpt-5.6-sol,OpenAI,AVAILABLE_DEV_N4,4,2,0.816666,0.816666,0.500000,,N_LT_8,0,1.949877,2212.302,NONE
+P15-C-STATEMENT-001,C,claude,claude-code,anthropic/claude-opus-4.8,OpenRouter public egress,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.400000,0.400000,0.000000,,N_LT_8,0,2.015003,128.284,NONE
+P15-C-STATEMENT-001,C,qwen,qwen-coder,qwen/qwen3.8-max,OpenRouter public egress; Alibaba endpoint,REAL_PAID_PUBLIC_EGRESS_PASS1,1,0,0.200000,0.200000,0.000000,,N_LT_8,0,,322.299,NONE

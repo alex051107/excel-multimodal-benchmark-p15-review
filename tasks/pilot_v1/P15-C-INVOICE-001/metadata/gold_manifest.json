@@ -1,0 +1,20 @@
+{
+  "input_sha256": {
+    "context_note.md": "f190b65f4b11e6c6927ca2d9a2f78ab03d295e11d84eeafae47d664e39677243",
+    "document_inventory.md": "1d3009cbb8e2420c50fe43848a5f0521056582daf219bf76bc62125fac04df63",
+    "invoice_multipage.pdf": "36508ce21b4a4811b189e79f1a8b1f83d2d1302bfe989cd4308a0988af54a0ec",
+    "starting_workbook.xlsx": "f4a1e980f907102bc627167843a8b608d7299cd82c8bf6dbacddee063e68d6b0"
+  },
+  "known_assumptions": [
+    "Sources and private truth are project-authored benchmark assets; the request is not an observed historical business communication."
+  ],
+  "oracle": "metadata/oracle_recompute.py",
+  "reference_sha256": "2e7228d48e6bca12fc2cae487b7c6387bd969fbce9637769138b3cb93f4a1e1f",
+  "reference_workbook": "solution/reference.xlsx",
+  "task_id": "P15-C-INVOICE-001",
+  "truth": "private/truth.json",
+  "construction_evidence": "The task-local truth drives the tracked source renderer at scripts/build_p15_c_source_pdfs.py. The reference workbook remains artifact-level evidence, so source/reference process independence is not asserted.",
+  "unsupported_claims": [
+    "No Windows Excel, blind-human, target-Agent, or fresh Harbor result is asserted by this manifest."
+  ]
+}

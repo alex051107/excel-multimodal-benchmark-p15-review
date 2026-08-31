@@ -1,0 +1,16 @@
+{
+  "clean": [
+    ["WO-210", "SKU-410", "CA-02", 12, "No", "Yes", "Yes", "Join"],
+    ["WO-211", "SKU-520", "IL-07", 3, "No", "Yes", "Yes", "Join"],
+    ["WO-212", "SKU-630", "CA-02", 20, "No", "Yes", "Yes", "Join"],
+    ["WO-213", "SKU-888", "IL-07", 2, "No", "No", "Yes", "Exception: unmatched product"],
+    ["WO-214", "SKU-410", "XX-01", 7, "No", "Yes", "No", "Exception: unmatched location"],
+    ["WO-215", "SKU-520", "IL-07", 3, "Yes", "Yes", "Yes", "Exception: exact duplicate"],
+    ["WO-216", "SKU-630", "CA-02", null, "No", "Yes", "Yes", "Exception: invalid units"]
+  ],
+  "exceptions": [["WO-213", "UNMATCHED_PRODUCT"], ["WO-214", "UNMATCHED_LOCATION"], ["WO-215", "DUPLICATE"], ["WO-216", "INVALID_UNITS"]],
+  "joined": [["WO-210", "Pump assembly", "West", 12, 275, 3300], ["WO-211", "Control relay", "Midwest", 3, 630, 1890], ["WO-212", "Seal pack", "West", 20, 45, 900]],
+  "summary_region": "West",
+  "summary_region_total": 4200,
+  "total": 6090
+}

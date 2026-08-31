@@ -1,0 +1,37 @@
+schema_version = "1.4"
+artifacts = ["/app/output/answer.xlsx"]
+
+[task]
+name = "alex051107/p15-c-invoice-001"
+version = "2.1.0"
+description = "Convert a two-page invoice into a typed AP workbook with source-linked line items and a recalculable payable total."
+keywords = ["excel", "pilot-v1", "track-c", "semantic-rebuild", "artifact-record-only"]
+
+[[task.authors]]
+name = "Excel Benchmark Team"
+
+[metadata]
+task_id = "P15-C-INVOICE-001"
+track = "C"
+status = "LOCAL_READY"
+construction_mode = "ARTIFACT_RECORD_ONLY"
+source_family = "project-authored-invoice-template-family-v2"
+benchmark_authored_instruction = true
+sector = "Industrial supply and accounts payable"
+department = "Finance Operations"
+occupation = "Accounts Payable Specialist"
+difficulty_tier = "Medium"
+multimodal = true
+web_search_required = false
+est_minutes = 30
+skills = ["document-to-table extraction", "invoice validation", "formula-linked totals", "source traceability"]
+
+[verifier]
+timeout_sec = 300.0
+environment_mode = "separate"
+network_mode = "public"
+
+[environment]
+network_mode = "public"
+os = "linux"
+workdir = "/app"

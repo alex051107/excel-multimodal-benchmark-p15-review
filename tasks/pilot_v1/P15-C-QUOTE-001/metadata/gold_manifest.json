@@ -1,0 +1,20 @@
+{
+  "input_sha256": {
+    "context_note.md": "253d5e5c6aaee38f661a7427deb9374c54d666752280c8dae04c001dca21a9cc",
+    "document_inventory.md": "b3b57600df29366dc77b168399016b3f8eafa225173c92f1a6fa9ed863233a44",
+    "quote_scan.png": "3cab3346feb4a7b1c7723ac84fa0a39755df7e58b404530856fffc0d5c40ced7",
+    "starting_workbook.xlsx": "b77939f8b41ce724a287ad6e8141783cfaf7942e57a651111eddaf87f8b9f884"
+  },
+  "known_assumptions": [
+    "Sources and private truth are project-authored benchmark assets; the request is not an observed historical business communication."
+  ],
+  "oracle": "metadata/oracle_recompute.py",
+  "reference_sha256": "fa86fc780d4c143a0741971d16b99078f7804fcc4b7b697d553c7684227cfaca",
+  "reference_workbook": "solution/reference.xlsx",
+  "task_id": "P15-C-QUOTE-001",
+  "truth": "private/truth.json",
+  "construction_evidence": "Artifact-level records only; no tracked source renderer or reference-workbook builder is available, and process independence is not asserted.",
+  "unsupported_claims": [
+    "No Windows Excel, blind-human, target-Agent, or fresh Harbor result is asserted by this manifest."
+  ]
+}

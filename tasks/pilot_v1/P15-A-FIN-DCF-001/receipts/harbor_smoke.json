@@ -1,0 +1,66 @@
+{
+  "claim_boundary": "Harbor smoke proves package and deterministic Judge execution only; it does not measure target-Agent difficulty.",
+  "difficulty_evidence": false,
+  "evidence_scope": "FINAL_JUDGE_PACKAGE_AND_EXECUTION_SMOKE_ONLY",
+  "expected_gates": {
+    "malformed": 0.0,
+    "nop_max_exclusive": 0.3,
+    "oracle": 1.0
+  },
+  "latest_judge_smoke_complete": true,
+  "observed": {
+    "malformed": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:46:31.104191Z",
+      "job_name": "p15_smoke_all_malformed_final_judges_v4",
+      "judge_failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "judge_pass": false,
+      "judge_result_sha256": "173a70f0f90cb2ab7263737425fb6826c82949cff94677aeab4b1df14820df15",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 0.0,
+      "task_checksum": "0f812d2ba9f1c3e26594ad405c98bb9e064ff84618102e4e0139b84703954b89",
+      "trial_id": "e878f3f4-e196-4c05-aff4-545b500b3dc7",
+      "trial_name": "P15-A-FIN-DCF-001__LK2UTSR",
+      "verifier_environment_mode": "separate"
+    },
+    "nop": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:44:51.291394Z",
+      "job_name": "p15_smoke_all_nop_final_judges_v4",
+      "judge_failure_codes": [
+        "OUTPUT_MISSING"
+      ],
+      "judge_pass": false,
+      "judge_result_sha256": "8416a00add9a8889a885fa474919629c7fa4a9382ef60a868d01d70528c20f29",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 0.0,
+      "task_checksum": "df534f68a0f87165587b1b0841a567c884d50d8d9ee54a9545ae779efffc5248",
+      "trial_id": "8a9b24b9-4c54-406d-a673-a8bbf7b7ad7a",
+      "trial_name": "P15-A-FIN-DCF-001__JpSXu8A",
+      "verifier_environment_mode": "separate"
+    },
+    "oracle": {
+      "exception": null,
+      "finished_at": "2026-08-30T15:43:37.518142Z",
+      "job_name": "p15_smoke_all_oracle_final_judges_v4",
+      "judge_failure_codes": [],
+      "judge_pass": true,
+      "judge_result_sha256": "f07c2f563aae550e3c8577fb456271b985f80ff5593aab3f7a7e0cb12d71f6ca",
+      "judge_status": "SCORED",
+      "judge_stderr": [],
+      "reward": 1.0,
+      "task_checksum": "df534f68a0f87165587b1b0841a567c884d50d8d9ee54a9545ae779efffc5248",
+      "trial_id": "08c71dff-20e0-49ac-b7f0-8df9d85ccfa5",
+      "trial_name": "P15-A-FIN-DCF-001__joN47SA",
+      "verifier_environment_mode": "separate"
+    }
+  },
+  "pivot_blocker": null,
+  "schema_version": "1.0",
+  "task_id": "P15-A-FIN-DCF-001",
+  "task_status_at_smoke": "LOCAL_READY"
+}

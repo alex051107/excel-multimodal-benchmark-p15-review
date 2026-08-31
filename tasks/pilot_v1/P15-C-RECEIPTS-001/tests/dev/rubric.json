@@ -1,0 +1,17 @@
+{
+  "criteria": [
+    {"id": "R001", "description": "Workbook opens and contains Documents, Items, Categories, Exceptions, Provenance, and Reconciliation.", "weight": 2, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
+    {"id": "R002", "description": "Each supplied receipt is represented once with the correct merchant, date, and source filename, independent of row order or candidate-assigned document ID.", "weight": 4, "type": "positive", "dimension": "document_identity", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
+    {"id": "R003", "description": "Each receipt item is represented once with the correct source receipt, description, modifier, amount, and category.", "weight": 4, "type": "positive", "dimension": "line_item_accuracy", "method": "deterministic", "method_params": {}},
+    {"id": "R004", "description": "Document and item IDs/linkage are non-empty, unique where required, and complete without duplicate source items.", "weight": 3, "type": "positive", "dimension": "completeness", "method": "deterministic", "method_params": {}},
+    {"id": "R005", "description": "Each document subtotal, tax, and total is formula-linked where applicable and evaluates to the receipt-grounded amount.", "weight": 3, "type": "positive", "dimension": "document_total_semantics", "method": "deterministic", "method_params": {}},
+    {"id": "R006", "description": "Both manifest-selected item changes, drawn from different receipts, update the affected document, category, and batch totals while preserving unrelated receipts.", "weight": 4, "type": "positive", "dimension": "perturbation_response", "method": "deterministic", "method_params": {"manifest": "metadata/perturbations.json", "perturbations": 2}},
+    {"id": "R007", "description": "Category-summary values are formula-linked and agree with the receipt-grounded category totals, independent of row order.", "weight": 3, "type": "positive", "dimension": "categorization", "method": "deterministic", "method_params": {}},
+    {"id": "R008", "description": "Each item links once to the correct receipt image with a candidate-readable locator; no private locator token is required.", "weight": 4, "type": "positive", "dimension": "provenance", "method": "deterministic", "method_params": {}},
+    {"id": "R009", "description": "Reconciliation document count, item count, and batch total are formula-linked and evaluate correctly.", "weight": 3, "type": "positive", "dimension": "reconciliation", "method": "deterministic", "method_params": {}},
+    {"id": "P001", "description": "Penalty for missing/duplicated source items, false receipt identity, wrong category, stale batch total, or false provenance.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
+  ],
+  "pass_threshold": 0.7,
+  "rubric_version": "p15_v2.1",
+  "task_id": "P15-C-RECEIPTS-001"
+}
