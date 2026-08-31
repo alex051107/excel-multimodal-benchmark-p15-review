@@ -39,7 +39,7 @@ A score of 0.70 or above counts as one successful attempt. The empirical pass@1 
 | OpenRouter account usage delta | USD 15.81 | Account-usage increase during 29 paid runs covering Opus 4.8, Qwen3.8-max, and one supplemental Opus 5 run. |
 | Group-gateway Harbor cost fields | USD 33.41 | Partial framework-visible cost for the interrupted group batch; Qwen cost is missing and no group invoice readback is available. |
 
-The two amounts use different accounting bases and are not added together because invoice-level deduplication evidence is unavailable.
+These records use different accounting bases and are not added together because invoice-level deduplication evidence is unavailable.
 
 ## Reading paths
 
