@@ -2,7 +2,20 @@
   "construction_mode": "EXPERT_AUTHORED_REALISTIC_CASE",
   "human_review_status": "PENDING_EXTERNAL_HUMAN_REVIEW",
   "instruction_origin": "benchmark-authored professional request",
-  "native_excel_status": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "native_excel_status": "VALIDATED_MICROSOFT_EXCEL_MAC_16.112.1",
+  "native_excel_receipts": [
+    "receipts/macos_native_dev.json",
+    "receipts/macos_native_confirm.json",
+    "receipts/native_starter_template.json",
+    "receipts/native_confirm_starter_template.json"
+  ],
+  "agent_workflow": "maintain and update a supplied genuine native Pivot reporting template; canonical Microsoft Excel refresh follows delivery",
+  "canonical_regrade": {
+    "raw_agent_artifacts_modified": false,
+    "background_excel_step": "macos/canonicalize_candidate_background.applescript",
+    "batch_runner": "scripts/canonicalize_p15_pivot_trials.py"
+  },
+  "screen_control_used": false,
   "old_calibration_package_reused": false,
   "semantic_version": "p15_v3",
   "task_id": "P15-B-PUBLIC-PIVOT-001",

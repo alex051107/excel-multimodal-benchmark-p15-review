@@ -2,9 +2,9 @@
   "task_id": "P15-B-PUBLIC-PIVOT-001",
   "split": "confirm",
   "split_group": "P15-B-PUBLIC-PIVOT-001-SIBLING",
-  "status": "TASK_INVALID",
-  "blocker": "PENDING_EXTERNAL_WINDOWS_EXCEL",
-  "capability_invariant": ["create a genuine Excel Table and PivotCache", "use exact Region and Program axes", "filter Quarter to 2024Q2", "use native SUM measures", "refresh on open", "bind a true PivotChart"],
+  "status": "LOCAL_READY",
+  "blocker": null,
+  "capability_invariant": ["update a supplied genuine Excel Table and preserve its PivotCache", "use exact Region and Program axes", "filter Quarter to 2024Q2", "use native SUM measures", "refresh on open", "retain a true PivotChart"],
   "distinctness": {
     "source_instance": "held-out public-program instance with different events, East/West regions, Vaccination/Nutrition programs, participation counts, spend, and focus KPI",
     "dev_values_reused": false,
@@ -12,13 +12,21 @@
     "contamination_guard": "tests/confirm is verifier-private and is not copied to data/input_files, environment/input, solution, or fixtures"
   },
   "input_files_dir": "tests/confirm/input_files",
-  "reference_workbook": null,
-  "reference_artifact_status": "NOT_CREATED_PENDING_NATIVE_WINDOWS_EXCEL",
+  "starting_workbook_status": "GENUINE_NATIVE_STALE_TEMPLATE",
+  "reference_workbook": "tests/confirm/reference.xlsx",
+  "reference_artifact_status": "VALID_NATIVE_EXCEL_REFERENCE",
   "truth": "tests/confirm/truth.json",
   "oracle": "tests/confirm/oracle_recompute.py",
   "criteria_source": "tests/private_contract.json",
   "evaluator": {"path": "tests/evaluate.py", "invocation_after_native_build": ["python", "tests/evaluate.py", "<native-confirm-candidate.xlsx>", "--split", "confirm"], "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}},
-  "builder": {"path": "tests/confirm/windows/build_and_validate_confirm.ps1", "status": "DESIGNED_NOT_RUN"},
+  "builder": {
+    "path": "macos/build_and_validate_native_pivot.py",
+    "status": "VALIDATED_ON_MICROSOFT_EXCEL_MAC_16.112.1",
+    "windows_alternate": "tests/confirm/windows/build_and_validate_confirm.ps1",
+    "receipt": "receipts/macos_native_confirm.json",
+    "starter_builder": "macos/build_native_starter_template.py --split confirm",
+    "starter_receipt": "receipts/native_confirm_starter_template.json"
+  },
   "required_sheets": ["Program_Data", "Pivot_Specification", "KPI_Summary", "Pivot_Chart_Requirement", "Checks"],
   "expected_native_objects": {
     "table": {"name": "ProgramEventsTable", "range": "Program_Data!A3:F11", "headers": ["Event ID", "Region", "Program", "Quarter", "Participants", "Spend"]},

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent report specification for the future native-Pivot build."""
+"""Independent report specification for the native-Pivot template update."""
 import csv, json
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1] / "data" / "input_files"

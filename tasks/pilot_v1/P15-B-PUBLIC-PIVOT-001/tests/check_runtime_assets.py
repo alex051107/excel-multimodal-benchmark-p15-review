@@ -56,9 +56,11 @@ truth = module.recompute()
 assert isinstance(truth, dict) and truth, "DEV oracle returned no truth"
 
 if contract["task_id"] == "P15-B-PUBLIC-PIVOT-001":
-    assert confirm["status"] == "TASK_INVALID"
-    assert confirm["blocker"] == "PENDING_EXTERNAL_WINDOWS_EXCEL"
-    assert confirm["reference_workbook"] is None
-    assert not (TESTS / "confirm/reference.xlsx").exists()
+    assert contract["native_status"] == "LOCAL_READY"
+    assert contract["native_blocker"] is None
+    assert confirm["status"] == "LOCAL_READY"
+    assert confirm["blocker"] is None
+    assert confirm["reference_workbook"] == "tests/confirm/reference.xlsx"
+    assert (TESTS / "confirm/reference.xlsx").exists()
 
 print(json.dumps({"task_id": contract["task_id"], "status": "PASS", "synced_csv": source_csv, "verifier_copy": copy_lines[0], "agent_copy": agent_copy_lines[0]}, sort_keys=True))

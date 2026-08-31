@@ -2,7 +2,7 @@
 
 ## Current result
 
-P15 contains 15 primary task candidates and nine reserve designs. Fourteen primary tasks pass the current local answer-and-evaluator checks. The native Pivot task remains invalid because the required PivotCache, PivotTable, filter, SUM measures, refresh behavior, and PivotChart have not yet been created and read back in Microsoft Excel on Windows.
+P15 contains 15 primary task candidates and nine reserve designs. All 15 primary tasks pass the current local answer-and-evaluator checks. The Pivot task was rebuilt as an update to a genuine Excel template and read back in Microsoft Excel for Mac with one PivotCache, one PivotTable, two SUM measures, a Q2 filter, refresh behavior, and one PivotChart. Windows Excel compatibility remains pending.
 
 The three target systems have completed real development runs on every locally valid task. The current sample sizes differ: Codex has four runs per task, while Claude and Qwen each have one. The results are sufficient to identify obvious easy cases and set review priorities. They are too small to establish stable model rankings or formal task difficulty.
 
@@ -14,6 +14,19 @@ The three target systems have completed real development runs on every locally v
 | Claude Code + Opus 5 | 1 | 1 | 1.000 | Supplemental DCF run only; excluded from the three-system comparison |
 
 Detailed task-by-system results are in [RUN_RESULTS.csv](../results/RUN_RESULTS.csv). Attempt-level scores, durations, token counts, cost fields, and regrade deltas are in [ATTEMPTS.csv](../results/ATTEMPTS.csv).
+
+## Group-gateway n=8 checkpoint
+
+A second development batch uses GPT-5.6 sol, Opus 5, and Qwen3.8-max through the group gateway. It was configured for eight independent attempts for every task-system pair, including the revised Pivot task. The gateway token reached its own quota before the batch finished.
+
+| System | Terminal receipts | Valid attempts | Successful attempts | Mean score | Valid task coverage |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Codex CLI + GPT-5.6 sol | 19 | 12 | 6 | 0.646 | 12 of 14 non-Pivot tasks |
+| Claude Code + Opus 5 | 19 | 15 | 2 | 0.201 | 14 of 14 non-Pivot tasks |
+| Qwen Code + Qwen3.8-max | 18 | 14 | 5 | 0.548 | 14 of 14 non-Pivot tasks |
+| Revised Pivot task, all systems | 8 | 0 | 0 | Not available | 0 of 1 task |
+
+The checkpoint contains 64 terminal receipts, 41 valid scored attempts, and 23 environment errors or cancellations. No task-system pair has eight valid attempts, so these results do not produce a standard pass@8 estimate. They are not pooled with the earlier batch because the Claude model version and gateway contract differ. The resumable summary is in [GROUP_GATEWAY_CHECKPOINT.csv](../results/GROUP_GATEWAY_CHECKPOINT.csv).
 
 ## Score interpretation
 
@@ -34,7 +47,7 @@ The track summary averages the current per-task mean scores. It describes the de
 | Track | Valid tasks | Codex mean | Opus 4.8 mean | Qwen3.8-max mean | Current interpretation |
 | --- | ---: | ---: | ---: | ---: | --- |
 | A: professional models | 5 | 0.833 | 1.000 | 0.845 | The first three tasks are clearly easy in the current version; the statistics task needs validity review before more runs. |
-| B: multi-file analysis | 4 of 5 | 0.277 | 0.281 | 0.161 | Current scores are lowest, but human review must separate genuine workflow difficulty from ambiguity or narrow Judge assumptions. |
+| B: multi-file analysis | 4 of 5 represented | 0.277 | 0.281 | 0.161 | Current scores are lowest, but human review must separate genuine workflow difficulty from ambiguity or narrow Judge assumptions. The revised Pivot task was not part of this earlier batch. |
 | C: documents to workbooks | 5 | 0.719 | 0.673 | 0.394 | Difficulty varies: the invoice is easy, receipts show a low-score signal, and the remaining tasks are mixed. |
 
 ## Remaining evidence for formal difficulty
@@ -43,12 +56,12 @@ The release requirement defines a difficult task candidate using four conditions
 
 P15 has not completed that chain for the following reasons:
 
-1. The per-task sample sizes are below the minimum needed to compute pass@8. Difficult candidates were intended to receive up to 16 independent samples per system after the task and Judge were frozen.
-2. The paid Claude and Qwen runs used a public gateway that did not lock a single model provider. They are genuine development runs, but the formal experiment still needs a fixed provider, model version, tool environment, and budget.
+1. The per-task sample sizes are below the minimum needed to compute pass@8. The group-gateway batch stopped at 41 valid attempts; every task-system pair remains below eight valid samples. Difficult candidates were intended to receive up to 16 independent samples per system after the task and Judge were frozen.
+2. The paid Claude and Qwen runs used gateways that did not prove a single locked upstream provider. They are genuine development runs, but the formal experiment still needs a fixed provider, model version, tool environment, and budget.
 3. CONFIRM references and Oracles have passed self-consistency checks, but the target Agents have not yet run on the held-out CONFIRM siblings.
 4. Six tasks show low-score signals, but no independent human reviewer has yet confirmed that the instruction, supplied information, and Judge admit reasonable professional solutions.
 5. Four tasks are already too easy. Their revised versions must be treated as new task versions and tested again; scores from the current version cannot be inherited.
-6. The Pivot task has no valid native Excel object and therefore cannot enter difficulty statistics.
+6. The Pivot task now has valid native objects on Microsoft Excel for Mac, but its group-gateway trials produced no valid scored attempt before the quota interruption. Windows Excel compatibility is also pending.
 7. Real Agent outputs exposed legitimate Excel equivalents that early Judges rejected. The artifacts were regraded without increasing the attempt count, but formal sampling should begin only after the final Judge is frozen.
 8. Windows Excel open/save/recalculate checks and external human review remain incomplete.
 
@@ -57,8 +70,6 @@ The current development labels therefore mean only:
 - **Too easy:** the available evidence is already sufficient to justify a professional revision.
 - **Preliminary difficult signal:** several systems scored poorly, but validity and failure attribution still require human review.
 - **Mixed:** the current runs disagree or remain too sparse to justify changing the task.
-- **Invalid:** a required task object or environment contract is missing.
-
 Every locally valid task remains `INSUFFICIENT_EVIDENCE` for final difficulty.
 
 ## Task-by-task revision plan
@@ -82,7 +93,7 @@ Scores are shown as `Codex / Opus 4.8 / Qwen3.8-max`. Codex values are means ove
 | [Q2 data-version selection](../tasks/pilot_v1/P15-B-SALES-DISCOVERY-001/) | 0.580 / 0.160 / 0.160 | Preliminary difficult signal | First verify that the source-authority rules are clear. A later version may add partial restatements, effective dates, schema migration, and a coverage proof tied to control totals. | If the current task is valid, freeze and expand it before adding complexity. |
 | [Order cleaning and joining](../tasks/pilot_v1/P15-B-OPS-CLEAN-JOIN-001/) | 0.096 / 0.038 / 0.038 | Preliminary difficult signal | Review whether the Judge accepts reasonable output layouts. A later version may add effective-dated master data, unit conversion, duplicate precedence, and several explicit exception classes. | Attribute current failures before spending on additional samples. |
 | [Monthly ledger reconciliation](../tasks/pilot_v1/P15-B-FIN-RECON-001/) | 0.173 / 0.000 / 0.000 | Preliminary difficult signal | Do not make the current task harder. A later version may add split payments, credit notes, one-to-many matches, period cut-off, and a documented FX-source hierarchy. | Human review must first establish that zero scores reflect missing professional work rather than an overly narrow Judge. |
-| [Native Pivot reporting](../tasks/pilot_v1/P15-B-PUBLIC-PIVOT-001/) | Not run | Invalid | Build and read back a genuine PivotCache, PivotTable, filter, SUM measures, refresh behavior, and PivotChart in Microsoft Excel on Windows. Only then test source-row additions and refresh propagation. | Keep the task invalid until every native object is verified. Use a Track B reserve if the native contract cannot be completed. |
+| [Native Pivot reporting](../tasks/pilot_v1/P15-B-PUBLIC-PIVOT-001/) | No valid Agent result in the interrupted group batch | Locally ready on Mac; Windows pending | Keep the native template-update task unchanged, complete Windows Excel compatibility readback, and resume the same frozen three-system batch. Canonicalize Agent workbooks through Excel before the final Judge readback. | Do not count quota, installation, or Excel-session failures as task failures. Start difficulty interpretation only after valid task-system samples exist. |
 | [Heart-disease mortality brief](../tasks/pilot_v1/P15-B-HEALTH-REPORT-001/) | 0.259 / 0.926 / 0.444 | Preliminary difficult signal | Review whether alternative report layouts and evidence-linked prose are scored fairly. A later version may add demographic strata, suppression rules, confidence intervals, and cross-period comparability. | Complete human validity review before adding data volume. |
 
 ### Track C: documents to editable workbooks
@@ -118,7 +129,7 @@ Across these studies, low performance is associated with several professional re
 
 1. **Validate the low-score tasks.** Independent reviewers inspect the instruction, supplied information, acceptable equivalents, and Judge behavior before any claim that low scores reflect Agent capability.
 2. **Revise the clearly easy tasks.** DCF, financial-model repair, pump selection, and invoice receive one professional revision at a time, with a maximum of three. A revised task receives a new version and new model evidence.
-3. **Complete the Pivot contract.** The native task enters the portfolio only after Windows Excel object creation, refresh, and readback are documented.
+3. **Complete the Pivot compatibility evidence.** The native objects are verified on Microsoft Excel for Mac. Windows Excel must open, refresh, recalculate, save, and read back the same object chain before cross-platform validity is claimed.
 4. **Freeze the experiment.** Task, Judge, system version, model identifier, provider, tools, budget, and sample count are fixed before formal sampling.
 5. **Collect formal samples.** A valid task needs at least eight samples per system to compute pass@8; difficult candidates should preferentially receive 16.
 6. **Run held-out CONFIRM siblings.** The same capability must show a similar pattern on independent data or templates.
@@ -142,14 +153,15 @@ The run framework estimates USD 38.79 for 56 valid Codex attempts. The OpenRoute
 ## Claims supported now
 
 - Fifteen primary task candidates and nine reserve designs have been assembled.
-- Fourteen tasks meet the current local answer-and-evaluator contract.
+- All 15 tasks meet the current local answer-and-evaluator contract; the Pivot task also has native-object evidence from Microsoft Excel for Mac.
 - Three target systems have produced real development workbooks.
+- The group-gateway n=8 batch has 41 valid scored attempts and a resumable checkpoint; its incomplete sample is not presented as pass@8.
 - The package, Judge, and result-collection path has been exercised.
 - Construction practices that were exercised in P15 have been recorded for reuse.
 
 ## Claims not supported now
 
-- All 15 tasks are valid.
+- All 15 tasks have completed Windows Excel and professional human validation.
 - The 15 tasks are accepted as hard.
 - Standard per-task pass@8 has been estimated.
 - Windows Excel validation is complete.

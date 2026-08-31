@@ -74,11 +74,11 @@ function Restore-FileAfterFailedPromotion {
 $taskRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
 $contractPath = Join-Path $taskRoot "tests\confirm\contract.json"
 $contract = Get-Content -LiteralPath $contractPath -Raw | ConvertFrom-Json
-if ($contract.status -ne "TASK_INVALID" -or $contract.blocker -ne "PENDING_EXTERNAL_WINDOWS_EXCEL") {
-    throw "Confirm split must remain TASK_INVALID/PENDING_EXTERNAL_WINDOWS_EXCEL until this native build succeeds."
+if ($contract.status -ne "LOCAL_READY" -or $null -ne $contract.blocker) {
+    throw "Confirm split must be LOCAL_READY with no active blocker before the Windows alternate rebuild."
 }
-if ($null -ne $contract.reference_workbook) {
-    throw "Confirm contract must not claim a reference workbook before native Excel creates it."
+if ($contract.reference_workbook -ne "tests/confirm/reference.xlsx") {
+    throw "Confirm contract must name the validated held-out reference workbook."
 }
 
 $expected = $contract.expected_native_objects

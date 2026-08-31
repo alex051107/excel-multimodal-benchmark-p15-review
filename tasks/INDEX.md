@@ -17,7 +17,7 @@
 | [P15-B-SALES-DISCOVERY-001](pilot_v1/P15-B-SALES-DISCOVERY-001/) | Q2 data-version selection | Prior, draft, approved, and test releases | Authoritative-source selection, KPI summary, and coverage proof | LOCAL_READY |
 | [P15-B-OPS-CLEAN-JOIN-001](pilot_v1/P15-B-OPS-CLEAN-JOIN-001/) | Order cleaning and joining | Orders plus product and location masters | Deduplication, normalization, valid joins, exception queue, and totals | LOCAL_READY |
 | [P15-B-FIN-RECON-001](pilot_v1/P15-B-FIN-RECON-001/) | Monthly ledger reconciliation | Ledger, subledger, FX rates, and approved adjustment | Matches, exceptions, variance bridge, and conclusion | LOCAL_READY |
-| [P15-B-PUBLIC-PIVOT-001](pilot_v1/P15-B-PUBLIC-PIVOT-001/) | Native Excel Pivot reporting | Activity-level records | Native PivotTable, filter, SUM measures, refresh, and PivotChart | TASK_INVALID: pending Windows Excel |
+| [P15-B-PUBLIC-PIVOT-001](pilot_v1/P15-B-PUBLIC-PIVOT-001/) | Native Excel Pivot reporting | Native Pivot template plus activity-level records | Updated PivotTable, Q2 filter, SUM measures, refresh, and PivotChart | LOCAL_READY on Mac; Windows compatibility pending |
 | [P15-B-HEALTH-REPORT-001](pilot_v1/P15-B-HEALTH-REPORT-001/) | Heart-disease mortality brief | Two-state time-series data | Metrics, narrative findings, chart, and source checks | LOCAL_READY |
 
 ## Track C: Documents to editable workbooks

@@ -1,0 +1,46 @@
+{
+  "background_excel_workbook": "p15-native-confirm-867ceab2ada2484e89dd8d804be2b7f9.staging.xlsx",
+  "cases": [
+    {
+      "changed_source_cell": "Program_Data!E5",
+      "id": "confirm_participant_refresh",
+      "observed": {
+        "focus_participants": 39.0,
+        "q2_participants": 123.0
+      }
+    },
+    {
+      "changed_source_cell": "Program_Data!F11",
+      "id": "confirm_spend_refresh",
+      "observed": {
+        "q2_spend": 342000.0
+      }
+    }
+  ],
+  "restoration": {
+    "checks": {
+      "baseline_restored": true,
+      "focus_participants_propagated": true,
+      "participant_total_propagated": true,
+      "spend_total_propagated": true
+    },
+    "observed": {
+      "participant_case_focus": 39.0,
+      "participant_case_q2_total": 123.0,
+      "participant_restore": [
+        122.0,
+        341000.0,
+        38.0
+      ],
+      "restored_focus_participants": 38.0,
+      "restored_q2_participants": 122.0,
+      "restored_q2_spend": 341000.0,
+      "spend_case_q2_total": 342000.0
+    }
+  },
+  "screen_control_used": false,
+  "split": "confirm",
+  "status": "PASS",
+  "task_id": "P15-B-PUBLIC-PIVOT-001",
+  "validated_at_utc": "2026-08-31T17:22:41.604260+00:00"
+}

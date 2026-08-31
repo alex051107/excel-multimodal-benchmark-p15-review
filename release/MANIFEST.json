@@ -1,7 +1,7 @@
 {
-  "release": "p15-review-v1.1",
-  "release_date": "2026-08-30",
-  "repository_scope": "private reviewer repository",
+  "release": "p15-review-v1.2",
+  "release_date": "2026-08-31",
+  "repository_scope": "public reviewer repository containing only sanitized release materials",
   "primary_tasks": 15,
   "track_counts": {
     "A": 5,
@@ -9,22 +9,30 @@
     "C": 5
   },
   "reserve_designs": 9,
-  "local_ready_tasks": 14,
-  "task_invalid": [
-    "P15-B-PUBLIC-PIVOT-001"
-  ],
+  "local_ready_tasks": 15,
+  "task_invalid": [],
   "development_attempts": {
     "codex_gpt56sol": 56,
     "claude_opus48": 14,
     "qwen38max": 14,
     "claude_opus5_supplemental": 1
   },
+  "group_gateway_n8_checkpoint": {
+    "planned_trials": 360,
+    "terminal_receipts": 64,
+    "valid_scored_attempts": 41,
+    "invalid_or_cancelled_receipts": 23,
+    "standard_pass_at_8_available": false,
+    "status": "INTERRUPTED_TOKEN_LEVEL_QUOTA"
+  },
   "external_evidence_pending": [
     "Windows Microsoft Excel validation",
-    "native Pivot object construction and readback",
+    "Windows compatibility readback for the Mac-validated native Pivot objects",
+    "completion of the frozen group-gateway task-system sample",
     "held-out Agent CONFIRM runs",
     "standard per-task pass@8",
-    "external human review"
+    "external human review",
+    "group gateway invoice and upstream-provider readback"
   ],
   "accepted_hard_tasks": 0,
   "human_review_receipts": 0,

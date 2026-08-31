@@ -3,8 +3,8 @@ artifacts = ["/app/output/answer.xlsx"]
 
 [task]
 name = "alex051107/p15-b-public-pivot-001"
-version = "3.0.0"
-description = "Create and refresh a genuine native Excel PivotTable and PivotChart for a program review."
+version = "3.2.0"
+description = "Update and refresh a genuine native Excel PivotTable and PivotChart template for a program review."
 keywords = ["excel", "pivot", "chart", "public-program", "pilot-v1"]
 
 [[task.authors]]
@@ -13,13 +13,14 @@ name = "Excel Benchmark Team"
 [metadata]
 task_id = "P15-B-PUBLIC-PIVOT-001"
 track = "B"
-status = "TASK_INVALID"
+status = "LOCAL_READY"
 construction_mode = "EXPERT_AUTHORED_REALISTIC_CASE"
 source_family = "project_authored_public_program_reporting_workspace"
 sector = "Public Administration"
 department = "Program Performance"
 occupation = "Public Program Analyst"
 difficulty_tier = "Very Hard"
+difficulty_evidence = "PENDING_SEPARATE_N8_AGENT_BATCH"
 multimodal = false
 web_search_required = false
 est_minutes = 105

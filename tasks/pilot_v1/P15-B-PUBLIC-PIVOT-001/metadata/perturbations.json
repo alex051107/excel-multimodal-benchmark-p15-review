@@ -4,13 +4,15 @@
     "changed_source_cells": ["Program_Data!E5"],
     "values": [55],
     "expected_outputs_after_native_refresh": {"q2_participants": 137, "north_outreach_participants": 55},
-    "execution_status": "PENDING_EXTERNAL_WINDOWS_EXCEL"
+    "execution_status": "PASS_MICROSOFT_EXCEL_MAC_16.112.1",
+    "receipt": "receipts/input_perturbation_validation.json"
   },
   {
     "id": "Q2_NORTH_OUTREACH_SPEND_PLUS_1000",
     "changed_source_cells": ["Program_Data!F5"],
     "values": [151000],
     "expected_outputs_after_native_refresh": {"q2_spend": 397000},
-    "execution_status": "PENDING_EXTERNAL_WINDOWS_EXCEL"
+    "execution_status": "PASS_MICROSOFT_EXCEL_MAC_16.112.1",
+    "receipt": "receipts/input_perturbation_validation.json"
   }
 ]

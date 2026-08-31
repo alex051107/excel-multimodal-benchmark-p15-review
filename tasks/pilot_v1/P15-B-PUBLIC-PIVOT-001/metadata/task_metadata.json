@@ -12,7 +12,7 @@
     "chart binding",
     "reporting aggregation"
   ],
-  "status": "TASK_INVALID",
+  "status": "LOCAL_READY",
   "task_id": "P15-B-PUBLIC-PIVOT-001",
   "web_search_required": false
 }

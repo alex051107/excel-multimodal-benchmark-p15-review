@@ -1,37 +1,39 @@
 {
-  "candidate": "data/input_files/starting_workbook.xlsx",
-  "candidate_sha256": "55f158b58195e6017a49551faf58791c0604f97076eef0ca71b6684f70bce6dd",
-  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
-  "criterion_scores": {
-    "P001": 1.0,
-    "R001": 1.0,
-    "R002": 0.0,
-    "R003": 0.0,
-    "R004": 0.0,
-    "R005": 0.0,
-    "R006": 0.0,
-    "R007": 0.0,
-    "R008": 0.0,
-    "R009": 0.0
+  "candidate": {
+    "candidate": "tests/confirm/reference.xlsx",
+    "candidate_sha256": "276100a5f2f0187622ce714f81324c70a9ff36f48ed136d97d07ca8784df1623",
+    "criterion_scores": {
+      "P001": 0.0,
+      "R001": 1.0,
+      "R002": 1.0,
+      "R003": 1.0,
+      "R004": 1.0,
+      "R005": 1.0,
+      "R006": 1.0,
+      "R007": 1.0,
+      "R008": 1.0,
+      "R009": 1.0
+    },
+    "failure_codes": [],
+    "pass": true,
+    "repetitions": 5,
+    "score": 1.0,
+    "score_stddev": 0.0,
+    "signature_sha256": "6cbb308001d759ca596a95625a856705b8fd9cc291b9e61c31e21f2c8857b01a",
+    "stable": true,
+    "status": "NATIVE_OBJECT_CHECKED"
   },
-  "failure_codes": [
-    "PENDING_EXTERNAL_WINDOWS_EXCEL:MISSING_PIVOT_CACHE",
-    "SOURCE_TABLE_OR_RECORD_MISMATCH"
-  ],
-  "input_files_sha256": {
-    "PENDING_NATIVE_PIVOT.md": "d86ce9d4d78b3ad17ea408f17839c003ac7951c2019cd51b13feb506f74a0074",
-    "context_note.md": "597e55c3ac7b682842bb3947fa5b621c45f8067c702cf56b4a4c63b5cef7230d",
-    "program_events.csv": "580eed6f4e8ab18a4dd7b14b0e81dafb5bd7b1523df2a58e090a923849b00156",
-    "reporting_specification.md": "280bbfc0b4cfbe8c1f41d501f711ef5f330dd46e1e6954c622b7205327b1aca7",
-    "starting_workbook.xlsx": "5707fbb6f3aca060bab776fef33ba7e52e204c1e8e33e2c82223433d36f69ebb"
+  "canonical_excel": {
+    "application": "Microsoft Excel for Mac",
+    "mode": "background object model; no screen control",
+    "receipt": "receipts/macos_native_confirm.json",
+    "version": "16.112.1"
   },
-  "normalized_score": 0.0,
-  "pass": false,
-  "repetitions": 5,
-  "score_stddev": 0.0,
-  "signature_sha256": "4fd0df1accce35490ad198b905f779a95e38c2389a7e37ffe9ffd16df5e540d5",
+  "held_out_agent_run": "PENDING_SEPARATE_N8_BATCH",
+  "oracle": "tests/confirm/oracle_recompute.py",
+  "schema_version": "2.0",
   "split": "confirm",
-  "stable": true,
-  "status": "TASK_INVALID",
-  "task_id": "P15-B-PUBLIC-PIVOT-001"
+  "status": "LOCAL_READY",
+  "task_id": "P15-B-PUBLIC-PIVOT-001",
+  "validated_at_utc": "2026-08-31T18:37:31.881538+00:00"
 }

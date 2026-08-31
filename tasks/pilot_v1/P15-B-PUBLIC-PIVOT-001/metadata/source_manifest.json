@@ -2,10 +2,10 @@
   "asset_boundary": "Task-local input with construction mode stated explicitly; no observed company workflow is claimed.",
   "construction_mode": "EXPERT_AUTHORED_REALISTIC_CASE",
   "local_input_hashes": {
-    "context_note.md": "fc45bf476b76676bef586461904e1b140384f3d8f8973ec72af42ff294cf3bf4",
+    "context_note.md": "65868189cc59fb2a469faa9baeb659ca4b56c13cb57e054c676b6583125bdec2",
     "program_events.csv": "b9838dbb83e97f9c4172228a1eaf68bd488fcb8d822c4d98e0637a9cbf89836c",
-    "reporting_specification.md": "44add3ac494b08840010bef5b532e078f2e509b32b462f2543750765732515ab",
-    "starting_workbook.xlsx": "55f158b58195e6017a49551faf58791c0604f97076eef0ca71b6684f70bce6dd"
+    "reporting_specification.md": "53a239cb689aa5b296801fd7c4c17cd87fa3a5d1b686f074e7ae112306139686",
+    "starting_workbook.xlsx": "35a94499c75f89e476bd0a39dc5694525db84747a8e6648a08041fa8a8d9c3e4"
   },
   "semantic_version": "p15_v3",
   "source_assets": [
@@ -16,7 +16,7 @@
     }
   ],
   "source_family": "project_authored_public_program_reporting_workspace",
-  "task_status": "TASK_INVALID",
-  "validation_blocker": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "task_status": "LOCAL_READY",
+  "validation_blocker": null,
   "task_id": "P15-B-PUBLIC-PIVOT-001"
 }

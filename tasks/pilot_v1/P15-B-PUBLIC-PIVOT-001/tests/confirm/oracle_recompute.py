@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent held-out report specification for the future native-Pivot build."""
+"""Independent held-out report specification for the native-Pivot template update."""
 import csv
 import json
 from pathlib import Path

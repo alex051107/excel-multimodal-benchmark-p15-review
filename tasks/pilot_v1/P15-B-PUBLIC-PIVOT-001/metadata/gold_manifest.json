@@ -3,24 +3,30 @@
     "The professional request is benchmark-authored.",
     "Reference output is checked against a task-specific independent oracle."
   ],
-  "native_pivot_gold_pending": true,
+  "native_pivot_gold_pending": false,
   "oracle_implementation": "metadata/oracle_recompute.py",
   "oracle_reads_reference_workbook": false,
-  "reference_artifact_status": "INVALID_PLACEHOLDER_NOT_GOLD",
-  "reference_sha256": "90f9b52a14da941411c37011cde4ac4f4b2df6e50650f0859350178e8918d6df",
+  "reference_artifact_status": "VALID_NATIVE_EXCEL_REFERENCE",
+  "reference_sha256": "42c8ca3cf555cbe4314630ce1622b8a014bd289497e81dcb70933cc094e3498e",
   "reference_workbook": "solution/reference.xlsx",
   "semantic_version": "p15_v3",
   "source_inputs": {
-    "context_note.md": "fc45bf476b76676bef586461904e1b140384f3d8f8973ec72af42ff294cf3bf4",
+    "context_note.md": "65868189cc59fb2a469faa9baeb659ca4b56c13cb57e054c676b6583125bdec2",
     "program_events.csv": "b9838dbb83e97f9c4172228a1eaf68bd488fcb8d822c4d98e0637a9cbf89836c",
-    "reporting_specification.md": "44add3ac494b08840010bef5b532e078f2e509b32b462f2543750765732515ab",
-    "starting_workbook.xlsx": "55f158b58195e6017a49551faf58791c0604f97076eef0ca71b6684f70bce6dd"
+    "reporting_specification.md": "53a239cb689aa5b296801fd7c4c17cd87fa3a5d1b686f074e7ae112306139686",
+    "starting_workbook.xlsx": "35a94499c75f89e476bd0a39dc5694525db84747a8e6648a08041fa8a8d9c3e4"
   },
   "task_id": "P15-B-PUBLIC-PIVOT-001",
+  "canonical_excel_validation": {
+    "application": "Microsoft Excel for Mac",
+    "version": "16.112.1",
+    "receipt": "receipts/macos_native_dev.json",
+    "screen_control_used": false
+  },
   "unsupported_claims": [
-    "The current solution/reference.xlsx is an invalid placeholder, not native Pivot gold.",
-    "No Windows Excel validation or native Pivot package validity is claimed.",
-    "No blind-human or Agent difficulty evidence is claimed."
+    "No Windows Excel validation is claimed.",
+    "No blind-human acceptance is claimed.",
+    "Agent difficulty remains pending the separate n=8 batch."
   ],
-  "validation_blocker": "PENDING_EXTERNAL_WINDOWS_EXCEL"
+  "validation_blocker": null
 }

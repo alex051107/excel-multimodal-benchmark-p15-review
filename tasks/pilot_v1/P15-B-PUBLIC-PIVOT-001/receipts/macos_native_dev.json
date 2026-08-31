@@ -1,0 +1,52 @@
+{
+  "construction": "native seed plus background Microsoft Excel refresh/recalculate/save and independent OOXML Judge",
+  "contract_status_before_promotion": "LOCAL_READY",
+  "evidence_note": "Repository paths normalized after byte-identical promotion from the Excel-validated staging workbook.",
+  "expected": {
+    "focus_participants": 50.0,
+    "q2_participants": 132.0,
+    "q2_spend": 396000.0
+  },
+  "generated_at_utc": "2026-08-31T17:09:40.476443+00:00",
+  "input_workbook": "data/input_files/starting_workbook.xlsx",
+  "judge": {
+    "blocker": null,
+    "candidate": "solution/reference.xlsx",
+    "criterion_scores": {
+      "P001": 0.0,
+      "R001": 1.0,
+      "R002": 1.0,
+      "R003": 1.0,
+      "R004": 1.0,
+      "R005": 1.0,
+      "R006": 1.0,
+      "R007": 1.0,
+      "R008": 1.0,
+      "R009": 1.0
+    },
+    "failure_codes": [],
+    "normalized_score": 1.0,
+    "pass": true,
+    "split": "dev",
+    "status": "NATIVE_OBJECT_CHECKED",
+    "stderr": [],
+    "task_id": "P15-B-PUBLIC-PIVOT-001"
+  },
+  "output_sha256": "42c8ca3cf555cbe4314630ce1622b8a014bd289497e81dcb70933cc094e3498e",
+  "output_workbook": "solution/reference.xlsx",
+  "readback": {
+    "data_field_count": 2,
+    "excel_version": "16.112.1",
+    "focus_participants": 50.0,
+    "pivot_cache_count": 1,
+    "pivot_chart_count": 1,
+    "pivot_table_count": 1,
+    "q2_participants": 132.0,
+    "q2_spend": 396000.0,
+    "quarter_filter": "2024Q2"
+  },
+  "screen_control_used": false,
+  "split": "dev",
+  "status": "MACOS_EXCEL_NATIVE_OBJECTS_VALIDATED",
+  "task_id": "P15-B-PUBLIC-PIVOT-001"
+}

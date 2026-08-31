@@ -1,29 +1,240 @@
 {
-  "agent_screen": "NOT_STARTED",
-  "blocker": "PENDING_EXTERNAL_WINDOWS_EXCEL",
-  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "agent_screen": "PENDING_SEPARATE_N8_BATCH",
+  "canonical_excel": {
+    "application": "Microsoft Excel for Mac",
+    "mode": "background object model; no screen control",
+    "receipt": "receipts/macos_native_dev.json",
+    "version": "16.112.1"
+  },
+  "equivalent": {
+    "candidate": "fixtures/equivalent/candidate_equivalent.xlsx",
+    "candidate_sha256": "a95d410bdfaf3bd6377eb490637c86f677c29693c3c38bd4694b7d5359c40fed",
+    "criterion_scores": {
+      "P001": 0.0,
+      "R001": 1.0,
+      "R002": 1.0,
+      "R003": 1.0,
+      "R004": 1.0,
+      "R005": 1.0,
+      "R006": 1.0,
+      "R007": 1.0,
+      "R008": 1.0,
+      "R009": 1.0
+    },
+    "failure_codes": [],
+    "pass": true,
+    "repetitions": 5,
+    "score": 1.0,
+    "score_stddev": 0.0,
+    "signature_sha256": "69a62aedf637421f50d25801be713b53884ce2f803e7a15ac0e2a1d2aa7dc790",
+    "stable": true,
+    "status": "NATIVE_OBJECT_CHECKED"
+  },
   "evaluator_repetitions": 5,
+  "gates": {
+    "all_mutants_lt_0_70": true,
+    "all_repeated_judgments_stable": true,
+    "confirm_reference_eq_1": true,
+    "equivalent_ge_0_95": true,
+    "malformed_eq_0": true,
+    "noop_lt_0_30": true,
+    "reference_eq_1": true
+  },
   "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
   "independent_oracle": {
     "north_outreach": 50,
     "q2_participants": 132,
     "q2_spend": 396000,
-    "source_range": "Program_Data!A3:F11"
+    "reads_reference_workbook": false,
+    "source": "metadata/oracle_recompute.py"
   },
-  "native_reference": {
-    "candidate_sha256": "90f9b52a14da941411c37011cde4ac4f4b2df6e50650f0859350178e8918d6df",
+  "judge_type": "deterministic OOXML and cached-value checks",
+  "malformed": {
+    "candidate": "fixtures/malformed/candidate_malformed.xlsx",
+    "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+    "criterion_scores": {
+      "P001": 0.0,
+      "R001": 0.0,
+      "R002": 0.0,
+      "R003": 0.0,
+      "R004": 0.0,
+      "R005": 0.0,
+      "R006": 0.0,
+      "R007": 0.0,
+      "R008": 0.0,
+      "R009": 0.0
+    },
     "failure_codes": [
-      "PENDING_EXTERNAL_WINDOWS_EXCEL:MISSING_PIVOT_CACHE",
-      "SOURCE_TABLE_OR_RECORD_MISMATCH"
+      "MALFORMED_XLSX:BadZipFile"
     ],
+    "pass": false,
     "repetitions": 5,
     "score": 0.0,
     "score_stddev": 0.0,
-    "signature_sha256": "4fd0df1accce35490ad198b905f779a95e38c2389a7e37ffe9ffd16df5e540d5",
-    "stable": true
+    "signature_sha256": "4e6ceb470d65199ab479e65b1d68afdcf54517bc6c4ab16ed33c6788a1428ff4",
+    "stable": true,
+    "status": "TASK_INVALID"
   },
-  "reason": "A genuine native PivotCache/PivotTable/PivotChart must be authored and validated in Windows Excel before this candidate can be LOCAL_READY.",
-  "status": "TASK_INVALID",
+  "noop": {
+    "candidate": "fixtures/noop/candidate_noop.xlsx",
+    "candidate_sha256": "35a94499c75f89e476bd0a39dc5694525db84747a8e6648a08041fa8a8d9c3e4",
+    "criterion_scores": {
+      "P001": 1.0,
+      "R001": 1.0,
+      "R002": 0.0,
+      "R003": 1.0,
+      "R004": 1.0,
+      "R005": 1.0,
+      "R006": 1.0,
+      "R007": 1.0,
+      "R008": 0.0,
+      "R009": 1.0
+    },
+    "failure_codes": [
+      "GETPIVOTDATA_OR_EXCEL_CACHED_ORACLE_MISMATCH",
+      "SOURCE_TABLE_OR_RECORD_MISMATCH"
+    ],
+    "pass": false,
+    "repetitions": 5,
+    "score": 0.25,
+    "score_stddev": 0.0,
+    "signature_sha256": "b3c719b497b94ae84a75fcb2282385d0a9ab818c083524fdfa11104045bb19ab",
+    "stable": true,
+    "status": "TASK_INVALID"
+  },
+  "reference": {
+    "candidate": "solution/reference.xlsx",
+    "candidate_sha256": "42c8ca3cf555cbe4314630ce1622b8a014bd289497e81dcb70933cc094e3498e",
+    "criterion_scores": {
+      "P001": 0.0,
+      "R001": 1.0,
+      "R002": 1.0,
+      "R003": 1.0,
+      "R004": 1.0,
+      "R005": 1.0,
+      "R006": 1.0,
+      "R007": 1.0,
+      "R008": 1.0,
+      "R009": 1.0
+    },
+    "failure_codes": [],
+    "pass": true,
+    "repetitions": 5,
+    "score": 1.0,
+    "score_stddev": 0.0,
+    "signature_sha256": "69a62aedf637421f50d25801be713b53884ce2f803e7a15ac0e2a1d2aa7dc790",
+    "stable": true,
+    "status": "NATIVE_OBJECT_CHECKED"
+  },
+  "schema_version": "2.0",
+  "semantic_mutants": {
+    "fake_pivot": {
+      "candidate": "fixtures/mutants/fake_pivot.xlsx",
+      "candidate_sha256": "1bed27d62502e20cd81202b528f17e098b23c46a35eac5f28a7989f2013d9a39",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "MISSING_NATIVE_PIVOT_CACHE",
+        "SOURCE_TABLE_OR_RECORD_MISMATCH"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "6e084f8b68b2147b2f0800effc2013de2cd0dcc10a4e8db09068a017e44aa11c",
+      "stable": true,
+      "status": "TASK_INVALID"
+    },
+    "stale_source_range": {
+      "candidate": "fixtures/mutants/stale_source_range.xlsx",
+      "candidate_sha256": "3a704562e7e04def7f0e687f0cda0460a2b579eb744714061b5de01b1bddfa7b",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [
+        "SOURCE_TABLE_OR_RECORD_MISMATCH"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.375,
+      "score_stddev": 0.0,
+      "signature_sha256": "1c65324e1df6ba701f93e7c0ed08a6c792c852b605f5f5ef5476e34e28aea59f",
+      "stable": true,
+      "status": "TASK_INVALID"
+    },
+    "wrong_aggregation": {
+      "candidate": "fixtures/mutants/wrong_aggregation.xlsx",
+      "candidate_sha256": "29a29ad1b518a8d6edca684cd002e30d9771564ea0eb3fca91c4658753e53fb2",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [
+        "SUM_MEASURE_FIELD_OR_FUNCTION_MISMATCH"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.375,
+      "score_stddev": 0.0,
+      "signature_sha256": "40d08c1422c8190678974854e9a3d47ba0c3df06f2ea100ac074419fb40df738",
+      "stable": true,
+      "status": "TASK_INVALID"
+    },
+    "wrong_chart_binding": {
+      "candidate": "fixtures/mutants/wrong_chart_binding.xlsx",
+      "candidate_sha256": "2dc6ac5e1d13deca87fca59e08c7a0463a876a3ed9d3cc92a2f797dbe1ea1d97",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "PIVOTCHART_BINDING_OR_CLUSTERED_COLUMN_MISSING"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.375,
+      "score_stddev": 0.0,
+      "signature_sha256": "99da9c17b1eedd379aa75603c72c8a3c76d853724aa2ff705d0500b25092b4af",
+      "stable": true,
+      "status": "TASK_INVALID"
+    }
+  },
+  "status": "LOCAL_READY",
   "task_id": "P15-B-PUBLIC-PIVOT-001",
-  "validator": "scripts/run_pilot_local_checks.py"
+  "validated_at_utc": "2026-08-31T18:37:31.881538+00:00"
 }

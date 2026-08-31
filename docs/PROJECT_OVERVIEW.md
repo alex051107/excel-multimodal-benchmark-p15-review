@@ -16,9 +16,10 @@ P15 is the first 15-task pilot used to test both this research question and the 
 
 - 15 primary candidates: five per track.
 - 9 design-only reserves: three per track.
-- 14 tasks pass the current local answer-and-evaluator checks.
-- The native Pivot task is invalid pending Windows Excel construction and readback.
+- All 15 tasks pass the current local answer-and-evaluator checks.
+- The native Pivot task has been created and read back in Microsoft Excel for Mac; Windows Excel compatibility remains pending.
 - Three target systems have produced real development answers.
+- A group-gateway n=8 batch has 41 valid scored attempts and is preserved for resumption after the token-level quota is restored.
 - Standard pass@8, Windows Excel validation, and external human review are not complete.
 
 The per-task status is recorded in [`results/TASK_STATUS.csv`](../results/TASK_STATUS.csv). The task descriptions and direct package links are in [`tasks/INDEX.md`](../tasks/INDEX.md).
@@ -41,7 +42,7 @@ The reference workbook demonstrates one complete delivery. The oracle establishe
 
 ## Development result
 
-Codex has four attempts per valid task; Claude and Qwen have one attempt per valid task. The sample sizes are sufficient to identify obvious easy cases, evaluator problems, and cross-system failure signals, but not to estimate stable pass@8 or rank systems.
+The earlier comparison has four Codex attempts per task and one Claude and Qwen attempt per task. A separate group-gateway batch uses GPT-5.6 sol, Opus 5, and Qwen3.8-max, but stopped before any task-system pair reached eight valid samples. These results can identify obvious easy cases, evaluator problems, and cross-system failure signals. They do not support stable pass@8 or a system ranking.
 
 Three tasks currently appear too easy: DCF, financial-model repair, and pump selection. Several Track B and Track C tasks show low cross-system scores. Low scores require human review before they are interpreted as professional difficulty, because an ambiguous instruction or a false-negative Judge can produce the same pattern.
 

@@ -27,8 +27,8 @@ CRITERIA = [
     {"id": "R006", "description": "Data fields are native SUM measures over Participants index 4 and Spend index 5.", "weight": 4, "type": "positive", "dimension": "pivot_measures", "method": "ooxml", "method_params": {}},
     {"id": "R007", "description": "The PivotCache is refreshable and configured to refresh when the workbook opens.", "weight": 3, "type": "positive", "dimension": "refresh_semantics", "method": "ooxml", "method_params": {}},
     {"id": "R008", "description": "GETPIVOTDATA-linked KPI cells have Excel-calculated cached values 132 participants, $396,000 spend, and 50 North Outreach participants.", "weight": 4, "type": "positive", "dimension": "aggregation_correctness", "method": "ooxml", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
-    {"id": "R009", "description": "A chart part contains a pivotSource relationship naming ProgramDeliveryPivot; a regular range chart does not qualify.", "weight": 4, "type": "positive", "dimension": "pivot_chart_binding", "method": "ooxml", "method_params": {}},
-    {"id": "P001", "description": "Penalty for any fake/formula Pivot substitute, stale source, wrong field/filter/measure, absent refresh, wrong KPI, or non-Pivot chart.", "weight": -8, "type": "penalty", "dimension": "integrity", "method": "ooxml", "method_params": {}},
+    {"id": "R009", "description": "A clustered-column chart part contains a pivotSource relationship naming ProgramDeliveryPivot; a regular range chart does not qualify.", "weight": 4, "type": "positive", "dimension": "pivot_chart_binding", "method": "ooxml", "method_params": {}},
+    {"id": "P001", "description": "Critical integrity penalty for any fake/formula Pivot substitute, stale source, wrong field/filter/measure, absent refresh, wrong KPI, or non-Pivot chart.", "weight": -16, "type": "penalty", "dimension": "integrity", "method": "ooxml", "method_params": {}},
 ]
 
 TASK = {
@@ -189,7 +189,17 @@ def pivot_chart_ok(archive):
         if pivot_source is None:
             continue
         pivot_name = pivot_source.find("./c:name", NS)
-        if pivot_name is not None and "ProgramDeliveryPivot" in (pivot_name.text or ""):
+        bar_chart = root.find("./c:chart/c:plotArea/c:barChart", NS)
+        bar_direction = bar_chart.find("./c:barDir", NS) if bar_chart is not None else None
+        grouping = bar_chart.find("./c:grouping", NS) if bar_chart is not None else None
+        if (
+            pivot_name is not None
+            and "ProgramDeliveryPivot" in (pivot_name.text or "")
+            and bar_direction is not None
+            and bar_direction.get("val") == "col"
+            and grouping is not None
+            and grouping.get("val") == "clustered"
+        ):
             return True
     return False
 
@@ -250,7 +260,7 @@ def evaluate(candidate, split="dev"):
             cache_ok = cache is not None and cache["field_names"] == expected_fields
             criteria["R003"] = float(cache_ok)
             if cache is None:
-                failures.append("PENDING_EXTERNAL_WINDOWS_EXCEL:MISSING_PIVOT_CACHE")
+                failures.append("MISSING_NATIVE_PIVOT_CACHE")
                 criteria["P001"] = 1.0
                 return criteria, sorted(set(failures)), "TASK_INVALID"
             if not cache_ok:
@@ -258,7 +268,7 @@ def evaluate(candidate, split="dev"):
 
             table = pivot_table_details(archive, cache)
             if table is None:
-                failures.append("PENDING_EXTERNAL_WINDOWS_EXCEL:MISSING_PROGRAM_DELIVERY_PIVOT")
+                failures.append("MISSING_NATIVE_PROGRAM_DELIVERY_PIVOT")
                 criteria["P001"] = 1.0
                 return criteria, sorted(set(failures)), "TASK_INVALID"
 
@@ -292,7 +302,7 @@ def evaluate(candidate, split="dev"):
             chart_ok = pivot_chart_ok(archive)
             criteria["R009"] = float(chart_ok)
             if not chart_ok:
-                failures.append("PIVOTCHART_PIVOTSOURCE_RELATIONSHIP_MISSING")
+                failures.append("PIVOTCHART_BINDING_OR_CLUSTERED_COLUMN_MISSING")
 
             criteria["P001"] = 0.0 if all(criteria.get(criterion, 0.0) == 1.0 for criterion in TASK["critical_criteria"]) else 1.0
             status = "NATIVE_OBJECT_CHECKED" if criteria["P001"] == 0.0 else "TASK_INVALID"
@@ -325,7 +335,7 @@ def main():
         "split": split,
         "candidate": str(candidate),
         "status": status,
-        "blocker": None if status == "NATIVE_OBJECT_CHECKED" else "PENDING_EXTERNAL_WINDOWS_EXCEL",
+        "blocker": None if status == "NATIVE_OBJECT_CHECKED" else "NATIVE_OBJECT_VALIDATION_FAILED",
         "normalized_score": total,
         "pass": total >= TASK["pass_threshold"] and status == "NATIVE_OBJECT_CHECKED",
         "criterion_scores": criteria,

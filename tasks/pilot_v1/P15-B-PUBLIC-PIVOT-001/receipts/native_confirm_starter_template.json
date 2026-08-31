@@ -1,0 +1,40 @@
+{
+  "construction": "plausible prior-extract values in the previously Excel-validated native Pivot seed; this invocation did not reopen the starter in Excel",
+  "excel_starter_readback": "PENDING_BACKGROUND_EXCEL_SESSION_RECOVERY",
+  "generated_at_utc": "2026-08-31T18:33:16.715772+00:00",
+  "noop_judge": {
+    "blocker": "NATIVE_OBJECT_VALIDATION_FAILED",
+    "candidate": "/var/folders/q4/cs4nrv353sz1v8m142lf0b700000gn/T/p15-native-starter-3359fe4db538478d84eb4acfa5b76bb3.xlsx",
+    "criterion_scores": {
+      "P001": 1.0,
+      "R001": 1.0,
+      "R002": 0.0,
+      "R003": 1.0,
+      "R004": 1.0,
+      "R005": 1.0,
+      "R006": 1.0,
+      "R007": 1.0,
+      "R008": 0.0,
+      "R009": 1.0
+    },
+    "failure_codes": [
+      "GETPIVOTDATA_OR_EXCEL_CACHED_ORACLE_MISMATCH",
+      "SOURCE_TABLE_OR_RECORD_MISMATCH"
+    ],
+    "normalized_score": 0.25,
+    "pass": false,
+    "split": "confirm",
+    "status": "TASK_INVALID",
+    "stderr": [],
+    "task_id": "P15-B-PUBLIC-PIVOT-001"
+  },
+  "output_sha256": "38ebf4466be3ebbdc71295f9b1c8d036e2bdfd62cf91bf9c2803371a9a207a0e",
+  "outputs": [
+    "tests/confirm/input_files/starting_workbook.xlsx"
+  ],
+  "readback": null,
+  "screen_control_used": false,
+  "split": "confirm",
+  "status": "NATIVE_OOXML_STALE_TEMPLATE_VALIDATED",
+  "task_id": "P15-B-PUBLIC-PIVOT-001"
+}

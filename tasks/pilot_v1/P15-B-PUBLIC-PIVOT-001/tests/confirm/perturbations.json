@@ -1,6 +1,7 @@
 {
   "split": "confirm",
-  "execution_status": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "execution_status": "PASS_MICROSOFT_EXCEL_MAC_16.112.1",
+  "receipt": "receipts/confirm_input_perturbation_validation.json",
   "cases": [
     {"id": "confirm_participant_refresh", "source_record": "HX-02", "field": "participants", "baseline": 38, "mutated": 39, "expected_changes": {"q2_participants": 1, "focus_participants": 1}},
     {"id": "confirm_spend_refresh", "source_record": "HX-08", "field": "spend", "baseline": 57500, "mutated": 58500, "expected_changes": {"q2_spend": 1000}}

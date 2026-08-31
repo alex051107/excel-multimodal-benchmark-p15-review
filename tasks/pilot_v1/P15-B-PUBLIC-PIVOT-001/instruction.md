@@ -1,5 +1,5 @@
 # Q2 program delivery PivotTable
 
-The program-performance director needs a Q2 pivoted view of activity volume and spend. Build a genuine Excel PivotTable from the supplied detailed event data: Region in rows, Program in columns, Quarter filtered to 2024Q2, and sum measures for Participants and Spend. Add a PivotChart for the review meeting and link the KPI cells to the Pivot output.
+The program-performance director needs the prior-cycle reporting template updated with the corrected Q2 event extract. Use the supplied native Excel template and detailed event data. Replace the stale source records, preserve and refresh the genuine PivotTable, keep Region in rows and Program in columns, filter Quarter to 2024Q2, and use sum measures for Participants and Spend. Preserve the clustered-column PivotChart and the KPI cells linked to the Pivot output.
 
-Save `/app/output/answer.xlsx`. Formula summaries are not a substitute for a native PivotTable.
+Save `/app/output/answer.xlsx`. The delivered workbook will be opened and recalculated in Microsoft Excel before scoring. A formula summary or regular range chart is not a substitute for the native PivotTable and PivotChart already present in the template.

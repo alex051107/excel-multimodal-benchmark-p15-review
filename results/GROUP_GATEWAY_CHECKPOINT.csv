@@ -1,0 +1,7 @@
+batch,system,planned_trials,terminal_receipts,valid_attempts,invalid_or_cancelled,passes,mean_score,tasks_with_valid_result,total_tasks,pass_at_8_status,valid_attempt_cost_usd,invalid_attempt_cost_usd
+non_pivot_14_tasks,codex_gpt56sol,112,19,12,7,6,0.646074,12,14,N_LT_8_FOR_EVERY_TASK_SYSTEM,16.999487,0.763207
+non_pivot_14_tasks,claude_opus5,112,19,15,4,2,0.201379,14,14,N_LT_8_FOR_EVERY_TASK_SYSTEM,15.249819,
+non_pivot_14_tasks,qwen38max,112,18,14,4,5,0.547954,14,14,N_LT_8_FOR_EVERY_TASK_SYSTEM,,
+pivot_task,codex_gpt56sol,8,3,0,3,0,,0,1,NO_VALID_ATTEMPT,,0.402355
+pivot_task,claude_opus5,8,3,0,3,0,,0,1,NO_VALID_ATTEMPT,,
+pivot_task,qwen38max,8,2,0,2,0,,0,1,NO_VALID_ATTEMPT,,

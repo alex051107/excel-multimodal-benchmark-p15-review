@@ -1,69 +1,26 @@
 {
-  "claim_boundary": "Harbor smoke proves package and deterministic Judge execution only; it does not measure target-Agent difficulty.",
   "difficulty_evidence": false,
-  "evidence_scope": "FINAL_JUDGE_PACKAGE_AND_EXECUTION_SMOKE_ONLY",
-  "expected_gates": {
-    "malformed": 0.0,
-    "nop_max_exclusive": 0.3,
-    "oracle": 0.0
-  },
-  "latest_judge_smoke_complete": true,
-  "observed": {
+  "jobs": {
     "malformed": {
-      "exception": null,
-      "finished_at": "2026-08-30T15:45:41.688814Z",
-      "job_name": "p15_smoke_all_malformed_final_judges_v4",
-      "judge_failure_codes": [
-        "MALFORMED_XLSX:BadZipFile"
-      ],
-      "judge_pass": false,
-      "judge_result_sha256": "0af7a906b557de655a11374f102805f8074577cda1223889e5151c8dd4c113da",
-      "judge_status": "TASK_INVALID",
-      "judge_stderr": [],
-      "reward": 0.0,
-      "task_checksum": "9fb6ccbef665700e603360bcc6a059c81f8510c910a0dbfa5f30d5a9f2995c91",
-      "trial_id": "3cf16b74-3b85-4f22-8030-667d5b261cbc",
-      "trial_name": "P15-B-PUBLIC-PIVOT-001__pbRgHsd",
-      "verifier_environment_mode": "separate"
+      "completed": 1,
+      "errors": 0,
+      "job_name": "p15_pivot_native_malformed_smoke_51f8c577",
+      "score": 0.0
     },
     "nop": {
-      "exception": null,
-      "finished_at": "2026-08-30T15:44:03.050051Z",
-      "job_name": "p15_smoke_all_nop_final_judges_v4",
-      "judge_failure_codes": [
-        "OUTPUT_MISSING"
-      ],
-      "judge_pass": false,
-      "judge_result_sha256": "70c1e20ca1fa5c92edd62fd65cab489ebeae177435306ef4744cb6b901cd7396",
-      "judge_status": "TASK_INVALID",
-      "judge_stderr": [],
-      "reward": 0.0,
-      "task_checksum": "8d6270ae68efc551a02e42b018bb6a71b37d2d4d6e41472e35544a13a7a8a652",
-      "trial_id": "1644d086-cc52-4e2a-b6ae-a44e9bed5db7",
-      "trial_name": "P15-B-PUBLIC-PIVOT-001__QyLqVWy",
-      "verifier_environment_mode": "separate"
+      "completed": 1,
+      "errors": 0,
+      "job_name": "p15_pivot_native_nop_smoke_51f8c577",
+      "score": 0.0
     },
     "oracle": {
-      "exception": null,
-      "finished_at": "2026-08-30T15:42:46.722317Z",
-      "job_name": "p15_smoke_all_oracle_final_judges_v4",
-      "judge_failure_codes": [
-        "PENDING_EXTERNAL_WINDOWS_EXCEL:MISSING_PIVOT_CACHE",
-        "SOURCE_TABLE_OR_RECORD_MISMATCH"
-      ],
-      "judge_pass": false,
-      "judge_result_sha256": "4fda815e18dbcfd8b4a86dd8fb3b1e8cfd32c1ad16c9c1e3f0431105254f9ec4",
-      "judge_status": "TASK_INVALID",
-      "judge_stderr": [],
-      "reward": 0.0,
-      "task_checksum": "8d6270ae68efc551a02e42b018bb6a71b37d2d4d6e41472e35544a13a7a8a652",
-      "trial_id": "8069ffc1-3239-486c-8f8e-0914a81dce82",
-      "trial_name": "P15-B-PUBLIC-PIVOT-001__Fv84V7c",
-      "verifier_environment_mode": "separate"
+      "completed": 1,
+      "errors": 0,
+      "job_name": "p15_pivot_native_oracle_smoke_51f8c577",
+      "score": 1.0
     }
   },
-  "pivot_blocker": "PENDING_EXTERNAL_WINDOWS_EXCEL_NATIVE_PIVOT",
-  "schema_version": "1.0",
-  "task_id": "P15-B-PUBLIC-PIVOT-001",
-  "task_status_at_smoke": "TASK_INVALID"
+  "scope": "Harbor packaging and Judge execution only",
+  "snapshot_commit": "51f8c577abe88a8f0409fcd2c21e6778939c9462",
+  "task_id": "P15-B-PUBLIC-PIVOT-001"
 }
