@@ -143,12 +143,12 @@ The next review should resolve the following decisions:
 - whether the benchmark-authored instructions provide a credible professional scenario and sufficient information;
 - whether the six low-score tasks fail for substantive capability reasons or because the task or Judge needs repair;
 - whether each proposed revision adds real professional dependency rather than artificial friction;
-- whether the formal Claude contract should retain Opus 4.8 or move to Opus 5 before additional paid sampling;
+- whether the group gateway can keep the Opus 5 route, upstream provider, and token budget fixed before the interrupted batch resumes;
 - which task families are strong enough to expand into independent DEV and CONFIRM instances.
 
 ## Cost record
 
-The run framework estimates USD 38.79 for 56 valid Codex attempts. The OpenRouter account-usage increase for 29 paid runs is USD 15.81. These are separate accounting records and are not summed without invoice-level deduplication evidence.
+The run framework estimates USD 38.79 for 56 valid Codex attempts. The OpenRouter account-usage increase for 29 paid runs is USD 15.81. Harbor reports USD 33.41 across the terminal group-gateway receipts, but this partial figure excludes Qwen cost and has no matching gateway invoice readback. These accounting records are reported separately and are not summed without invoice-level deduplication evidence.
 
 ## Claims supported now
 

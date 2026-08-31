@@ -53,7 +53,7 @@ Three tasks currently appear too easy: DCF, financial-model repair, and pump sel
 3. Review of the Golden/Oracle/Rubric/Judge boundaries.
 4. Selection of low-score tasks for human review before additional samples are purchased.
 5. Selection of construction methods for reuse in the next batch.
-6. Formal Claude contract choice: Opus 4.8 or Opus 5.
+6. Confirmation that the group gateway can keep the Opus 5 route, upstream provider, and token budget fixed for the resumed batch.
 
 ## Where to inspect the evidence
 
