@@ -1,6 +1,6 @@
 # P15 Excel Agent Benchmark: Review Release
 
-This repository is the fixed technical supplement to the project Feishu page. Feishu carries the project narrative, weekly updates, open decisions, and next steps. This repository contains the reviewable task packages, scoring logic, model-run summaries, construction guidance, and release evidence for the first 15-task pilot.
+This private group-review repository is the fixed technical supplement to the project Feishu page. Feishu carries the project narrative, weekly updates, open decisions, and next steps. This repository contains the reviewable task packages, scoring logic, model-run summaries, construction guidance, and release evidence for the first 15-task pilot.
 
 ## Current status
 
@@ -18,7 +18,7 @@ The current Agent results are development evidence:
 
 One additional Claude Code + Opus 5 run was completed on the DCF task and scored 1.000. It is supplemental and is not pooled with the three-system comparison.
 
-A second development batch began on the group gateway with GPT-5.6 sol, Opus 5, and Qwen3.8-max. The target is eight independent attempts for every task-system pair. The gateway token reached its own quota after 64 terminal receipts, leaving 41 valid scored attempts and 23 environment errors or cancellations. The batch is preserved for resumption and is reported separately from the earlier results.
+A second development batch began on the group gateway with GPT-5.6 sol, Opus 5, and Qwen3.8-max. The target was eight independent attempts for every task-system pair. The gateway token reached its quota after 64 terminal receipts, leaving 41 valid scored attempts and 23 environment errors or cancellations. The completed valid attempts are preserved and will not be rerun. The former bulk queue is retired; any later paid work must use a newly frozen, one-trial-at-a-time contract.
 
 | Group-gateway system | Valid attempts | Passes at score >= 0.70 | Mean score | Tasks with a valid result |
 | --- | ---: | ---: | ---: | ---: |
@@ -38,8 +38,9 @@ A score of 0.70 or above counts as one successful attempt. The empirical pass@1 
 | Codex CLI framework estimate | USD 38.79 | Estimated by the run framework for 56 valid Codex development attempts; it is not a verified card charge. |
 | OpenRouter account usage delta | USD 15.81 | Account-usage increase during 29 paid runs covering Opus 4.8, Qwen3.8-max, and one supplemental Opus 5 run. |
 | Group-gateway Harbor cost fields | USD 33.41 | Partial framework-visible cost for the interrupted group batch; Qwen cost is missing and no group invoice readback is available. |
+| Group-gateway token log | 834.003584 displayed billing units | 3,944 request records: GPT-5.6 sol 775.249934, Opus 5 22.150194, and Qwen3.8-max 36.603456. Administrator confirmation that these units equal US dollars or the upstream invoice is pending. |
 
-These records use different accounting bases and are not added together because invoice-level deduplication evidence is unavailable.
+These records use different accounting bases and are not added together. Paid sampling remains paused until the administrator confirms the billing basis and activates server-side caps. A resumed run is limited to one task, one system, and one attempt, with Harbor concurrency 1, Harbor retries 0, and billing reconciliation before the next authorization.
 
 ## Reading paths
 

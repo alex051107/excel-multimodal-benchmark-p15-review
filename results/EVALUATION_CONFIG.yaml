@@ -1,5 +1,5 @@
 schema_version: p15_review_evaluation_config_v1
-as_of_utc: "2026-08-31T20:06:00Z"
+as_of_utc: "2026-09-01T01:30:00Z"
 secrets_in_file: false
 pass_threshold: 0.70
 pass_at_8_formula: "1 - C(n-c, 8) / C(n, 8)"
@@ -51,7 +51,7 @@ systems:
     included_in_three_system_comparison: false
 
 group_gateway_n8_checkpoint:
-  status: interrupted_by_token_level_quota
+  status: preserved_development_checkpoint_bulk_resume_retired
   gateway_protocol: New API compatible HTTP
   upstream_provider_binding: not established
   target_tasks: 15
@@ -62,6 +62,7 @@ group_gateway_n8_checkpoint:
   valid_scored_attempts: 41
   invalid_or_cancelled_receipts: 23
   standard_pass_at_8_available: false
+  completed_valid_attempts_will_be_rerun: false
   results_file: results/GROUP_GATEWAY_CHECKPOINT.csv
   systems:
     codex_gpt56sol:
@@ -95,6 +96,64 @@ cost_records:
   group_gateway_harbor_visible_partial_usd: 33.4148681
   group_gateway_qwen_cost_available: false
   group_gateway_invoice_readback: pending_admin_access
+  group_gateway_token_log:
+    request_records: 3944
+    displayed_billing_units: 834.003584
+    unit_to_usd_equivalence: pending_admin_confirmation
+    by_model:
+      gpt_5_6_sol:
+        request_records: 3549
+        displayed_billing_units: 775.249934
+      claude_opus_5:
+        request_records: 146
+        displayed_billing_units: 22.150194
+      qwen3_8_max:
+        request_records: 249
+        displayed_billing_units: 36.603456
+  accounting_records_must_not_be_summed: true
+
+paid_run_controls:
+  status: paused_pending_admin_cap_receipt_and_guard_verification
+  scope_per_authorization:
+    tasks: 1
+    systems: 1
+    attempts: 1
+  harbor_concurrency: 1
+  harbor_retries: 0
+  upstream_project_hard_cap_usd_max: 100
+  dedicated_gateway_token_hard_cap_confirmed_units_max: 80
+  stop_opening_new_runs_at_cumulative_units: 70
+  local_stop_units_per_run_max: 10
+  gateway_requests_per_run_max: 40
+  prompt_tokens_per_run_max: 5000000
+  agent_wall_clock_seconds_max: 900
+  post_run_quiet_seconds_min: 120
+  automatic_resume: false
+  codex_canary_requirements:
+    session_count_max: 1
+    websocket_attempts: 0
+    multi_agent_enabled: false
+    paid_reasoning_effort_allowed: [low, medium, high]
+
+planning_estimates:
+  accounting_unit: gateway_displayed_unit_pending_usd_confirmation
+  full_fresh_360_valid_trials:
+    low: 436.65
+    base: 574.06
+    high: 760.05
+  preserve_latest_group_checkpoint:
+    remaining_valid_trials: 319
+    low: 385.87
+    base: 506.99
+    high: 671.97
+    formal_pass_at_8_possible_after_top_up: false
+    reason: safety and execution contract changed after the checkpoint
+  maximize_same_model_historical_reuse:
+    remaining_valid_trials: 248
+    low: 323.42
+    base: 430.13
+    high: 556.07
+    evidence_scope: development_only_mixed_provider_and_execution_contracts
 
 evidence_policy:
   current_results: development evidence

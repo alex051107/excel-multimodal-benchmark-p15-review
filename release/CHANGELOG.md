@@ -1,5 +1,13 @@
 # Changelog
 
+## p15-review-v1.3 — 2026-08-31
+
+- Preserved all 41 valid group-gateway attempts and retired the former bulk-resume plan; completed valid attempts will not be rerun.
+- Added the token-log accounting checkpoint of 3,944 requests and 834.003584 gateway-displayed billing units while keeping it separate from Harbor, Codex-framework, and OpenRouter records.
+- Paused paid sampling until administrator-confirmed server caps and a verified one-task, one-system, one-attempt guard are active.
+- Added budgeting scenarios for the remaining 319 latest-batch cells and the development-only 248-attempt historical-reuse option without presenting either as formal pass@8.
+- Aligned the release manifest with the repository's private group-review scope.
+
 ## p15-review-v1.2 — 2026-08-31
 
 - Replaced the invalid Pivot scaffold with the verified native-template update task, including Microsoft Excel for Mac object readback and refreshed Judge fixtures.

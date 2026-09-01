@@ -26,7 +26,7 @@ A second development batch uses GPT-5.6 sol, Opus 5, and Qwen3.8-max through the
 | Qwen Code + Qwen3.8-max | 18 | 14 | 5 | 0.548 | 14 of 14 non-Pivot tasks |
 | Revised Pivot task, all systems | 8 | 0 | 0 | Not available | 0 of 1 task |
 
-The checkpoint contains 64 terminal receipts, 41 valid scored attempts, and 23 environment errors or cancellations. No task-system pair has eight valid attempts, so these results do not produce a standard pass@8 estimate. They are not pooled with the earlier batch because the Claude model version and gateway contract differ. The resumable summary is in [GROUP_GATEWAY_CHECKPOINT.csv](../results/GROUP_GATEWAY_CHECKPOINT.csv).
+The checkpoint contains 64 terminal receipts, 41 valid scored attempts, and 23 environment errors or cancellations. No task-system pair has eight valid attempts, so these results do not produce a standard pass@8 estimate. They are not pooled with the earlier batch because the Claude model version and gateway contract differ. The valid attempts remain part of the development record and will not be rerun. The preserved summary is in [GROUP_GATEWAY_CHECKPOINT.csv](../results/GROUP_GATEWAY_CHECKPOINT.csv).
 
 ## Score interpretation
 
@@ -131,7 +131,7 @@ Across these studies, low performance is associated with several professional re
 2. **Revise the clearly easy tasks.** DCF, financial-model repair, pump selection, and invoice receive one professional revision at a time, with a maximum of three. A revised task receives a new version and new model evidence.
 3. **Complete the Pivot compatibility evidence.** The native objects are verified on Microsoft Excel for Mac. Windows Excel must open, refresh, recalculate, save, and read back the same object chain before cross-platform validity is claimed.
 4. **Freeze the experiment.** Task, Judge, system version, model identifier, provider, tools, budget, and sample count are fixed before formal sampling.
-5. **Collect formal samples.** A valid task needs at least eight samples per system to compute pass@8; difficult candidates should preferentially receive 16.
+5. **Collect formal samples selectively.** Preserve every completed valid attempt. Do not rerun an answer merely to make a new table complete. A valid task needs at least eight samples per system under one frozen experiment contract to compute pass@8; results from different task, Judge, model, provider, or safety configurations remain separate development evidence.
 6. **Run held-out CONFIRM siblings.** The same capability must show a similar pattern on independent data or templates.
 7. **Complete Windows and human review.** Only these external checks can support native Excel validity and accepted professional difficulty.
 
@@ -148,7 +148,17 @@ The next review should resolve the following decisions:
 
 ## Cost record
 
-The run framework estimates USD 38.79 for 56 valid Codex attempts. The OpenRouter account-usage increase for 29 paid runs is USD 15.81. Harbor reports USD 33.41 across the terminal group-gateway receipts, but this partial figure excludes Qwen cost and has no matching gateway invoice readback. These accounting records are reported separately and are not summed without invoice-level deduplication evidence.
+The run framework estimates USD 38.79 for 56 valid Codex attempts. The OpenRouter account-usage increase for 29 paid runs is USD 15.81. Harbor reports USD 33.41 across the terminal group-gateway receipts, but this partial figure excludes Qwen cost and most of the Codex request expansion.
+
+The group gateway token log contains 3,944 request records and displays 834.003584 billing units: 775.249934 for GPT-5.6 sol, 22.150194 for Opus 5, and 36.603456 for Qwen3.8-max. The administrator has not yet confirmed that one displayed unit equals one US dollar or that the token-log total is identical to the upstream invoice. All four accounting records therefore remain separate and must not be summed.
+
+## Paid-run resumption rule
+
+Paid sampling is paused. Work resumes only after the provider or project has an administrator-confirmed hard cap of at most USD 100 and a dedicated gateway token has a server-side cap of at most 80 confirmed units. The runner stops opening new work at 70 cumulative units and stops an individual run at 10 units, 40 gateway requests, 5,000,000 prompt tokens, or 900 seconds.
+
+Each authorization covers one task, one system, and one attempt. Harbor concurrency is 1 and Harbor retries are 0. The run must reach a 120-second quiet billing window, leave no running task container, and be reconciled before another authorization is issued. A Codex run also requires a one-session, no-WebSocket canary and is limited to low, medium, or high reasoning effort. Completed valid attempts are retained; the purpose of the next paid batch is to test the frozen safety contract and a small number of review-approved tasks, not to recreate the interrupted matrix.
+
+For planning only, retaining the 41 valid group-gateway attempts leaves 319 valid task-system attempts to reach eight results in every cell. Current per-system cost observations give a base estimate of 506.99 gateway-displayed units, with a planning range of 385.87 to 671.97. Reusing all earlier same-model results would reduce the remaining count to 248 and the base estimate to 430.13 units, but that mixture cannot support formal pass@8 because provider and execution contracts differ. These are budgeting scenarios, not invoice forecasts, and neither is an instruction to launch the full remainder.
 
 ## Claims supported now
 

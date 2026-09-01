@@ -1,7 +1,7 @@
 {
-  "release": "p15-review-v1.2",
+  "release": "p15-review-v1.3",
   "release_date": "2026-08-31",
-  "repository_scope": "public reviewer repository containing only sanitized release materials",
+  "repository_scope": "private group-review repository containing only review-facing release materials",
   "primary_tasks": 15,
   "track_counts": {
     "A": 5,
@@ -23,12 +23,19 @@
     "valid_scored_attempts": 41,
     "invalid_or_cancelled_receipts": 23,
     "standard_pass_at_8_available": false,
-    "status": "INTERRUPTED_TOKEN_LEVEL_QUOTA"
+    "status": "PRESERVED_DEVELOPMENT_CHECKPOINT_BULK_RESUME_RETIRED",
+    "completed_valid_attempts_will_be_rerun": false
   },
+  "group_gateway_token_log": {
+    "request_records": 3944,
+    "displayed_billing_units": 834.003584,
+    "unit_to_usd_equivalence": "PENDING_ADMIN_CONFIRMATION"
+  },
+  "paid_sampling_status": "PAUSED_PENDING_ADMIN_CAP_RECEIPT_AND_GUARD_VERIFICATION",
   "external_evidence_pending": [
     "Windows Microsoft Excel validation",
     "Windows compatibility readback for the Mac-validated native Pivot objects",
-    "completion of the frozen group-gateway task-system sample",
+    "review-approved sampling under a newly frozen safety and execution contract",
     "held-out Agent CONFIRM runs",
     "standard per-task pass@8",
     "external human review",
