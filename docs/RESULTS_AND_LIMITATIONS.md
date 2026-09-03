@@ -1,6 +1,29 @@
 # Results and Limitations
 
-## Current result
+## Current n=8 development snapshot
+
+The active campaign targets 15 tasks × 3 systems × 8 strict score-admissible, artifact-backed attempts. At the fixed 2026-09-03 12:34:49 UTC evidence cutoff, corrected coverage was 305/360:
+
+| System | Strict coverage | Remaining | Tasks at 8/8 | Current-contract task-balanced mean, provisional |
+| --- | ---: | ---: | ---: | ---: |
+| Codex CLI + GPT-5.6 sol high | 108/120 | 12 | 6/15 | 0.582 |
+| Claude Code + Opus 5 | 99/120 | 21 | 2/15 | 0.228 |
+| Qwen Code + Qwen3.8-max | 98/120 | 22 | 3/15 | 0.530 |
+
+The strict controller now excludes every Guard-forced or infrastructure-invalid Trial from development coverage. The evidence table separately preserves 43 complete workbooks recovered after verifier, cleanup, or other runtime abnormalities; these may support diagnostic offline regrade but are not described as clean end-to-end samples. One workbook was captured before the Agent reached a terminal turn and is `N/A`. Four distinct completed Pivot workbooks have inconsistent native-Excel receipt chains; their scores are also `N/A`. A separate complete model non-delivery is preserved without inventing a score. Replacement attempts use new IDs and never overwrite the original receipts.
+
+These means remain provisional. The current runtime branch does not contain the reviewed Judge v2 changes, and all preserved artifacts have not been uniformly regraded. Forty-one historical baseline attempts are reused only to avoid duplicate paid work; the table's displayed means use the current contract only, and `formal_pass_at_8_pooling` remains false.
+
+Machine-readable evidence:
+
+- [`N8_SNAPSHOT.json`](../results/N8_SNAPSHOT.json): cutoff, corrected coverage, and cost boundary;
+- [`N8_TASK_SUMMARY.csv`](../results/N8_TASK_SUMMARY.csv): one row per task;
+- [`N8_TASK_SYSTEM_METRICS.csv`](../results/N8_TASK_SYSTEM_METRICS.csv): 45 task-system cells;
+- [`N8_ATTEMPTS.csv`](../results/N8_ATTEMPTS.csv): sanitized terminal receipts and exclusion dispositions.
+
+The analysis and Semantic Harness sequence is defined in [`RESULT_ANALYSIS_AND_HARNESS_PLAN.md`](RESULT_ANALYSIS_AND_HARNESS_PLAN.md).
+
+## Earlier development comparison
 
 P15 contains 15 primary task candidates and nine reserve designs. All 15 primary tasks pass the current local answer-and-evaluator checks. The Pivot task was rebuilt as an update to a genuine Excel template and read back in Microsoft Excel for Mac with one PivotCache, one PivotTable, two SUM measures, a Q2 filter, refresh behavior, and one PivotChart. Windows Excel compatibility remains pending.
 
@@ -15,7 +38,7 @@ The three target systems have completed real development runs on every locally v
 
 Detailed task-by-system results are in [RUN_RESULTS.csv](../results/RUN_RESULTS.csv). Attempt-level scores, durations, token counts, cost fields, and regrade deltas are in [ATTEMPTS.csv](../results/ATTEMPTS.csv).
 
-## Group-gateway n=8 checkpoint
+## Historical group-gateway n=8 checkpoint
 
 A second development batch uses GPT-5.6 sol, Opus 5, and Qwen3.8-max through the group gateway. It was configured for eight independent attempts for every task-system pair, including the revised Pivot task. The gateway token reached its own quota before the batch finished.
 
@@ -38,7 +61,7 @@ For one system and one task, the empirical pass@1 estimate is `c / n`, where `c`
 pass@8 = 1 - C(n-c, 8) / C(n, 8)
 ```
 
-The formula cannot be evaluated when `n < 8`. Codex currently has `n=4` per valid task; Claude and Qwen each have `n=1`. No standard per-task pass@8 is reported in this release.
+The formula cannot be evaluated when `n < 8`. When `n` is exactly 8, it is also degenerate: `c=0` gives 0, while any `c>=1` gives 1. The report must therefore retain empirical `c/n`, mean score, and the raw eight-score distribution. No formal per-task pass@8 is reported in this release because the current coverage mixes execution contracts and the original requirement has not frozen whether “pass@8” means the standard estimator or the empirical success rate over eight attempts.
 
 ## Track-level pattern
 
@@ -56,12 +79,12 @@ The release requirement defines a difficult task candidate using four conditions
 
 P15 has not completed that chain for the following reasons:
 
-1. The per-task sample sizes are below the minimum needed to compute pass@8. The group-gateway batch stopped at 41 valid attempts; every task-system pair remains below eight valid samples. Difficult candidates were intended to receive up to 16 independent samples per system after the task and Judge were frozen.
+1. The strict development matrix is 305/360 at the fixed cutoff. Some task-system cells have reached eight when the 41 frozen baseline attempts are used for coverage, but the baseline and current execution contracts are not pooled for formal pass@8. The original pass@8 definition is also unresolved.
 2. The paid Claude and Qwen runs used gateways that did not prove a single locked upstream provider. They are genuine development runs, but the formal experiment still needs a fixed provider, model version, tool environment, and budget.
 3. CONFIRM references and Oracles have passed self-consistency checks, but the target Agents have not yet run on the held-out CONFIRM siblings.
 4. Six tasks show low-score signals, but no independent human reviewer has yet confirmed that the instruction, supplied information, and Judge admit reasonable professional solutions.
 5. Four tasks are already too easy. Their revised versions must be treated as new task versions and tested again; scores from the current version cannot be inherited.
-6. The Pivot task now has valid native objects on Microsoft Excel for Mac, but its group-gateway trials produced no valid scored attempt before the quota interruption. Windows Excel compatibility is also pending.
+6. The Pivot task now has strict scored development attempts and valid native objects on Microsoft Excel for Mac. One contradictory native receipt/attestation chain is excluded, and Windows Excel compatibility remains pending.
 7. Real Agent outputs exposed legitimate Excel equivalents that early Judges rejected. The artifacts were regraded without increasing the attempt count, but formal sampling should begin only after the final Judge is frozen.
 8. Windows Excel open/save/recalculate checks and external human review remain incomplete.
 
@@ -148,15 +171,17 @@ The next review should resolve the following decisions:
 
 ## Cost record
 
+At the fixed current-campaign cutoff, the dedicated ZCloud token-total endpoint reported 34.508372 displayed units across 418 terminal runtime receipts. Per-run deltas overlap when model lanes run concurrently and are retained only for run-level diagnosis; they are not summed as campaign cost. The available log endpoint is limited to the latest 1,000 requests, so it cannot reconstruct cumulative cost by model. No unit-to-USD conversion is asserted.
+
 The run framework estimates USD 38.79 for 56 valid Codex attempts. The OpenRouter account-usage increase for 29 paid runs is USD 15.81. Harbor reports USD 33.41 across the terminal group-gateway receipts, but this partial figure excludes Qwen cost and most of the Codex request expansion.
 
 The group gateway token log contains 3,944 request records and displays 834.003584 billing units: 775.249934 for GPT-5.6 sol, 22.150194 for Opus 5, and 36.603456 for Qwen3.8-max. The administrator has not yet confirmed that one displayed unit equals one US dollar or that the token-log total is identical to the upstream invoice. All four accounting records therefore remain separate and must not be summed.
 
-## Paid-run resumption rule
+## Historical paid-run rule (superseded)
 
-Paid sampling is paused. Work resumes only after the provider or project has an administrator-confirmed hard cap of at most USD 100 and a dedicated gateway token has a server-side cap of at most 80 confirmed units. The runner stops opening new work at 70 cumulative units and stops an individual run at 10 units, 40 gateway requests, 5,000,000 prompt tokens, or 900 seconds.
+The paragraphs in this section preserve the 2026-08-31 checkpoint protocol for audit history. They are not the active execution contract. At that checkpoint, paid sampling was paused until a provider- or project-level budget cap could be verified. The earlier runner also used 70- and 80-unit admission boundaries plus request, prompt-token, and 900-second limits; those controls were later retired.
 
-Each authorization covers one task, one system, and one attempt. Harbor concurrency is 1 and Harbor retries are 0. The run must reach a 120-second quiet billing window, leave no running task container, and be reconciled before another authorization is issued. A Codex run also requires a one-session, no-WebSocket canary and is limited to low, medium, or high reasoning effort. Completed valid attempts are retained; the purpose of the next paid batch is to test the frozen safety contract and a small number of review-approved tasks, not to recreate the interrupted matrix.
+The historical authorization covered one task, one system, and one attempt, with Harbor retry disabled. The active campaign is documented by the fixed snapshot and source commit named at the top of this report. Completed valid attempts remain retained under both protocols.
 
 For planning only, retaining the 41 valid group-gateway attempts leaves 319 valid task-system attempts to reach eight results in every cell. Current per-system cost observations give a base estimate of 506.99 gateway-displayed units, with a planning range of 385.87 to 671.97. Reusing all earlier same-model results would reduce the remaining count to 248 and the base estimate to 430.13 units, but that mixture cannot support formal pass@8 because provider and execution contracts differ. These are budgeting scenarios, not invoice forecasts, and neither is an instruction to launch the full remainder.
 
@@ -165,7 +190,7 @@ For planning only, retaining the 41 valid group-gateway attempts leaves 319 vali
 - Fifteen primary task candidates and nine reserve designs have been assembled.
 - All 15 tasks meet the current local answer-and-evaluator contract; the Pivot task also has native-object evidence from Microsoft Excel for Mac.
 - Three target systems have produced real development workbooks.
-- The group-gateway n=8 batch has 41 valid scored attempts and a resumable checkpoint; its incomplete sample is not presented as pass@8.
+- The current fixed snapshot has 305/360 strict coverage plus separately labeled recoverable abnormal artifacts; neither is presented as formal pass@8.
 - The package, Judge, and result-collection path has been exercised.
 - Construction practices that were exercised in P15 have been recorded for reuse.
 

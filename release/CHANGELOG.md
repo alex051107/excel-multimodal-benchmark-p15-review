@@ -1,5 +1,16 @@
 # Changelog
 
+## p15-review-v1.4 — 2026-09-03
+
+- Added a fixed-cutoff, sanitized snapshot of the active 15-task × 3-system × 8-attempt development campaign: 305/360 strict score-admissible artifacts at the release cutoff.
+- Separated Agent completion, workbook delivery, runtime health, native-Excel consistency, and score admissibility. Forty-three complete workbooks from abnormal Trials remain available for diagnostic regrade; one mid-Agent artifact and four distinct Pivot workbooks with inconsistent native-scoring receipt chains are `N/A`.
+- Preserved every abnormal receipt and exposed missing cells for replacement under new attempt IDs; completed normal attempts are not rerun.
+- Added the result-analysis, capability-diagnosis, B0/B1/E2 ablation, witness-repair, family-disjoint validation, and novelty claim-ladder plan.
+- Marked all current scores provisional until one Judge v2 is frozen and uniformly applied to preserved workbooks without rerunning models or increasing attempt counts.
+- Corrected the repository boundary from private to public and recorded that previously committed Gold and CONFIRM/private-labeled development material is disclosed.
+- Added an allowlist exporter and repository exclusions for credentials, runtime records, raw provider responses, Agent sessions, trajectories, and model-generated workbooks.
+- Replaced the overlapping per-run-delta sum with the dedicated-token total readback of 34.508372 displayed units at the fixed cutoff; cumulative cost by model and unit-to-USD conversion remain unavailable.
+
 ## p15-review-v1.3 — 2026-08-31
 
 - Preserved all 41 valid group-gateway attempts and retired the former bulk-resume plan; completed valid attempts will not be rerun.

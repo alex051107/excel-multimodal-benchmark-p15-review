@@ -14,5 +14,9 @@
 | QuestBench | [arXiv:2503.22674v2](https://arxiv.org/abs/2503.22674v2) | Necessary-information and clarification semantics |
 | Metamorphic Testing Survey | [DOI:10.1109/TSE.2016.2532875](https://doi.org/10.1109/TSE.2016.2532875) | Declared input transformations and expected output relations |
 | CausalFlow | [arXiv:2605.25338v1](https://arxiv.org/abs/2605.25338v1) | Boundary against claiming generic counterfactual Agent diagnosis as a P15 contribution |
+| Harness-Bench | [arXiv:2605.27922](https://arxiv.org/abs/2605.27922) | Model-harness configuration as the reported capability unit |
+| WorkSurface-Bench | [arXiv:2607.25765](https://arxiv.org/abs/2607.25765) | Separate routing, evidence use, answer quality, and efficiency |
+| ContractBench | [arXiv:2605.17281](https://arxiv.org/abs/2605.17281) | Intermediate artifact contracts and failure-label prior art |
+| DataFlow-Harness | [arXiv:2607.16617](https://arxiv.org/abs/2607.16617) | Typed workflow mutation and the structural-versus-semantic validity boundary |
 
 The catalog establishes provenance for design mechanisms. It does not provide a redistribution grant for any cited task, document, data set, workbook, annotation, or gold output.

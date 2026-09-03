@@ -64,6 +64,18 @@ This file records the research mechanisms used in P15. The project adapted metho
 
 Exact source links are listed in [`SOURCE_CATALOG.md`](SOURCE_CATALOG.md).
 
+## 6. Diagnose the harness and test evidence-relation value
+
+**Primary sources:** Harness-Bench, arXiv:2605.27922; WorkSurface-Bench, arXiv:2607.25765; ContractBench, arXiv:2605.17281; DataFlow-Harness, arXiv:2607.16617; CausalFlow, arXiv:2605.25338.
+
+**P15 adaptation:** Attribute observed capability to the model-harness-tool configuration; separate discovery, routing, evidence use, artifact construction, and verification; compare static-native, dynamic-native, and source-to-artifact relation checks on the same frozen artifacts; describe the first observable violation unless intervention and downstream replay support a causal statement.
+
+**Novelty boundary:** Harness diagnostics, intermediate artifact contracts, typed workflow mutation, failure taxonomies, and causal localization are prior art. P15's narrower empirical question is whether source identity, authority, and support relations catch professionally meaningful native-workbook failures missed by a strong dynamic-native baseline, and whether the resulting witness improves local repair on family-disjoint tasks.
+
+**Stop condition:** E2 adds no human-confirmed recall over B1, rejects valid equivalents, depends on hidden Gold or a fixed reference layout, or fails to transfer across private families.
+
+The complete measurement and repair protocol is in [`docs/RESULT_ANALYSIS_AND_HARNESS_PLAN.md`](../docs/RESULT_ANALYSIS_AND_HARNESS_PLAN.md).
+
 ## Difficulty evidence and interpretation
 
 These benchmarks use different units, tasks, Agents, and metrics. Their absolute scores are not comparable with one another or with P15. The table records the failure mechanism that informs P15 design.

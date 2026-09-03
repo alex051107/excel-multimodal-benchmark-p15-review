@@ -1,5 +1,18 @@
 # Evaluation and Judge
 
+## Current trust status
+
+The scores in the current n=8 snapshot are provisional. The active runtime branch does not yet include the reviewed Judge v2 changes, and the preserved Agent workbooks have not been uniformly regraded under one frozen evaluator version. Current means can guide audit sampling; they cannot support a formal ranking or accepted-hard decision.
+
+Judge v2 must preserve the original scoring philosophy while enforcing four implementation rules:
+
+1. every independently assessable rubric criterion continues to run after a local failure;
+2. a penalty applies only to additional harmful behavior such as deletion, overwrite, out-of-scope modification, or fabrication, not to the same omission already scored by a positive criterion;
+3. a true delivery-critical hurdle may block pass but must not erase independently earned continuous score;
+4. evaluator or infrastructure failure produces `N/A`, never a model score of zero.
+
+The task-local Judge may accept exact names, predefined aliases, or deterministic role recognition. It must not use a hidden canonical layout as a global zero condition when the instruction permits an equivalent workbook structure.
+
 ## Four separate correctness components
 
 | Component | Purpose | Reason for separation |
@@ -45,6 +58,10 @@ Real Agent workbooks exposed three false-negative Judge boundaries:
 | DCF | Rejected a valid one-array `SUMPRODUCT(array)` formula | Evaluates the one-array form as an array sum |
 
 A regrade reuses the same `answer.xlsx` and does not increase the attempt count. Original and effective scores remain distinguishable in [`results/ATTEMPTS.csv`](../results/ATTEMPTS.csv).
+
+Those three earlier corrections are not the same as the pending portfolio-wide Judge v2 freeze. The current campaign includes direct Guard verdicts, evidence-bound raw-Judge attestations, offline evaluator attestations, and macOS Excel canonicalized Pivot verdicts. A formal analysis requires every preserved candidate to be bound to the exact evaluator version used for its effective score, then regraded under the one frozen Judge version.
+
+Seven old attestations first exposed that countability had been accepted without a bound candidate workbook. The corrected controller now excludes all Guard-forced and infrastructure-invalid Trials from strict coverage. Recovered workbooks remain available for diagnostic regrade, with Agent completion, runtime health, native-Excel consistency, and score admissibility reported independently in [`N8_ATTEMPTS.csv`](../results/N8_ATTEMPTS.csv). New countable attestations must bind the actual candidate and its hash.
 
 ## Harbor boundary
 

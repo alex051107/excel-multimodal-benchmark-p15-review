@@ -18,9 +18,9 @@ P15 is the first 15-task pilot used to test both this research question and the 
 - 9 design-only reserves: three per track.
 - All 15 tasks pass the current local answer-and-evaluator checks.
 - The native Pivot task has been created and read back in Microsoft Excel for Mac; Windows Excel compatibility remains pending.
-- Three target systems have produced real development answers.
-- A group-gateway n=8 batch has 41 valid scored attempts and is preserved for resumption after the token-level quota is restored.
-- Standard pass@8, Windows Excel validation, and external human review are not complete.
+- Three target systems have produced real development answers. The current sanitized campaign snapshot records 305/360 strict score-admissible, artifact-backed coverage at its fixed evidence cutoff; 55 replacement or unfinished cells remained.
+- The earlier 41-attempt group-gateway checkpoint is preserved as a historical baseline and is not pooled with the current execution contract for formal pass@8.
+- Judge v2 freeze and uniform artifact regrade, standard pass@8 definition, Windows Excel validation, and external human review are not complete.
 
 The per-task status is recorded in [`results/TASK_STATUS.csv`](../results/TASK_STATUS.csv). The task descriptions and direct package links are in [`tasks/INDEX.md`](../tasks/INDEX.md).
 
@@ -42,18 +42,18 @@ The reference workbook demonstrates one complete delivery. The oracle establishe
 
 ## Development result
 
-The earlier comparison has four Codex attempts per task and one Claude and Qwen attempt per task. A separate group-gateway batch uses GPT-5.6 sol, Opus 5, and Qwen3.8-max, but stopped before any task-system pair reached eight valid samples. These results can identify obvious easy cases, evaluator problems, and cross-system failure signals. They do not support stable pass@8 or a system ranking.
+The earlier comparison has four Codex attempts per task and one Claude and Qwen attempt per task. The current development campaign uses GPT-5.6 sol high, Opus 5, and Qwen3.8-max and is filling strict artifact-backed attempts toward eight per task-system cell. These results can identify obvious easy cases, evaluator problems, stochastic instability, and cross-system failure signals. They do not support stable pass@8 or a system ranking until the Judge and execution-contract boundaries are frozen.
 
-Three tasks currently appear too easy: DCF, financial-model repair, and pump selection. Several Track B and Track C tasks show low cross-system scores. Low scores require human review before they are interpreted as professional difficulty, because an ambiguous instruction or a false-negative Judge can produce the same pattern.
+The uncorrected scores suggest that financial-model repair is easy and that several Track B tasks expose persistent difficulty, but these are hypotheses only. Low scores require Judge v2 regrade and human review before they are interpreted as professional difficulty, because an ambiguous instruction, a false-negative Judge, or model-correlated missingness can produce the same pattern.
 
 ## Decisions required before formal expansion
 
 1. Confirmation of the A/B/C coverage for the intended forms of Excel work.
 2. Confirmation that benchmark-authored professional scenarios satisfy the project's “real query” requirement.
 3. Review of the Golden/Oracle/Rubric/Judge boundaries.
-4. Selection of low-score tasks for human review before additional samples are purchased.
-5. Selection of construction methods for reuse in the next batch.
-6. Confirmation that the group gateway can keep the Opus 5 route, upstream provider, and token budget fixed for the resumed batch.
+4. Selection of low-score, threshold-crossing, and nonstandard-layout artifacts for blind human review.
+5. Freeze of the ability taxonomy and the B0/B1/E2 measurement ablation before inspecting private-family results.
+6. Confirmation of whether the original pass@8 wording means the standard estimator or empirical success over eight attempts.
 
 ## Where to inspect the evidence
 

@@ -1,0 +1,67 @@
+{
+  "campaign_id": "p15-three-system-n8-safe-v1",
+  "campaign_status": "APPROVED_FOR_EXECUTION",
+  "coverage": {
+    "artifact_backed_scored": 305,
+    "controller_effective": 305,
+    "controller_inconsistencies": 0,
+    "controller_remaining": 55,
+    "countable_complete_scored": 305,
+    "excluded_infrastructure_trials_without_admissible_score": 109,
+    "excluded_non_delivery_trials_without_admissible_score": 0,
+    "incomplete_agent_artifacts_from_abnormal_trials": 1,
+    "model_delivery_failures": 1,
+    "native_receipt_inconsistent_artifacts": 4,
+    "recovered_artifacts_from_abnormal_trials": 43
+  },
+  "evidence_cutoff_finished_at": "2026-09-03T12:34:49.183770+00:00",
+  "generated_at": "2026-09-03T13:08:08.411006+00:00",
+  "provenance": {
+    "baseline_terminal_receipts": 64,
+    "campaign_config_path": "outputs/p15_final/gateway_budget_runs/.runtime/zcloud-three-lane/p15-zcloud-three-lane-20260903T121917Z.json",
+    "campaign_config_sha256": "94ca10151204ae9c94cbfc93d392cef7a03b9d7390011c65a5a2e5755af22775",
+    "controller_path": "scripts/p15_n8_campaign_control.py",
+    "controller_sha256": "fab9178cb7c22227a819b690ef49aaf22cc73853f0a134129f4d2d114814a7d3",
+    "expected_runtime_receipts_at_cutoff": 418,
+    "ignored_runtime_receipts_after_cutoff": 5,
+    "included_runtime_receipts_at_cutoff": 418,
+    "source_repository_head": "7011da968a5d3de28354b04c78aa4d684fb230ec",
+    "usage_receipt_path": "outputs/p15_final/gateway_budget_runs/20260903T122334Z-P15-B-PUBLIC-PIVOT-001-qwen-coder/latest_usage.json",
+    "usage_receipt_sha256": "41fb8bffedb012e582d9868940197aae8a5b3e6bf082d072fe92fefd03853e3c"
+  },
+  "public_release_boundary": {
+    "attempt_prompts_included": false,
+    "credentials_or_endpoints_included": false,
+    "local_paths_included": false,
+    "model_workbooks_included": false,
+    "new_private_truth_included": false,
+    "trajectories_included": false
+  },
+  "runtime": {
+    "attempt_rows_total": 482,
+    "baseline_terminal_receipts": 64,
+    "dedicated_token_total_used_units": 34.508372,
+    "per_model_cumulative_cost_available": false,
+    "per_run_deltas_summed_as_campaign_cost": false,
+    "recent_log_window_requests": 1000,
+    "run_delta_fields_may_overlap": true,
+    "terminal_receipts": 418,
+    "unit_to_usd_equivalence": "NOT_ASSERTED",
+    "usage_receipt_observed_at": "2026-09-03T12:34:45.041178+00:00",
+    "usage_snapshot_observed_at": "2026-09-03T12:33:47.084528+00:00"
+  },
+  "schema_version": 2,
+  "score_contract": {
+    "formal_pooling_with_frozen_baseline": false,
+    "judge_status": "PROVISIONAL_PRE_V2_FREEZE",
+    "pass_threshold": 0.7,
+    "reason": "The baseline and current runs use different execution contracts, the Cowork pass@8 wording remains unresolved, and Judge v2 is not frozen.",
+    "standard_pass_at_8_reported": false
+  },
+  "target": {
+    "attempts_per_task_system": 8,
+    "systems": 3,
+    "tasks": 15,
+    "total": 360
+  }
+}

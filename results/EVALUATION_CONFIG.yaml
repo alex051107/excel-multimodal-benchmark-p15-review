@@ -1,164 +1,100 @@
-schema_version: p15_review_evaluation_config_v1
-as_of_utc: "2026-09-01T01:30:00Z"
+schema_version: p15_review_evaluation_config_v2
+as_of_utc: "2026-09-03T12:34:49Z"
 secrets_in_file: false
-pass_threshold: 0.70
-pass_at_8_formula: "1 - C(n-c, 8) / C(n, 8)"
-formal_candidate_target_n: 16
+
+score_contract:
+  normalized_score_range: [0.0, 1.0]
+  pass_threshold: 0.70
+  standard_pass_at_8_formula: "1 - C(n-c, 8) / C(n, 8)"
+  empirical_success_rate_formula: "c / n"
+  pass_at_8_definition_frozen: false
+  standard_pass_at_8_reported: false
+  reasons:
+    - "With n=8, standard pass@8 is 0 when c=0 and 1 whenever c>=1."
+    - "The original requirement is ambiguous between standard pass@8 and empirical success over eight attempts."
+    - "Forty-one frozen baseline attempts use a different execution contract from the current campaign."
+  formal_pooling_with_frozen_baseline: false
+
+current_campaign:
+  evidence_scope: development_coverage
+  target_tasks: 15
+  target_systems: 3
+  target_attempts_per_task_system: 8
+  target_total: 360
+  artifact_backed_coverage: 305
+  remaining: 55
+  frozen_baseline_coverage: 41
+  current_contract_coverage: 264
+  recovered_abnormal_artifacts_for_diagnosis: 43
+  incomplete_agent_artifacts: 1
+  native_receipt_inconsistent_artifacts: 4
+  model_delivery_failures: 1
+  excluded_infrastructure_without_admissible_score: 109
+  snapshot: results/N8_SNAPSHOT.json
+  attempts: results/N8_ATTEMPTS.csv
+  task_system_metrics: results/N8_TASK_SYSTEM_METRICS.csv
 
 systems:
   codex_gpt56sol:
     agent: Codex CLI
-    agent_version: 0.151.0
     model: gpt-5.6-sol
-    provider: OpenAI
-    reasoning_effort: ultra
-    web_search: disabled
-    valid_development_attempts: 56
-    pass_count: 26
-    mean_score: 0.633973
-    framework_cost_estimate_usd: 38.785435
-
-  claude_opus48:
+    reasoning_effort: high
+    artifact_backed_coverage: 108
+    target: 120
+  claude_opus5:
     agent: Claude Code
-    agent_version: 2.1.251
-    model: anthropic/claude-opus-4.8
-    gateway: OpenRouter
-    endpoint_protocol: Anthropic-compatible
-    valid_development_attempts: 14
-    pass_count: 8
-    mean_score: 0.677932
-    formal_model_version_decision: pending
-
+    model: claude-opus-5
+    contract_scope: revised_development_contract
+    formal_pooling_with_opus_4_8: false
+    artifact_backed_coverage: 99
+    target: 120
   qwen38max:
     agent: Qwen Code
-    agent_version: 0.22.3
-    model: qwen/qwen3.8-max
-    gateway: OpenRouter
-    endpoint_protocol: OpenAI-compatible
-    valid_development_attempts: 14
-    pass_count: 3
-    mean_score: 0.488385
+    model: openai/qwen3.8-max
+    artifact_backed_coverage: 98
+    target: 120
 
-  claude_opus5_supplemental:
-    agent: Claude Code
-    agent_version: 2.1.251
-    model: anthropic/claude-opus-5
-    gateway: OpenRouter
-    role: supplemental DCF alignment run only
-    valid_development_attempts: 1
-    pass_count: 1
-    mean_score: 1.0
-    included_in_three_system_comparison: false
+judge:
+  current_scores: provisional_pre_v2_freeze
+  uniform_v2_regrade_complete: false
+  formal_model_ranking_allowed: false
+  required_evaluation_statuses: [OK, JUDGE_ERROR, INFRA_ERROR]
+  regrade_increments_attempt_n: false
+  countable_attempt_requires_answer_xlsx: true
+  countable_attestation_requires_candidate_hash_binding: true
+  local_failure_may_suppress_unrelated_criteria: false
+  duplicate_penalty_for_same_omission_allowed: false
+  hurdle_erases_continuous_score: false
 
-group_gateway_n8_checkpoint:
-  status: preserved_development_checkpoint_bulk_resume_retired
-  gateway_protocol: New API compatible HTTP
-  upstream_provider_binding: not established
-  target_tasks: 15
-  target_systems: 3
-  target_attempts_per_task_system: 8
-  planned_trials: 360
-  terminal_receipts: 64
-  valid_scored_attempts: 41
-  invalid_or_cancelled_receipts: 23
-  standard_pass_at_8_available: false
-  completed_valid_attempts_will_be_rerun: false
-  results_file: results/GROUP_GATEWAY_CHECKPOINT.csv
-  systems:
-    codex_gpt56sol:
-      agent: Codex CLI
-      agent_version: 0.151.0
-      model: gpt-5.6-sol
-      reasoning_effort: ultra
-      valid_attempts: 12
-      passes: 6
-      mean_score: 0.646074
-    claude_opus5:
-      agent: Claude Code
-      agent_version: 2.1.251
-      model: claude-opus-5
-      valid_attempts: 15
-      passes: 2
-      mean_score: 0.201379
-    qwen38max:
-      agent: Qwen Code
-      agent_version: 0.22.3
-      model: qwen3.8-max
-      valid_attempts: 14
-      passes: 5
-      mean_score: 0.547954
+native_excel:
+  pivot_macos_canonicalization: available_for_current_development_runs
+  windows_excel_compatibility: pending
+  windows_pending_blocks_final_acceptance: true
 
-cost_records:
-  codex_framework_estimate_usd: 38.785435
-  openrouter_paid_batch_usage_delta_usd: 15.80543476
-  direct_sum_allowed: false
-  reason: different accounting bases without invoice-level deduplication evidence
-  group_gateway_harbor_visible_partial_usd: 33.4148681
-  group_gateway_qwen_cost_available: false
-  group_gateway_invoice_readback: pending_admin_access
-  group_gateway_token_log:
-    request_records: 3944
-    displayed_billing_units: 834.003584
-    unit_to_usd_equivalence: pending_admin_confirmation
-    by_model:
-      gpt_5_6_sol:
-        request_records: 3549
-        displayed_billing_units: 775.249934
-      claude_opus_5:
-        request_records: 146
-        displayed_billing_units: 22.150194
-      qwen3_8_max:
-        request_records: 249
-        displayed_billing_units: 36.603456
-  accounting_records_must_not_be_summed: true
+cost:
+  current_runtime_terminal_receipts: 418
+  frozen_baseline_terminal_receipts: 64
+  current_dedicated_token_total_used_units: 34.508372
+  per_model_cumulative_cost_available: false
+  per_run_deltas_must_not_be_summed: true
+  displayed_unit_equals_usd: not_asserted
+  campaign_authorized_total_units: 300
+  historical_cost_records_must_not_be_summed_with_current_units: true
 
-paid_run_controls:
-  status: paused_pending_admin_cap_receipt_and_guard_verification
-  scope_per_authorization:
-    tasks: 1
-    systems: 1
-    attempts: 1
-  harbor_concurrency: 1
-  harbor_retries: 0
-  upstream_project_hard_cap_usd_max: 100
-  dedicated_gateway_token_hard_cap_confirmed_units_max: 80
-  stop_opening_new_runs_at_cumulative_units: 70
-  local_stop_units_per_run_max: 10
-  gateway_requests_per_run_max: 40
-  prompt_tokens_per_run_max: 5000000
-  agent_wall_clock_seconds_max: 900
-  post_run_quiet_seconds_min: 120
-  automatic_resume: false
-  codex_canary_requirements:
-    session_count_max: 1
-    websocket_attempts: 0
-    multi_agent_enabled: false
-    paid_reasoning_effort_allowed: [low, medium, high]
-
-planning_estimates:
-  accounting_unit: gateway_displayed_unit_pending_usd_confirmation
-  full_fresh_360_valid_trials:
-    low: 436.65
-    base: 574.06
-    high: 760.05
-  preserve_latest_group_checkpoint:
-    remaining_valid_trials: 319
-    low: 385.87
-    base: 506.99
-    high: 671.97
-    formal_pass_at_8_possible_after_top_up: false
-    reason: safety and execution contract changed after the checkpoint
-  maximize_same_model_historical_reuse:
-    remaining_valid_trials: 248
-    low: 323.42
-    base: 430.13
-    high: 556.07
-    evidence_scope: development_only_mixed_provider_and_execution_contracts
-
-evidence_policy:
-  current_results: development evidence
-  standard_pass_at_8_available: false
-  reason: the earlier comparison has per-task n=4/1/1; every task-system pair in the interrupted group batch is also below eight valid samples
-  windows_excel_validation: pending
-  held_out_agent_confirm: pending
+claim_boundary:
+  current_results: provisional_development_evidence
+  accepted_hard_tasks: 0
+  formal_rankings: unsupported
   external_human_review: pending
+  family_disjoint_private_validation: pending
+  semantic_harness_incremental_value: untested
+  witness_guided_repair_generalization: untested
+
+public_release_boundary:
+  repository_visibility: public
+  existing_gold_and_confirm_assets: disclosed_development_material
+  existing_assets_eligible_for_private_holdout_claim: false
+  credentials_included: false
+  raw_provider_responses_included: false
+  local_runtime_paths_included: false
+  raw_agent_sessions_or_trajectories_included: false
