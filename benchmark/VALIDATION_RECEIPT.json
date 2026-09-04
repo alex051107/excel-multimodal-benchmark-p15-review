@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "validated_at_utc": "2026-09-04T05:02:24Z",
+  "validated_at_utc": "2026-09-04T05:06:01Z",
   "validation_scope": "Public repository environment, Harbor task packaging, Agent setup reuse, and fixed-answer V3 score replay",
   "environment": {
     "harbor": "0.22.0",
@@ -118,11 +118,11 @@
   },
   "github_actions": {
     "workflow": "Reproduce V3 scores",
-    "run_id": 33838915424,
-    "head_commit": "8d76307923ae02b06a30384d8aef6eacaecbc1a1",
+    "run_id": 33839154359,
+    "head_commit": "5dbc8076ebc398222e30ce914e53389abd624852",
     "conclusion": "success",
-    "duration": "1m13s",
-    "url": "https://github.com/alex051107/excel-multimodal-benchmark-p15-review/actions/runs/33838915424"
+    "duration": "1m3s",
+    "url": "https://github.com/alex051107/excel-multimodal-benchmark-p15-review/actions/runs/33839154359"
   },
   "boundary": "This validation did not call paid model endpoints. A new online run tests the same pipeline but can produce different workbooks because model generation is nondeterministic and requires the reader's own credentials."
 }
