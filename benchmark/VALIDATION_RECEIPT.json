@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "validated_at_utc": "2026-09-04T04:52:00Z",
+  "validated_at_utc": "2026-09-04T05:02:24Z",
   "validation_scope": "Public repository environment, Harbor task packaging, Agent setup reuse, and fixed-answer V3 score replay",
   "environment": {
     "harbor": "0.22.0",
@@ -90,6 +90,39 @@
     "current_report_score_mismatches": 0,
     "archive_sha256": "b0b0bd6ca10bfaf1a4c95f136fc645c990cbb345d7f1861a048583e61d41f112",
     "reproduction_ok": true
+  },
+  "fresh_github_clone_acceptance": {
+    "repository_commit_tested": "6c37ac076a56dfd3f66a99c56ce7678f71ceeefa",
+    "shared_environment_action": "reused",
+    "shared_environment_contract_valid": true,
+    "clean_harbor_qwen_install_only": {
+      "harbor": "0.22.0",
+      "completed_trials": 1,
+      "errored_trials": 0,
+      "preinstalled_agent_reused": true,
+      "repeated_install_observed": false
+    },
+    "offline_oracle_full_pipeline": {
+      "task_id": "P15-A-FIN-DCF-001",
+      "completed_trials": 1,
+      "errored_trials": 0,
+      "reward": 1.0
+    },
+    "fixed_answer_replay": {
+      "workbooks_replayed": 368,
+      "runner_errors": 0,
+      "expected_result_mismatches": 0,
+      "current_report_score_mismatches": 0,
+      "reproduction_ok": true
+    }
+  },
+  "github_actions": {
+    "workflow": "Reproduce V3 scores",
+    "run_id": 33838915424,
+    "head_commit": "8d76307923ae02b06a30384d8aef6eacaecbc1a1",
+    "conclusion": "success",
+    "duration": "1m13s",
+    "url": "https://github.com/alex051107/excel-multimodal-benchmark-p15-review/actions/runs/33838915424"
   },
   "boundary": "This validation did not call paid model endpoints. A new online run tests the same pipeline but can produce different workbooks because model generation is nondeterministic and requires the reader's own credentials."
 }
