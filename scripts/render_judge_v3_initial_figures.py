@@ -7,9 +7,13 @@ import csv
 from collections import defaultdict
 from pathlib import Path
 
+import matplotlib
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import font_manager
+from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.patches import Patch
 
 
@@ -48,6 +52,12 @@ GOLD = "#D9A441"
 GRAY = "#A0A7AE"
 DARK = "#24313A"
 GRID = "#D9DEE3"
+BAR = "#657F98"
+HIGHLIGHT = "#B66A50"
+DIFFICULTY_CMAP = LinearSegmentedColormap.from_list(
+    "p15_difficulty",
+    ["#5B3F78", "#8D6BA3", "#C6B4D2", "#E6DDE9", "#F4F0ED"],
+)
 
 
 def configure_style() -> None:
@@ -80,6 +90,58 @@ def configure_style() -> None:
 def read_csv(name: str) -> list[dict[str, str]]:
     with (DATA / name).open(encoding="utf-8-sig", newline="") as handle:
         return list(csv.DictReader(handle))
+
+
+def write_csv(name: str, rows: list[dict[str, object]], fields: list[str]) -> None:
+    with (DATA / name).open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def write_score_only_tables() -> None:
+    rows = read_csv("judge_v3_candidate_full_archive_replay.csv")
+    current = [
+        row
+        for row in rows
+        if row["valid_attempt"] == "True" and row["replay_scoreable"] == "True"
+    ]
+    attempt_rows = [
+        {
+            "wave_id": row["wave_id"],
+            "task_id": row["task_id"],
+            "system": SYSTEM_LABELS[row["system"]],
+            "score": f'{float(row["replay_score"]):.6f}',
+        }
+        for row in current
+    ]
+    write_csv(
+        "v3_scores_current.csv",
+        attempt_rows,
+        ["wave_id", "task_id", "system", "score"],
+    )
+
+    grouped: dict[tuple[str, str], list[float]] = defaultdict(list)
+    for row in current:
+        grouped[(row["task_id"], row["system"])].append(float(row["replay_score"]))
+    summary_rows: list[dict[str, object]] = []
+    for task_id in TASK_LABELS:
+        for system_id in SYSTEM_LABELS:
+            scores = grouped.get((task_id, system_id), [])
+            summary_rows.append(
+                {
+                    "task_id": task_id,
+                    "task": TASK_LABELS[task_id].replace("  ", " "),
+                    "system": SYSTEM_LABELS[system_id],
+                    "n_in_mean": len(scores),
+                    "mean_score": f"{sum(scores) / len(scores):.6f}" if scores else "",
+                }
+            )
+    write_csv(
+        "v3_scores_by_task_system.csv",
+        summary_rows,
+        ["task_id", "task", "system", "n_in_mean", "mean_score"],
+    )
 
 
 def clean_axes(ax: plt.Axes) -> None:
@@ -115,7 +177,7 @@ def render_replay_status() -> None:
 def render_task_results() -> None:
     rows = read_csv("judge_v3_candidate_task_audit_summary.csv")
     labels: list[str] = []
-    rates: list[float] = []
+    means: list[float] = []
     annotations: list[str] = []
     colors: list[str] = []
 
@@ -123,26 +185,29 @@ def render_task_results() -> None:
         task_id = row["task_id"]
         labels.append(TASK_LABELS[task_id])
         n = int(row["valid_replay_scoreable_n"])
-        passed = int(row["valid_replay_pass_n"])
         if n:
-            rate = passed / n
             mean = float(row["valid_replay_mean"])
-            annotations.append(f"{passed}/{n} 达标；平均 {mean:.2f}")
+            annotations.append(f"平均 {mean:.2f}；{n} 份结果")
         else:
-            rate = float("nan")
-            annotations.append("暂无新版结果（旧题版本不能继续评分）")
-        rates.append(rate)
-        colors.append(GRAY if task_id == "P15-A-POLICY-EIA-001" else BLUE)
+            mean = float("nan")
+            annotations.append("新版题目还没重跑（旧版来源和单位有冲突）")
+        means.append(mean)
+        if task_id == "P15-A-POLICY-EIA-001":
+            colors.append(GRAY)
+        elif task_id == "P15-B-FIN-RECON-001":
+            colors.append(HIGHLIGHT)
+        else:
+            colors.append(BAR)
 
     fig, ax = plt.subplots(figsize=(12.5, 9.2))
     y = list(range(len(labels)))
-    widths = [0.0 if rate != rate else rate for rate in rates]
+    widths = [0.0 if mean != mean else mean for mean in means]
     bars = ax.barh(y, widths, color=colors, height=0.62)
     ax.set_yticks(y, labels)
     ax.invert_yaxis()
     ax.set_xlim(0, 1.28)
-    ax.set_xlabel("本轮已经算出分数的结果中，达到要求的比例")
-    ax.set_title("V3 重评结果：14 道题的平均分在 0.48 至 1.00 之间", loc="left", pad=18)
+    ax.set_xlabel("本轮已经算出分数的结果，平均分（0 至 1，分数越低题目越难）")
+    ax.set_title("V3 初步重评：财务对账的平均分最低", loc="left", pad=18)
 
     for bar, text_label in zip(bars, annotations):
         x = max(bar.get_width() + 0.025, 0.025)
@@ -208,20 +273,19 @@ def render_old_zero_recheck() -> None:
 def render_old_task_results() -> None:
     rows = read_csv("old_evaluator_task_results.csv")
     labels = [TASK_LABELS[row["task_id"]] for row in rows]
-    passed = [int(row["pass_n"]) for row in rows]
     totals = [int(row["scoreable_n"]) for row in rows]
-    rates = [float(row["pass_rate"]) for row in rows]
+    means = [float(row["mean_score"]) for row in rows]
 
     fig, ax = plt.subplots(figsize=(12.5, 9.2))
     y = list(range(len(rows)))
-    bars = ax.barh(y, rates, height=0.62, color=[BLUE if value > 0 else GOLD for value in rates])
+    bars = ax.barh(y, means, height=0.62, color=BAR)
     ax.set_yticks(y, labels)
     ax.invert_yaxis()
     ax.set_xlim(0, 1.22)
-    ax.set_xlabel("旧评分规则下，达到要求的结果比例")
+    ax.set_xlabel("旧评分规则给出的平均分（0 至 1）")
     ax.set_title("旧结果中的大量低分，首先暴露了评分规则的问题", loc="left", pad=18)
-    for bar, p, n in zip(bars, passed, totals):
-        ax.text(max(bar.get_width() + 0.02, 0.02), bar.get_y() + bar.get_height() / 2, f"{p}/{n}", va="center", ha="left", fontsize=9.5, color=DARK)
+    for bar, mean, n in zip(bars, means, totals):
+        ax.text(max(bar.get_width() + 0.02, 0.02), bar.get_y() + bar.get_height() / 2, f"平均 {mean:.2f}；n={n}", va="center", ha="left", fontsize=9.5, color=DARK)
     clean_axes(ax)
     fig.tight_layout()
     fig.savefig(OUT / "04_old_task_results.png", bbox_inches="tight", facecolor="white")
@@ -244,14 +308,13 @@ def render_task_system_heatmap() -> None:
         for j, system_id in enumerate(system_ids):
             cell = grouped.get((task_id, system_id), [])
             if not cell:
-                annotations[i][j] = "暂无新版结果"
+                annotations[i][j] = "新版题目\n还没重跑"
                 continue
             scores = [float(row["replay_score"]) for row in cell]
-            passed = sum(row["replay_pass"] == "True" for row in cell)
             means[i, j] = sum(scores) / len(scores)
-            annotations[i][j] = f"平均 {means[i, j]:.2f}\n{passed}/{len(cell)} 达标"
+            annotations[i][j] = f"平均 {means[i, j]:.2f}\nn={len(cell)}"
 
-    cmap = plt.colormaps["Blues"].copy()
+    cmap = DIFFICULTY_CMAP.copy()
     cmap.set_bad("#E5E8EB")
     fig, ax = plt.subplots(figsize=(11.5, 10.2))
     image = ax.imshow(np.ma.masked_invalid(means), cmap=cmap, vmin=0, vmax=1, aspect="auto")
@@ -260,7 +323,7 @@ def render_task_system_heatmap() -> None:
     ax.set_yticks(range(len(task_ids)), [TASK_LABELS[item] for item in task_ids])
     ax.set_xlabel("")
     ax.set_ylabel("")
-    ax.set_title("V3 重评结果：各题在三套系统中的表现差异很大", loc="left", pad=18)
+    ax.set_title("V3 初步重评：同一道题在三套系统中的分数差异明显", loc="left", pad=18)
     ax.tick_params(axis="both", length=0)
 
     ax.set_xticks(np.arange(-0.5, len(system_ids), 1), minor=True)
@@ -273,11 +336,11 @@ def render_task_system_heatmap() -> None:
     for i in range(len(task_ids)):
         for j in range(len(system_ids)):
             value = means[i, j]
-            color = "white" if not np.isnan(value) and value >= 0.62 else DARK
+            color = "white" if not np.isnan(value) and value <= 0.55 else DARK
             ax.text(j, i, annotations[i][j], ha="center", va="center", color=color, fontsize=10, fontweight="bold")
 
     colorbar = fig.colorbar(image, ax=ax, fraction=0.035, pad=0.035)
-    colorbar.set_label("平均分（0 至 1）")
+    colorbar.set_label("平均分（0 至 1，深色表示分数更低）")
     colorbar.outline.set_visible(False)
 
     fig.tight_layout()
@@ -288,6 +351,7 @@ def render_task_system_heatmap() -> None:
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     configure_style()
+    write_score_only_tables()
     render_replay_status()
     render_task_results()
     render_old_zero_recheck()
