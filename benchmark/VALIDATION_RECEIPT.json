@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "validated_at_utc": "2026-09-04T05:06:01Z",
-  "validation_scope": "Public repository environment, Harbor task packaging, Agent setup reuse, and fixed-answer V3 score replay",
+  "validated_at_utc": "2026-09-04T05:18:22Z",
+  "validation_scope": "Public repository environment, Harbor task packaging, Evaluator packages, Agent setup reuse, and fixed-answer V3 score replay",
   "environment": {
     "harbor": "0.22.0",
     "image": "p15-agent-base:harbor-0.22.0-agentset-1",
@@ -81,6 +81,20 @@
     "reward": 1.0,
     "artifact_and_separate_verifier_completed": true
   },
+  "evaluator_package_validation": {
+    "repository_commit_tested": "da125ac6c046ee0cb7ad3603979bde3a95bbffba",
+    "runner": "scripts/validate_all_evaluators.py",
+    "isolation": "Each task was copied to a temporary directory before its regression suite was run",
+    "tasks_checked": 15,
+    "regression_suites_passed": 15,
+    "dev_references_scored_1_0": 15,
+    "confirm_references_scored_1_0": 15,
+    "missing_or_untracked_dependencies": 0,
+    "host_absolute_paths": 0,
+    "external_workbook_links": 0,
+    "issue_found_and_fixed": "P15-A-STAT-EXPERIMENT-001 now recognizes the held-out Batch, Baseline cycle time, and Intervention cycle time headers",
+    "historical_replay_changed": false
+  },
   "fixed_answer_replay": {
     "runtime_python": "3.11.16",
     "workbooks_replayed": 368,
@@ -118,11 +132,15 @@
   },
   "github_actions": {
     "workflow": "Reproduce V3 scores",
-    "run_id": 33839154359,
-    "head_commit": "5dbc8076ebc398222e30ce914e53389abd624852",
+    "run_id": 33839889385,
+    "head_commit": "da125ac6c046ee0cb7ad3603979bde3a95bbffba",
     "conclusion": "success",
-    "duration": "1m3s",
-    "url": "https://github.com/alex051107/excel-multimodal-benchmark-p15-review/actions/runs/33839154359"
+    "duration": "1m29s",
+    "steps": [
+      "Validate all 15 Evaluators",
+      "Replay all published workbooks"
+    ],
+    "url": "https://github.com/alex051107/excel-multimodal-benchmark-p15-review/actions/runs/33839889385"
   },
   "boundary": "This validation did not call paid model endpoints. A new online run tests the same pipeline but can produce different workbooks because model generation is nondeterministic and requires the reader's own credentials."
 }

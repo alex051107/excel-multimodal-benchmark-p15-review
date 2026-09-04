@@ -2,6 +2,8 @@
 
 审查一道题时，先读 `rubric.json`，再看 `tests/evaluate.py`。Rubric 说明业务上要检查什么，Evaluator 说明程序实际怎样查。两者不一致时，应该修改 Evaluator 或 Rubric，不应该用某个系统原来的分数决定哪一方正确。
 
+要直接检查全部评分程序，在仓库根目录运行 [`python scripts/validate_all_evaluators.py`](../scripts/validate_all_evaluators.py)。它会把每道题单独复制到临时目录，运行该题的回归测试，再用开发参考答案和隐藏确认参考答案各评一次。当前 15 份回归测试和 30 份参考答案检查全部通过；这能证明脚本和依赖完整，不代替对评分标准是否公平的人工审查。
+
 ## `rubric.json` 怎样读
 
 | 字段 | 含义 |
