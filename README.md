@@ -14,7 +14,7 @@ V3 已经纠正了一批明显误判，也把“业务结果为 0 分”与“�
 2. 再看 [V3 分数表和口径](results/judge_v3_initial/README.md)，确认 286、322、368 这几个数字分别表示什么。
 3. 审查具体规则时，打开 [15 道题的 Rubric 和 Evaluator 导航](docs/EVALUATOR_REVIEW_MAP.md)，再进入每道题的 `rubric.json` 和 `tests/evaluate.py`。
 4. 要追题目来源时，看 [公开数据、论文和 Benchmark 设计参考](references/SOURCE_CATALOG.md)。
-5. 要从实际答卷重新算出报告中的分数，按 [V3 结果复现说明](reproduction/README.md) 运行公开脚本。
+5. 要自己验证 15 份 Evaluator，再从实际答卷重新算出报告中的分数，按 [V3 结果复现说明](reproduction/README.md) 运行两个公开脚本。
 6. 要重新调用 Agent 跑题，按 [Harbor Benchmark 运行说明](benchmark/README.md) 选择任务、系统和重复次数；已执行的环境与复算检查见 [验证记录](benchmark/VALIDATION_RECEIPT.json)。
 
 ## 分数应该怎样读

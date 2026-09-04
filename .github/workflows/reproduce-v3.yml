@@ -7,6 +7,7 @@ on:
       - ".github/workflows/reproduce-v3.yml"
       - "reproduction/**"
       - "requirements-reproduction.txt"
+      - "scripts/validate_all_evaluators.py"
       - "scripts/reproduce_v3_results.py"
       - "tasks/pilot_v1/**/tests/**"
 
@@ -26,5 +27,7 @@ jobs:
           cache-dependency-path: requirements-reproduction.txt
       - name: Install evaluator dependencies
         run: python -m pip install -r requirements-reproduction.txt
+      - name: Validate all 15 Evaluators
+        run: python scripts/validate_all_evaluators.py
       - name: Replay all published workbooks
         run: python scripts/reproduce_v3_results.py --workers 4
