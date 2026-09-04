@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - ".github/workflows/reproduce-v3.yml"
       - "reproduction/**"
       - "requirements-reproduction.txt"
       - "scripts/reproduce_v3_results.py"
