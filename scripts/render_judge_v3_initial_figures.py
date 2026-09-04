@@ -4,9 +4,11 @@
 from __future__ import annotations
 
 import csv
+from collections import defaultdict
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib import font_manager
 from matplotlib.patches import Patch
 
@@ -31,6 +33,12 @@ TASK_LABELS = {
     "P15-C-QUOTE-001": "C  报价单整理",
     "P15-C-RECEIPTS-001": "C  多张票据整理",
     "P15-C-STATEMENT-001": "C  银行账单整理",
+}
+
+SYSTEM_LABELS = {
+    "claude_opus5": "Claude Opus 5",
+    "codex_gpt56sol": "Codex GPT-5.6 Sol",
+    "qwen38max": "Qwen3.8-max",
 }
 
 BLUE = "#2878B5"
@@ -220,6 +228,63 @@ def render_old_task_results() -> None:
     plt.close(fig)
 
 
+def render_task_system_heatmap() -> None:
+    rows = read_csv("judge_v3_candidate_full_archive_replay.csv")
+    grouped: dict[tuple[str, str], list[dict[str, str]]] = defaultdict(list)
+    for row in rows:
+        if row["valid_attempt"] == "True" and row["replay_scoreable"] == "True":
+            grouped[(row["task_id"], row["system"])].append(row)
+
+    task_ids = list(TASK_LABELS)
+    system_ids = list(SYSTEM_LABELS)
+    means = np.full((len(task_ids), len(system_ids)), np.nan)
+    annotations: list[list[str]] = [["" for _ in system_ids] for _ in task_ids]
+
+    for i, task_id in enumerate(task_ids):
+        for j, system_id in enumerate(system_ids):
+            cell = grouped.get((task_id, system_id), [])
+            if not cell:
+                annotations[i][j] = "暂无新版结果"
+                continue
+            scores = [float(row["replay_score"]) for row in cell]
+            passed = sum(row["replay_pass"] == "True" for row in cell)
+            means[i, j] = sum(scores) / len(scores)
+            annotations[i][j] = f"平均 {means[i, j]:.2f}\n{passed}/{len(cell)} 达标"
+
+    cmap = plt.colormaps["Blues"].copy()
+    cmap.set_bad("#E5E8EB")
+    fig, ax = plt.subplots(figsize=(11.5, 10.2))
+    image = ax.imshow(np.ma.masked_invalid(means), cmap=cmap, vmin=0, vmax=1, aspect="auto")
+
+    ax.set_xticks(range(len(system_ids)), [SYSTEM_LABELS[item] for item in system_ids])
+    ax.set_yticks(range(len(task_ids)), [TASK_LABELS[item] for item in task_ids])
+    ax.set_xlabel("")
+    ax.set_ylabel("")
+    ax.set_title("V3 重评结果：各题在三套系统中的表现差异很大", loc="left", pad=18)
+    ax.tick_params(axis="both", length=0)
+
+    ax.set_xticks(np.arange(-0.5, len(system_ids), 1), minor=True)
+    ax.set_yticks(np.arange(-0.5, len(task_ids), 1), minor=True)
+    ax.grid(which="minor", color="white", linewidth=2)
+    ax.tick_params(which="minor", bottom=False, left=False)
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+
+    for i in range(len(task_ids)):
+        for j in range(len(system_ids)):
+            value = means[i, j]
+            color = "white" if not np.isnan(value) and value >= 0.62 else DARK
+            ax.text(j, i, annotations[i][j], ha="center", va="center", color=color, fontsize=10, fontweight="bold")
+
+    colorbar = fig.colorbar(image, ax=ax, fraction=0.035, pad=0.035)
+    colorbar.set_label("平均分（0 至 1）")
+    colorbar.outline.set_visible(False)
+
+    fig.tight_layout()
+    fig.savefig(OUT / "05_task_system_heatmap.png", bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     configure_style()
@@ -227,6 +292,7 @@ def main() -> None:
     render_task_results()
     render_old_zero_recheck()
     render_old_task_results()
+    render_task_system_heatmap()
 
 
 if __name__ == "__main__":

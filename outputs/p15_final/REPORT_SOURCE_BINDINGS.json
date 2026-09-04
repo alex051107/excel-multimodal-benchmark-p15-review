@@ -23,6 +23,10 @@
       "source": "results/judge_v3_initial/old_evaluator_task_results.csv"
     },
     {
+      "claim": "The task-by-system heatmap uses current valid attempts with numeric V3 scores and displays each cell's mean score and pass count.",
+      "source": "results/judge_v3_initial/judge_v3_candidate_full_archive_replay.csv"
+    },
+    {
       "claim": "Five tasks use public methods or data references and ten tasks mainly use project-constructed materials.",
       "source": "references/SOURCE_CATALOG.md"
     }
