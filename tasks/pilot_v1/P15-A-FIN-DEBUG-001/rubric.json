@@ -13,6 +13,14 @@
     {"id":"R011","description":"Every declared downstream model output remains formula-linked.","weight":2,"type":"positive","dimension":"formula_integrity","method":"deterministic","method_params":{"implemented_check":"required_formulas"}},
     {"id":"R012","description":"The receivables and free-cash-flow chain responds correctly to the distinct 2027 DSO perturbation while revenue, contribution, and interest remain invariant.","weight":1,"type":"positive","dimension":"working_capital_recalculation","method":"deterministic","method_params":{"implemented_check":"dso_perturbation","applies_to":["dev"]}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查唯一的上游公式错误是否被修正，后续对账是否恢复，其他区域是否保持不变。",
+    "answer_location_zh": "这道题要求在给定模型上做最小修复，所以会检查指定工作表、受保护单元格和公式依赖。",
+    "accepted_equivalents_zh": ["能恢复同一业务关系的等价公式", "不影响模型的说明文字差异"],
+    "not_scoreable_zh": "工作簿无法读取，或被整体重建到无法确认原始保护区域时，应单独记录结构不可比。",
+    "known_limit_zh": "这是一道简单对照题，用来确认基础修复流程，不足以单独区分系统能力上限。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria": ["R002", "R006", "R010"],
   "pass_threshold": 0.7,
   "rubric_version": "p15_v3_control",

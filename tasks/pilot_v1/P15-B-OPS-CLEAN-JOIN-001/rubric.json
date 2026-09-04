@@ -10,6 +10,14 @@
     {"id": "R008", "description": "Every raw-order, product-master, and location-master source field is preserved exactly.", "weight": 3, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {}},
     {"id": "R009", "description": "Checks report the accepted count, exception count, and total cost in a reviewable form.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查订单标准化、主数据连接、精确重复处理、全部异常保留、数量和金额总数。",
+    "answer_location_zh": "按表头、订单键、产品键和地点键查找清洗表、连接表和异常表，再检查它们是否来自同一套交付。",
+    "accepted_equivalents_zh": ["不同列顺序", "不同工作表名", "公式或静态的正确结果"],
+    "not_scoreable_zh": "工作簿有多块相互矛盾的候选表，无法确认哪一套是最终交付时，应先记录 Judge 暂时无法判断。",
+    "known_limit_zh": "当前连续分数与旧二元结果冲突，说明本题的定位和关键项判定还要继续审查。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria": ["R002", "R003", "R007", "R008"],
   "pass_threshold": 0.7,
   "rubric_version": "p15_judge_v3",

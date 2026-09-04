@@ -11,6 +11,14 @@
     {"id": "R009", "description": "Scope IDs are non-empty and unique, and scope/provenance populations are complete without duplicates.", "weight": 3, "type": "positive", "dimension": "completeness", "method": "deterministic", "method_params": {}},
     {"id": "P001", "description": "Penalty for contradictory source-file or page claims in quote provenance.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查报价身份、基础范围与可选项分离、折扣、税后基础总额和来源保留。",
+    "answer_location_zh": "按表头别名、内容行、文档身份和金额关系查找交付，不要求固定起始行。",
+    "accepted_equivalents_zh": ["正数折扣后相减", "负数折扣后相加", "合理的来源表方向和表名"],
+    "not_scoreable_zh": "无法区分基础范围和可选项，或多块报价表对同一项目给出不同最终金额时，应先记录定位问题。",
+    "known_limit_zh": "当前识别方式仍可能偏向某些布局，需要继续补充可选项和来源表的排列变体。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria": ["R004", "R006"],
   "pass_threshold": 0.7,
   "rubric_version": "p15_v3.0",

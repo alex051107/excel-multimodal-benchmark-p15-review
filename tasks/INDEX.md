@@ -1,31 +1,33 @@
-# P15 Task Index
+# P15 15 道题目录
 
-## Track A: Professional models
+15 道题分为 A、B、C 三类。A 类看建模、计算、调试和情景修改；B 类看多文件数据的选择、清洗、连接和对账；C 类看文档或图片怎样转成可编辑、可核对的工作簿。每道题的来源细节见 [SOURCE_CATALOG.md](../references/SOURCE_CATALOG.md)，评分审查重点见 [Rubric 和 Evaluator 导航](../docs/EVALUATOR_REVIEW_MAP.md)。
 
-| Task | Professional work | Input | Delivery | Status |
-| --- | --- | --- | --- | --- |
-| [P15-A-FIN-DCF-001](pilot_v1/P15-A-FIN-DCF-001/) | Five-year DCF valuation | Historical financial facts and forecast assumptions | Recalculable forecast, terminal value, equity bridge, and sensitivity table | LOCAL_READY |
-| [P15-A-FIN-DEBUG-001](pilot_v1/P15-A-FIN-DEBUG-001/) | Financial-model root-cause repair | Operating forecast with one controlled defect | Minimal formula repair and restored reconciliation | LOCAL_READY |
-| [P15-A-ENG-SIZING-001](pilot_v1/P15-A-ENG-SIZING-001/) | Cooling-water pump selection | Design conditions and eligible equipment catalog | Unit conversion, hydraulic calculation, margin, and first eligible device | LOCAL_READY |
-| [P15-A-STAT-EXPERIMENT-001](pilot_v1/P15-A-STAT-EXPERIMENT-001/) | Paired sleep experiment | Paired crossover observations | Paired statistics, confidence interval, power, and chart | LOCAL_READY |
-| [P15-A-POLICY-EIA-001](pilot_v1/P15-A-POLICY-EIA-001/) | Electricity-policy scenario | Public generation data and policy assumptions | Baseline/policy scenarios, emission intensity, and balance checks | LOCAL_READY |
+## A 类 建模、计算和调试
 
-## Track B: Multi-file analysis
+| 题目 | 要完成的工作 | 主要输入 | 最终交付 | 来源类型 |
+|---|---|---|---|---|
+| [现金流估值](pilot_v1/P15-A-FIN-DCF-001/) | 做五年 DCF 估值 | 历史财务事实与预测假设 | 可重算的预测、终值、股权价值调整和敏感性表 | 公开数据摘录 + 项目改写 |
+| [财务纠错](pilot_v1/P15-A-FIN-DEBUG-001/) | 找到上游根因并修复模型 | 含一个受控错误的运营预测 | 最小公式修复和恢复后的对账 | 项目构造 |
+| [工程选泵](pilot_v1/P15-A-ENG-SIZING-001/) | 把设计条件换算成设备选型 | 流量、管径、阻力和候选泵目录 | 单位换算、水力计算、余量和首台合格设备 | 公开方法 + 项目构造数据 |
+| [配对实验](pilot_v1/P15-A-STAT-EXPERIMENT-001/) | 分析配对交叉实验 | 受试者的配对观测 | 配对统计、区间、样本量和图表 | 公开数据 |
+| [政策情景](pilot_v1/P15-A-POLICY-EIA-001/) | 把政策假设放入发电结构情景 | 发电结构和排放参数 | 基准/政策情景、排放强度和平衡检查 | 公开数据背景 + 项目改写；修正版待重跑 |
 
-| Task | Professional work | Input | Delivery | Status |
-| --- | --- | --- | --- | --- |
-| [P15-B-SALES-DISCOVERY-001](pilot_v1/P15-B-SALES-DISCOVERY-001/) | Q2 data-version selection | Prior, draft, approved, and test releases | Authoritative-source selection, KPI summary, and coverage proof | LOCAL_READY |
-| [P15-B-OPS-CLEAN-JOIN-001](pilot_v1/P15-B-OPS-CLEAN-JOIN-001/) | Order cleaning and joining | Orders plus product and location masters | Deduplication, normalization, valid joins, exception queue, and totals | LOCAL_READY |
-| [P15-B-FIN-RECON-001](pilot_v1/P15-B-FIN-RECON-001/) | Monthly ledger reconciliation | Ledger, subledger, FX rates, and approved adjustment | Matches, exceptions, variance bridge, and conclusion | LOCAL_READY |
-| [P15-B-PUBLIC-PIVOT-001](pilot_v1/P15-B-PUBLIC-PIVOT-001/) | Native Excel Pivot reporting | Native Pivot template plus activity-level records | Updated PivotTable, Q2 filter, SUM measures, refresh, and PivotChart | LOCAL_READY on Mac; Windows compatibility pending |
-| [P15-B-HEALTH-REPORT-001](pilot_v1/P15-B-HEALTH-REPORT-001/) | Heart-disease mortality brief | Two-state time-series data | Metrics, narrative findings, chart, and source checks | LOCAL_READY |
+## B 类 多文件数据处理
 
-## Track C: Documents to editable workbooks
+| 题目 | 要完成的工作 | 主要输入 | 最终交付 | 来源类型 |
+|---|---|---|---|---|
+| [销售数据选择](pilot_v1/P15-B-SALES-DISCOVERY-001/) | 在多个版本中找到已批准的 Q2 数据 | 旧版、草稿、批准版和测试版 | 来源选择说明、KPI 和地区覆盖检查 | 项目构造 |
+| [订单清洗合并](pilot_v1/P15-B-OPS-CLEAN-JOIN-001/) | 标准化订单并连接主数据 | 订单、产品主数据和地点主数据 | 有效连接、异常清单和控制总数 | 项目构造 |
+| [财务对账](pilot_v1/P15-B-FIN-RECON-001/) | 对账总账、子账、汇率和批准调整 | 多份账务记录与政策 | 匹配、异常、差异桥和结论 | 项目构造 |
+| [原生透视表](pilot_v1/P15-B-PUBLIC-PIVOT-001/) | 更新可刷新的 Excel 透视分析 | 原生透视表模板与明细记录 | PivotTable、过滤、求和指标、KPI 和 PivotChart | 项目构造 |
+| [健康数据报告](pilot_v1/P15-B-HEALTH-REPORT-001/) | 把时间序列数据写成有证据的简报 | 两州的心脏病死亡率数据 | 指标、比较结论、图表和来源检查 | 公开数据摘录 |
 
-| Task | Professional work | Input | Delivery | Status |
-| --- | --- | --- | --- | --- |
-| [P15-C-INVOICE-001](pilot_v1/P15-C-INVOICE-001/) | Multipage invoice workpaper | Two-page invoice | Document identity, all line items, amount reconciliation, and provenance | LOCAL_READY |
-| [P15-C-QUOTE-001](pilot_v1/P15-C-QUOTE-001/) | Scanned quote normalization | Contractor quote scan | Header, base scope, discounts/tax, alternates, and provenance | LOCAL_READY |
-| [P15-C-RECEIPTS-001](pilot_v1/P15-C-RECEIPTS-001/) | Receipt-batch summary | Three receipt-image layouts | Document identity, item hierarchy, categorization, and batch reconciliation | LOCAL_READY |
-| [P15-C-PO-ADDENDUM-001](pilot_v1/P15-C-PO-ADDENDUM-001/) | Purchase-order amendment | Base PO and addendum | Exact quantity, new-line, and unit-price changes with locality preservation | LOCAL_READY |
-| [P15-C-STATEMENT-001](pilot_v1/P15-C-STATEMENT-001/) | Multipage bank-statement reconciliation | Continuation bank statement | All transactions, debit/credit direction, balance bridge, and provenance | LOCAL_READY |
+## C 类 文档转可编辑工作簿
+
+| 题目 | 要完成的工作 | 主要输入 | 最终交付 | 来源类型 |
+|---|---|---|---|---|
+| [发票整理](pilot_v1/P15-C-INVOICE-001/) | 把两页发票整理成应付工作底稿 | 两页发票 | 发票身份、全部明细、金额对账和来源 | 项目构造 |
+| [报价单整理](pilot_v1/P15-C-QUOTE-001/) | 整理扫描报价的范围和商务条款 | 报价单图片 | 基础范围、折扣/税、可选项和来源 | 项目构造 |
+| [多张票据整理](pilot_v1/P15-C-RECEIPTS-001/) | 合并三种布局的票据 | 三张票据图片 | 票据身份、明细、分类和批次对账 | 项目构造 |
+| [采购变更单](pilot_v1/P15-C-PO-ADDENDUM-001/) | 把附件变更应用到原采购单 | 基础采购单和三项变更 | 修订明细、原行保留、变更记录和总额 | 项目构造 |
+| [银行账单整理](pilot_v1/P15-C-STATEMENT-001/) | 重建多页账单的交易与对账 | 续页银行账单 | 全部交易、借贷方向、余额桥和来源 | 项目构造 |

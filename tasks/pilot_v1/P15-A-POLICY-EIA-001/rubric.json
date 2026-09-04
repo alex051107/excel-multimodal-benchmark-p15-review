@@ -13,6 +13,14 @@
     {"id": "R011", "description": "Historical generation, demand, and emissions-factor inputs remain unchanged.", "weight": 2, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {"implemented_check": "semantic_source_input_protection"}},
     {"id": "R012", "description": "A distinct policy-demand-growth perturbation updates demand, balancing gas, emissions, intensity, and reported results while preserving source generation and the coal/renewable policy schedule.", "weight": 1, "type": "positive", "dimension": "demand_growth_recalculation", "method": "deterministic", "method_params": {"implemented_check": "demand-growth perturbation propagation", "applies_to": ["dev"]}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查基准与政策情景、发电量平衡、排放量、排放强度和 GWh 到 MWh 的单位换算。",
+    "answer_location_zh": "本 rubric 只对应修正后的题面和输入，按能源类型、情景标签和平衡关系查找结果。",
+    "accepted_equivalents_zh": ["合理的工作表名和布局", "结果一致的公式"],
+    "not_scoreable_zh": "历史答卷来自来源和单位定义冲突的旧题，统一记为题目版本不可比，不用修正版 rubric 重新打分。",
+    "known_limit_zh": "修正版还没有让三套系统重新运行，因此当前没有可比的新分数。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria": ["R005", "R006", "R011"],
   "archived_pre_v2_campaign_status": "TASK_INVALID (assigned by the frozen campaign replay binding, not this evaluator)",
   "current_task_contract": "v2 corrected task; tests/evaluate.py always scores this contract",

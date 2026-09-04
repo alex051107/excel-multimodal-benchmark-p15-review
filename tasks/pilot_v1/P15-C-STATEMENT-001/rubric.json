@@ -11,6 +11,14 @@
     {"id": "R009", "description": "Each transaction ID links once to the correct statement file/page with a candidate-readable locator; no private locator token is required.", "weight": 4, "type": "positive", "dimension": "provenance", "method": "deterministic", "method_params": {}},
     {"id": "P001", "description": "Penalty for fabricated statement provenance.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查账户与期间、全部交易、借贷方向、分类、续页、来源和开闭额对账。",
+    "answer_location_zh": "按表头别名、交易内容、日期和页码查找交付，不要求第 4 行起始或固定 B 列。",
+    "accepted_equivalents_zh": ["公式或静态的正确行净额", "公式或静态的正确分类汇总", "合理的工作表名和排列"],
+    "not_scoreable_zh": "无法将交易对应到账单页面，或开闭额与交易清单属于不同的候选交付时，应先记录定位问题。",
+    "known_limit_zh": "还要补充分类汇总、开始行和交易金额联动的替代布局。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria": ["R002", "R003", "R006", "R009"],
   "pass_threshold": 0.7,
   "rubric_version": "p15_v3.0",

@@ -10,6 +10,14 @@
     {"id": "R008", "description": "GETPIVOTDATA-linked KPI cells have the Excel-calculated participant, spend, and split-specific focus values.", "weight": 4, "type": "positive", "dimension": "aggregation_correctness", "method": "ooxml", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
     {"id": "R009", "description": "A clustered-column PivotChart is bound to the native PivotTable; a regular range chart does not qualify.", "weight": 4, "type": "positive", "dimension": "pivot_chart_binding", "method": "ooxml", "method_params": {}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查 PivotCache、PivotTable、Q2 过滤、Region 行、Program 列、Participants/Spend 求和、原生 PivotChart 和 KPI。",
+    "answer_location_zh": "直接检查 XLSX 内的原生透视表对象、缓存、源数据连接和图表绑定，不用普通值表代替。",
+    "accepted_equivalents_zh": ["不改变透视字段含义的布局变化", "合理的工作表名称"],
+    "not_scoreable_zh": "文件需要 Microsoft Excel 刷新或重算时，应记为待原生重算，不先写成 0 分。",
+    "known_limit_zh": "当前数据连接和 Excel 刷新证据还没有完成验证，因此暂时的 1.00 不能直接解释为稳定完成。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria": ["R002", "R003", "R004", "R005", "R006", "R008", "R009"],
   "pass_threshold": 0.7,
   "rubric_version": "p15_judge_v3",

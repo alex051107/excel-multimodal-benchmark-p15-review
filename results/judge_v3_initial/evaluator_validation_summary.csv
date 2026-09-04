@@ -1,0 +1,16 @@
+task_id,test_files,valid_examples,deliberate_error_examples,unexpected_results,review_state
+P15-A-ENG-SIZING-001,10,3,7,0,localized_risk_review
+P15-A-FIN-DCF-001,10,3,7,0,candidate_for_review
+P15-A-FIN-DEBUG-001,10,3,7,0,candidate_for_review
+P15-A-POLICY-EIA-001,9,3,6,0,freeze_binding_required
+P15-A-STAT-EXPERIMENT-001,11,4,7,0,candidate_for_review
+P15-B-FIN-RECON-001,15,4,11,0,candidate_for_review
+P15-B-HEALTH-REPORT-001,13,6,7,0,localized_risk_review
+P15-B-OPS-CLEAN-JOIN-001,11,5,6,0,revise_before_freeze
+P15-B-PUBLIC-PIVOT-001,11,4,7,0,revise_before_freeze
+P15-B-SALES-DISCOVERY-001,12,5,7,0,localized_risk_review
+P15-C-INVOICE-001,11,3,8,0,revise_before_freeze
+P15-C-PO-ADDENDUM-001,12,4,8,0,revise_before_freeze
+P15-C-QUOTE-001,11,4,7,0,revise_before_freeze
+P15-C-RECEIPTS-001,11,4,7,0,revise_before_freeze
+P15-C-STATEMENT-001,11,5,6,0,revise_before_freeze

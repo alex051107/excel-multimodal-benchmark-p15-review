@@ -12,6 +12,14 @@
     {"id":"R010","description":"Enterprise value responds correctly to the declared WACC perturbation.","weight":2,"type":"positive","dimension":"wacc_recalculation","method":"deterministic","method_params":{"implemented_check":"wacc_perturbation"}},
     {"id":"R011","description":"The declared historical source cells remain unchanged.","weight":2,"type":"positive","dimension":"change_locality","method":"deterministic","method_params":{"implemented_check":"historical_source_protection"}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查五年预测、无杠杆现金流、终值、企业价值到股权价值的调整和敏感性结果。",
+    "answer_location_zh": "题面明确要求五张工作表；在这个结构内按标签和财务关系查找结果，再用独立重算核对。",
+    "accepted_equivalents_zh": ["结果一致的公式", "合理的标签近义词", "不同的单元格位置"],
+    "not_scoreable_zh": "工作簿无法读取，或关键预测与估值区域无法可靠定位时，应先记录评分程序的识别问题。",
+    "known_limit_zh": "现有规则总体稳定，仍需用真实答卷检查标签别名和敏感性表的替代布局。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria": ["R007", "R009", "R010", "R011"],
   "pass_threshold": 0.7,
   "rubric_version": "p15_v3_contract",

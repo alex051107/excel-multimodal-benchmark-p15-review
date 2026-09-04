@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Object-level OOXML judge for the native PivotTable/PivotChart task."""
+# Reviewer note: keep this implementation aligned with ../rubric.json["review_notes"].
 from __future__ import annotations
 
 import csv

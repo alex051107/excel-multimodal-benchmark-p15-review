@@ -92,58 +92,6 @@ def read_csv(name: str) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def write_csv(name: str, rows: list[dict[str, object]], fields: list[str]) -> None:
-    with (DATA / name).open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
-        writer.writeheader()
-        writer.writerows(rows)
-
-
-def write_score_only_tables() -> None:
-    rows = read_csv("judge_v3_candidate_full_archive_replay.csv")
-    current = [
-        row
-        for row in rows
-        if row["valid_attempt"] == "True" and row["replay_scoreable"] == "True"
-    ]
-    attempt_rows = [
-        {
-            "wave_id": row["wave_id"],
-            "task_id": row["task_id"],
-            "system": SYSTEM_LABELS[row["system"]],
-            "score": f'{float(row["replay_score"]):.6f}',
-        }
-        for row in current
-    ]
-    write_csv(
-        "v3_scores_current.csv",
-        attempt_rows,
-        ["wave_id", "task_id", "system", "score"],
-    )
-
-    grouped: dict[tuple[str, str], list[float]] = defaultdict(list)
-    for row in current:
-        grouped[(row["task_id"], row["system"])].append(float(row["replay_score"]))
-    summary_rows: list[dict[str, object]] = []
-    for task_id in TASK_LABELS:
-        for system_id in SYSTEM_LABELS:
-            scores = grouped.get((task_id, system_id), [])
-            summary_rows.append(
-                {
-                    "task_id": task_id,
-                    "task": TASK_LABELS[task_id].replace("  ", " "),
-                    "system": SYSTEM_LABELS[system_id],
-                    "n_in_mean": len(scores),
-                    "mean_score": f"{sum(scores) / len(scores):.6f}" if scores else "",
-                }
-            )
-    write_csv(
-        "v3_scores_by_task_system.csv",
-        summary_rows,
-        ["task_id", "task", "system", "n_in_mean", "mean_score"],
-    )
-
-
 def clean_axes(ax: plt.Axes) -> None:
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
@@ -153,40 +101,24 @@ def clean_axes(ax: plt.Axes) -> None:
     ax.set_axisbelow(True)
 
 
-def render_replay_status() -> None:
-    labels = ["新版规则已经算出分数", "评分程序暂时读不懂", "旧题版本不能继续评分", "还要用 Excel 打开重算"]
-    values = [322, 12, 24, 10]
-    colors = [BLUE, GOLD, GRAY, LIGHT_BLUE]
-
-    fig, ax = plt.subplots(figsize=(11.5, 4.8))
-    y = list(range(len(labels)))
-    bars = ax.barh(y, values, height=0.58, color=colors)
-    ax.set_yticks(y, labels)
-    ax.invert_yaxis()
-    ax.set_xlim(0, 368)
-    for bar, value in zip(bars, values):
-        ax.text(value + 4, bar.get_y() + bar.get_height() / 2, f"{value} 份", va="center", ha="left", color=DARK, fontweight="bold")
-    ax.set_xlabel("现有 Excel 结果（共 368 份）")
-    clean_axes(ax)
-    fig.suptitle("新版评分规则已经给 322 份结果算出了分数", x=0.125, y=0.98, ha="left", fontsize=17, fontweight="bold")
-    fig.tight_layout(rect=[0, 0, 1, 0.88])
-    fig.savefig(OUT / "01_replay_status.png", bbox_inches="tight", facecolor="white")
-    plt.close(fig)
-
-
 def render_task_results() -> None:
-    rows = read_csv("judge_v3_candidate_task_audit_summary.csv")
+    rows = read_csv("v3_scores_by_task_system.csv")
+    grouped: dict[str, list[tuple[int, float]]] = defaultdict(list)
+    for row in rows:
+        n = int(row["n_in_mean"])
+        if n and row["mean_score"]:
+            grouped[row["task_id"]].append((n, float(row["mean_score"])))
     labels: list[str] = []
     means: list[float] = []
     annotations: list[str] = []
     colors: list[str] = []
 
-    for row in rows:
-        task_id = row["task_id"]
+    for task_id in TASK_LABELS:
         labels.append(TASK_LABELS[task_id])
-        n = int(row["valid_replay_scoreable_n"])
+        cells = grouped.get(task_id, [])
+        n = sum(item[0] for item in cells)
         if n:
-            mean = float(row["valid_replay_mean"])
+            mean = sum(cell_n * cell_mean for cell_n, cell_mean in cells) / n
             annotations.append(f"平均 {mean:.2f}；{n} 份结果")
         else:
             mean = float("nan")
@@ -220,13 +152,9 @@ def render_task_results() -> None:
 
 
 def render_old_zero_recheck() -> None:
-    replay = read_csv("judge_v3_candidate_full_archive_replay.csv")
-    old_zero = [
-        row
-        for row in replay
-        if row["original_score"] == "0.0"
-    ]
-    groups = [("全部旧 0 分", old_zero), ("其中：本轮正常完成", [row for row in old_zero if row["valid_attempt"] == "True"])]
+    rows = read_csv("old_zero_recheck_summary.csv")
+    group_labels = ["全部旧 0 分", "其中：本轮正常完成"]
+    count_map = {(row["cohort"], row["status"]): int(row["count"]) for row in rows}
 
     series = [
         ("新版改为非零分", BLUE),
@@ -234,27 +162,25 @@ def render_old_zero_recheck() -> None:
         ("旧题版本不可比", ORANGE),
         ("新版仍为 0 分", GRAY),
     ]
-    counts: list[list[int]] = []
-    for _, rows in groups:
-        nonzero = sum(row["replay_scoreable"] == "True" and float(row["replay_score"]) > 0 for row in rows)
-        zero = sum(row["replay_scoreable"] == "True" and float(row["replay_score"]) == 0 for row in rows)
-        task_version = sum(row["evaluator_status"] == "TASK_INVALID" for row in rows)
-        unable = len(rows) - nonzero - zero - task_version
-        counts.append([nonzero, unable, task_version, zero])
+    counts = [
+        [count_map[(group, status)] for status, _ in series]
+        for group in group_labels
+    ]
 
     fig, ax = plt.subplots(figsize=(10.8, 4.8))
-    for y, ((group_label, rows), values) in enumerate(zip(groups, counts)):
+    totals = [sum(values) for values in counts]
+    for y, (group_label, values, total) in enumerate(zip(group_labels, counts, totals)):
         left = 0
         for (series_label, color), value in zip(series, values):
             ax.barh(y, value, left=left, height=0.5, color=color, edgecolor="white")
             if value:
                 ax.text(left + value / 2, y, f"{value}", ha="center", va="center", color="white" if color != GRAY else DARK, fontweight="bold")
             left += value
-        ax.text(left + 0.8, y, f"共 {len(rows)} 份", va="center", ha="left", color=DARK)
+        ax.text(left + 0.8, y, f"共 {total} 份", va="center", ha="left", color=DARK)
 
-    ax.set_yticks(range(len(groups)), [group[0] for group in groups])
+    ax.set_yticks(range(len(group_labels)), group_labels)
     ax.invert_yaxis()
-    ax.set_xlim(0, max(len(rows) for _, rows in groups) * 1.08)
+    ax.set_xlim(0, max(totals) * 1.08)
     ax.set_xlabel("")
     ax.legend(
         handles=[Patch(facecolor=color, label=label) for label, color in series],
@@ -271,9 +197,9 @@ def render_old_zero_recheck() -> None:
 
 
 def render_old_task_results() -> None:
-    rows = read_csv("old_evaluator_task_results.csv")
+    rows = read_csv("old_scores_by_task.csv")
     labels = [TASK_LABELS[row["task_id"]] for row in rows]
-    totals = [int(row["scoreable_n"]) for row in rows]
+    totals = [int(row["n_in_mean"]) for row in rows]
     means = [float(row["mean_score"]) for row in rows]
 
     fig, ax = plt.subplots(figsize=(12.5, 9.2))
@@ -293,40 +219,36 @@ def render_old_task_results() -> None:
 
 
 def render_task_system_heatmap() -> None:
-    rows = read_csv("judge_v3_candidate_full_archive_replay.csv")
-    grouped: dict[tuple[str, str], list[dict[str, str]]] = defaultdict(list)
-    for row in rows:
-        if row["valid_attempt"] == "True" and row["replay_scoreable"] == "True":
-            grouped[(row["task_id"], row["system"])].append(row)
+    rows = read_csv("v3_scores_by_task_system.csv")
+    grouped = {(row["task_id"], row["system"]): row for row in rows}
 
     task_ids = list(TASK_LABELS)
-    system_ids = list(SYSTEM_LABELS)
-    means = np.full((len(task_ids), len(system_ids)), np.nan)
-    annotations: list[list[str]] = [["" for _ in system_ids] for _ in task_ids]
+    system_names = list(SYSTEM_LABELS.values())
+    means = np.full((len(task_ids), len(system_names)), np.nan)
+    annotations: list[list[str]] = [["" for _ in system_names] for _ in task_ids]
 
     for i, task_id in enumerate(task_ids):
-        for j, system_id in enumerate(system_ids):
-            cell = grouped.get((task_id, system_id), [])
-            if not cell:
+        for j, system_name in enumerate(system_names):
+            cell = grouped.get((task_id, system_name))
+            if not cell or not cell["mean_score"]:
                 annotations[i][j] = "新版题目\n还没重跑"
                 continue
-            scores = [float(row["replay_score"]) for row in cell]
-            means[i, j] = sum(scores) / len(scores)
-            annotations[i][j] = f"平均 {means[i, j]:.2f}\nn={len(cell)}"
+            means[i, j] = float(cell["mean_score"])
+            annotations[i][j] = f"平均 {means[i, j]:.2f}\nn={cell['n_in_mean']}"
 
     cmap = DIFFICULTY_CMAP.copy()
     cmap.set_bad("#E5E8EB")
     fig, ax = plt.subplots(figsize=(11.5, 10.2))
     image = ax.imshow(np.ma.masked_invalid(means), cmap=cmap, vmin=0, vmax=1, aspect="auto")
 
-    ax.set_xticks(range(len(system_ids)), [SYSTEM_LABELS[item] for item in system_ids])
+    ax.set_xticks(range(len(system_names)), system_names)
     ax.set_yticks(range(len(task_ids)), [TASK_LABELS[item] for item in task_ids])
     ax.set_xlabel("")
     ax.set_ylabel("")
     ax.set_title("V3 初步重评：同一道题在三套系统中的分数差异明显", loc="left", pad=18)
     ax.tick_params(axis="both", length=0)
 
-    ax.set_xticks(np.arange(-0.5, len(system_ids), 1), minor=True)
+    ax.set_xticks(np.arange(-0.5, len(system_names), 1), minor=True)
     ax.set_yticks(np.arange(-0.5, len(task_ids), 1), minor=True)
     ax.grid(which="minor", color="white", linewidth=2)
     ax.tick_params(which="minor", bottom=False, left=False)
@@ -334,7 +256,7 @@ def render_task_system_heatmap() -> None:
         spine.set_visible(False)
 
     for i in range(len(task_ids)):
-        for j in range(len(system_ids)):
+        for j in range(len(system_names)):
             value = means[i, j]
             color = "white" if not np.isnan(value) and value <= 0.55 else DARK
             ax.text(j, i, annotations[i][j], ha="center", va="center", color=color, fontsize=10, fontweight="bold")
@@ -351,8 +273,6 @@ def render_task_system_heatmap() -> None:
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     configure_style()
-    write_score_only_tables()
-    render_replay_status()
     render_task_results()
     render_old_zero_recheck()
     render_old_task_results()

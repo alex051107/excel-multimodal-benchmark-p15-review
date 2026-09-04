@@ -11,6 +11,14 @@
     {"id": "R009", "description": "Revised IDs are unique and the revised, log, and provenance populations are complete without duplicates.", "weight": 3, "type": "positive", "dimension": "completeness", "method": "deterministic", "method_params": {}},
     {"id": "P001", "description": "Penalty for contradictory source-file or addendum-page claims in provenance.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查是否只应用三项变更、保留其他采购行和原 ID、记录修订来源，并得到正确总额。",
+    "answer_location_zh": "按表头别名、行内容、项目 ID 和变更记录查找修订表，不要求参考答案的固定措辞。",
+    "accepted_equivalents_zh": ["Quantity 和数量等近义表头", "只出现一次的清楚总额", "合理的工作表排列"],
+    "not_scoreable_zh": "无法将修订行与原始项目 ID 对应，或同一项目有多个相互矛盾的最终值时，应先记录识别问题。",
+    "known_limit_zh": "公式要求和关键总额的替代摆放位置还要用真实答卷继续核对。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria": ["R003", "R004", "R005"],
   "pass_threshold": 0.7,
   "rubric_version": "p15_v3.0",

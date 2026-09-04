@@ -13,6 +13,14 @@
     {"id":"R011","description":"The declared design inputs and catalog capacity values remain unchanged.","weight":2,"type":"positive","dimension":"change_locality","method":"deterministic","method_params":{"implemented_check":"input_catalog_protection"}},
     {"id":"R012","description":"The hydraulic head, motor requirement, eligibility, and selection respond correctly to a distinct internal-diameter perturbation while design flow and catalog values remain invariant.","weight":1,"type":"positive","dimension":"diameter_recalculation","method":"deterministic","method_params":{"implemented_check":"diameter_perturbation","applies_to":["dev"]}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查单位换算、流速、水头、功率、安全余量和第一台合格泵是否前后一致。",
+    "answer_location_zh": "按标签、泵 ID、数值关系和公式联动定位，不要求参考答案的固定排版。",
+    "accepted_equivalents_zh": ["近义标签", "单表或多表布局", "结果相同的公式写法"],
+    "not_scoreable_zh": "工作簿无法读取，或找不到一块前后一致的设计区域时，应记为 Judge 暂时无法判断，不直接写成 0 分。",
+    "known_limit_zh": "还要加入更多标签和值相隔较远的合理布局。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria": ["R007", "R008", "R011"],
   "pass_threshold": 0.7,
   "rubric_version": "p15_v3_semantic",

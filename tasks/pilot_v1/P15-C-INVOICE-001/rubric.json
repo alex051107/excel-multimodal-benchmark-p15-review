@@ -11,6 +11,14 @@
     {"id": "R009", "description": "Line IDs are non-empty and unique, and the line/provenance populations are complete without duplicates.", "weight": 3, "type": "positive", "dimension": "completeness", "method": "deterministic", "method_params": {}},
     {"id": "P001", "description": "Penalty for fabricated source-file or page provenance.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查发票身份、全部明细、页码与稳定 ID、小计到应付金额的关系和来源表。",
+    "answer_location_zh": "按表头、标签、明细 ID 和内容行查找交付，不要求固定起始行或单元格地址。",
+    "accepted_equivalents_zh": ["合理的表名与列顺序", "结果一致的金额公式", "不同但唯一的明细 ID"],
+    "not_scoreable_zh": "无法确认哪些明细属于这张发票，或多块候选表互相矛盾时，应先记录 Judge 暂时无法判断。",
+    "known_limit_zh": "页码、金额联动和重复表格的合理变体还要继续补测。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria": ["R002", "R003", "R006", "R008"],
   "pass_threshold": 0.7,
   "rubric_version": "p15_v3.0",

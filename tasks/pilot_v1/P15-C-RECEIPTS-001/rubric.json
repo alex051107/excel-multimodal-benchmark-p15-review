@@ -11,6 +11,14 @@
     {"id": "R009", "description": "Reconciliation document count, item count, and batch total evaluate correctly, whether static or formula-linked.", "weight": 3, "type": "positive", "dimension": "reconciliation", "method": "deterministic", "method_params": {}},
     {"id": "P001", "description": "Penalty for provenance that cites a receipt filename outside the supplied sources.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查三张票据的身份、明细层级、分类、来源、含税与小费金额和批次对账。",
+    "answer_location_zh": "按表头别名、票据 ID、明细行、来源文件和金额关系查找交付，不强制第 4 行起始或固定表名。",
+    "accepted_equivalents_zh": ["不同的票据 ID", "静态或公式计算的正确金额", "不同的明细行顺序"],
+    "not_scoreable_zh": "无法将明细行对应到其中一张票据，或同一票据有多个相互矛盾的总额时，应先记录 Judge 暂时无法判断。",
+    "known_limit_zh": "必须继续确认评分程序检查的是答卷实际展示的对账结果，不是它自己重算的答案。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria": ["R002", "R003"],
   "pass_threshold": 0.7,
   "rubric_version": "p15_v3.0",

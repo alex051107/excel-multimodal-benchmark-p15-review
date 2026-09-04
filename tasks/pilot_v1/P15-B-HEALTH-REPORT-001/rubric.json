@@ -10,6 +10,14 @@
     {"id": "R008", "description": "Every supplied Vermont, New Hampshire, and geography-map source field is preserved exactly.", "weight": 3, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {}},
     {"id": "R009", "description": "The workbook exposes reviewable checks for coverage, completeness, and metric consistency.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查原始数据与地区映射、2012 至 2017 年的指标、两州比较、图表、文字结论和来源保留。",
+    "answer_location_zh": "按表头、地区、年份和指标标签查找数据，不要求报告页或检查页使用固定名称。",
+    "accepted_equivalents_zh": ["静态但可追溯的正确指标", "常见报告页名称", "不同的图表摆放位置"],
+    "not_scoreable_zh": "无法确认数据对应的地区或年份，或工作簿中没有一块可追溯的报告数据时，应先记录识别问题。",
+    "known_limit_zh": "还需要加入同一工作表放多个业务区块等真实布局。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria": ["R002", "R003", "R006", "R007", "R008"],
   "pass_threshold": 0.7,
   "rubric_version": "p15_judge_v3",

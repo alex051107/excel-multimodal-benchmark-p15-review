@@ -12,6 +12,14 @@
     {"id":"R010","description":"The decision summary applies the declared two-sided 0.05 rule to the calculated p-value.","weight":2,"type":"positive","dimension":"decision_consistency","method":"deterministic","method_params":{"implemented_check":"decision_summary"}},
     {"id":"R011","description":"All ten source pairs and their subject order match the supplied observations.","weight":2,"type":"positive","dimension":"source_protection","method":"deterministic","method_params":{"implemented_check":"source_pairing_protection"}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查受试者配对、配对差、描述统计、双侧检验、95% 区间、规划样本量和图表。",
+    "answer_location_zh": "按表头、标签、受试者 ID 和数值关系定位，不要求六张固定名称的工作表。",
+    "accepted_equivalents_zh": ["单表或多表布局", "统计标签的常见近义词", "数值相同的等价公式"],
+    "not_scoreable_zh": "无法确认配对身份，或不同统计量显然来自不同数据区域时，应记录为无法可靠定位。",
+    "known_limit_zh": "仍有少量真实答卷暂时算不出分，需要继续补充跨表布局。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria":["R005","R010","R011"],
   "pass_threshold":0.7,
   "rubric_version":"p15_v3_semantic",

@@ -1,6 +1,0 @@
-system,agent,model,attempts,passes_at_0_70,mean_score,per_task_n,evidence_scope,cost_record_usd,cost_interpretation
-codex_gpt56sol,Codex CLI,gpt-5.6-sol,56,26,0.633973,4,development,38.785435,framework estimate not verified card spend
-claude_opus48,Claude Code,anthropic/claude-opus-4.8,14,8,0.677932,1,paid development pass1,,,included in OpenRouter usage delta
-qwen38max,Qwen Code,qwen/qwen3.8-max,14,3,0.488385,1,paid development pass1,,,included in OpenRouter usage delta
-claude_opus5_supplemental,Claude Code,anthropic/claude-opus-5,1,1,1.000000,1,supplemental DCF only,,,included in OpenRouter usage delta
-openrouter_paid_batch,OpenRouter,mixed paid batch,29,,,not applicable,account usage record,15.80543476,account usage delta not invoice-level deduplicated spend

@@ -16,6 +16,6 @@ Removing files from the current branch would not restore secrecy because the con
 
 Do not commit API keys, access tokens, cookies, account identifiers, token fingerprints, credential-bearing provider endpoints, approval files, request logs, raw provider responses, local absolute paths, Agent sessions, trajectories, or raw campaign runtime directories.
 
-The current tracked-tree scan found no API credential, Bearer token, ZCloud endpoint, token fingerprint, or local `/Users/...` path. This statement applies to the inspected release tree; it is not a substitute for rotating credentials that may have appeared elsewhere.
+The current tracked-tree scan found no API credential, Bearer token, ZCloud endpoint, token fingerprint, or local absolute path. This statement applies to the inspected release tree; it is not a substitute for rotating credentials that may have appeared elsewhere.
 
 Access to this repository does not grant permission to republish third-party source material beyond its original license. Consult each task's source manifest and [`references/THIRD_PARTY_NOTICES.md`](references/THIRD_PARTY_NOTICES.md) before reuse.

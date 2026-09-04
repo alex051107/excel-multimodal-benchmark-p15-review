@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Deterministic task-specific judge for P15-B-HEALTH-REPORT-001."""
+# Reviewer note: keep this implementation aligned with ../rubric.json["review_notes"].
 from __future__ import annotations
 
 import ast

@@ -10,6 +10,14 @@
     {"id": "R008", "description": "Every ledger, subledger, FX-rate, and adjustment-evidence source field is preserved exactly.", "weight": 3, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {}},
     {"id": "R009", "description": "Checks expose the matched difference, exception count, and final closure residual in reviewable form.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查交易日汇率、总账与子账匹配、未匹配项、唯一批准调整、差异桥和最终对账结论。",
+    "answer_location_zh": "按表头、交易 ID、发票 ID、金额关系和对账标签查找结果，不要求固定列位或特定英文措辞。",
+    "accepted_equivalents_zh": ["合理的表名和列顺序", "bridge closure 等近义标签", "同样能闭合的对账布局"],
+    "not_scoreable_zh": "如果匹配、异常清单和差异桥无法归到同一套前后一致的交付，应先记录定位问题，不从相互矛盾的表格拼分。",
+    "known_limit_zh": "本题当前平均分最低，需要逐份区分真实对账错误和仍未覆盖的合理布局。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria": ["R002", "R003", "R004", "R007", "R008"],
   "pass_threshold": 0.7,
   "rubric_version": "p15_judge_v3",

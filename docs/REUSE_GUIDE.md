@@ -10,7 +10,7 @@ The repository has four operational layers.
 | --- | --- | --- | --- |
 | Task construction | Build typed truth, inputs, reference workbook, oracle, rubric, Judge, and negative fixtures | [`tasks/pilot_v1/`](../tasks/pilot_v1/) | Reference/equivalent/no-op/malformed/mutant score boundaries and five-run determinism |
 | Harbor execution | Present the instruction and inputs to an Agent, collect `answer.xlsx`, and execute the Judge | Per-task `task.toml`, `environment/`, and `tests/` | Finite score, no runtime exception, and preserved run metadata |
-| Agent evaluation | Freeze system, model, provider, tools, sample count, and budget | [`results/EVALUATION_CONFIG.yaml`](../results/EVALUATION_CONFIG.yaml) | Attempt-level rows in [`results/ATTEMPTS.csv`](../results/ATTEMPTS.csv) |
+| Agent evaluation | Freeze system, model, provider, tools, sample count, and budget | [`results/judge_v3_initial/`](../results/judge_v3_initial/) | Attempt-level rows and task-system score summaries |
 | External validation | Check native Excel behavior and professional validity | [`review/`](../review/) | Windows Excel receipts and completed human review forms |
 
 ### Task package anatomy
@@ -21,7 +21,7 @@ The repository has four operational layers.
 | `data/input_files/` | All Agent-visible workbooks, documents, tables, and policies |
 | `solution/reference.xlsx` | One complete and editable delivery |
 | `metadata/oracle_recompute.py` | Independent recomputation from inputs and professional rules |
-| `rubric.json` | Atomic criteria, weights, methods, and pass threshold |
+| `rubric.json` | Atomic criteria, weights, methods, and score aggregation |
 | `tests/evaluate.py` | Deterministic Judge implementation |
 | `fixtures/equivalent/` | Materially different acceptable solution |
 | `fixtures/noop/` | Unmodified or effectively blank solution |
@@ -33,13 +33,13 @@ The repository has four operational layers.
 ### Configuration and execution flow
 
 1. Freeze the task version, Judge version, and task checksum.
-2. Select a system in [`results/EVALUATION_CONFIG.yaml`](../results/EVALUATION_CONFIG.yaml).
+2. Record the system, model, provider, tools, sample count, and budget in the campaign configuration.
 3. Set the Agent version, exact model identifier, provider/gateway, tool environment, sample count, and budget.
 4. Launch the task through Harbor using the task's `task.toml` package contract.
 5. Require the Agent to write `/app/output/answer.xlsx`.
 6. Run the separate verifier image and save the normalized score, duration, token fields, cost fields, and exception status.
 7. Keep environment failures outside capability statistics.
-8. Aggregate valid attempts into [`results/RUN_RESULTS.csv`](../results/RUN_RESULTS.csv) and [`results/DIFFICULTY_MATRIX.csv`](../results/DIFFICULTY_MATRIX.csv).
+8. Aggregate valid attempts into the [score-only result tables](../results/judge_v3_initial/README.md); keep missing or temporarily unreadable files outside the score mean.
 
 The clean repository publishes the configuration and result fields needed to understand the experiment. Credentials, account identifiers, raw provider responses, and internal machine paths are excluded.
 
@@ -86,6 +86,6 @@ The checklist records common release evidence. Domain review still decides wheth
 
 - Task design: [`docs/TASK_DESIGN.md`](TASK_DESIGN.md)
 - Complete package: [`tasks/pilot_v1/P15-B-FIN-RECON-001/`](../tasks/pilot_v1/P15-B-FIN-RECON-001/)
-- Evaluation configuration: [`results/EVALUATION_CONFIG.yaml`](../results/EVALUATION_CONFIG.yaml)
-- Model results: [`results/RUN_RESULTS.csv`](../results/RUN_RESULTS.csv)
+- Evaluation principles: [`docs/JUDGE_V3_ADJUDICATION_CONTRACT.md`](JUDGE_V3_ADJUDICATION_CONTRACT.md)
+- Current score-only results: [`results/judge_v3_initial/README.md`](../results/judge_v3_initial/README.md)
 - Human review: [`review/REVIEW_GUIDE.md`](../review/REVIEW_GUIDE.md)

@@ -10,6 +10,14 @@
     {"id": "R008", "description": "Every release-registry source field is preserved exactly from release_registry.csv.", "weight": 3, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {"source": "data/input_files/release_registry.csv"}},
     {"id": "R009", "description": "The chosen-source reason, four required-region statuses, and evidence labels remain reviewable.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}}
   ],
+  "review_notes": {
+    "purpose_zh": "检查是否选中已批准且覆盖完整的 Q2 版本，并让选择说明、明细、KPI 和地区覆盖检查指向同一份数据。",
+    "answer_location_zh": "按版本内容、表头、期间、地区和批准状态查找交付，不因工作表名或公式形式不同而扣分。",
+    "accepted_equivalents_zh": ["说明文字的合理近义表达", "公式或静态的正确 KPI", "不同的表名和布局"],
+    "not_scoreable_zh": "工作簿同时展示多个版本且没有明确最终选择，无法将说明与 KPI 归到同一来源时，应先记录定位问题。",
+    "known_limit_zh": "还要加入更多合理布局，并防止评分程序从几张相互矛盾的表中拼出高分。",
+    "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
+  },
   "hurdle_criteria": ["R002", "R003", "R004", "R005", "R007", "R008"],
   "pass_threshold": 0.7,
   "rubric_version": "p15_judge_v3",

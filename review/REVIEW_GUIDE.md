@@ -2,17 +2,17 @@
 
 ## Ten-minute review
 
-1. Read the [project overview](../docs/PROJECT_OVERVIEW.md).
+1. Read the [repository overview](../README.md).
 2. Scan the [15-task index](../tasks/INDEX.md).
-3. Check the [model summary](../results/MODEL_SUMMARY.csv).
-4. Confirm the external evidence still listed as pending.
+3. Check the [current score-only results](../results/judge_v3_initial/README.md).
+4. Confirm which tasks still have no current score and why.
 
 ## Thirty-minute review
 
 1. Read the [task-design method](../docs/TASK_DESIGN.md).
-2. Read the [evaluation and Judge contract](../docs/EVALUATION_AND_JUDGE.md).
+2. Read the [V3 evaluation principles](../docs/JUDGE_V3_ADJUDICATION_CONTRACT.md).
 3. Inspect one representative task from each track.
-4. Compare the development signals with the proposed next action in [`TASK_STATUS.csv`](../results/TASK_STATUS.csv).
+4. Compare each task's [score table](../results/judge_v3_initial/v3_scores_by_task_system.csv) with its instruction, rubric, and evaluator.
 
 Suggested representatives:
 
