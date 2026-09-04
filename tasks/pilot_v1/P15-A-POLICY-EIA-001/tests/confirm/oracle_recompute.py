@@ -3,8 +3,8 @@
 import json
 
 DATA = {"coal": 510000.0, "gas": 1420000.0, "wind": 515000.0, "solar": 305000.0, "demand": 3300000.0, "coal_factor": 0.96, "gas_factor": 0.38}
-BASE = {"coal_displacement": 0.0, "wind_uplift": 0.0, "solar_uplift": 0.0, "demand_growth": 0.012, "gas_factor": 1.0}
-POLICY = {"coal_displacement": 0.11, "wind_uplift": 0.07, "solar_uplift": 0.15, "demand_growth": 0.012, "gas_factor": 1.0}
+BASE = {"coal_displacement": 0.0, "wind_uplift": 0.0, "solar_uplift": 0.0, "demand_growth": 0.0}
+POLICY = {"coal_displacement": 0.11, "wind_uplift": 0.07, "solar_uplift": 0.15, "demand_growth": 0.012}
 
 
 def case(assumptions):
@@ -12,9 +12,10 @@ def case(assumptions):
     coal = DATA["coal"] * (1 - assumptions["coal_displacement"])
     wind = DATA["wind"] * (1 + assumptions["wind_uplift"])
     solar = DATA["solar"] * (1 + assumptions["solar_uplift"])
-    gas = (demand - coal - wind - solar) * assumptions["gas_factor"]
-    emissions = coal * DATA["coal_factor"] + gas * DATA["gas_factor"]
-    return {"demand": demand, "coal": coal, "wind": wind, "solar": solar, "gas": gas, "emissions": emissions, "intensity": emissions / demand}
+    other = DATA["demand"] - DATA["coal"] - DATA["gas"] - DATA["wind"] - DATA["solar"]
+    gas = demand - coal - wind - solar - other
+    emissions = (coal * DATA["coal_factor"] + gas * DATA["gas_factor"]) * 1000.0
+    return {"demand": demand, "coal": coal, "wind": wind, "solar": solar, "gas": gas, "other": other, "emissions": emissions, "intensity": emissions / (demand * 1000.0)}
 
 
 def recompute(policy_case=None):

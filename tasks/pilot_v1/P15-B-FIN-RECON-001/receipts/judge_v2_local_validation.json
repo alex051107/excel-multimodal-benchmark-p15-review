@@ -1,0 +1,368 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "collateral_ledger_edit": {
+      "candidate_sha256": "4a679affea04b7439a3ffcd3013261278b8523b4d57eef8e9b2e6231b6d7ea98",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0
+      },
+      "failure_codes": [
+        "ADJUSTMENT_SOURCE_PERTURBATION_FAILED:StopIteration",
+        "PROTECTED_FINANCE_SOURCE_CHANGED"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.615385,
+      "score_stddev": 0.0,
+      "signature_sha256": "22137da8a42c0192686b98cf58777b3873888ffe149560f92446d8966964e9a5",
+      "stable": true
+    },
+    "dropped_unmatched_item": {
+      "candidate_sha256": "2cdb0c7f69b73732ce46b3a5c3c3c62cd7b103f55987ce81c82dbf09389f94bf",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.769231,
+      "score_stddev": 0.0,
+      "signature_sha256": "9d4bb8bb43007ec8dfd62a2b41769b06eda6cd9401a8e9d746f6bd5e7e1b90e2",
+      "stable": true
+    },
+    "equivalent": {
+      "candidate_sha256": "2ebb05021425a9aa70fd968ef43bceed50dbffa879f7318955909cbe6abc003a",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "e66190ae5e8c4161f7dd0857b42c1d7f7543bd16a59457c2ccc447808473ed28",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "3005e6308db66a721fed2c2dd24556511c9e081e758127bd247046377561fbbe",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "8d2276a03c8eb3a8b39c743e317654d77c2f940930b3b7865eecd8fa8312b2cf",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "ADJUSTMENT_SOURCE_PERTURBATION_FAILED:StopIteration",
+        "FX_SOURCE_PERTURBATION_FAILED:StopIteration"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.153846,
+      "score_stddev": 0.0,
+      "signature_sha256": "4b2d558c4728cfec3fa01c992144f6b132dfcc5d870ad136ac64588f74caa153",
+      "stable": true
+    },
+    "omitted_adjustment": {
+      "candidate_sha256": "bd40587304857160268757edca3b2979952202af5d0ff7a3790abe5af10bc17e",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.307692,
+      "score_stddev": 0.0,
+      "signature_sha256": "c2ded568295de8dd98cd93f6223b4b668acb8913b5310437a9685cee9ff0dd4f",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "b70b531bf9c01305c586332484719db70966168c7771b874298497ce713ee70f",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "e66190ae5e8c4161f7dd0857b42c1d7f7543bd16a59457c2ccc447808473ed28",
+      "stable": true
+    },
+    "wrong_fx_date": {
+      "candidate_sha256": "ad84e407dbaf4520ba36947f80e233469d81391042921d5569bcc47ceffdf162",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.461538,
+      "score_stddev": 0.0,
+      "signature_sha256": "394d31819f4e2869dc8948f8605747be7fcf8baa20d05c0401f480a5f6174aac",
+      "stable": true
+    },
+    "wrong_transaction_match": {
+      "candidate_sha256": "fed1a2a3b997abf269e39ef9a4074a20ee84f907ae94020ac56e119e4329a30f",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [
+        "ADJUSTMENT_SOURCE_PERTURBATION_FAILED:StopIteration"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.730769,
+      "score_stddev": 0.0,
+      "signature_sha256": "eacabc13d22e44a2b0841cd6dc16c3c32f39495a7f97c6484d19b1bc18b4096c",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "investigation": 614.0,
+    "ledger_only": 106.0,
+    "ledger_total": 4246.0,
+    "matched": [
+      [
+        "INV-100",
+        1250.0,
+        1250.0,
+        0.0,
+        1250.0,
+        0.0
+      ],
+      [
+        "INV-101",
+        2140.0,
+        2140.0,
+        0.0,
+        2140.0,
+        0.0
+      ],
+      [
+        "INV-102",
+        500.0,
+        500.0,
+        0.0,
+        500.0,
+        0.0
+      ],
+      [
+        "INV-105",
+        250.0,
+        300.0,
+        -50.0,
+        250.0,
+        0.0
+      ]
+    ],
+    "matched_total": 4140.0,
+    "normalized": [
+      [
+        "Ledger",
+        "LG-100",
+        "INV-100",
+        "2024-06-28",
+        "GBP",
+        1000.0,
+        1.25,
+        1250.0
+      ],
+      [
+        "Ledger",
+        "LG-101",
+        "INV-101",
+        "2024-06-30",
+        "EUR",
+        2000.0,
+        1.07,
+        2140.0
+      ],
+      [
+        "Ledger",
+        "LG-102",
+        "INV-102",
+        "2024-07-02",
+        "USD",
+        500.0,
+        1.0,
+        500.0
+      ],
+      [
+        "Ledger",
+        "LG-105",
+        "INV-105",
+        "2024-06-30",
+        "USD",
+        250.0,
+        1.0,
+        250.0
+      ],
+      [
+        "Ledger",
+        "LG-106",
+        "INV-106",
+        "2024-06-29",
+        "EUR",
+        100.0,
+        1.06,
+        106.0
+      ],
+      [
+        "Subledger",
+        "SL-100",
+        "INV-100",
+        "2024-06-28",
+        "GBP",
+        1000.0,
+        1.25,
+        1250.0
+      ],
+      [
+        "Subledger",
+        "SL-101",
+        "INV-101",
+        "2024-06-30",
+        "EUR",
+        2000.0,
+        1.07,
+        2140.0
+      ],
+      [
+        "Subledger",
+        "SL-102",
+        "INV-102",
+        "2024-07-02",
+        "USD",
+        500.0,
+        1.0,
+        500.0
+      ],
+      [
+        "Subledger",
+        "SL-103",
+        "INV-103",
+        "2024-06-30",
+        "USD",
+        720.0,
+        1.0,
+        720.0
+      ],
+      [
+        "Subledger",
+        "SL-105",
+        "INV-105",
+        "2024-06-30",
+        "USD",
+        300.0,
+        1.0,
+        300.0
+      ]
+    ],
+    "subledger_only": 720.0,
+    "unmatched": [
+      [
+        "INV-103",
+        "Subledger",
+        720.0
+      ],
+      [
+        "INV-106",
+        "Ledger",
+        106.0
+      ]
+    ]
+  },
+  "judge_version": "v2-locality",
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY_JUDGE_V2",
+  "task_id": "P15-B-FIN-RECON-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

@@ -29,12 +29,12 @@
   },
   "required_sheets": ["Program_Data", "Pivot_Specification", "KPI_Summary", "Pivot_Chart_Requirement", "Checks"],
   "expected_native_objects": {
-    "table": {"name": "ProgramEventsTable", "range": "Program_Data!A3:F11", "headers": ["Event ID", "Region", "Program", "Quarter", "Participants", "Spend"]},
-    "pivot_cache": {"source": "ProgramEventsTable", "field_indexes": {"Region": 1, "Program": 2, "Quarter": 3, "Participants": 4, "Spend": 5}, "refresh_on_open": true, "enable_refresh": true},
-    "pivot_table": {"name": "ProgramDeliveryPivot", "row_field": "Region", "column_field": "Program", "page_filter": "Quarter=2024Q2", "measures": ["Sum of Participants", "Sum of Spend"]},
+    "table": {"type": "native Excel Table", "headers": ["Event ID", "Region", "Program", "Quarter", "Participants", "Spend"], "records": "exact confirm source events"},
+    "pivot_cache": {"source": "the native source table or its exact range", "fields": ["Event ID", "Region", "Program", "Quarter", "Participants", "Spend"], "refresh_on_open": true, "enable_refresh": true},
+    "pivot_table": {"row_field": "Region", "column_field": "Program", "page_filter": "Quarter=2024Q2", "measures": ["Sum of Participants", "Sum of Spend"]},
     "oracle": {"q2_participants": 122, "q2_spend": 341000, "focus_region": "East", "focus_program": "Vaccination", "focus_participants": 38},
-    "pivot_chart": {"pivot_layout_table": "ProgramDeliveryPivot", "chart_type": "clustered column"}
+    "pivot_chart": {"binding": "the validated native PivotTable", "chart_type": "clustered column"}
   },
-  "protected": {"Program_Data!A3:F11": "exact tests/confirm/input_files/program_events.csv in ProgramEventsTable"},
-  "perturbations": "tests/confirm/perturbations.json"
+  "protected": {"source_events": "exact tests/confirm/input_files/program_events.csv in a native Excel Table"},
+  "layout_policy": "Native objects and field meanings are fixed; internal names, indexes, ranges, anchors, and KPI addresses are not."
 }

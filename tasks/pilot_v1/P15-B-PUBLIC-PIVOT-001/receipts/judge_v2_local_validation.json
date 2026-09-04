@@ -1,0 +1,215 @@
+{
+  "agent_screen": "PENDING_SEPARATE_N8_BATCH",
+  "canonical_excel": {
+    "application": "Microsoft Excel for Mac",
+    "mode": "background object model; no screen control",
+    "receipt": "receipts/macos_native_dev.json",
+    "version": "16.112.1",
+    "windows_compatibility": "PENDING_EXTERNAL_WINDOWS_EXCEL"
+  },
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "equivalent": {
+      "candidate_sha256": "a95d410bdfaf3bd6377eb490637c86f677c29693c3c38bd4694b7d5359c40fed",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "77a4a553ef9ccbceb5f3d86b95791b822bc423c89e2b774bc68f071dec772f8d",
+      "stable": true
+    },
+    "fake_pivot": {
+      "candidate_sha256": "1bed27d62502e20cd81202b528f17e098b23c46a35eac5f28a7989f2013d9a39",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "GETPIVOTDATA_FORMULA_SEMANTICS_INVALID",
+        "MISSING_NATIVE_PIVOT_CACHE",
+        "MISSING_NATIVE_PROGRAM_DELIVERY_PIVOT",
+        "PIVOTCHART_BINDING_OR_CLUSTERED_COLUMN_MISSING",
+        "PIVOT_AXIS_FIELD_INDEX_MISMATCH",
+        "PIVOT_CACHE_REFRESH_ON_OPEN_MISSING",
+        "QUARTER_FILTER_NOT_EXACTLY_2024Q2",
+        "SOURCE_TABLE_OR_RECORD_MISMATCH",
+        "SUM_MEASURE_FIELD_OR_FUNCTION_MISMATCH"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.03125,
+      "score_stddev": 0.0,
+      "signature_sha256": "b18a6259ed63338f0040facc9ea885c7e1103e7beda0e0cd33f948a242b55513",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "58085699a82cbad09c50d4edaa711f71c924e43c9da3c43f7d9bb0f7e938aa84",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "35a94499c75f89e476bd0a39dc5694525db84747a8e6648a08041fa8a8d9c3e4",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0
+      },
+      "failure_codes": [
+        "NATIVE_EXCEL_RECALC_REQUIRED:R008",
+        "SOURCE_TABLE_OR_RECORD_MISMATCH"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.75,
+      "score_stddev": 0.0,
+      "signature_sha256": "b09c5d5632a9f95f78118928c07d6f94cb3d698c3c4b9f3c4ebf700ba052c8d8",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "42c8ca3cf555cbe4314630ce1622b8a014bd289497e81dcb70933cc094e3498e",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "77a4a553ef9ccbceb5f3d86b95791b822bc423c89e2b774bc68f071dec772f8d",
+      "stable": true
+    },
+    "stale_source_range": {
+      "candidate_sha256": "3a704562e7e04def7f0e687f0cda0460a2b579eb744714061b5de01b1bddfa7b",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [
+        "SOURCE_TABLE_OR_RECORD_MISMATCH"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.875,
+      "score_stddev": 0.0,
+      "signature_sha256": "0d5cfd1b82a2b3bc002889a7aa526bbcd2ad421eb609ba20d77517327ed1bb6c",
+      "stable": true
+    },
+    "wrong_aggregation": {
+      "candidate_sha256": "29a29ad1b518a8d6edca684cd002e30d9771564ea0eb3fca91c4658753e53fb2",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [
+        "SUM_MEASURE_FIELD_OR_FUNCTION_MISMATCH"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.875,
+      "score_stddev": 0.0,
+      "signature_sha256": "b2d8b83cb3ad43244367093e71f44ee82e3541951ab9be379b6d552e60b2bf81",
+      "stable": true
+    },
+    "wrong_chart_binding": {
+      "candidate_sha256": "2dc6ac5e1d13deca87fca59e08c7a0463a876a3ed9d3cc92a2f797dbe1ea1d97",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "PIVOTCHART_BINDING_OR_CLUSTERED_COLUMN_MISSING"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.875,
+      "score_stddev": 0.0,
+      "signature_sha256": "b82d734f6109953a1c7eccbde71f3c875b012c3e01405eb53c6ff5a9efd0fdd9",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "north_outreach": 50,
+    "q2_participants": 132,
+    "q2_spend": 396000,
+    "source_range": "Program_Data!A3:F11"
+  },
+  "judge_version": "v2-locality",
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY_JUDGE_V2",
+  "task_id": "P15-B-PUBLIC-PIVOT-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

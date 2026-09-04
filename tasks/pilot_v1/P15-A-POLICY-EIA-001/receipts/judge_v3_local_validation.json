@@ -1,0 +1,289 @@
+{
+  "all_expectations_met": true,
+  "cases": {
+    "alternate_layout": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "Separate Base and Policy sheets with the same relationships must pass.",
+      "expected_pass": true,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": true,
+      "score": 1.0
+    },
+    "equivalent": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "Algebraically equivalent formulas must pass.",
+      "expected_pass": true,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": true,
+      "score": 1.0
+    },
+    "malformed": {
+      "criterion_scores": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 0.0,
+        "R012": 0.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "A non-workbook cannot pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.0
+    },
+    "mutant:broken_demand_balance": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "The seeded policy, unit, source, or linkage defect must prevent a corrected-task pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "SCENARIO_VALUE_MISMATCH:policy:emissions:Scenario_Model!C10",
+        "SCENARIO_VALUE_MISMATCH:policy:gas:Generation_Data!D5",
+        "SCENARIO_VALUE_MISMATCH:policy:intensity:Scenario_Model!C11"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.32
+    },
+    "mutant:collateral_historical_edit": {
+      "criterion_scores": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 0.0,
+        "R012": 0.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "The seeded policy, unit, source, or linkage defect must prevent a corrected-task pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "EMISSIONS_FACTOR_PERTURBATION_FAILED:KeyError",
+        "SCENARIO_VALUE_MISMATCH:base:coal:Scenario_Model!B5",
+        "SCENARIO_VALUE_MISMATCH:base:emissions:Scenario_Model!B10",
+        "SCENARIO_VALUE_MISMATCH:base:intensity:Scenario_Model!B11",
+        "SCENARIO_VALUE_MISMATCH:base:other:Scenario_Model!B9",
+        "SCENARIO_VALUE_MISMATCH:policy:coal:Scenario_Model!C5",
+        "SCENARIO_VALUE_MISMATCH:policy:emissions:Scenario_Model!C10",
+        "SCENARIO_VALUE_MISMATCH:policy:gas:Scenario_Model!C8",
+        "SCENARIO_VALUE_MISMATCH:policy:intensity:Scenario_Model!C11",
+        "SEMANTIC_CONTENT_INCOMPLETE",
+        "SOURCE_INPUTS_CHANGED_OR_NOT_IDENTIFIED"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.08
+    },
+    "mutant:hardcoded_emissions_reduction": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "The seeded policy, unit, source, or linkage defect must prevent a corrected-task pass.",
+      "expected_pass": false,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.8
+    },
+    "mutant:wrong_generation_source": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "The seeded policy, unit, source, or linkage defect must prevent a corrected-task pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "SCENARIO_VALUE_MISMATCH:policy:coal:Generation_Data!D4",
+        "SCENARIO_VALUE_MISMATCH:policy:emissions:Scenario_Model!C10",
+        "SCENARIO_VALUE_MISMATCH:policy:gas:Generation_Data!D5",
+        "SCENARIO_VALUE_MISMATCH:policy:intensity:Scenario_Model!C11"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.2
+    },
+    "noop": {
+      "criterion_scores": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "An unchanged blank scenario block does not complete the current v2 corrected task.",
+      "expected_pass": false,
+      "failure_codes": [
+        "EMISSIONS_FACTOR_PERTURBATION_FAILED:KeyError",
+        "SCENARIO_METRIC_NOT_FOUND:base:emissions",
+        "SCENARIO_METRIC_NOT_FOUND:base:intensity",
+        "SCENARIO_METRIC_NOT_FOUND:policy:emissions",
+        "SCENARIO_METRIC_NOT_FOUND:policy:intensity",
+        "SCENARIO_VALUE_MISMATCH:policy:coal:Generation_Data!C4",
+        "SCENARIO_VALUE_MISMATCH:policy:demand:Generation_Data!C8",
+        "SCENARIO_VALUE_MISMATCH:policy:gas:Generation_Data!C5",
+        "SCENARIO_VALUE_MISMATCH:policy:solar:Generation_Data!C7",
+        "SCENARIO_VALUE_MISMATCH:policy:wind:Generation_Data!C6",
+        "SEMANTIC_CONTENT_INCOMPLETE"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.08
+    },
+    "standard": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "The current v2 corrected reference must pass.",
+      "expected_pass": true,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": true,
+      "score": 1.0
+    }
+  },
+  "contract_checks": {
+    "demand_assumption_disclosed": {
+      "basis": "Demand=4,000,000 is project-authored and must be disclosed as such.",
+      "pass": true
+    },
+    "gwh_to_mwh_conversion": {
+      "basis": "GWh \u00d7 1,000 \u00d7 tCO2/MWh must yield metric tonnes.",
+      "pass": true
+    },
+    "historical_gas_and_other_baseline": {
+      "basis": "Base gas stays historical and the implicit Other residual stays constant.",
+      "pass": true
+    },
+    "provenance_boundary": {
+      "basis": "The task must describe the values as adapted benchmark inputs, not exact EIA rows.",
+      "pass": true
+    }
+  },
+  "current_default_cli": {
+    "evaluation_status": "OK",
+    "exit_code": 0,
+    "expectation_basis": "Task version 2.0.0 is the corrected task, so the ordinary CLI must score its corrected reference without a mode flag.",
+    "expected": {
+      "pass": true,
+      "score": 1.0,
+      "status": "OK"
+    },
+    "failure_codes": [],
+    "invocation": [
+      "python",
+      "tests/evaluate.py",
+      "solution/reference.xlsx",
+      "--split",
+      "dev"
+    ],
+    "meets_expectation": true,
+    "pass": true,
+    "score": 1.0
+  },
+  "generated_at": "2026-09-04T02:56:43.870759+00:00",
+  "judge_version": "v3-current-corrected-v2",
+  "task_id": "P15-A-POLICY-EIA-001"
+}

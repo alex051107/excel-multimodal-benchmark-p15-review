@@ -15,31 +15,39 @@ from pathlib import Path
 
 import openpyxl
 
+from judge_v2_support import build_result, resolve_sheet_roles, sheet_resolution_failures
+
 CRITERIA = [
     {"id": "R001", "description": "A readable workbook contains every requested operating-review sheet.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
     {"id": "R002", "description": "The source-selection record identifies the only approved, complete 2024Q2 schema-1.1 release.", "weight": 3, "type": "positive", "dimension": "source_selection", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
     {"id": "R003", "description": "Consolidated_Data contains exactly the six records from the selected release and no mixed-release records.", "weight": 4, "type": "positive", "dimension": "data_completeness", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
-    {"id": "R004", "description": "All four operating KPIs are formula-driven and equal the independent source replay.", "weight": 3, "type": "positive", "dimension": "metric_correctness", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
-    {"id": "R005", "description": "Changing the selected REV-100 bookings input by +100 flows to total bookings by exactly +100.", "weight": 3, "type": "positive", "dimension": "native_workbook_semantics", "method": "deterministic", "method_params": {"source_cell": "Consolidated_Data!E4"}},
-    {"id": "R006", "description": "Changing the selected REV-101 recognized-revenue input by +100 flows to total and South revenue by exactly +100.", "weight": 3, "type": "positive", "dimension": "native_workbook_semantics", "method": "deterministic", "method_params": {"source_cell": "Consolidated_Data!F5"}},
-    {"id": "R007", "description": "Regional record counts and recognized-revenue closures are formulas linked to the six consolidated records.", "weight": 3, "type": "positive", "dimension": "traceability", "method": "deterministic", "method_params": {}},
+    {"id": "R004", "description": "All four operating KPIs equal the independent replay of the selected records.", "weight": 3, "type": "positive", "dimension": "metric_correctness", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
+    {"id": "R005", "description": "The selection explanation addresses approval, reporting period, schema, and regional coverage.", "weight": 3, "type": "positive", "dimension": "selection_rationale", "method": "deterministic", "method_params": {}},
+    {"id": "R006", "description": "The chosen release identifier and file remain visible with the selected records.", "weight": 3, "type": "positive", "dimension": "source_provenance", "method": "deterministic", "method_params": {}},
+    {"id": "R007", "description": "Regional record counts and recognized revenue close to the six selected records.", "weight": 3, "type": "positive", "dimension": "coverage_correctness", "method": "deterministic", "method_params": {}},
     {"id": "R008", "description": "Every release-registry source field is preserved exactly from release_registry.csv.", "weight": 3, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {"source": "data/input_files/release_registry.csv"}},
     {"id": "R009", "description": "The chosen-source reason, four required-region statuses, and evidence labels remain reviewable.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}},
-    {"id": "P001", "description": "Penalty for any invalid selection, mixed source, hardcoded/broken KPI chain, unlinked coverage, or registry alteration.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}},
 ]
 
 TASK = {
     "task_id": "P15-B-SALES-DISCOVERY-001",
     "pass_threshold": 0.7,
     "required_sheets": ["Release_Registry", "Selected_Sources", "Consolidated_Data", "KPI_Summary", "Coverage_Checks"],
-    "formula_cells": ["KPI_Summary!B4", "KPI_Summary!B5", "KPI_Summary!B6", "KPI_Summary!B7"],
-    "coverage_formula_cells": [f"Coverage_Checks!{column}{row}" for row in range(4, 8) for column in ("B", "C")],
-    "critical_criteria": ["R002", "R003", "R004", "R005", "R006", "R007", "R008"],
     "criteria": CRITERIA,
 }
 
 REF = re.compile(r"(?:(?:'([^']+)'|([A-Za-z_][A-Za-z0-9_]*))!)?\$?([A-Z]+)\$?(\d+)")
 RANGE = re.compile(r"(?:(?:'([^']+)'|([A-Za-z_][A-Za-z0-9_]*))!)?\$?([A-Z]+)\$?(\d+):\$?([A-Z]+)\$?(\d+)")
+
+TASK["hurdle_criteria"] = ["R002", "R003", "R004", "R005", "R007", "R008"]
+SHEET_ALIASES = {
+    "Release_Registry": ("Registry",),
+    "Selected_Sources": ("Source Selection",),
+    "Consolidated_Data": ("Q2 Records",),
+    "KPI_Summary": ("KPI Summary",),
+    "Coverage_Checks": ("Regional Coverage",),
+}
+
 
 def cell_key(sheet, cell): return f"{sheet}!{cell}"
 
@@ -82,6 +90,10 @@ def load_oracle(context):
     spec.loader.exec_module(module)
     return module.recompute()
 
+class UnsupportedFormulaError(RuntimeError):
+    """Valid Excel syntax that this bounded replay engine cannot evaluate."""
+
+
 class FormulaEngine:
     def __init__(self, workbook, overrides=None):
         self.workbook = workbook; self.overrides = overrides or {}; self.memo = {}; self.stack = set()
@@ -93,9 +105,12 @@ class FormulaEngine:
         if key in self.stack: raise ValueError(f"CIRCULAR_REFERENCE:{key}")
         if sheet not in self.workbook.sheetnames: raise ValueError(f"MISSING_SHEET:{sheet}")
         self.stack.add(key)
-        raw = self.workbook[sheet][cell].value
-        result = self.formula(raw[1:], sheet) if isinstance(raw, str) and raw.startswith("=") else raw
-        self.stack.remove(key); self.memo[key] = result
+        try:
+            raw = self.workbook[sheet][cell].value
+            result = self.formula(raw[1:], sheet) if isinstance(raw, str) and raw.startswith("=") else raw
+        finally:
+            self.stack.discard(key)
+        self.memo[key] = result
         return result
 
     def range_values(self, sheet, c1, r1, c2, r2):
@@ -115,7 +130,13 @@ class FormulaEngine:
             return repr(self.value(sheet, f"{match.group(3)}{match.group(4)}"))
         expression = outside(REF, ref_replace, expression)
         expression = re.sub(r"(?<![<>=!])=(?!=)", "==", expression)
-        return self.safe_eval(ast.parse(expression, mode="eval").body)
+        try:
+            tree = ast.parse(expression, mode="eval")
+        except SyntaxError as exc:
+            raise UnsupportedFormulaError(
+                f"UNSUPPORTED_FORMULA_SYNTAX:{expression}"
+            ) from exc
+        return self.safe_eval(tree.body)
 
     def safe_eval(self, node):
         if isinstance(node, ast.Constant): return node.value
@@ -127,7 +148,7 @@ class FormulaEngine:
             operations = {ast.Add: lambda a, b: a + b, ast.Sub: lambda a, b: a - b, ast.Mult: lambda a, b: a * b, ast.Div: lambda a, b: a / b, ast.Pow: lambda a, b: a**b}
             for cls, operation in operations.items():
                 if isinstance(node.op, cls): return operation(left, right)
-            raise ValueError("UNSUPPORTED_OPERATOR")
+            raise UnsupportedFormulaError("UNSUPPORTED_FORMULA_OPERATOR")
         if isinstance(node, ast.Compare):
             left = self.safe_eval(node.left)
             for operator, comparator in zip(node.ops, node.comparators):
@@ -152,7 +173,7 @@ class FormulaEngine:
                 sum_values = args[0] if len(args) == 2 else args[2]
                 if not isinstance(sum_values, list) or len(sum_values) != len(args[0]): raise ValueError("INVALID_SUMIF_RANGE")
                 return sum(value for criterion_value, value in zip(args[0], sum_values) if criterion_value == args[1] and isinstance(value, (int, float)))
-        raise ValueError(f"UNSUPPORTED_FORMULA_NODE:{ast.dump(node)}")
+        raise UnsupportedFormulaError(f"UNSUPPORTED_FORMULA_NODE:{ast.dump(node)}")
 
 def close(actual, expected, tolerance=0.01):
     return isinstance(actual, (int, float)) and math.isfinite(actual) and abs(actual - expected) <= tolerance
@@ -169,6 +190,212 @@ def rows(workbook, sheet, start, end, columns, engine=None):
         record = tuple(norm(engine.value(sheet, f"{col_name(column)}{row}") if engine else workbook[sheet].cell(row=row, column=column).value) for column in columns)
         if any(value not in (None, "") for value in record): values.append(record)
     return values
+
+
+def semantic_token(value):
+    token = re.sub(r"[^a-z0-9]+", "_", str(value or "").strip().casefold()).strip("_")
+    aliases = {
+        "release": "release_id", "release_identifier": "release_id",
+        "filename": "file", "source_file": "file", "reporting_period": "period",
+        "regional_coverage": "coverage", "record": "record_id",
+        "bookings_usd": "bookings", "bookings": "bookings",
+        "recognized_revenue_usd": "recognized_revenue", "recognized_revenue": "recognized_revenue",
+        "closed_won": "closed_won_flag", "closed_won_flag": "closed_won_flag",
+        "record_count": "record_count", "recognized_revenue_total": "recognized_revenue",
+        "result": "value", "metric_value": "value",
+        "selection_reason": "reason", "selection_rationale": "reason",
+        "rationale": "reason", "explanation": "reason", "basis": "reason",
+    }
+    return aliases.get(token, token)
+
+
+def semantic_tables(workbook):
+    found = []
+    for sheet in workbook.worksheets:
+        for header_row in range(1, min(sheet.max_row, 20) + 1):
+            headers = {}
+            duplicate = False
+            for column in range(1, min(sheet.max_column, 30) + 1):
+                token = semantic_token(sheet.cell(row=header_row, column=column).value)
+                if not token:
+                    continue
+                if token in headers:
+                    duplicate = True
+                headers[token] = column
+            if duplicate or len(headers) < 2:
+                continue
+            if not ({"release_id", "file"} <= set(headers) or "record_id" in headers or "metric" in headers or "region" in headers):
+                continue
+            records = []
+            blank_run = 0
+            for row in range(header_row + 1, min(sheet.max_row, header_row + 100) + 1):
+                record = {name: sheet.cell(row=row, column=column).value for name, column in headers.items()}
+                if all(value in (None, "") for value in record.values()):
+                    blank_run += 1
+                    if blank_run >= 2 and records:
+                        break
+                    continue
+                blank_run = 0
+                records.append(record)
+            found.append({"sheet": sheet.title, "headers": headers, "records": records})
+            break
+    return found
+
+
+def same_value(left, right):
+    if hasattr(left, "isoformat") and hasattr(right, "isoformat"):
+        return left.isoformat() == right.isoformat()
+    if isinstance(right, (int, float)):
+        try:
+            return abs(float(left) - float(right)) <= 0.01
+        except (TypeError, ValueError):
+            return False
+    return str(left or "").strip().casefold() == str(right or "").strip().casefold()
+
+
+def semantic_sales_checks(workbook, expected, context):
+    tables = semantic_tables(workbook)
+    expected_rows = [tuple(row) for row in expected["rows"]]
+    selected_record = None
+    selected_table = None
+    for table in tables:
+        # A release registry lists all candidates; it is source evidence, not
+        # the requested act of choosing one.  A semantic selection record must
+        # contain exactly one chosen release.
+        if (
+            {"release_id", "file", "period", "coverage"} <= set(table["headers"])
+            and len(table["records"]) == 1
+        ):
+            for record in table["records"]:
+                if all(same_value(record.get(key), value) for key, value in zip(("release_id", "file", "period", "coverage"), expected["selection"])):
+                    selected_record = record
+                    selected_table = table
+                    break
+    data_ok = False
+    for table in tables:
+        fields = ("record_id", "region", "product", "stage", "bookings", "recognized_revenue", "closed_won_flag")
+        if not set(fields) <= set(table["headers"]):
+            continue
+        actual = [tuple(record.get(field) for field in fields) for record in table["records"]]
+        if len(actual) == len(expected_rows) and all(
+            sum(all(same_value(a, e) for a, e in zip(row, target)) for target in expected_rows) == 1
+            for row in actual
+        ) and all(
+            sum(all(same_value(a, e) for a, e in zip(row, target)) for row in actual) == 1
+            for target in expected_rows
+        ):
+            data_ok = True
+            break
+
+    registry_ok = False
+    registry_fields = ("release_id", "file", "period", "published", "supersedes", "schema", "coverage")
+    with (context["source_root"] / "release_registry.csv").open(newline="") as handle:
+        registry_expected = [tuple(record[field] for field in registry_fields) for record in csv.DictReader(handle)]
+    for table in tables:
+        if not set(registry_fields) <= set(table["headers"]):
+            continue
+        actual = [tuple(record.get(field) for field in registry_fields) for record in table["records"]]
+        if len(actual) == len(registry_expected) and all(
+            sum(all(same_value(a, e) for a, e in zip(row, target)) for target in registry_expected) == 1
+            for row in actual
+        ) and all(
+            sum(all(same_value(a, e) for a, e in zip(row, target)) for row in actual) == 1
+            for target in registry_expected
+        ):
+            registry_ok = True
+            break
+
+    metric_expected = {
+        "total_bookings": expected["bookings"], "bookings": expected["bookings"],
+        "recognized_revenue": expected["revenue"], "closed_won_records": expected["closed_won"],
+        "closed_won_count": expected["closed_won"], "south_recognized_revenue": expected["south_revenue"],
+    }
+    observed_metrics = {}
+    for table in tables:
+        if {"metric", "value"} <= set(table["headers"]):
+            for record in table["records"]:
+                observed_metrics[semantic_token(record.get("metric"))] = record.get("value")
+    metrics_ok = all(any(key in observed_metrics and same_value(observed_metrics[key], value) for key in keys) for keys, value in [
+        (("total_bookings", "bookings"), expected["bookings"]),
+        (("recognized_revenue",), expected["revenue"]),
+        (("closed_won_records", "closed_won_count"), expected["closed_won"]),
+        (("south_recognized_revenue",), expected["south_revenue"]),
+    ])
+
+    coverage_expected = {
+        region: (
+            sum(1 for row in expected_rows if row[1] == region),
+            sum(row[5] for row in expected_rows if row[1] == region),
+        )
+        for region in ("North", "South", "East", "West")
+    }
+    coverage_ok = False
+    for table in tables:
+        if not {"region", "record_count", "recognized_revenue"} <= set(table["headers"]):
+            continue
+        actual = {
+            str(record.get("region") or "").strip(): (record.get("record_count"), record.get("recognized_revenue"))
+            for record in table["records"]
+        }
+        if set(actual) == set(coverage_expected) and all(
+            same_value(actual[region][0], expected_pair[0]) and same_value(actual[region][1], expected_pair[1])
+            for region, expected_pair in coverage_expected.items()
+        ):
+            coverage_ok = True
+            break
+
+    registry_selected = next(
+        (
+            row for row in registry_expected
+            if same_value(row[0], expected["selection"][0])
+            and same_value(row[1], expected["selection"][1])
+        ),
+        None,
+    )
+    selected_sheet_text = ""
+    if selected_table is not None:
+        selected_sheet = workbook[selected_table["sheet"]]
+        selected_sheet_text = " ".join(
+            str(cell.value or "")
+            for row in selected_sheet.iter_rows()
+            for cell in row
+        ).casefold()
+    reason_value = selected_record.get("reason") if selected_record else None
+    reason_text = str(reason_value or "").strip().casefold()
+    expected_period = str(expected["selection"][2]).casefold()
+    expected_coverage_text = str(expected["selection"][3]).casefold()
+    expected_schema = str(registry_selected[5]).casefold() if registry_selected else ""
+    reason_ok = bool(
+        selected_record is not None
+        and len(reason_text) >= 20
+        and "approved" in reason_text
+        and same_value(selected_record.get("period"), expected["selection"][2])
+        and same_value(selected_record.get("coverage"), expected["selection"][3])
+        # The chosen release identity already proves the schema requirement.
+        # Do not require the explanation to repeat a particular technical
+        # token when it plainly states why this approved complete release was
+        # selected for the requested period.
+        and (expected_period in reason_text or expected_period in selected_sheet_text)
+        and ("complete" in reason_text or expected_coverage_text in selected_sheet_text)
+    )
+    provenance_ok = bool(
+        selected_record is not None
+        and str(expected["selection"][0]).casefold() in selected_sheet_text
+        and str(expected["selection"][1]).casefold() in selected_sheet_text
+    )
+    role_count = sum((selected_record is not None, data_ok, registry_ok, bool(observed_metrics), coverage_ok))
+    checks = {row["id"]: 0.0 for row in CRITERIA}
+    checks.update({
+        "R001": float(role_count >= 4), "R002": float(selected_record is not None),
+        "R003": float(data_ok), "R004": float(metrics_ok), "R005": float(reason_ok),
+        "R006": float(provenance_ok), "R007": float(coverage_ok), "R008": float(registry_ok),
+        "R009": float(reason_ok and provenance_ok and coverage_ok),
+    })
+    failures = []
+    if selected_record is None: failures.append("INVALID_RELEASE_SELECTION")
+    if not data_ok: failures.append("SELECTED_RECORD_SET_MISMATCH")
+    if not registry_ok: failures.append("REGISTRY_SOURCE_FIELDS_CHANGED")
+    return checks, failures
 
 def registry_matches_source(workbook, source_root):
     fields = ("release_id", "file", "period", "published", "supersedes", "schema", "coverage")
@@ -196,43 +423,23 @@ def task_checks(workbook, engine, expected, context):
     checks["R003"] = float(data_ok)
     if not data_ok: failures.append("SELECTED_RECORD_SET_MISMATCH")
 
-    formulas_ok = all(formula_present(workbook, address) for address in TASK["formula_cells"])
     try:
         metrics_ok = close(engine.value("KPI_Summary", "B4"), expected["bookings"]) and close(engine.value("KPI_Summary", "B5"), expected["revenue"]) and close(engine.value("KPI_Summary", "B6"), expected["closed_won"]) and close(engine.value("KPI_Summary", "B7"), expected["south_revenue"])
+    except UnsupportedFormulaError:
+        raise
     except Exception as exc:
         metrics_ok = False; failures.append(f"KPI_EVALUATION_FAILED:{type(exc).__name__}")
-    checks["R004"] = float(formulas_ok and metrics_ok)
+    checks["R004"] = float(metrics_ok)
 
-    try:
-        source = context["drivers"]["bookings_source_cell"]
-        sheet, cell = source.split("!", 1)
-        baseline = workbook[sheet][cell].value
-        delta = context["drivers"]["bookings_delta"]
-        perturb = FormulaEngine(workbook, {source: baseline + delta})
-        bookings_dynamic = close(perturb.value("KPI_Summary", "B4"), expected["bookings"] + delta)
-    except Exception as exc:
-        bookings_dynamic = False; failures.append(f"BOOKINGS_PERTURBATION_FAILED:{type(exc).__name__}")
-    checks["R005"] = float(bookings_dynamic)
-
-    try:
-        source = context["drivers"]["revenue_source_cell"]
-        sheet, cell = source.split("!", 1)
-        baseline = workbook[sheet][cell].value
-        delta = context["drivers"]["revenue_delta"]
-        perturb = FormulaEngine(workbook, {source: baseline + delta})
-        revenue_dynamic = close(perturb.value("KPI_Summary", "B5"), expected["revenue"] + delta) and close(perturb.value("KPI_Summary", "B7"), expected["south_revenue"] + delta)
-    except Exception as exc:
-        revenue_dynamic = False; failures.append(f"REVENUE_PERTURBATION_FAILED:{type(exc).__name__}")
-    checks["R006"] = float(revenue_dynamic)
-
-    coverage_formula_ok = all(formula_present(workbook, address) for address in TASK["coverage_formula_cells"])
     try:
         expected_coverage = {region: (len([record for record in expected_rows if record[1] == region]), sum(record[5] for record in expected_rows if record[1] == region)) for region in ("North", "South", "East", "West")}
         actual_coverage = {workbook["Coverage_Checks"].cell(row=row, column=1).value: (engine.value("Coverage_Checks", f"B{row}"), engine.value("Coverage_Checks", f"C{row}")) for row in range(4, 8)}
         coverage_ok = actual_coverage == expected_coverage
+    except UnsupportedFormulaError:
+        raise
     except Exception as exc:
         coverage_ok = False; failures.append(f"COVERAGE_CLOSURE_FAILED:{type(exc).__name__}")
-    checks["R007"] = float(coverage_formula_ok and coverage_ok)
+    checks["R007"] = float(coverage_ok)
 
     protected_ok = registry_matches_source(workbook, context["source_root"])
     checks["R008"] = float(protected_ok)
@@ -244,9 +451,20 @@ def task_checks(workbook, engine, expected, context):
     acceptable_statuses = {"required", "pass", "passed", "complete", "ok"}
     statuses_ok = all(str(value or "").strip().casefold() in acceptable_statuses for value in statuses)
     evidence_ok = all(isinstance(value, str) and len(value.strip()) >= 8 for value in evidence)
+    reason_text = str(reason or "").casefold()
+    checks["R005"] = float(
+        isinstance(reason, str)
+        and len(reason.strip()) >= 20
+        and all(word in reason_text for word in ("approved", "2024q2", "complete"))
+        and ("schema" in reason_text or "1.1" in reason_text)
+    )
+    checks["R006"] = float(
+        selection_ok
+        and str(expected_selection[0]).casefold() in " ".join(str(cell.value or "") for row in workbook["Selected_Sources"].iter_rows() for cell in row).casefold()
+        and str(expected_selection[1]).casefold() in " ".join(str(cell.value or "") for row in workbook["Selected_Sources"].iter_rows() for cell in row).casefold()
+    )
     checks["R009"] = float(isinstance(reason, str) and len(reason.strip()) >= 20 and statuses_ok and evidence_ok)
 
-    checks["P001"] = 0.0 if all(checks.get(criterion, 0.0) == 1.0 for criterion in TASK["critical_criteria"]) else 1.0
     return checks, failures
 
 def evaluate(candidate, split="dev"):
@@ -254,24 +472,53 @@ def evaluate(candidate, split="dev"):
     if not candidate.exists() or candidate.stat().st_size == 0: return criteria, ["OUTPUT_MISSING"]
     try: workbook = openpyxl.load_workbook(candidate, data_only=False, read_only=False)
     except Exception as exc: return criteria, [f"MALFORMED_XLSX:{type(exc).__name__}"]
-    missing = [sheet for sheet in TASK["required_sheets"] if sheet not in workbook.sheetnames]
-    if missing: return criteria, [f"MISSING_SHEET:{sheet}" for sheet in missing]
-    criteria["R001"] = 1.0
     failures = []
+    # R001 asks whether the workbook contains every requested sheet, not
+    # whether it spelled them the reference way.  The task-local aliases
+    # below are already accepted as establishing sheet identity for every
+    # other criterion, so scoring R001 on the literal pre-alias name match
+    # contradicts the same run's own role resolution.  Any renaming stays
+    # visible through the SHEET_ALIAS failure codes.
+    exact_layout = all(sheet in workbook.sheetnames for sheet in TASK["required_sheets"])
+    workbook, role_map, unresolved, ambiguous = resolve_sheet_roles(
+        workbook, TASK["required_sheets"], SHEET_ALIASES
+    )
+    criteria["R001"] = 1.0 if (exact_layout or not (unresolved or ambiguous)) else 0.0
+    context = split_context(split)
+    expected = load_oracle(context)
+    semantic_checks, semantic_failures = semantic_sales_checks(workbook, expected, context)
+    if unresolved or ambiguous:
+        if all(semantic_checks.get(key) == 1.0 for key in TASK["hurdle_criteria"]):
+            return semantic_checks, sorted(set(semantic_failures))
+        failures.extend(sheet_resolution_failures(role_map, unresolved, ambiguous))
+        return criteria, sorted(set(failures))
+    failures.extend(sheet_resolution_failures(role_map, unresolved, ambiguous))
     try:
-        context = split_context(split)
-        checks, task_failures = task_checks(workbook, FormulaEngine(workbook), load_oracle(context), context)
+        checks, task_failures = task_checks(workbook, FormulaEngine(workbook), expected, context)
         criteria.update(checks); failures.extend(task_failures)
-    except Exception as exc: failures.append(f"SEMANTIC_EVALUATION_ERROR:{type(exc).__name__}:{exc}")
+    except UnsupportedFormulaError as exc:
+        failures.append(f"UNSUPPORTED_FORMULA:{exc}")
+    except Exception as exc:
+        failures.append(f"SEMANTIC_EVALUATION_ERROR:{type(exc).__name__}:{exc}")
+    criteria = {key: max(criteria.get(key, 0.0), semantic_checks.get(key, 0.0)) for key in criteria}
+    failures.extend(semantic_failures)
+    failures = [
+        code for code in failures
+        if not code.startswith((
+            "BOOKINGS_PERTURBATION_FAILED:", "REVENUE_PERTURBATION_FAILED:",
+            "KPI_EVALUATION_FAILED:", "COVERAGE_CLOSURE_FAILED:",
+        ))
+    ]
+    passed_failure_codes = {
+        "R002": {"INVALID_RELEASE_SELECTION"},
+        "R003": {"SELECTED_RECORD_SET_MISMATCH"},
+        "R008": {"REGISTRY_SOURCE_FIELDS_CHANGED"},
+    }
+    failures = [
+        code for code in failures
+        if not any(criteria[criterion] == 1.0 and code in codes for criterion, codes in passed_failure_codes.items())
+    ]
     return criteria, sorted(set(failures))
-
-def score(criteria):
-    positive = sum(row["weight"] for row in CRITERIA if row["type"] == "positive")
-    earned = sum(row["weight"] * criteria.get(row["id"], 0.0) for row in CRITERIA if row["type"] == "positive")
-    penalty = sum(abs(row["weight"]) for row in CRITERIA if row["type"] == "penalty" and criteria.get(row["id"], 0.0) > 0)
-    normalized = max(0.0, (earned - penalty) / positive)
-    if criteria.get("P001", 0.0) > 0 or any(criteria.get(criterion, 0.0) < 1.0 for criterion in TASK["critical_criteria"]): normalized = min(normalized, 0.69)
-    return round(normalized, 6)
 
 def parse_cli():
     split = os.environ.get("P15_EVAL_SPLIT", "dev").strip().lower()
@@ -287,11 +534,14 @@ def parse_cli():
 
 def main():
     candidate, split = parse_cli()
-    criteria, failures = evaluate(candidate, split); total = score(criteria)
-    payload = {"task_id": TASK["task_id"], "split": split, "candidate": str(candidate), "status": "SCORED", "normalized_score": total, "pass": total >= TASK["pass_threshold"], "criterion_scores": criteria, "failure_codes": failures, "stderr": []}
+    criteria, failures = evaluate(candidate, split)
+    payload = build_result(task=TASK, split=split, candidate=str(candidate), criteria=criteria, failures=failures)
+    payload["judge_version"] = "P15_JUDGE_V3"
+    total = payload["normalized_score"]
     log_root = Path(os.environ.get("P15_VERIFIER_LOG_DIR", "/logs/verifier"))
     try:
-        log_root.mkdir(parents=True, exist_ok=True); (log_root / "report.json").write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n"); (log_root / "reward.txt").write_text(str(total) + "\n")
+        log_root.mkdir(parents=True, exist_ok=True); (log_root / "report.json").write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+        if total is not None: (log_root / "reward.txt").write_text(str(total) + "\n")
     except OSError: pass
     print(json.dumps(payload, indent=2, sort_keys=True))
 

@@ -1,0 +1,29 @@
+{
+  "judge_version": "P15_JUDGE_V3",
+  "validated_at_utc": "2026-09-04T02:15:33Z",
+  "command": "/opt/anaconda3/bin/python3 tests/validate_judge_v3.py",
+  "all_expectations_met": true,
+  "expectation_basis": "Correct normalization, three valid joins, $3,940 total, four retained exceptions, weekly view, and protected sources may use any clear columns or formulas/static values. Wrong joins, duplicates, exceptions, or source facts must fail.",
+  "cases": {
+    "reference": {"score": 1.0, "pass": true, "expected": {"pass": true}},
+    "confirm_reference": {"score": 1.0, "pass": true, "expected": {"pass": true}},
+    "equivalent": {"score": 1.0, "pass": true, "expected": {"pass": true}},
+    "alternative_layout:data_quality_checks_with_spaces": {"score": 1.0, "pass": true, "expected": {"pass": true}},
+    "noop": {"score": 0.153846, "pass": false, "expected": {"pass": false}},
+    "malformed": {"score": 0.0, "pass": false, "expected": {"pass": false}},
+    "mutant:dropped_exception": {"score": 0.884615, "pass": false, "expected": {"pass": false}},
+    "mutant:duplicate_included": {"score": 0.730769, "pass": false, "expected": {"pass": false}},
+    "mutant:hardcoded_extended_cost": {"score": 1.0, "pass": true, "expected": {"pass": true}},
+    "mutant:wrong_cleaning_and_source_edit": {"score": 0.038462, "pass": false, "expected": {"pass": false}},
+    "mutant:wrong_product_join": {"score": 0.307692, "pass": false, "expected": {"pass": false}}
+  },
+  "fixture_reclassification": {
+    "hardcoded_extended_cost": "Accepted positive equivalent: every cost and total is correct; the prompt does not require formulas or hidden perturbation behavior."
+  },
+  "campaign_regression": {
+    "archive_member": "workbooks/20260902T175049Z-P15-B-OPS-CLEAN-JOIN-001-codex/P15-B-OPS-CLEAN-JOIN-001__gK8tQgf/answer.xlsx",
+    "score": 1.0,
+    "pass": true,
+    "basis": "Correct semantic columns, three accepted rows, $3,940 total, weekly table, and all four exceptions."
+  }
+}

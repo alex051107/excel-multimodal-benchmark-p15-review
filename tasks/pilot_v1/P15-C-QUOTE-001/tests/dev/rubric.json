@@ -1,17 +1,18 @@
 {
   "criteria": [
-    {"id": "R001", "description": "Workbook opens and contains Quote_Header, Line_Items, Groups, Alternates, Provenance, and Checks.", "weight": 2, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
+    {"id": "R001", "description": "Workbook opens and exposes identifiable quote identity, scope, totals, and source-traceability sections.", "weight": 2, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
     {"id": "R002", "description": "Quote identity, customer, issue/valid-through dates, and currency match the supplied scan.", "weight": 3, "type": "positive", "dimension": "header_accuracy", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
     {"id": "R003", "description": "Each source scope row is represented once with the correct description and amount, independent of row order or candidate-assigned ID.", "weight": 4, "type": "positive", "dimension": "scope_accuracy", "method": "deterministic", "method_params": {}},
     {"id": "R004", "description": "Base-scope versus optional-alternate semantics are preserved for every scope row.", "weight": 3, "type": "positive", "dimension": "scope_semantics", "method": "deterministic", "method_params": {}},
-    {"id": "R005", "description": "Base-scope subtotal is formula-linked to the included rows and excludes the optional alternate.", "weight": 3, "type": "positive", "dimension": "base_scope_semantics", "method": "deterministic", "method_params": {}},
-    {"id": "R006", "description": "Discount, tax, and final base-scope total are formula-linked and evaluate correctly.", "weight": 4, "type": "positive", "dimension": "quote_total_semantics", "method": "deterministic", "method_params": {}},
-    {"id": "R007", "description": "Both manifest-selected source changes—a base-scope amount and a distinct optional alternate—propagate to their declared quote outputs while preserving the alternate-exclusion invariant.", "weight": 3, "type": "positive", "dimension": "perturbation_response", "method": "deterministic", "method_params": {"manifest": "metadata/perturbations.json", "perturbations": 2}},
+    {"id": "R005", "description": "Base-scope subtotal agrees with the included rows and excludes the optional alternate, whether values are static or formula-linked.", "weight": 3, "type": "positive", "dimension": "base_scope_semantics", "method": "deterministic", "method_params": {}},
+    {"id": "R006", "description": "Discount, tax, and final base-scope total evaluate correctly under an equivalent positive-deduction or negative-signed-discount convention.", "weight": 4, "type": "positive", "dimension": "quote_total_semantics", "method": "deterministic", "method_params": {}},
+    {"id": "R007", "description": "Displayed subtotal, discount, tax, final total, and optional alternate are arithmetically coherent and preserve the alternate-exclusion invariant.", "weight": 3, "type": "positive", "dimension": "quote_consistency", "method": "deterministic", "method_params": {}},
     {"id": "R008", "description": "Each scope-row ID links once to the supplied scan with a candidate-readable locator; no private locator token is required.", "weight": 4, "type": "positive", "dimension": "provenance", "method": "deterministic", "method_params": {}},
     {"id": "R009", "description": "Scope IDs are non-empty and unique, and scope/provenance populations are complete without duplicates.", "weight": 3, "type": "positive", "dimension": "completeness", "method": "deterministic", "method_params": {}},
-    {"id": "P001", "description": "Penalty for including the optional alternate in base scope, losing scope identity, pasting a stale total, or false provenance.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
+    {"id": "P001", "description": "Penalty for contradictory source-file or page claims in quote provenance.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
   ],
+  "hurdle_criteria": ["R004", "R006"],
   "pass_threshold": 0.7,
-  "rubric_version": "p15_v2.1",
+  "rubric_version": "p15_v3.0",
   "task_id": "P15-C-QUOTE-001"
 }

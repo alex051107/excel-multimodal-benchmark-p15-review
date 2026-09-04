@@ -83,3 +83,4 @@ python3 tests/evaluate.py /path/to/answer.xlsx --split dev
 ```
 
 The Harbor package contract is defined in `task.toml`, `environment/Dockerfile`, and `tests/Dockerfile` within each task directory.
+> 历史说明：本页记录旧版评分设计。当前飞书汇报和新版结果请看 [FEISHU_SUBMISSION.md](../outputs/p15_final/FEISHU_SUBMISSION.md) 与 [新版评分初步结果](../results/judge_v3_initial/README.md)。

@@ -1,0 +1,324 @@
+{
+  "all_expectations_met": true,
+  "cases": {
+    "alternative_layout:renamed_checks": {
+      "criteria": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "expected_pass": true,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": true,
+      "score": 1.0
+    },
+    "confirm_reference": {
+      "criteria": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "expected_pass": true,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": true,
+      "score": 1.0
+    },
+    "equivalent": {
+      "criteria": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "expected_pass": true,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": true,
+      "score": 1.0
+    },
+    "malformed": {
+      "criteria": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "expected_pass": false,
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.0
+    },
+    "mutant:collateral_ledger_edit": {
+      "criteria": {
+        "R001": 0.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "expected_pass": false,
+      "failure_codes": [
+        "FINAL_RECONCILIATION_MISMATCH",
+        "MATCHED_RECORDS_MISMATCH",
+        "PROTECTED_FINANCE_SOURCE_CHANGED",
+        "RECONCILIATION_CHECKS_MISMATCH",
+        "VARIANCE_BRIDGE_VALUES_MISMATCH"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.384615
+    },
+    "mutant:dropped_unmatched_item": {
+      "criteria": {
+        "R001": 0.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "expected_pass": false,
+      "failure_codes": [
+        "FINAL_RECONCILIATION_MISMATCH",
+        "MATCHED_RECORDS_MISMATCH",
+        "RECONCILIATION_CHECKS_MISMATCH",
+        "UNMATCHED_RECORDS_MISMATCH",
+        "VARIANCE_BRIDGE_VALUES_MISMATCH"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.5
+    },
+    "mutant:omitted_adjustment": {
+      "criteria": {
+        "R001": 0.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "expected_pass": false,
+      "failure_codes": [
+        "FINAL_RECONCILIATION_MISMATCH",
+        "MATCHED_RECORDS_MISMATCH",
+        "RECONCILIATION_CHECKS_MISMATCH",
+        "VARIANCE_BRIDGE_VALUES_MISMATCH"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.5
+    },
+    "mutant:wrong_fx_date": {
+      "criteria": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "expected_pass": false,
+      "failure_codes": [
+        "FINAL_RECONCILIATION_MISMATCH",
+        "MATCHED_RECORDS_MISMATCH",
+        "NORMALIZED_RECORDS_MISMATCH",
+        "RECONCILIATION_CHECKS_MISMATCH",
+        "VARIANCE_BRIDGE_VALUES_MISMATCH"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.346154
+    },
+    "mutant:wrong_transaction_match": {
+      "criteria": {
+        "R001": 0.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "expected_pass": false,
+      "failure_codes": [
+        "FINAL_RECONCILIATION_MISMATCH",
+        "MATCHED_RECORDS_MISMATCH",
+        "RECONCILIATION_CHECKS_MISMATCH",
+        "VARIANCE_BRIDGE_VALUES_MISMATCH"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.5
+    },
+    "negative:duplicate_match": {
+      "criteria": {
+        "R001": 0.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "expected_pass": false,
+      "failure_codes": [
+        "MATCHED_RECORDS_MISMATCH"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.692308
+    },
+    "negative:duplicate_unmatched": {
+      "criteria": {
+        "R001": 0.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "expected_pass": false,
+      "failure_codes": [
+        "UNMATCHED_RECORDS_MISMATCH"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.730769
+    },
+    "negative:out_of_period_match": {
+      "criteria": {
+        "R001": 0.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "expected_pass": false,
+      "failure_codes": [
+        "MATCHED_RECORDS_MISMATCH"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.692308
+    },
+    "negative:wrong_bridge_keywords_do_not_close": {
+      "criteria": {
+        "R001": 0.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "expected_pass": false,
+      "failure_codes": [
+        "RECONCILIATION_CHECKS_MISMATCH",
+        "VARIANCE_BRIDGE_VALUES_MISMATCH"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.769231
+    },
+    "noop": {
+      "criteria": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "expected_pass": false,
+      "failure_codes": [
+        "FINAL_RECONCILIATION_MISMATCH",
+        "MATCHED_RECORDS_MISMATCH",
+        "NORMALIZED_RECORDS_MISMATCH",
+        "RECONCILIATION_CHECKS_MISMATCH",
+        "UNMATCHED_RECORDS_MISMATCH",
+        "VARIANCE_BRIDGE_VALUES_MISMATCH"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.115385
+    },
+    "reference": {
+      "criteria": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "expected_pass": true,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": true,
+      "score": 1.0
+    }
+  },
+  "generated_at": "2026-09-04T02:56:44.067460+00:00",
+  "judge_version": "P15_JUDGE_V3",
+  "task_id": "P15-B-FIN-RECON-001"
+}

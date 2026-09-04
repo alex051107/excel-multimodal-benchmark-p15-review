@@ -1,17 +1,17 @@
 {
   "criteria": [
     {"id": "R001", "description": "A readable workbook contains every requested reconciliation sheet.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
-    {"id": "R002", "description": "All ten ledger/subledger records use the correct transaction-date FX rate and formula-linked USD normalization.", "weight": 4, "type": "positive", "dimension": "fx_normalization", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
-    {"id": "R003", "description": "The four matched invoices use correct source amounts, the approved adjustment, differences, and the $1 tolerance status.", "weight": 4, "type": "positive", "dimension": "reconciliation_correctness", "method": "deterministic", "method_params": {"tolerance_usd": 1.0}},
-    {"id": "R004", "description": "Variance_Bridge and Final_Reconciliation are formula-linked and close to the independent matched/unmatched replay.", "weight": 3, "type": "positive", "dimension": "reconciliation_closure", "method": "deterministic", "method_params": {}},
-    {"id": "R005", "description": "Changing the 2024-06-30 EUR source rate from 1.07 to 1.08 flows to both INV-101 records and both bridge totals.", "weight": 3, "type": "positive", "dimension": "native_workbook_semantics", "method": "deterministic", "method_params": {"source_cell": "FX_Rates!C6"}},
-    {"id": "R006", "description": "Changing approved ADJ-105 from -$50 to -$40 flows to the adjusted amount, difference, and OUT_OF_TOLERANCE status.", "weight": 3, "type": "positive", "dimension": "native_workbook_semantics", "method": "deterministic", "method_params": {"source_cell": "Adjustment_Evidence!C4"}},
-    {"id": "R007", "description": "Ledger-only and subledger-only exceptions remain distinct and their amounts/counts close to Final_Reconciliation formulas.", "weight": 3, "type": "positive", "dimension": "exception_integrity", "method": "deterministic", "method_params": {}},
+    {"id": "R002", "description": "All ten ledger/subledger records use the correct transaction-date FX rate and USD normalization.", "weight": 4, "type": "positive", "dimension": "fx_normalization", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
+    {"id": "R003", "description": "Only in-period invoice pairs are matched, with correct source amounts, approved adjustment, differences, and the $1 tolerance status.", "weight": 4, "type": "positive", "dimension": "reconciliation_correctness", "method": "deterministic", "method_params": {"tolerance_usd": 1.0}},
+    {"id": "R004", "description": "The variance bridge and final decision close to the matched and unmatched records.", "weight": 3, "type": "positive", "dimension": "reconciliation_closure", "method": "deterministic", "method_params": {}},
+    {"id": "R005", "description": "The workbook shows the transaction-date FX evidence used for normalization.", "weight": 3, "type": "positive", "dimension": "fx_evidence", "method": "deterministic", "method_params": {}},
+    {"id": "R006", "description": "The approved ADJ-105 evidence is retained and applied to INV-105 before tolerance is assessed.", "weight": 3, "type": "positive", "dimension": "adjustment_evidence", "method": "deterministic", "method_params": {}},
+    {"id": "R007", "description": "Ledger-only and subledger-only exceptions remain distinct with correct identities and amounts.", "weight": 3, "type": "positive", "dimension": "exception_integrity", "method": "deterministic", "method_params": {}},
     {"id": "R008", "description": "Every ledger, subledger, FX-rate, and adjustment-evidence source field is preserved exactly.", "weight": 3, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {}},
-    {"id": "R009", "description": "Checks expose zero matched difference, two exceptions, and zero final closure residual through formulas.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}},
-    {"id": "P001", "description": "Penalty for wrong FX lineage, false/tolerance-breaking matches, omitted adjustment, dropped exception, broken closure, or source alteration.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
+    {"id": "R009", "description": "Checks expose the matched difference, exception count, and final closure residual in reviewable form.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}}
   ],
+  "hurdle_criteria": ["R002", "R003", "R004", "R007", "R008"],
   "pass_threshold": 0.7,
-  "rubric_version": "p15_v3",
+  "rubric_version": "p15_judge_v3",
   "task_id": "P15-B-FIN-RECON-001"
 }

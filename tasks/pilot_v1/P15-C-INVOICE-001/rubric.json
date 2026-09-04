@@ -1,6 +1,6 @@
 {
   "criteria": [
-    {"id": "R001", "description": "Workbook opens and contains Invoice_Header, Line_Items, Provenance, and Checks.", "weight": 2, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
+    {"id": "R001", "description": "Workbook opens and exposes identifiable invoice header, line-item, calculation, and provenance sections independent of sheet names or fixed cell positions.", "weight": 2, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
     {"id": "R002", "description": "Invoice identity, parties, date, currency, and PO reference match the supplied invoice.", "weight": 3, "type": "positive", "dimension": "header_accuracy", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
     {"id": "R003", "description": "Each source line is represented once with the correct description, quantity, unit price, and page, independent of row order or candidate-assigned ID.", "weight": 4, "type": "positive", "dimension": "line_item_accuracy", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
     {"id": "R004", "description": "Every populated line total is a formula that evaluates to quantity multiplied by unit price.", "weight": 3, "type": "positive", "dimension": "line_formula_semantics", "method": "deterministic", "method_params": {}},
@@ -9,9 +9,10 @@
     {"id": "R007", "description": "Both manifest-selected source changes—a unit-price change and a distinct quantity change—update every declared downstream invoice total while preserving unrelated values.", "weight": 4, "type": "positive", "dimension": "perturbation_response", "method": "deterministic", "method_params": {"manifest": "metadata/perturbations.json", "perturbations": 2}},
     {"id": "R008", "description": "Each line ID links once to the correct source file and page with a candidate-readable locator; no private locator token is required.", "weight": 4, "type": "positive", "dimension": "provenance", "method": "deterministic", "method_params": {}},
     {"id": "R009", "description": "Line IDs are non-empty and unique, and the line/provenance populations are complete without duplicates.", "weight": 3, "type": "positive", "dimension": "completeness", "method": "deterministic", "method_params": {}},
-    {"id": "P001", "description": "Penalty for missing or duplicated source lines, stale/non-formula payable logic, or false source-file/page provenance.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
+    {"id": "P001", "description": "Penalty for fabricated source-file or page provenance.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
   ],
+  "hurdle_criteria": ["R002", "R003", "R006", "R008"],
   "pass_threshold": 0.7,
-  "rubric_version": "p15_v2.1",
+  "rubric_version": "p15_v3.0",
   "task_id": "P15-C-INVOICE-001"
 }

@@ -1,0 +1,4 @@
+system,archived_workbook_n,valid_workbook_n,replay_scoreable_n,valid_replay_scoreable_n,original_score_ge_threshold_n,original_recorded_pass_n,valid_original_recorded_pass_n,replay_judge_error_n,replay_task_invalid_n,native_recalc_required_n,replay_zero_n,replay_pass_n,valid_replay_pass_n,valid_replay_mean
+claude_opus5,132,106,106,88,14,13,12,9,9,8,3,36,32,0.595600432
+codex_gpt56sol,124,112,112,102,37,37,37,2,8,2,0,90,83,0.92811901
+qwen38max,112,104,104,96,37,35,35,1,7,0,0,84,76,0.924515198

@@ -1,0 +1,247 @@
+{
+  "task_id": "P15-C-INVOICE-001",
+  "judge_version": "p15_v3.0",
+  "validation_scope": "reference, equivalent, noop, malformed, all mutants, alternate layout, genuine payable error",
+  "expectation_basis": {
+    "alternate_layout": "The instruction requires invoice facts, traceability, and a dynamic amount chain, but does not prescribe sheet names or cell addresses.",
+    "broken_total": "The instruction explicitly requires a dynamic payable chain including freight."
+  },
+  "fixtures": {
+    "reference": {
+      "path": "solution/reference.xlsx",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "full pass",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "equivalent": {
+      "path": "fixtures/equivalent/candidate_equivalent.xlsx",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "full pass",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "noop": {
+      "path": "fixtures/noop/candidate_noop.xlsx",
+      "score": 0.068966,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "malformed": {
+      "path": "fixtures/malformed/candidate_malformed.xlsx",
+      "score": 0.0,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "P001": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "expected": "fail with zero score",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:duplicate_line_item": {
+      "path": "fixtures/mutants/duplicate_line_item.xlsx",
+      "score": 0.172414,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:missing_line_item": {
+      "path": "fixtures/mutants/missing_line_item.xlsx",
+      "score": 0.172414,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:wrong_header_and_payable_total": {
+      "path": "fixtures/mutants/wrong_header_and_payable_total.xlsx",
+      "score": 0.551724,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:wrong_page_provenance": {
+      "path": "fixtures/mutants/wrong_page_provenance.xlsx",
+      "score": 0.862069,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:wrong_payable_total": {
+      "path": "fixtures/mutants/wrong_payable_total.xlsx",
+      "score": 0.655172,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    }
+  },
+  "new_cases": {
+    "alternate_layout": {
+      "path": "generated:alternate_layout",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "full pass: arbitrary sheet names and positions with the disclosed formula chain",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "broken_total": {
+      "path": "generated:broken_total",
+      "score": 0.655172,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail R006/R007: payable formula omits freight",
+      "expected_pass": false,
+      "expectation_met": true
+    }
+  },
+  "all_expectations_met": true
+}

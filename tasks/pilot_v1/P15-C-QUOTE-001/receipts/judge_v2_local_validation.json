@@ -1,0 +1,242 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "equivalent": {
+      "candidate_sha256": "6a13733c537fbe1bf6acacbd5ee47ebaa87c63fc26f6539d7c31933bcc59e001",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "06ab4db2057eba6084987b27534a1296b2e7856fbd894364dba01ccf5afd6097",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "2896c3400652be8236619d82e720268cfbcf65af86684952e7125489fdfeec5c",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "b77939f8b41ce724a287ad6e8141783cfaf7942e57a651111eddaf87f8b9f884",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.068966,
+      "score_stddev": 0.0,
+      "signature_sha256": "fefc3873dd1f06c3ace49c76a5f9221c9c01f74d095c2d6c4c0cfb580716c743",
+      "stable": true
+    },
+    "optional_item_as_base_scope": {
+      "candidate_sha256": "4f0ea3c73c943aefe883dd15402eec1293b5dd425b692fe9de850c53b83b6c9b",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.793103,
+      "score_stddev": 0.0,
+      "signature_sha256": "312fa79218e1f6a7c1380b6c15a53ddef19df2e8b42314188d0308510206c816",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "fa86fc780d4c143a0741971d16b99078f7804fcc4b7b697d553c7684227cfaca",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "06ab4db2057eba6084987b27534a1296b2e7856fbd894364dba01ccf5afd6097",
+      "stable": true
+    },
+    "wrong_base_scope_total": {
+      "candidate_sha256": "640fb7bd8bffb72a1fbfc0b18fe97d912152b260a7b25cb964214fbdc4ee550c",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.655172,
+      "score_stddev": 0.0,
+      "signature_sha256": "e12a8cf2b50800e2614217dca78f42d8efc7f65c2edd685f1e074d4fd0ce9776",
+      "stable": true
+    },
+    "wrong_header_scope_identity": {
+      "candidate_sha256": "fae0106c0eb30daf4ba2f6983dba6ad08ed196f7f79dac3ea8cf2d62b429d18b",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.068966,
+      "score_stddev": 0.0,
+      "signature_sha256": "fefc3873dd1f06c3ace49c76a5f9221c9c01f74d095c2d6c4c0cfb580716c743",
+      "stable": true
+    },
+    "wrong_quote_provenance": {
+      "candidate_sha256": "6c370b4f1e52eb840bbb7b8e02ecd5dbbabb6f456c36ce85f153def25ecd1395",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0
+      },
+      "failure_codes": [
+        "FABRICATED_QUOTE_PROVENANCE"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.62069,
+      "score_stddev": 0.0,
+      "signature_sha256": "bede9072309c9004d3bb609be373ad828a540c2a1c57d9a102b3143a9aa38537",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "alternate": 310.0,
+    "base": 2240.0,
+    "discount": 134.4,
+    "document": {
+      "filename": "quote_scan.png",
+      "pages": 1
+    },
+    "headers": {
+      "currency": "USD",
+      "customer": "Northstar Operations",
+      "quote_date": "2026-06-15",
+      "quote_id": "QT-7781",
+      "valid_through": "2026-07-15",
+      "vendor": "Moss Ridge Contractors"
+    },
+    "items": [
+      {
+        "amount": 1400.0,
+        "description": "Equipment foundation package",
+        "group": "Base scope",
+        "line_id": "Q-01",
+        "optional": false,
+        "page": 1,
+        "text_locator": "quote_scan.png:base-scope-1"
+      },
+      {
+        "amount": 840.0,
+        "description": "Site mobilization",
+        "group": "Base scope",
+        "line_id": "Q-02",
+        "optional": false,
+        "page": 1,
+        "text_locator": "quote_scan.png:base-scope-2"
+      },
+      {
+        "amount": 310.0,
+        "description": "Extended warranty",
+        "group": "Optional alternate",
+        "line_id": "Q-03",
+        "optional": true,
+        "page": 1,
+        "text_locator": "quote_scan.png:alternate-1"
+      }
+    ],
+    "tax": 157.92,
+    "total": 2263.52
+  },
+  "judge_version": "v2-locality",
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY_JUDGE_V2",
+  "task_id": "P15-C-QUOTE-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

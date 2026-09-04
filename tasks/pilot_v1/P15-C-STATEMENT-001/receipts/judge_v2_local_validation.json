@@ -1,0 +1,273 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "equivalent": {
+      "candidate_sha256": "05b432298d00e63b26f2cada3a4f50fc42321cc1f326c94e20a63d1c9c50dbda",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "17c475d62b1b5c11c305892a044e854ff58a15353ffc1ac9b53f5640d28e90bb",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "cc4ec1ce68d9f9a77211a463118cf386ef115204e44f1482e33fec7e9877be22",
+      "stable": true
+    },
+    "missing_transaction": {
+      "candidate_sha256": "595bd11eeb1f740e35b92f3715190987dd81949bb1df833b3a3e83913d4bed54",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "FABRICATED_STATEMENT_PROVENANCE"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "c3a21b29fb2c6eb25467dea5feb15da121d169ef33ad334020c10fe54b37f009",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "42ac05e5990cea842e3e0e93496f3e502f198b16847cf6b5caec21d93d5e232e",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.066667,
+      "score_stddev": 0.0,
+      "signature_sha256": "371ea345da2f7b7cb257043c321136b58c6fb6f29f9303ef6236bdf6470d782e",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "12a7b55c7f39bce5d81b709e9b0c2b6aba21c11e86748d9dfd738fcf4fc90c45",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "17c475d62b1b5c11c305892a044e854ff58a15353ffc1ac9b53f5640d28e90bb",
+      "stable": true
+    },
+    "stale_closing_balance": {
+      "candidate_sha256": "7c57fffda0398c2600357fd5a1e9ac0664915d565b7113a46a2c36a5937b2756",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.766667,
+      "score_stddev": 0.0,
+      "signature_sha256": "df47e64bc2e0efb39511192248b00b104218050ad7d8a402f55b4d71846d5c8e",
+      "stable": true
+    },
+    "wrong_debit_credit_sign": {
+      "candidate_sha256": "5ad49f1920020278e817cb3b2fa7a50de417802895be0a51452c216bf55a75f7",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 0.8,
+      "score_stddev": 0.0,
+      "signature_sha256": "b56e049b25aa68eafa8554a855304c351803bae162e475ddab9e5c070182eaea",
+      "stable": true
+    },
+    "wrong_page_continuation": {
+      "candidate_sha256": "996c9b069650ccb5cc75060ff207dc0e5c2e0a762d89202d1c6c5f8c191f05ce",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.866667,
+      "score_stddev": 0.0,
+      "signature_sha256": "477345652f6ef4086306e72bb8d4589776c3d87cc32c747c84abef619d244645",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "categories": {
+      "Customer receipts": 2350.0,
+      "Equipment": -860.0,
+      "Travel and fees": -1057.0
+    },
+    "closing": 8533.0,
+    "credits": 2350.0,
+    "debits": 1917.0,
+    "document": {
+      "filename": "statement_multipage.pdf",
+      "pages": 2
+    },
+    "headers": {
+      "account_suffix": "4821",
+      "bank": "Harbor Community Bank",
+      "currency": "USD",
+      "opening_balance": 8100.0,
+      "period_end": "2026-06-30",
+      "period_start": "2026-06-01"
+    },
+    "transactions": [
+      {
+        "category": "Customer receipts",
+        "credit": 1200.0,
+        "date": "2026-06-03",
+        "debit": 0.0,
+        "description": "ACH credit",
+        "net": 1200.0,
+        "page": 1,
+        "text_locator": "statement_multipage.pdf:p1:tx-1",
+        "transaction_id": "TX-001"
+      },
+      {
+        "category": "Equipment",
+        "credit": 0.0,
+        "date": "2026-06-08",
+        "debit": 860.0,
+        "description": "Equipment supply",
+        "net": -860.0,
+        "page": 1,
+        "text_locator": "statement_multipage.pdf:p1:tx-2",
+        "transaction_id": "TX-002"
+      },
+      {
+        "category": "Customer receipts",
+        "credit": 1150.0,
+        "date": "2026-06-12",
+        "debit": 0.0,
+        "description": "Customer receipt",
+        "net": 1150.0,
+        "page": 1,
+        "text_locator": "statement_multipage.pdf:p1:tx-3",
+        "transaction_id": "TX-003"
+      },
+      {
+        "category": "Travel",
+        "credit": 0.0,
+        "date": "2026-06-19",
+        "debit": 1015.0,
+        "description": "Travel expense",
+        "net": -1015.0,
+        "page": 2,
+        "text_locator": "statement_multipage.pdf:p2:tx-4",
+        "transaction_id": "TX-004"
+      },
+      {
+        "category": "Bank fees",
+        "credit": 0.0,
+        "date": "2026-06-28",
+        "debit": 42.0,
+        "description": "Monthly fee",
+        "net": -42.0,
+        "page": 2,
+        "text_locator": "statement_multipage.pdf:p2:tx-5",
+        "transaction_id": "TX-005"
+      }
+    ]
+  },
+  "judge_version": "v2-locality",
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY_JUDGE_V2",
+  "task_id": "P15-C-STATEMENT-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

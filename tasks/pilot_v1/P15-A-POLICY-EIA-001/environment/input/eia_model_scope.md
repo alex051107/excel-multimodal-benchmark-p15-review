@@ -1,3 +1,3 @@
-# EIA policy-model scope
+# Public-data context and benchmark scope
 
-Restore the bounded ordinary-worksheet scenario relationship described by the supplied EIA-derived generation extract and policy-case note. Preserve the supplied scenario inputs. VBA, macros, and unrelated workbook behavior are out of scope.
+The EIA Electric Power Annual tables provide public context for U.S. electricity generation. Their published generation unit is thousand MWh, numerically equal to GWh. The task values are rounded/adapted benchmark scenario inputs and must be used as supplied; they are not represented as an exact extraction from one EIA table. The demand value is a benchmark scenario assumption. VBA, macros, and unrelated workbook behavior are out of scope.

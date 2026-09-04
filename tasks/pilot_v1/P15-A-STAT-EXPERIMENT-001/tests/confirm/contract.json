@@ -1,5 +1,7 @@
 {
   "task_id": "P15-A-STAT-EXPERIMENT-001",
+  "semantic_version": "p15_v3_semantic",
+  "hurdle_criteria": ["R005", "R010", "R011"],
   "split": "confirm",
   "split_group": "P15-A-STAT-EXPERIMENT-001-HELDOUT-01",
   "capability_invariant": ["paired-row construction", "two-sided paired t inference", "95% confidence interval", "paired power planning", "chart binding", "raw-data perturbation"],
@@ -10,23 +12,24 @@
     "contamination_guard": "CONFIRM observations, reference, and oracle remain under tests/confirm and are not copied into environment/input."
   },
   "input_files_dir": "tests/confirm/input_files",
+  "expected_subject_ids": ["B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B09", "B10"],
   "reference_workbook": "tests/confirm/reference.xlsx",
   "oracle": "tests/confirm/oracle_recompute.py",
   "baseline_workbook": "tests/confirm/input_files/starting_workbook.xlsx",
   "semantic_acceptance": {
-    "metric_layout": "Resolve the declared paired-analysis metrics by their task-specific labels; professional row relocation is acceptable.",
+    "metric_layout": "Resolve the declared paired-analysis metrics by their task-specific labels across one or more sheets; sheet names and fixed rows are not scored.",
     "paired_difference": "One formula-linked raw paired-difference column is sufficient for the paired analysis.",
     "formula_compatibility": "Treat Excel _xlfn. and _xlws. compatibility prefixes as semantically inert for supported paired-analysis functions.",
-    "chart_binding": "Accept either an exact full-source Data paired-difference series or the canonical formula-linked Visualization helper series.",
-    "source_gate": "The CONFIRM starting workbook's raw observations and inclusion flags remain protected."
+    "chart_binding": "Accept a direct paired-difference series or a formula-linked helper series covering every supplied pair.",
+    "source_gate": "The ten ordered source pairs remain protected; inclusion flags were not requested and are not scored."
   },
   "evaluator": {
     "path": "tests/evaluate.py",
     "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"],
     "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}
   },
-  "required_sheets": ["Data", "Plan", "Analysis", "Results", "Visualization", "Checks"],
-  "formula_cells": ["Data!D4:D13", "Data!H4:H13", "Analysis!B4:B13", "Results!B8", "Visualization!B4:B13"],
+  "canonical_reference_sheets": ["Data", "Plan", "Analysis", "Results", "Visualization", "Checks"],
+  "canonical_reference_formula_cells": ["Data!D4:D13", "Data!H4:H13", "Analysis!B4:B13", "Results!B8", "Visualization!B4:B13"],
   "perturbations": [{"name": "paired_observation", "address": "Analysis!B10", "overrides": {"Data!C9": 13.1}, "oracle_key": "p_value"}],
-  "protected_ranges": ["Data!B4:C13", "Data!E4:E13"]
+  "protected_source_pairs": "the ten ordered group-1/group-2 pairs supplied in the CONFIRM starting workbook"
 }

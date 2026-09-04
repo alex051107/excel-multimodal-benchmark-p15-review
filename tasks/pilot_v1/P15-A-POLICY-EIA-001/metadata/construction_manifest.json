@@ -1,10 +1,10 @@
 {
   "canonical_excel_status": "PENDING_EXTERNAL_WINDOWS_EXCEL",
-  "construction_mode": "EXPERT_AUTHORED_AUTHENTIC_DATA",
+  "construction_mode": "EXPERT_AUTHORED_BENCHMARK_SCENARIO",
   "human_review_status": "PENDING_EXTERNAL_HUMAN_REVIEW",
   "instruction_origin": "benchmark-authored professional request",
   "old_calibration_package_reused": false,
-  "semantic_version": "p15_v2",
+  "semantic_version": "p15_v3_semantic",
   "task_id": "P15-A-POLICY-EIA-001",
   "task_semantic_rebuild": true
 }

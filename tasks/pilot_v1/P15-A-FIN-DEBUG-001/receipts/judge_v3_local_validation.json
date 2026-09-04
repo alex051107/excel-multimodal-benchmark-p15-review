@@ -1,0 +1,264 @@
+{
+  "all_expectations_met": true,
+  "calibration_note": "All completed historical answers made the same correct one-cell repair; use this task as a control, not a capability separator.",
+  "cases": {
+    "alternate_implementation": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "This in-place debugging task permits formula equivalence but not model relocation.",
+      "expected_pass": true,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": true,
+      "score": 1.0
+    },
+    "equivalent": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "An algebraically equivalent repair in the same root-cause cell must pass.",
+      "expected_pass": true,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": true,
+      "score": 1.0
+    },
+    "malformed": {
+      "criterion_scores": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 0.0,
+        "R012": 0.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "A non-workbook cannot pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.0
+    },
+    "mutant:collateral_damage": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "The seeded wrong-period, collateral, hardcoding, or sign defect must prevent a pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "COLLATERAL_EDIT:Assumptions!C4",
+        "MODEL_REPLAY_MISMATCH:Summary!D8",
+        "MODEL_REPLAY_MISMATCH:Summary!D9"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.5
+    },
+    "mutant:constant_formula_root": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "The seeded wrong-period, collateral, hardcoding, or sign defect must prevent a pass.",
+      "expected_pass": false,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.923077
+    },
+    "mutant:hardcoded_summary": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 1.0,
+        "R011": 0.0,
+        "R012": 0.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "The seeded wrong-period, collateral, hardcoding, or sign defect must prevent a pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "COLLATERAL_EDIT:Summary!D8",
+        "FORMULA_REQUIRED:Summary!D8",
+        "MODEL_REPLAY_MISMATCH:Summary!D8",
+        "MODEL_REPLAY_MISMATCH:Summary!D9"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.423077
+    },
+    "mutant:wrong_period_reference": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "The seeded wrong-period, collateral, hardcoding, or sign defect must prevent a pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "MODEL_REPLAY_MISMATCH:Revenue_Build!D6",
+        "MODEL_REPLAY_MISMATCH:Summary!D8",
+        "MODEL_REPLAY_MISMATCH:Summary!D9",
+        "MODEL_REPLAY_MISMATCH:Working_Capital!D5"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.461538
+    },
+    "mutant:wrong_working_capital_sign": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "The seeded wrong-period, collateral, hardcoding, or sign defect must prevent a pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "COLLATERAL_EDIT:Working_Capital!D7",
+        "MODEL_REPLAY_MISMATCH:Summary!D8",
+        "MODEL_REPLAY_MISMATCH:Summary!D9"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.576923
+    },
+    "noop": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "Leaving the seeded defect unchanged does not pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "MODEL_REPLAY_MISMATCH:Revenue_Build!D6",
+        "MODEL_REPLAY_MISMATCH:Summary!D8",
+        "MODEL_REPLAY_MISMATCH:Summary!D9",
+        "MODEL_REPLAY_MISMATCH:Working_Capital!D5"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.461538
+    },
+    "standard": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "The one-cell reference repair must pass.",
+      "expected_pass": true,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": true,
+      "score": 1.0
+    }
+  },
+  "generated_at": "2026-09-04T02:56:43.772902+00:00",
+  "judge_version": "v3-saturated-control-v2-semantics-retained",
+  "task_id": "P15-A-FIN-DEBUG-001"
+}

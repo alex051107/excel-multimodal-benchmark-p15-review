@@ -26,6 +26,8 @@ web_search_required = false
 est_minutes = 55
 skills = ["scenario modeling", "energy-policy analysis", "dependency restoration", "emissions calculation"]
 benchmark_authored_instruction = true
+evaluation_contract = "corrected_v2"
+archived_pre_v2_campaign_binding = "TASK_INVALID before evaluator dispatch"
 
 [verifier]
 timeout_sec = 300.0

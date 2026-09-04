@@ -3,15 +3,15 @@
     {"id": "R001", "description": "A readable workbook contains every requested analytical and report sheet.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
     {"id": "R002", "description": "Analytical_Data contains exactly the Vermont and New Hampshire 2012-2017 records with correct state/year alignment.", "weight": 4, "type": "positive", "dimension": "data_alignment", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
     {"id": "R003", "description": "Both states' baseline mean, current mean, absolute change, and percent change equal the independent replay.", "weight": 4, "type": "positive", "dimension": "metric_correctness", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
-    {"id": "R004", "description": "Changing Raw_Vermont 2012 AADR from 150.6 to 151.6 flows through Analytical_Data and the Vermont baseline metric.", "weight": 3, "type": "positive", "dimension": "native_workbook_semantics", "method": "deterministic", "method_params": {"source_cell": "Raw_Vermont!D4"}},
-    {"id": "R005", "description": "Changing Raw_New_Hampshire 2015 AADR from 149.0 to 150.0 flows through current metrics, report, and chart source cells.", "weight": 3, "type": "positive", "dimension": "native_workbook_semantics", "method": "deterministic", "method_params": {"source_cell": "Raw_New_Hampshire!D7"}},
-    {"id": "R006", "description": "All numerical briefing claims and the highest-current-state claim are formulas linked to Period_Metrics.", "weight": 3, "type": "positive", "dimension": "report_traceability", "method": "deterministic", "method_params": {}},
-    {"id": "R007", "description": "A column chart on Visualization has categories bound exactly to A4:A5 and values bound exactly to formula-linked B4:B5.", "weight": 4, "type": "positive", "dimension": "chart_binding", "method": "ooxml", "method_params": {}},
+    {"id": "R004", "description": "The Vermont comparison is supported by the supplied Vermont rows and the stated baseline/current periods.", "weight": 3, "type": "positive", "dimension": "vermont_support", "method": "deterministic", "method_params": {}},
+    {"id": "R005", "description": "The New Hampshire comparison is supported by the supplied New Hampshire rows and the stated baseline/current periods.", "weight": 3, "type": "positive", "dimension": "new_hampshire_support", "method": "deterministic", "method_params": {}},
+    {"id": "R006", "description": "The numerical briefing claims agree with the period metrics and identify the supporting workbook evidence.", "weight": 3, "type": "positive", "dimension": "report_traceability", "method": "deterministic", "method_params": {}},
+    {"id": "R007", "description": "The chart compares both states using the correct current-period values.", "weight": 4, "type": "positive", "dimension": "chart_binding", "method": "ooxml", "method_params": {}},
     {"id": "R008", "description": "Every supplied Vermont, New Hampshire, and geography-map source field is preserved exactly.", "weight": 3, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {}},
-    {"id": "R009", "description": "Checks formula-link the 12 analytical records, two metric rows, and zero report-to-metric closure residual.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}},
-    {"id": "P001", "description": "Penalty for time/geography mixing, broken raw-data lineage, wrong metrics, hardcoded report claims, stale chart binding, or source alteration.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
+    {"id": "R009", "description": "The workbook exposes reviewable checks for coverage, completeness, and metric consistency.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}}
   ],
+  "hurdle_criteria": ["R002", "R003", "R006", "R007", "R008"],
   "pass_threshold": 0.7,
-  "rubric_version": "p15_v3",
+  "rubric_version": "p15_judge_v3",
   "task_id": "P15-B-HEALTH-REPORT-001"
 }

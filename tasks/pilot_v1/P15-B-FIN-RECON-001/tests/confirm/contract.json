@@ -16,8 +16,8 @@
   "criteria_source": "tests/private_contract.json",
   "evaluator": {"path": "tests/evaluate.py", "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"], "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}},
   "required_sheets": ["Ledger", "Subledger", "FX_Rates", "Adjustment_Evidence", "Normalized_Records", "Matched_Items", "Unmatched_Items", "Variance_Bridge", "Final_Reconciliation", "Checks"],
-  "formula_cells": ["Normalized_Records!F4:H13", "Matched_Items!B4:G7", "Unmatched_Items!C4:C5", "Variance_Bridge!B4:B8", "Final_Reconciliation!B4:B7", "Checks!B4:B6"],
   "protected": {"Ledger!A4:E8": "exact ledger.csv", "Subledger!A4:E8": "exact subledger.csv", "FX_Rates!A4:C6": "exact fx_rates.csv", "Adjustment_Evidence!A4:D4": "exact adjustments.csv"},
-  "drivers": {"fx_source_cell": "FX_Rates!C5", "fx_invoice": "BILL-211", "fx_new_value": 1.32, "adjustment_source_cell": "Adjustment_Evidence!C4", "adjustment_invoice": "BILL-215", "adjustment_row": 7, "adjustment_new_value": -35, "adjusted_subledger": 420, "adjustment_difference": -10},
-  "perturbations": "tests/confirm/perturbations.json"
+  "layout_policy": "Semantic headers and business values; no fixed rows, columns, wording, or formula requirement.",
+  "hurdle_criteria": ["R002", "R003", "R004", "R007", "R008"],
+  "close_period_policy": "Retain all dated source rows, but match and close only the dominant requested month; the later paired invoice is out of period."
 }

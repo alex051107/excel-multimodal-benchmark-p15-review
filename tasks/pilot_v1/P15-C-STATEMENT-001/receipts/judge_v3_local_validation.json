@@ -1,0 +1,257 @@
+{
+  "task_id": "P15-C-STATEMENT-001",
+  "judge_version": "p15_v3.0",
+  "validation_scope": "reference, equivalent, noop, malformed, all mutants, shifted dynamic layout, genuine reconciliation error",
+  "expectation_basis": {
+    "shifted_dynamic_layout": "The instruction explicitly requires a formula-linked, editable reconciliation, but does not prescribe table rows or cell addresses.",
+    "renamed_sheets": "The instruction does not prescribe worksheet names; visible headers and labels establish each business role.",
+    "wrong_opening_link": "Opening balance is part of the disclosed reconciliation identity and must link to the correct source amount."
+  },
+  "fixtures": {
+    "reference": {
+      "path": "solution/reference.xlsx",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "full pass",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "equivalent": {
+      "path": "fixtures/equivalent/candidate_equivalent.xlsx",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "full pass",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "noop": {
+      "path": "fixtures/noop/candidate_noop.xlsx",
+      "score": 0.066667,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "malformed": {
+      "path": "fixtures/malformed/candidate_malformed.xlsx",
+      "score": 0.0,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "P001": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "expected": "fail with zero score",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:missing_transaction": {
+      "path": "fixtures/mutants/missing_transaction.xlsx",
+      "score": 0.0,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "P001": 1.0
+      },
+      "failure_codes": [
+        "FABRICATED_STATEMENT_PROVENANCE"
+      ],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:stale_closing_balance": {
+      "path": "fixtures/mutants/stale_closing_balance.xlsx",
+      "score": 0.766667,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:wrong_debit_credit_sign": {
+      "path": "fixtures/mutants/wrong_debit_credit_sign.xlsx",
+      "score": 0.8,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "pass with score below 1 and R005 failure because the auxiliary net-impact display is not a hurdle",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "mutant:wrong_page_continuation": {
+      "path": "fixtures/mutants/wrong_page_continuation.xlsx",
+      "score": 0.866667,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 0.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    }
+  },
+  "new_cases": {
+    "renamed_sheets": {
+      "path": "fixtures/equivalent/candidate_renamed_sheets.xlsx",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [
+        "SHEET_ALIAS:Categories=Cash categories",
+        "SHEET_ALIAS:Checks=Review notes",
+        "SHEET_ALIAS:Provenance=Source register",
+        "SHEET_ALIAS:Reconciliation=Balance bridge",
+        "SHEET_ALIAS:Statement_Header=Account overview",
+        "SHEET_ALIAS:Transactions=Ledger lines"
+      ],
+      "expected": "full pass: every sheet is renamed while visible headers preserve its business role",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "shifted_dynamic_layout": {
+      "path": "generated:shifted_dynamic_layout",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "full pass: reconciliation and category summary remain valid after all tables move two rows",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "wrong_opening_link": {
+      "path": "generated:wrong_opening_link",
+      "score": 0.766667,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail R006/R007: reconciliation links to the wrong opening amount",
+      "expected_pass": false,
+      "expectation_met": true
+    }
+  },
+  "all_expectations_met": true
+}

@@ -1,5 +1,7 @@
 {
   "task_id": "P15-A-ENG-SIZING-001",
+  "semantic_version": "p15_v3_semantic",
+  "hurdle_criteria": ["R007", "R008", "R011"],
   "split": "confirm",
   "split_group": "P15-A-ENG-SIZING-001-HELDOUT-01",
   "capability_invariant": ["SI conversion", "Darcy-Weisbach hydraulic head", "shaft and motor sizing", "constraint-based catalog selection", "flow perturbation"],
@@ -17,8 +19,13 @@
     "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"],
     "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}
   },
-  "required_sheets": ["Inputs", "Unit_Conversions", "Calculations", "Equipment_Selection", "Checks"],
-  "formula_cells": ["Unit_Conversions!C4", "Unit_Conversions!C5", "Unit_Conversions!C6", "Calculations!B4:B11", "Equipment_Selection!E4:F6", "Equipment_Selection!B7"],
+  "canonical_reference_sheets": ["Inputs", "Unit_Conversions", "Calculations", "Equipment_Selection", "Checks"],
+  "semantic_acceptance": {
+    "layout": "One or more sheets are accepted; sheet names and fixed row numbers are not scored.",
+    "catalog": "Any clearly labeled pump catalog with the protected capacities and a formula-linked eligibility decision is accepted.",
+    "checks": "A separate Checks sheet is optional; only check rows the workbook itself declares are evaluated."
+  },
+  "canonical_reference_formula_cells": ["Unit_Conversions!C4", "Unit_Conversions!C5", "Unit_Conversions!C6", "Calculations!B4:B11", "Equipment_Selection!E4:F6", "Equipment_Selection!B7"],
   "perturbations": [{"name": "design_flow", "address": "Calculations!B10", "overrides": {"Inputs!B4": 48}}],
   "protected": {
     "Inputs!B4": 36, "Inputs!B5": 16, "Inputs!B6": 210, "Inputs!B7": 125, "Inputs!B8": 0.021, "Inputs!B9": 0.76, "Inputs!B10": 0.12, "Inputs!B11": 997, "Inputs!B12": 9.81,

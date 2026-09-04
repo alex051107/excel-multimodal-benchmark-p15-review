@@ -1,5 +1,7 @@
 {
   "task_id": "P15-A-FIN-DCF-001",
+  "semantic_version": "p15_v3_contract",
+  "hurdle_criteria": ["R007", "R009", "R010", "R011"],
   "split": "confirm",
   "split_group": "P15-A-FIN-DCF-001-HELDOUT-01",
   "capability_invariant": ["five-period unlevered DCF", "enterprise-to-equity bridge", "two-dimensional sensitivity", "native recalculation under assumption perturbation"],

@@ -14,6 +14,8 @@ from pathlib import Path
 
 import openpyxl
 
+from judge_v2_support import build_result, resolve_sheet_roles, sheet_resolution_failures
+
 TASK = {
   "task_id": "P15-A-FIN-DCF-001",
   "pass_threshold": 0.7,
@@ -49,12 +51,15 @@ TASK = {
     {"id": "R008", "description": "Every declared WACC-by-terminal-growth sensitivity coordinate is formula-linked and correct.", "weight": 3, "type": "positive", "dimension": "sensitivity", "method": "deterministic", "method_params": {"implemented_check": "sensitivity_grid", "oracle": "split_contract"}},
     {"id": "R009", "description": "The terminal forecast revenue responds correctly to the declared growth perturbation.", "weight": 2, "type": "positive", "dimension": "growth_recalculation", "method": "deterministic", "method_params": {"implemented_check": "growth_perturbation"}},
     {"id": "R010", "description": "Enterprise value responds correctly to the declared WACC perturbation.", "weight": 2, "type": "positive", "dimension": "wacc_recalculation", "method": "deterministic", "method_params": {"implemented_check": "wacc_perturbation"}},
-    {"id": "R011", "description": "The declared historical source cells remain unchanged.", "weight": 2, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {"implemented_check": "historical_source_protection"}},
-    {"id": "P001", "description": "Penalty for a material DCF value, formula, sensitivity, or source-integrity failure.", "weight": -6, "type": "penalty", "dimension": "critical_integrity", "method": "deterministic", "method_params": {"implemented_check": "material_failure_penalty_with_source_veto"}}
+    {"id": "R011", "description": "The declared historical source cells remain unchanged.", "weight": 2, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {"implemented_check": "historical_source_protection"}}
   ]
 }
 REF = re.compile(r"(?:(?:'([^']+)'|([A-Za-z_][A-Za-z0-9_]*))!)?\$?([A-Z]+)\$?(\d+)")
 RANGE = re.compile(r"(?:(?:'([^']+)'|([A-Za-z_][A-Za-z0-9_]*))!)?\$?([A-Z]+)\$?(\d+):\$?([A-Z]+)\$?(\d+)")
+
+
+TASK["hurdle_criteria"] = ["R007", "R009", "R010", "R011"]
+SHEET_ALIASES = {}
 
 
 def cell_key(sheet, cell):
@@ -156,6 +161,29 @@ def student_t_inv_two_tail(alpha, df):
     return (lo + hi) / 2
 
 
+class UnsupportedFormulaError(ValueError):
+    """The formula is valid Excel syntax outside this bounded replay engine."""
+
+
+def excel_number(value):
+    """Apply the narrow numeric-text coercion used by the observed DCF grids."""
+    if isinstance(value, bool):
+        return int(value)
+    if isinstance(value, (int, float)):
+        return value
+    if not isinstance(value, str):
+        return value
+    stripped = value.strip().replace(",", "")
+    percent = stripped.endswith("%")
+    if percent:
+        stripped = stripped[:-1].strip()
+    try:
+        parsed = float(stripped)
+    except ValueError:
+        return value
+    return parsed / 100 if percent else parsed
+
+
 class FormulaEngine:
     def __init__(self, workbook, overrides=None):
         self.workbook = workbook
@@ -174,12 +202,14 @@ class FormulaEngine:
         if sheet not in self.workbook.sheetnames:
             raise ValueError(f"MISSING_SHEET:{sheet}")
         self.stack.add(key)
-        raw = self.workbook[sheet][cell].value
-        if isinstance(raw, str) and raw.startswith("="):
-            result = self.formula(raw[1:], sheet)
-        else:
-            result = raw
-        self.stack.remove(key)
+        try:
+            raw = self.workbook[sheet][cell].value
+            if isinstance(raw, str) and raw.startswith("="):
+                result = self.formula(raw[1:], sheet)
+            else:
+                result = raw
+        finally:
+            self.stack.discard(key)
         self.memo[key] = result
         return result
 
@@ -217,18 +247,24 @@ class FormulaEngine:
         tree = ast.parse(expression, mode="eval")
         return self.safe_eval(tree.body)
 
-    def safe_eval(self, node):
+    def safe_eval(self, node, variables=None):
+        variables = {} if variables is None else variables
         if isinstance(node, ast.Constant):
             return node.value
-        if isinstance(node, ast.Name) and node.id.upper() in {"TRUE", "FALSE"}:
-            return node.id.upper() == "TRUE"
+        if isinstance(node, ast.Name):
+            if node.id.upper() in {"TRUE", "FALSE"}:
+                return node.id.upper() == "TRUE"
+            variable = node.id.casefold()
+            if variable in variables:
+                return variables[variable]
         if isinstance(node, ast.List):
-            return [self.safe_eval(v) for v in node.elts]
+            return [self.safe_eval(v, variables) for v in node.elts]
         if isinstance(node, ast.UnaryOp) and isinstance(node.op, (ast.USub, ast.UAdd)):
-            value = self.safe_eval(node.operand)
+            value = excel_number(self.safe_eval(node.operand, variables))
             return -value if isinstance(node.op, ast.USub) else value
         if isinstance(node, ast.BinOp):
-            left, right = self.safe_eval(node.left), self.safe_eval(node.right)
+            left = self.safe_eval(node.left, variables)
+            right = self.safe_eval(node.right, variables)
             operators = {ast.Add: lambda a,b:a+b, ast.Sub: lambda a,b:a-b, ast.Mult: lambda a,b:a*b, ast.Div: lambda a,b:a/b, ast.Pow: lambda a,b:a**b}
             for cls, fun in operators.items():
                 if isinstance(node.op, cls):
@@ -237,26 +273,36 @@ class FormulaEngine:
                         right_values = right if isinstance(right, list) else [right] * len(left)
                         if len(left_values) != len(right_values):
                             raise ValueError("ARRAY_LENGTH_MISMATCH")
-                        return [fun(a, b) for a, b in zip(left_values, right_values)]
-                    return fun(left, right)
+                        return [fun(excel_number(a), excel_number(b)) for a, b in zip(left_values, right_values)]
+                    return fun(excel_number(left), excel_number(right))
             raise ValueError("UNSUPPORTED_OPERATOR")
         if isinstance(node, ast.Compare):
-            left = self.safe_eval(node.left)
+            left = self.safe_eval(node.left, variables)
             for op, comp in zip(node.ops, node.comparators):
-                right = self.safe_eval(comp)
+                right = self.safe_eval(comp, variables)
                 good = (left == right if isinstance(op, ast.Eq) else left != right if isinstance(op, ast.NotEq) else left >= right if isinstance(op, ast.GtE) else left <= right if isinstance(op, ast.LtE) else left > right if isinstance(op, ast.Gt) else left < right if isinstance(op, ast.Lt) else False)
                 if not good: return False
                 left = right
             return True
         if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
             name = node.func.id.upper()
+            if name == "LET":
+                if len(node.args) < 3 or len(node.args) % 2 == 0:
+                    raise ValueError("LET_REQUIRES_NAME_VALUE_PAIRS_AND_RESULT")
+                scope = dict(variables)
+                for index in range(0, len(node.args) - 1, 2):
+                    name_node = node.args[index]
+                    if not isinstance(name_node, ast.Name):
+                        raise ValueError("LET_NAME_MUST_BE_IDENTIFIER")
+                    scope[name_node.id.casefold()] = self.safe_eval(node.args[index + 1], scope)
+                return self.safe_eval(node.args[-1], scope)
             if name == "IF":
                 if len(node.args) not in (2, 3):
                     raise ValueError("IF_REQUIRES_TWO_OR_THREE_ARGUMENTS")
-                if self.safe_eval(node.args[0]):
-                    return self.safe_eval(node.args[1])
-                return self.safe_eval(node.args[2]) if len(node.args) == 3 else False
-            args = [self.safe_eval(a) for a in node.args]
+                if self.safe_eval(node.args[0], variables):
+                    return self.safe_eval(node.args[1], variables)
+                return self.safe_eval(node.args[2], variables) if len(node.args) == 3 else False
+            args = [self.safe_eval(a, variables) for a in node.args]
             if name == "SUMPRODUCT":
                 # Excel accepts SUMPRODUCT with one array and returns its sum.
                 # This is a common, materially equivalent DCF formulation after
@@ -285,13 +331,34 @@ class FormulaEngine:
             if name == "MAX": return max(numeric_values)
             if name == "MIN": return min(numeric_values)
             if name == "NA": return None
+            if name == "VALUE":
+                if len(args) != 1:
+                    raise ValueError("VALUE_REQUIRES_ONE_ARGUMENT")
+                converted = excel_number(args[0])
+                if not isinstance(converted, (int, float)):
+                    raise ValueError("VALUE_CANNOT_PARSE_TEXT")
+                return converted
+            if name == "SUBSTITUTE":
+                if len(args) not in (3, 4):
+                    raise ValueError("SUBSTITUTE_ARGUMENTS")
+                source, old, new = map(str, args[:3])
+                if len(args) == 3:
+                    return source.replace(old, new)
+                instance = int(args[3])
+                if instance < 1:
+                    raise ValueError("SUBSTITUTE_INSTANCE")
+                matches = list(re.finditer(re.escape(old), source))
+                if instance > len(matches):
+                    return source
+                match = matches[instance - 1]
+                return source[:match.start()] + new + source[match.end():]
             if name == "T_DIST_2T":
                 return student_t_two_tail(args[0], args[1])
             if name == "T_DIST_RT":
                 return student_t_two_tail(args[0], args[1]) / 2
             if name == "T_INV_2T":
                 return student_t_inv_two_tail(args[0], args[1])
-        raise ValueError(f"UNSUPPORTED_FORMULA_NODE:{ast.dump(node)}")
+        raise UnsupportedFormulaError(f"UNSUPPORTED_FORMULA_NODE:{ast.dump(node)}")
 
 
 def close(actual, expected, tolerance):
@@ -316,10 +383,16 @@ def task_checks(workbook, engine, oracle, contract, oracle_module):
             sheet, cell = address.split("!", 1)
             try:
                 observed = engine.value(sheet, cell)
+            except UnsupportedFormulaError as exc:
+                raise UnsupportedFormulaError(f"{address}:{exc}") from exc
             except Exception as exc:
                 observed = None
                 failures.append(f"DCF_FORMULA_EVALUATION_FAILED:{address}:{type(exc).__name__}")
-            if not close(observed, target, 0.5):
+            # Discount factors are unitless and displayed to much finer
+            # precision than dollar outputs; a fifty-basis-point absolute
+            # tolerance would hide a materially wrong discounting model.
+            tolerance = 0.000001 if address.startswith("Forecast!") and address[10:11] and int(re.findall(r"\d+", address)[0]) == 14 else 0.5
+            if not close(observed, target, tolerance):
                 ok = False
                 failures.append(f"DCF_VALUE_MISMATCH:{address}")
         checks[criterion_id] = 1.0 if ok else 0.0
@@ -365,6 +438,8 @@ def task_checks(workbook, engine, oracle, contract, oracle_module):
     try:
         growth_observed = FormulaEngine(workbook, growth_case["overrides"]).value("Forecast", "F5")
         growth_ok = close(growth_observed, oracle_module.recompute(growth=growth)["revenue"][-1], 0.5)
+    except UnsupportedFormulaError:
+        raise
     except Exception as exc:
         growth_ok = False
         failures.append(f"DCF_GROWTH_PERTURBATION_FAILED:{type(exc).__name__}")
@@ -375,6 +450,8 @@ def task_checks(workbook, engine, oracle, contract, oracle_module):
     try:
         wacc_observed = FormulaEngine(workbook, wacc_case["overrides"]).value("Valuation", "B9")
         wacc_ok = close(wacc_observed, oracle_module.recompute(wacc=wacc_value)["enterprise_value"], 0.5)
+    except UnsupportedFormulaError:
+        raise
     except Exception as exc:
         wacc_ok = False
         failures.append(f"DCF_WACC_PERTURBATION_FAILED:{type(exc).__name__}")
@@ -388,8 +465,6 @@ def task_checks(workbook, engine, oracle, contract, oracle_module):
     checks["R011"] = 1.0 if protected_ok else 0.0
     if not protected_ok:
         failures.append("CRITICAL_PROTECTED_SOURCE_CHANGED")
-    all_core_ok = all((revenue_ok, operating_ok, fcf_ok, discount_ok, terminal_ok, bridge_ok, sensitivity_ok, growth_ok, wacc_ok, protected_ok))
-    checks["P001"] = 0.0 if all_core_ok else 1.0
     return checks, failures
 
 
@@ -403,12 +478,20 @@ def evaluate(candidate):
     except Exception as exc:
         return criteria, [f"MALFORMED_XLSX:{type(exc).__name__}"]
     contract = load_contract()
-    for sheet in contract["required_sheets"]:
-        if sheet not in workbook.sheetnames:
-            failures.append(f"MISSING_SHEET:{sheet}")
-    if failures:
-        return criteria, failures
-    criteria["R001"] = 1.0
+    # R001 asks whether the workbook contains every requested sheet, not
+    # whether it spelled them the reference way.  The task-local aliases
+    # below are already accepted as establishing sheet identity for every
+    # other criterion, so scoring R001 on the literal pre-alias name match
+    # contradicts the same run's own role resolution.  Any renaming stays
+    # visible through the SHEET_ALIAS failure codes.
+    exact_layout = all(sheet in workbook.sheetnames for sheet in contract["required_sheets"])
+    workbook, role_map, unresolved, ambiguous = resolve_sheet_roles(
+        workbook, contract["required_sheets"], SHEET_ALIASES
+    )
+    criteria["R001"] = 1.0 if (exact_layout or not (unresolved or ambiguous)) else 0.0
+    failures.extend(sheet_resolution_failures(role_map, unresolved, ambiguous))
+    if unresolved or ambiguous:
+        return criteria, sorted(set(failures))
     try:
         oracle, oracle_module = load_oracle(contract)
         checks, task_failures = task_checks(workbook, FormulaEngine(workbook), oracle, contract, oracle_module)
@@ -419,37 +502,24 @@ def evaluate(candidate):
     return criteria, sorted(set(failures))
 
 
-def score(criteria, failures=None):
-    # Protected historical source edits are verifier-fatal. Model errors are instead
-    # capped by the professional layer they invalidate so distinct failures retain
-    # distinct diagnostic scores without allowing a materially wrong DCF to pass.
-    if criteria.get("R011", 0.0) == 0.0 and "CRITICAL_PROTECTED_SOURCE_CHANGED" in (failures or []):
-        return 0.0
-    positive = sum(row["weight"] for row in TASK["criteria"] if row["type"] == "positive")
-    earned = sum(row["weight"] * criteria.get(row["id"], 0.0) for row in TASK["criteria"] if row["type"] == "positive")
-    penalty = sum(abs(row["weight"]) for row in TASK["criteria"] if row["type"] == "penalty" and criteria.get(row["id"], 0.0) > 0)
-    normalized = max(0.0, (earned - penalty) / positive)
-    if any(criteria.get(criterion, 0.0) == 0.0 for criterion in ("R002", "R003", "R004")):
-        normalized = min(normalized, 0.25)
-    if criteria.get("R006", 0.0) == 0.0:
-        normalized = min(normalized, 0.55)
-    if criteria.get("R007", 0.0) == 0.0:
-        normalized = min(normalized, 0.65)
-    if criteria.get("R008", 0.0) == 0.0:
-        normalized = min(normalized, 0.60)
-    return round(normalized, 6)
-
 
 def main():
     candidate = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("/app/output/answer.xlsx")
     criteria, failures = evaluate(candidate)
-    total = score(criteria, failures)
-    payload = {"task_id": TASK["task_id"], "split": ACTIVE_SPLIT, "status": "SCORED", "candidate": str(candidate), "normalized_score": total, "pass": total >= TASK["pass_threshold"], "criterion_scores": criteria, "failure_codes": failures, "stderr": []}
+    payload = build_result(
+        task=TASK,
+        split=ACTIVE_SPLIT,
+        candidate=str(candidate),
+        criteria=criteria,
+        failures=failures,
+    )
+    total = payload["normalized_score"]
     log_root = Path(os.environ.get("P15_VERIFIER_LOG_DIR", "/logs/verifier"))
     try:
         log_root.mkdir(parents=True, exist_ok=True)
         (log_root / "report.json").write_text(json.dumps(payload, indent=2, sort_keys=True) + "\\n")
-        (log_root / "reward.txt").write_text(str(total) + "\\n")
+        if total is not None:
+            (log_root / "reward.txt").write_text(str(total) + "\\n")
     except OSError:
         pass
     print(json.dumps(payload, indent=2, sort_keys=True))

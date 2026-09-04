@@ -1,0 +1,278 @@
+{
+  "task_id": "P15-C-PO-ADDENDUM-001",
+  "judge_version": "p15_v3.0",
+  "validation_scope": "reference, equivalent, noop, malformed, all mutants, single-total equivalent, genuine unit-price error",
+  "expectation_basis": {
+    "single_total_plain_labels": "The instruction requires a formula-linked revised total and an intelligible revision log, not two duplicate totals or exact phrases.",
+    "renamed_sheets": "The instruction does not prescribe worksheet names; visible headers and labels establish each business role.",
+    "wrong_unit_price": "The addendum explicitly changes PO-03 to the stated unit price and requires the revised schedule to reflect it."
+  },
+  "fixtures": {
+    "reference": {
+      "path": "solution/reference.xlsx",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "full pass",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "equivalent": {
+      "path": "fixtures/equivalent/candidate_equivalent.xlsx",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "full pass",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "noop": {
+      "path": "fixtures/noop/candidate_noop.xlsx",
+      "score": 0.166667,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "malformed": {
+      "path": "fixtures/malformed/candidate_malformed.xlsx",
+      "score": 0.0,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "P001": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "expected": "fail with zero score",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:collateral_base_log_provenance": {
+      "path": "fixtures/mutants/collateral_base_log_provenance.xlsx",
+      "score": 0.0,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "P001": 1.0
+      },
+      "failure_codes": [
+        "FABRICATED_ADDENDUM_PROVENANCE"
+      ],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:missing_inserted_line": {
+      "path": "fixtures/mutants/missing_inserted_line.xlsx",
+      "score": 0.5,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 0.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:protected_line_changed": {
+      "path": "fixtures/mutants/protected_line_changed.xlsx",
+      "score": 0.5,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:stale_revised_total": {
+      "path": "fixtures/mutants/stale_revised_total.xlsx",
+      "score": 0.766667,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:wrong_revised_unit_price": {
+      "path": "fixtures/mutants/wrong_revised_unit_price.xlsx",
+      "score": 0.6,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    }
+  },
+  "new_cases": {
+    "renamed_sheets": {
+      "path": "fixtures/equivalent/candidate_renamed_sheets.xlsx",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [
+        "SHEET_ALIAS:Base_Schedule=Original schedule",
+        "SHEET_ALIAS:Checks=Review notes",
+        "SHEET_ALIAS:PO_Header=Order overview",
+        "SHEET_ALIAS:Provenance=Source register",
+        "SHEET_ALIAS:Revised_Schedule=Updated schedule",
+        "SHEET_ALIAS:Revision_Log=Change register"
+      ],
+      "expected": "full pass: every sheet is renamed while visible headers preserve its business role",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "single_total_plain_labels": {
+      "path": "generated:single_total_plain_labels",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "full pass: one formula-linked revised total and concise change labels",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "wrong_unit_price": {
+      "path": "generated:wrong_unit_price",
+      "score": 0.6,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail R003/R005: revised unit price and total are wrong",
+      "expected_pass": false,
+      "expectation_met": true
+    }
+  },
+  "all_expectations_met": true
+}

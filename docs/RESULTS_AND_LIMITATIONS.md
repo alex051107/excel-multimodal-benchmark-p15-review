@@ -203,3 +203,4 @@ For planning only, retaining the 41 valid group-gateway attempts leaves 319 vali
 - External human review is complete.
 - DEV results reproduce on held-out CONFIRM siblings.
 - The portfolio represents the full distribution of professional Excel work.
+> 历史说明：本页保留旧版结果与限制。当前飞书汇报和新版结果请看 [FEISHU_SUBMISSION.md](../outputs/p15_final/FEISHU_SUBMISSION.md) 与 [新版评分初步结果](../results/judge_v3_initial/README.md)。

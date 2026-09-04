@@ -5,10 +5,10 @@
     "overrides": {"Policy_Assumptions!C4": 0.1},
     "expected_outputs": {
       "Scenario_Model!C5": 607500,
-      "Scenario_Model!C8": 2719690,
-      "Scenario_Model!C9": 1695376,
-      "Policy_Results!B4": 60424,
-      "Policy_Results!B6": 17690
+      "Scenario_Model!C8": 1859690,
+      "Scenario_Model!C10": 1351376000,
+      "Policy_Results!B4": 44424000,
+      "Policy_Results!B6": 57690
     },
     "invariant_protected_cells": {"Policy_Assumptions!C7": 0.01, "Scenario_Model!C6": 446250, "Scenario_Model!C7": 266560}
   },
@@ -21,11 +21,11 @@
       "Scenario_Model!C5": 621000,
       "Scenario_Model!C6": 446250,
       "Scenario_Model!C7": 266560,
-      "Scenario_Model!C8": 2766189.9999999995,
-      "Scenario_Model!C9": 1727475.9999999998,
-      "Policy_Results!B4": 28324.000000000233,
-      "Policy_Results!B5": 0.013268350639942028,
-      "Policy_Results!B6": 64189.999999999534
+      "Scenario_Model!C8": 1906190,
+      "Scenario_Model!C10": 1383476000,
+      "Policy_Results!B4": 12324000,
+      "Policy_Results!B5": 0.0115168292682927,
+      "Policy_Results!B6": 104190
     },
     "invariant_protected_cells": {"Policy_Assumptions!C4": 0.08, "Policy_Assumptions!C5": 0.05, "Policy_Assumptions!C6": 0.12}
   }

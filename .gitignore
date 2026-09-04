@@ -9,7 +9,9 @@ __pycache__/
 *.key
 credentials*
 secrets*
-outputs/
+outputs/*
+!outputs/p15_final/
+!outputs/p15_final/**
 runtime/
 **/.runtime/
 **/harbor_jobs/

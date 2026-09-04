@@ -1,81 +1,25 @@
-# P15 Excel Agent Benchmark: Review Release
+# P15 Excel Agent Benchmark：评审材料
 
-This public development-review repository is the technical supplement for the first 15-task P15 pilot. It contains reviewable task packages, scoring logic, sanitized model-run summaries, construction guidance, and release evidence. It is not a sealed benchmark: Gold, evaluator, and CONFIRM/private-labeled materials committed here must be treated as disclosed.
+这份仓库保存 P15 前 15 道开发校准题、评分程序、现有结果和飞书汇报材料。当前重点是审查题目与评分规则，不是发布系统排名。
 
-## Current status
+## 从这里开始
 
-P15 contains exactly 15 primary task candidates: five Track A tasks, five Track B tasks, and five Track C tasks. All 15 pass the existing local answer-and-evaluator checks. The Pivot task uses a genuine Excel template and has been read back in Microsoft Excel for Mac with one PivotCache, one PivotTable, two SUM measures, a Q2 filter, refresh behavior, and one PivotChart. Windows Excel compatibility remains pending.
+1. [飞书正文：任务设计、评分规则重审与现有结果](outputs/p15_final/FEISHU_SUBMISSION.md)
+2. [新版评分的逐题数据和说明](results/judge_v3_initial/README.md)
+3. [15 道题的题面与评分文件](tasks/pilot_v1/)
+4. [新版评分规则的共同原则](docs/JUDGE_V3_ADJUDICATION_CONTRACT.md)
+5. [公开数据、论文和 Benchmark 设计参考](references/SOURCE_CATALOG.md)
 
-Nine additional reserve tasks are fully designed but are not packaged. They are available under [`reserves/p15_v1/`](reserves/p15_v1/).
+## 当前结果
 
-The current n=8 development campaign targets 360 task-system attempts. At the fixed 2026-09-03 12:34:49 UTC evidence cutoff, strict score-admissible, artifact-backed coverage was 305/360. An audit removed Guard-forced and infrastructure-invalid runs from the coverage counter even when a workbook was recoverable. Forty-three completed workbooks from abnormal Trials remain available for diagnostic regrade, but they are not called clean end-to-end samples. One mid-Agent workbook and four distinct Pivot workbooks with inconsistent native-Excel receipt chains are explicitly `N/A`. Missing cells are replaced only through new attempt IDs; completed normal attempts are not rerun.
+- 15 道题，3 套系统，每个“题目×系统”计划运行 8 次，共 360 次；目前已有 351 次可用结果。
+- 新版评分规则重新检查了现有 368 份 Excel 文件，322 份算出了分数。
+- 另外 46 份没有分数：12 份评分程序暂时读不懂，24 份来自有问题的旧版政策题，10 份还要用 Microsoft Excel 打开重算。这些文件没有被记成 0 分。
+- 旧评分规则留下的 98 份 0 分中，84 份重算后变为非零，只有 3 份仍是 0 分。
+- 逐题分析使用本轮真正完成且新版算出分数的 286 份结果：平均分 0.825，191 份达标，占 66.8%。这些是初步结果。
 
-| Current system | Strict coverage | Remaining to 120 | Tasks at 8/8 | Current-contract task-balanced mean, provisional |
-| --- | ---: | ---: | ---: | ---: |
-| Codex CLI + GPT-5.6 sol high | 108 | 12 | 6 | 0.582 |
-| Claude Code + Opus 5 | 99 | 21 | 2 | 0.228 |
-| Qwen Code + Qwen3.8-max | 98 | 22 | 3 | 0.530 |
+## 为什么还不是最终成绩
 
-These means are diagnostic previews, not rankings. Judge v2 is not frozen or uniformly applied to the preserved workbooks. Forty-one historical baseline attempts are reused to avoid duplicate paid work, but they are not pooled with the current execution contract for formal pass@8.
+订单清洗、原生透视表和 5 道 C 类文档题仍有已知评分问题；工程选泵、健康报告和销售数据选择还要补充不同布局的测试。政策情景的现有文件来自旧题版本，不能继续评分。新版规则完成逐题审查、版本定稿和统一重算后，才能比较三套系统。
 
-The exact current snapshot is in [`results/N8_SNAPSHOT.json`](results/N8_SNAPSHOT.json), with task and system tables in [`results/N8_TASK_SUMMARY.csv`](results/N8_TASK_SUMMARY.csv) and [`results/N8_SYSTEM_SUMMARY.csv`](results/N8_SYSTEM_SUMMARY.csv). The earlier development comparison and 41-attempt group-gateway checkpoint remain preserved as separate historical evidence in [`results/`](results/README.md).
-
-A score of 0.70 or above counts as one successful attempt. Empirical success is `c/n`. Standard pass@8 uses `1 - C(n-c, 8) / C(n, 8)`, but with exactly `n=8` it collapses to 0 when `c=0` and 1 whenever `c>=1`. The original requirement is still ambiguous between this estimator and the empirical rate over eight runs. Both the mixed execution contracts and the unresolved definition block formal pass@8 reporting.
-
-## Development cost
-
-| Record | Amount | Interpretation |
-| --- | ---: | --- |
-| Codex CLI framework estimate | USD 38.79 | Estimated by the run framework for 56 valid Codex development attempts; it is not a verified card charge. |
-| OpenRouter account usage delta | USD 15.81 | Account-usage increase during 29 paid runs covering Opus 4.8, Qwen3.8-max, and one supplemental Opus 5 run. |
-| Current dedicated ZCloud token | 34.508372 displayed units | Authoritative token-total readback aligned to 418 terminal runtime receipts at the fixed cutoff. Per-run deltas overlap under parallel lanes and are not summed. The release does not assert that one displayed unit equals one US dollar. |
-| Earlier group-gateway token log | 834.003584 displayed units | Historical 3,944-request checkpoint; kept separate from the current dedicated-token campaign. |
-
-These records use different accounting bases and are not added together.
-
-## Reading paths
-
-For the current design-and-difficulty review, read these files in order:
-
-1. [Result analysis and Semantic Harness plan](docs/RESULT_ANALYSIS_AND_HARNESS_PLAN.md)
-2. [Current sanitized result snapshot](results/README.md)
-3. [Results, limitations, and the 15-task revision plan](docs/RESULTS_AND_LIMITATIONS.md)
-4. [Task selection and construction logic](docs/TASK_DESIGN.md)
-5. [The 15-task index](tasks/INDEX.md)
-
-**10 minutes**
-
-1. [Project overview](docs/PROJECT_OVERVIEW.md)
-2. [Task index](tasks/INDEX.md)
-3. [Current 15-task summary](results/N8_TASK_SUMMARY.csv)
-
-**30 minutes**
-
-1. [Results and limitations](docs/RESULTS_AND_LIMITATIONS.md)
-2. [Task design](docs/TASK_DESIGN.md)
-3. [Result analysis and Semantic Harness plan](docs/RESULT_ANALYSIS_AND_HARNESS_PLAN.md)
-4. [Project construction and execution](docs/REUSE_GUIDE.md#project-construction)
-5. [Evaluation and Judge](docs/EVALUATION_AND_JUDGE.md)
-6. One representative package: [monthly ledger reconciliation](tasks/pilot_v1/P15-B-FIN-RECON-001/)
-
-**Technical review**
-
-1. All [15 task packages](tasks/pilot_v1/)
-2. [Evaluation configuration](results/EVALUATION_CONFIG.yaml)
-3. [Current task-system metrics](results/N8_TASK_SYSTEM_METRICS.csv) and [sanitized attempt records](results/N8_ATTEMPTS.csv)
-4. [Human review guide](review/REVIEW_GUIDE.md)
-5. [Reusable construction resources](resources/task_construction_guides/INDEX.md)
-6. [Release manifest](release/MANIFEST.json) and [checksums](release/CHECKSUMS.sha256)
-
-## Evidence boundaries
-
-- `15/15 LOCAL_READY` means the reference, acceptable equivalent, no-op, malformed workbook, task-specific mutants, and deterministic evaluator checks meet the local contract. Pivot native objects are also verified on Microsoft Excel for Mac. This status is not Windows Excel or human validation.
-- Harbor reference/no-op/malformed runs show that a package can load and its Judge can execute. They are not task-difficulty evidence.
-- Judge v2 freeze and uniform artifact regrade, Windows Excel validation, completion of the corrected 360-attempt development coverage, formal pass@8, and external human review remain incomplete.
-- No task is labeled `ACCEPTED_HARD`, and no human-review outcome is prefilled.
-- Most instructions are benchmark-authored professional scenarios. They are not transcripts of observed customer requests.
-- Gold, solver, evaluator, and CONFIRM/private-labeled assets already committed here are public development material and cannot serve as future private holdout evidence.
-
-## Repository scope
-
-This public review repository contains only allowlisted P15 release materials. Development worktrees, account credentials, provider responses, approvals, token fingerprints, Agent sessions, raw trajectories, and runtime directories are excluded. See [`DATA_AND_LICENSE_NOTICES.md`](DATA_AND_LICENSE_NOTICES.md) for the disclosure boundary.
+仓库中公开了标准答案和评分材料，所以它适合开发评审，不是未来的私有测试集。数据和披露边界见 [DATA_AND_LICENSE_NOTICES.md](DATA_AND_LICENSE_NOTICES.md)。

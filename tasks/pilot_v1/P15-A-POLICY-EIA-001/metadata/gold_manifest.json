@@ -1,22 +1,24 @@
 {
-  "construction_mode": "EXPERT_AUTHORED_AUTHENTIC_DATA",
+  "construction_mode": "EXPERT_AUTHORED_BENCHMARK_SCENARIO",
   "known_assumptions": [
     "The user instruction is benchmark-authored.",
-    "The reference workbook is checked against the independent task-specific oracle."
+    "The reference workbook is checked against the independent task-specific oracle.",
+    "The packaged generation values are adapted scenario inputs rather than a verbatim public-data extract.",
+    "Absolute emissions convert GWh to MWh with a factor of 1,000, and Other generation is held constant."
   ],
   "oracle_implementation": "metadata/oracle_recompute.py",
   "oracle_reads_reference_workbook": false,
-  "reference_sha256": "590c1bf491f89a3840ace331b50c72b2ab94005f9cc0c332b875a9a8bc6c0afe",
+  "reference_sha256": "5d8ada167f47ac7fb234fe475ba3501991b804c6dbae5529877b509711f4877b",
   "reference_workbook": "solution/reference.xlsx",
-  "semantic_version": "p15_v2",
+  "semantic_version": "p15_v3_semantic",
   "source_inputs": {
-    "eia_model_scope.md": "ad4a924c281e2599ff88df46a908ebb13be1f48983c66f2434f3cfb6163617b9",
-    "context_note.md": "28861654bb6a9a8eeeeb8338553643a763c49e40a905ea4ca2afe299e478cb04",
+    "eia_model_scope.md": "de8120e207d7f47fd2fee6b3ccbf0111042c1b680006c658d0e9c2d9dd70a826",
+    "context_note.md": "9674b75460292a5ce2345ade1e4fab101bb49ce1c329dc2b5974caedb2d092a4",
     "generation_source_extract.csv": "bb35b87950ce4e6ee5a6f740d964f7520110b334d6a7eafa6e6de85276d24d77",
-    "policy_case_note.md": "e6f0a75637cca22448c0d70b406f79041ba142aa6a42b7f44bac05f2d3221ab7",
+    "policy_case_note.md": "2231b9c521adf4a4663116efc031ffc310d6eed8de0ed4ae16733bae179fc5a5",
     "source_data.csv": "bb35b87950ce4e6ee5a6f740d964f7520110b334d6a7eafa6e6de85276d24d77",
-    "source_locator.md": "cd543ef0c394f1b9b9f890a45b68dda98d5f7dee4b0c9d9703aa3a37b90d83cb",
-    "starting_workbook.xlsx": "2d5a3a628e56b21c22681403dce54fdea163a8615fcb6db310cb655a89172a77"
+    "source_locator.md": "f21a4f4620d35eafc120e17a8b719617d7744f9851449af709d1e6484a5054aa",
+    "starting_workbook.xlsx": "147377f4c15c2e812a17361b59d0e46a4bbf499330e8d4e50cbf8557b0abe070"
   },
   "task_id": "P15-A-POLICY-EIA-001",
   "unsupported_claims": [

@@ -1,6 +1,6 @@
 {
   "criteria": [
-    {"id":"R001","description":"The workbook opens and contains every required sizing sheet.","weight":1,"type":"positive","dimension":"file_usability","method":"deterministic","method_params":{"implemented_check":"required_sheets"}},
+    {"id":"R001","description":"The workbook opens and contains the required sizing content in a deterministically identifiable layout.","weight":1,"type":"positive","dimension":"file_usability","method":"deterministic","method_params":{"implemented_check":"required_sizing_content"}},
     {"id":"R002","description":"Flow, diameter, and cross-sectional-area conversions agree with the independent SI replay.","weight":3,"type":"positive","dimension":"unit_conversion","method":"deterministic","method_params":{"implemented_check":"si_conversions","oracle":"split_contract"}},
     {"id":"R003","description":"Velocity, velocity head, friction head, and total dynamic head agree with the hydraulic replay.","weight":3,"type":"positive","dimension":"hydraulic_head","method":"deterministic","method_params":{"implemented_check":"hydraulic_head_chain","oracle":"split_contract"}},
     {"id":"R004","description":"Hydraulic and shaft power agree with the independent replay.","weight":2,"type":"positive","dimension":"power_sizing","method":"deterministic","method_params":{"implemented_check":"power_chain","oracle":"split_contract"}},
@@ -9,12 +9,12 @@
     {"id":"R007","description":"The selected pump is the first eligible catalog option.","weight":3,"type":"positive","dimension":"constraint_selection","method":"deterministic","method_params":{"implemented_check":"selected_pump","oracle":"split_contract"}},
     {"id":"R008","description":"Hydraulic sizing and pump selection respond correctly to the declared design-flow perturbation.","weight":2,"type":"positive","dimension":"native_recalculation","method":"deterministic","method_params":{"implemented_check":"flow_perturbation","split_weights":{"dev":2,"confirm":3}}},
     {"id":"R009","description":"Every declared engineering output carries the required unit label.","weight":1,"type":"positive","dimension":"unit_labels","method":"deterministic","method_params":{"implemented_check":"unit_labels"}},
-    {"id":"R010","description":"All declared workbook check rows evaluate to PASS.","weight":1,"type":"positive","dimension":"model_checks","method":"deterministic","method_params":{"implemented_check":"check_rows"}},
+    {"id":"R010","description":"Any check rows the workbook declares evaluate to PASS; a separate check sheet is optional.","weight":1,"type":"positive","dimension":"model_checks","method":"deterministic","method_params":{"implemented_check":"optional_check_rows"}},
     {"id":"R011","description":"The declared design inputs and catalog capacity values remain unchanged.","weight":2,"type":"positive","dimension":"change_locality","method":"deterministic","method_params":{"implemented_check":"input_catalog_protection"}},
-    {"id":"R012","description":"The hydraulic head, motor requirement, eligibility, and selection respond correctly to a distinct internal-diameter perturbation while design flow and catalog values remain invariant.","weight":1,"type":"positive","dimension":"diameter_recalculation","method":"deterministic","method_params":{"implemented_check":"diameter_perturbation","applies_to":["dev"]}},
-    {"id":"P001","description":"Penalty for altered inputs, missing safety mechanics, invalid eligibility, or hardcoded selection.","weight":-6,"type":"penalty","dimension":"sizing_integrity","method":"deterministic","method_params":{"implemented_check":"sizing_integrity_penalty"}}
+    {"id":"R012","description":"The hydraulic head, motor requirement, eligibility, and selection respond correctly to a distinct internal-diameter perturbation while design flow and catalog values remain invariant.","weight":1,"type":"positive","dimension":"diameter_recalculation","method":"deterministic","method_params":{"implemented_check":"diameter_perturbation","applies_to":["dev"]}}
   ],
+  "hurdle_criteria": ["R007", "R008", "R011"],
   "pass_threshold": 0.7,
-  "rubric_version": "p15_v2",
+  "rubric_version": "p15_v3_semantic",
   "task_id": "P15-A-ENG-SIZING-001"
 }

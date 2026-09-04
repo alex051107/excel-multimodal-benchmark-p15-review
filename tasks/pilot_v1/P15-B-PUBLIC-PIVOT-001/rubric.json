@@ -1,17 +1,17 @@
 {
   "criteria": [
-    {"id": "R001", "description": "The workbook opens and contains every required reporting sheet.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
-    {"id": "R002", "description": "Program_Data preserves all eight source events in an Excel Table named ProgramEventsTable covering exactly A3:F11.", "weight": 4, "type": "positive", "dimension": "source_table", "method": "ooxml", "method_params": {}},
-    {"id": "R003", "description": "A genuine PivotCache binds exactly to ProgramEventsTable/Program_Data!A3:F11 with the six source fields in their exact identities and indexes.", "weight": 4, "type": "positive", "dimension": "pivot_source_binding", "method": "ooxml", "method_params": {}},
-    {"id": "R004", "description": "The native PivotTable uses Region field index 1 as rows and Program field index 2 as columns.", "weight": 4, "type": "positive", "dimension": "pivot_axes", "method": "ooxml", "method_params": {}},
-    {"id": "R005", "description": "Quarter field index 3 is a page filter with the selected item resolving exactly to 2024Q2.", "weight": 4, "type": "positive", "dimension": "pivot_filter", "method": "ooxml", "method_params": {}},
-    {"id": "R006", "description": "Data fields are native SUM measures over Participants index 4 and Spend index 5.", "weight": 4, "type": "positive", "dimension": "pivot_measures", "method": "ooxml", "method_params": {}},
+    {"id": "R001", "description": "The workbook opens and contains the native reporting objects requested by the task.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
+    {"id": "R002", "description": "An Excel Table preserves exactly the eight supplied source events and six source fields.", "weight": 4, "type": "positive", "dimension": "source_table", "method": "ooxml", "method_params": {}},
+    {"id": "R003", "description": "A genuine PivotCache binds to that source table/range with the six source-field identities.", "weight": 4, "type": "positive", "dimension": "pivot_source_binding", "method": "ooxml", "method_params": {}},
+    {"id": "R004", "description": "The native PivotTable places Region in rows and Program in columns.", "weight": 4, "type": "positive", "dimension": "pivot_axes", "method": "ooxml", "method_params": {}},
+    {"id": "R005", "description": "Quarter is a page filter selected to exactly 2024Q2.", "weight": 4, "type": "positive", "dimension": "pivot_filter", "method": "ooxml", "method_params": {}},
+    {"id": "R006", "description": "Participants and Spend are native SUM measures.", "weight": 4, "type": "positive", "dimension": "pivot_measures", "method": "ooxml", "method_params": {}},
     {"id": "R007", "description": "The PivotCache is refreshable and configured to refresh when the workbook opens.", "weight": 3, "type": "positive", "dimension": "refresh_semantics", "method": "ooxml", "method_params": {}},
-    {"id": "R008", "description": "GETPIVOTDATA-linked KPI cells have Excel-calculated cached values 132 participants, $396,000 spend, and 50 North Outreach participants.", "weight": 4, "type": "positive", "dimension": "aggregation_correctness", "method": "ooxml", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
-    {"id": "R009", "description": "A clustered-column chart part contains a pivotSource relationship naming ProgramDeliveryPivot; a regular range chart does not qualify.", "weight": 4, "type": "positive", "dimension": "pivot_chart_binding", "method": "ooxml", "method_params": {}},
-    {"id": "P001", "description": "Critical integrity penalty for any fake/formula Pivot substitute, stale source, wrong field/filter/measure, absent refresh, wrong KPI, or non-Pivot chart.", "weight": -16, "type": "penalty", "dimension": "integrity", "method": "ooxml", "method_params": {}}
+    {"id": "R008", "description": "GETPIVOTDATA-linked KPI cells have the Excel-calculated participant, spend, and split-specific focus values.", "weight": 4, "type": "positive", "dimension": "aggregation_correctness", "method": "ooxml", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
+    {"id": "R009", "description": "A clustered-column PivotChart is bound to the native PivotTable; a regular range chart does not qualify.", "weight": 4, "type": "positive", "dimension": "pivot_chart_binding", "method": "ooxml", "method_params": {}}
   ],
+  "hurdle_criteria": ["R002", "R003", "R004", "R005", "R006", "R008", "R009"],
   "pass_threshold": 0.7,
-  "rubric_version": "p15_v3",
+  "rubric_version": "p15_judge_v3",
   "task_id": "P15-B-PUBLIC-PIVOT-001"
 }

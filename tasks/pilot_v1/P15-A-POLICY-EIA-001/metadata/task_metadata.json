@@ -5,14 +5,14 @@
   "multimodal": true,
   "occupation": "Energy Policy Analyst",
   "sector": "Public Administration",
-  "semantic_version": "p15_v2",
+  "semantic_version": "p15_v3_semantic",
   "skills": [
     "scenario modeling",
     "energy-policy analysis",
     "dependency restoration",
     "emissions calculation"
   ],
-  "status": "LOCAL_READY",
+  "status": "HISTORICAL_TASK_INVALID_CORRECTED_FUTURE_READY",
   "task_id": "P15-A-POLICY-EIA-001",
   "legacy_task_id": "P15-A-POLICY-BEAC1-001",
   "web_search_required": false

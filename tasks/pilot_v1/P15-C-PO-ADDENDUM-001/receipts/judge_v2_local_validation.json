@@ -1,0 +1,326 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "collateral_base_log_provenance": {
+      "candidate_sha256": "3778de879c2e8e38ff742eb12eb22e3e85944d1c8471263cb82baa362e70ddd3",
+      "criterion_scores": {
+        "P001": 1.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "FABRICATED_ADDENDUM_PROVENANCE"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "6103a1db37a9b6c38756b18e57caeea7adaaa3cf015b7ff83e7a6acf9ab14500",
+      "stable": true
+    },
+    "equivalent": {
+      "candidate_sha256": "a910285c6cf009f21856a62998c2457ac8d19f879d7bd870705e9a450a7efb7e",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "1b69f8442870d9ef97d69000e7262248e38ef0dbd28a27b6c0fb1cfebad47bb1",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "1a0c45cd21a72bf4d1cb76b491cc3ced163a4e3f3ef4f1422a0d7d631e541871",
+      "stable": true
+    },
+    "missing_inserted_line": {
+      "candidate_sha256": "312dff0b6239e70033af596040d97914b8f3dc482b085bce6efd01b695c8931c",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.5,
+      "score_stddev": 0.0,
+      "signature_sha256": "42f2dca3c05d0c465e505e9697ee9ba49f667c3627dcde2b2ab52248557d363e",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "4ef7a52707fb2acd8aed5e8a377ba2a41b88377980c7cd1f92e83df909e1fe0d",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.166667,
+      "score_stddev": 0.0,
+      "signature_sha256": "6d6cbe80ed4f437195584c06bf8f2764f0ae6ac605f509de7b49d113479e9a73",
+      "stable": true
+    },
+    "protected_line_changed": {
+      "candidate_sha256": "c9f325e5da2de756e94ead1022eeced75c606492218f1d45fba87af4ffdf1567",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.5,
+      "score_stddev": 0.0,
+      "signature_sha256": "83aa8d500e82c566c0ba3ebf1ce1e4324754a9c4165773232c7a37570a46090d",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "361af872c92b50a2a4635c9dbe9d9dd2485d8173c5b2c8edab1d8372e659ef04",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "1b69f8442870d9ef97d69000e7262248e38ef0dbd28a27b6c0fb1cfebad47bb1",
+      "stable": true
+    },
+    "stale_revised_total": {
+      "candidate_sha256": "d58fec76a96deb188c0ed8667c5098be8fbf3002bc29c20eca70c8cf93b100b5",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.766667,
+      "score_stddev": 0.0,
+      "signature_sha256": "652767b7f136a1e380cf0c899b402707bd210dd76640104c7b28876e4d912741",
+      "stable": true
+    },
+    "wrong_revised_unit_price": {
+      "candidate_sha256": "f3fdbe35c0a42db6be6feb7c1619ac9e6cda3ae1a10f6bf72704e25e8af919ff",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.6,
+      "score_stddev": 0.0,
+      "signature_sha256": "d7605d332a4d30b35284ddffea918be93092e15b52ac70c996faba4e6b5f94ff",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "base": [
+      {
+        "description": "Valve kits",
+        "line_id": "PO-01",
+        "protected": false,
+        "quantity": 20,
+        "unit": "each",
+        "unit_price": 120.0
+      },
+      {
+        "description": "Cable trays",
+        "line_id": "PO-03",
+        "protected": false,
+        "quantity": 56,
+        "unit": "USD per unit",
+        "unit_price": 56.0
+      },
+      {
+        "description": "Site safety signage",
+        "line_id": "PO-04",
+        "protected": true,
+        "quantity": 4,
+        "unit": "each",
+        "unit_price": 16.0
+      }
+    ],
+    "changes": [
+      {
+        "change_type": "quantity changed",
+        "line_id": "PO-01",
+        "page": 1,
+        "quantity": 22,
+        "text_locator": "po_addendum.pdf:p1:valve-kits",
+        "unit_price": 120.0
+      },
+      {
+        "change_type": "inserted",
+        "description": "Commissioning",
+        "line_id": "PO-02",
+        "page": 1,
+        "quantity": 1,
+        "text_locator": "po_addendum.pdf:p1:commissioning",
+        "unit": "visit",
+        "unit_price": 140.0
+      },
+      {
+        "change_type": "unit price changed",
+        "line_id": "PO-03",
+        "page": 1,
+        "quantity": 56,
+        "text_locator": "po_addendum.pdf:p1:cable-trays",
+        "unit_price": 61.0
+      }
+    ],
+    "document": {
+      "filename": "po_addendum.pdf",
+      "pages": 2
+    },
+    "headers": {
+      "addendum": "02",
+      "currency": "USD",
+      "effective_deadline": "2026-07-02",
+      "po_id": "PO-7194",
+      "reason": "site layout update"
+    },
+    "revised": [
+      {
+        "description": "Valve kits",
+        "extended": 2640.0,
+        "line_id": "PO-01",
+        "protected": false,
+        "quantity": 22,
+        "status": "quantity changed",
+        "unit": "each",
+        "unit_price": 120.0
+      },
+      {
+        "description": "Commissioning",
+        "extended": 140.0,
+        "line_id": "PO-02",
+        "protected": false,
+        "quantity": 1,
+        "status": "inserted",
+        "unit": "visit",
+        "unit_price": 140.0
+      },
+      {
+        "description": "Cable trays",
+        "extended": 3416.0,
+        "line_id": "PO-03",
+        "protected": false,
+        "quantity": 56,
+        "status": "unit price changed",
+        "unit": "USD per unit",
+        "unit_price": 61.0
+      },
+      {
+        "description": "Site safety signage",
+        "extended": 64.0,
+        "line_id": "PO-04",
+        "protected": true,
+        "quantity": 4,
+        "status": "unchanged",
+        "unit": "each",
+        "unit_price": 16.0
+      }
+    ],
+    "total": 6260.0
+  },
+  "judge_version": "v2-locality",
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY_JUDGE_V2",
+  "task_id": "P15-C-PO-ADDENDUM-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

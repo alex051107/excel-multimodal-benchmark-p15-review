@@ -1,0 +1,283 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "duplicate_receipt_item": {
+      "candidate_sha256": "4c83fe97d49524cd23fd23c984590845f69338c1cfdaf2af06bbd9272cf9fec7",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.2,
+      "score_stddev": 0.0,
+      "signature_sha256": "6298c5dbecfc1f861db59a2a9b1f5b77c69ba56dec6677698601f2230aab9a74",
+      "stable": true
+    },
+    "equivalent": {
+      "candidate_sha256": "6deb8936263b86143af37c24049e0bf7953e1c863ed8969a6e3daabd1079480e",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "d1b1c763435feb4c725acf8c644470754cb293cc90cbf7b6c48b0a86a8c536ba",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "cedb77b8fc4a1cade85130d76e63c91b314326e0eb146dd3a751ba73339b5be7",
+      "stable": true
+    },
+    "missing_receipt_item": {
+      "candidate_sha256": "6199ac896b5844d51a599d78aa4443db0fc196c9754b1527d67ae5026476c9bd",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.2,
+      "score_stddev": 0.0,
+      "signature_sha256": "6298c5dbecfc1f861db59a2a9b1f5b77c69ba56dec6677698601f2230aab9a74",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "518901f2ebc11eb51fb54bdde8a91b742f39950b309f90195999a24f861d295c",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.066667,
+      "score_stddev": 0.0,
+      "signature_sha256": "c4377a06e3f11b91b0e3886796d6689de53ca061640f4dd5cf0aae3c116f1ff4",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "03116715a578b2bc049079cb7433446fad291e7d404cf92cd00cb0647a9a865c",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "d1b1c763435feb4c725acf8c644470754cb293cc90cbf7b6c48b0a86a8c536ba",
+      "stable": true
+    },
+    "wrong_expense_category": {
+      "candidate_sha256": "2b92c79c4341fea6e7858140a0ad09e01ab0649ea471800bdccb57dd0bd2c7ea",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.633333,
+      "score_stddev": 0.0,
+      "signature_sha256": "19c022f51ce851e0148fdee5726ec9b9ccf0034ec6a33abd3c8763e0532137f5",
+      "stable": true
+    },
+    "wrong_receipt_identity": {
+      "candidate_sha256": "5c423a106403f09176e3ddcce5fa12767078d2c21938c76ef1cf3731ffc26cb7",
+      "criterion_scores": {
+        "P001": 0.0,
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.633333,
+      "score_stddev": 0.0,
+      "signature_sha256": "19c022f51ce851e0148fdee5726ec9b9ccf0034ec6a33abd3c8763e0532137f5",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "batch_total": 77.44,
+    "categories": {
+      "Meals": 20.32,
+      "Office": 33.12,
+      "Travel": 24.0
+    },
+    "documents": [
+      {
+        "date": "2026-06-03",
+        "document_id": "R-001",
+        "filename": "receipt_photo_01.jpg",
+        "merchant": "Cedar Cafe",
+        "page": 1,
+        "subtotal": 16.0,
+        "tax": 1.32,
+        "tax_rate": 0.0825,
+        "text_locator": "receipt_photo_01.jpg:receipt-body",
+        "tip": 3.0,
+        "total": 20.32
+      },
+      {
+        "date": "2026-06-07",
+        "document_id": "R-002",
+        "filename": "receipt_photo_02.jpg",
+        "merchant": "Central Parking",
+        "page": 1,
+        "subtotal": 24.0,
+        "tax": 0.0,
+        "tax_rate": 0.0,
+        "text_locator": "receipt_photo_02.jpg:receipt-body",
+        "tip": 0.0,
+        "total": 24.0
+      },
+      {
+        "date": "2026-06-14",
+        "document_id": "R-003",
+        "filename": "receipt_photo_03.jpg",
+        "merchant": "Stationery Works",
+        "page": 1,
+        "subtotal": 30.6,
+        "tax": 2.52,
+        "tax_rate": 0.0825,
+        "text_locator": "receipt_photo_03.jpg:receipt-body",
+        "tip": 0.0,
+        "total": 33.12
+      }
+    ],
+    "items": [
+      {
+        "amount": 5.2,
+        "category": "Meals",
+        "document_id": "R-001",
+        "item": "Iced coffee",
+        "modifier": "none",
+        "text_locator": "receipt_photo_01.jpg:line-1"
+      },
+      {
+        "amount": 10.8,
+        "category": "Meals",
+        "document_id": "R-001",
+        "item": "Sandwich",
+        "modifier": "none",
+        "text_locator": "receipt_photo_01.jpg:line-2"
+      },
+      {
+        "amount": 24.0,
+        "category": "Travel",
+        "document_id": "R-002",
+        "item": "Parking",
+        "modifier": "none",
+        "text_locator": "receipt_photo_02.jpg:line-1"
+      },
+      {
+        "amount": 18.6,
+        "category": "Office",
+        "document_id": "R-003",
+        "item": "Markers",
+        "modifier": "none",
+        "text_locator": "receipt_photo_03.jpg:line-1"
+      },
+      {
+        "amount": 12.0,
+        "category": "Office",
+        "document_id": "R-003",
+        "item": "Folders",
+        "modifier": "none",
+        "text_locator": "receipt_photo_03.jpg:line-2"
+      }
+    ]
+  },
+  "judge_version": "v2-locality",
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY_JUDGE_V2",
+  "task_id": "P15-C-RECEIPTS-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

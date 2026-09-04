@@ -1,0 +1,255 @@
+{
+  "task_id": "P15-C-RECEIPTS-001",
+  "judge_version": "p15_v3.0",
+  "validation_scope": "reference, equivalent, noop, malformed, all mutants, shifted static layout, genuine item error",
+  "expectation_basis": {
+    "static_shifted_layout": "The instruction requires accurate receipt details, summaries, and reconciliation; it does not require formulas or fixed rows.",
+    "renamed_sheets": "The instruction does not prescribe worksheet names; visible headers and labels establish each business role.",
+    "wrong_item_amount": "Each extracted receipt item amount is a required source fact."
+  },
+  "fixtures": {
+    "reference": {
+      "path": "solution/reference.xlsx",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "full pass",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "equivalent": {
+      "path": "fixtures/equivalent/candidate_equivalent.xlsx",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "full pass",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "noop": {
+      "path": "fixtures/noop/candidate_noop.xlsx",
+      "score": 0.066667,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "malformed": {
+      "path": "fixtures/malformed/candidate_malformed.xlsx",
+      "score": 0.0,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "P001": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "expected": "fail with zero score",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:duplicate_receipt_item": {
+      "path": "fixtures/mutants/duplicate_receipt_item.xlsx",
+      "score": 0.2,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:missing_receipt_item": {
+      "path": "fixtures/mutants/missing_receipt_item.xlsx",
+      "score": 0.2,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:wrong_expense_category": {
+      "path": "fixtures/mutants/wrong_expense_category.xlsx",
+      "score": 0.633333,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    },
+    "mutant:wrong_receipt_identity": {
+      "path": "fixtures/mutants/wrong_receipt_identity.xlsx",
+      "score": 0.633333,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail",
+      "expected_pass": false,
+      "expectation_met": true
+    }
+  },
+  "new_cases": {
+    "renamed_sheets": {
+      "path": "fixtures/equivalent/candidate_renamed_sheets.xlsx",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [
+        "SHEET_ALIAS:Categories=Spend summary",
+        "SHEET_ALIAS:Documents=Receipt register",
+        "SHEET_ALIAS:Exceptions=Review exceptions",
+        "SHEET_ALIAS:Items=Expense lines",
+        "SHEET_ALIAS:Provenance=Source register",
+        "SHEET_ALIAS:Reconciliation=Batch check"
+      ],
+      "expected": "full pass: every sheet is renamed while visible headers preserve its business role",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "static_shifted_layout": {
+      "path": "generated:static_shifted_layout",
+      "score": 1.0,
+      "pass": true,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "full pass: correct static document/category/reconciliation values with shifted rows",
+      "expected_pass": true,
+      "expectation_met": true
+    },
+    "wrong_item_amount": {
+      "path": "generated:wrong_item_amount",
+      "score": 0.633333,
+      "pass": false,
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "P001": 0.0
+      },
+      "failure_codes": [],
+      "expected": "fail R003: an extracted receipt item amount is wrong",
+      "expected_pass": false,
+      "expectation_met": true
+    }
+  },
+  "all_expectations_met": true
+}

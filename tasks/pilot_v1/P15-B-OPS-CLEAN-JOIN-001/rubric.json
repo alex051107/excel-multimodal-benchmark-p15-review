@@ -3,15 +3,15 @@
     {"id": "R001", "description": "A readable workbook contains every requested operations sheet.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
     {"id": "R002", "description": "Clean_Data classifies each raw order with the required normalization and duplicate policy.", "weight": 4, "type": "positive", "dimension": "data_cleaning", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
     {"id": "R003", "description": "Joined_Data contains exactly the valid one-to-one joins with correct product, region, units, unit cost, and extended cost.", "weight": 4, "type": "positive", "dimension": "join_correctness", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
-    {"id": "R004", "description": "Valid-order units and product costs flow through formula-linked clean, join, and extended-cost cells.", "weight": 3, "type": "positive", "dimension": "lineage", "method": "deterministic", "method_params": {}},
-    {"id": "R005", "description": "Changing Raw_Orders ORD-100 units from 10 to 11 changes its extended cost and total by exactly $150.", "weight": 3, "type": "positive", "dimension": "native_workbook_semantics", "method": "deterministic", "method_params": {"source_cell": "Raw_Orders!D4"}},
-    {"id": "R006", "description": "Changing Product_Master P-200 unit cost from $420 to $500 changes ORD-101 and the total by exactly $400.", "weight": 3, "type": "positive", "dimension": "native_workbook_semantics", "method": "deterministic", "method_params": {"source_cell": "Product_Master!D5"}},
-    {"id": "R007", "description": "The four task-specific exceptions are complete and summary counts/totals close to their underlying records through formulas.", "weight": 3, "type": "positive", "dimension": "exception_integrity", "method": "deterministic", "method_params": {}},
+    {"id": "R004", "description": "Each accepted order uses the correct units and product cost to produce its extended cost.", "weight": 3, "type": "positive", "dimension": "cost_arithmetic", "method": "deterministic", "method_params": {}},
+    {"id": "R005", "description": "The accepted-order total is $3,940 and excludes duplicates and invalid joins.", "weight": 3, "type": "positive", "dimension": "total_correctness", "method": "deterministic", "method_params": {}},
+    {"id": "R006", "description": "A reviewable weekly order-cost view is present for the accepted records.", "weight": 3, "type": "positive", "dimension": "weekly_view", "method": "deterministic", "method_params": {}},
+    {"id": "R007", "description": "The four task-specific exceptions are complete and excluded from the accepted-order total.", "weight": 3, "type": "positive", "dimension": "exception_integrity", "method": "deterministic", "method_params": {}},
     {"id": "R008", "description": "Every raw-order, product-master, and location-master source field is preserved exactly.", "weight": 3, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {}},
-    {"id": "R009", "description": "Checks link to the calculated summary and report the valid count, exception count, and total cost.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}},
-    {"id": "P001", "description": "Penalty for a cleaning, join, source-lineage, exception-closure, or protected-source failure.", "weight": -7, "type": "penalty", "dimension": "integrity", "method": "deterministic", "method_params": {}}
+    {"id": "R009", "description": "Checks report the accepted count, exception count, and total cost in a reviewable form.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}}
   ],
+  "hurdle_criteria": ["R002", "R003", "R007", "R008"],
   "pass_threshold": 0.7,
-  "rubric_version": "p15_v3",
+  "rubric_version": "p15_judge_v3",
   "task_id": "P15-B-OPS-CLEAN-JOIN-001"
 }

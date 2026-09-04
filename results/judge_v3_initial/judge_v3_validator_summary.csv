@@ -1,0 +1,16 @@
+task_id,judge_version,validator_cases,expected_pass_cases,expected_fail_cases,unexpected_cases,all_expectations_met,validated_at_utc,review_state
+P15-A-ENG-SIZING-001,v3-semantic,10,3,7,0,true,2026-09-04T02:56:43.731718+00:00,localized_risk_review
+P15-A-FIN-DCF-001,v3-contract-v2-semantics-retained,10,3,7,0,true,2026-09-04T02:56:43.761198+00:00,candidate_for_review
+P15-A-FIN-DEBUG-001,v3-saturated-control-v2-semantics-retained,10,3,7,0,true,2026-09-04T02:56:43.772902+00:00,candidate_for_review
+P15-A-POLICY-EIA-001,v3-current-corrected-v2,9,3,6,0,true,2026-09-04T02:56:43.870759+00:00,freeze_binding_required
+P15-A-STAT-EXPERIMENT-001,v3-semantic,11,4,7,0,true,2026-09-04T02:56:43.990178+00:00,candidate_for_review
+P15-B-FIN-RECON-001,P15_JUDGE_V3,15,4,11,0,true,2026-09-04T02:56:44.067460+00:00,candidate_for_review
+P15-B-HEALTH-REPORT-001,P15_JUDGE_V3,13,6,7,0,true,2026-09-04T02:56:44.050744+00:00,localized_risk_review
+P15-B-OPS-CLEAN-JOIN-001,P15_JUDGE_V3,11,5,6,0,true,2026-09-04T02:15:33Z,revise_before_freeze
+P15-B-PUBLIC-PIVOT-001,P15_JUDGE_V3,11,4,7,0,true,2026-09-04T02:15:33Z,revise_before_freeze
+P15-B-SALES-DISCOVERY-001,P15_JUDGE_V3,12,5,7,0,true,2026-09-04T02:56:44.250265+00:00,localized_risk_review
+P15-C-INVOICE-001,p15_v3.0,11,3,8,0,true,not_recorded,revise_before_freeze
+P15-C-PO-ADDENDUM-001,p15_v3.0,12,4,8,0,true,not_recorded,revise_before_freeze
+P15-C-QUOTE-001,p15_v3.0,11,4,7,0,true,not_recorded,revise_before_freeze
+P15-C-RECEIPTS-001,p15_v3.0,11,4,7,0,true,not_recorded,revise_before_freeze
+P15-C-STATEMENT-001,p15_v3.0,11,5,6,0,true,not_recorded,revise_before_freeze

@@ -1,5 +1,6 @@
 {
   "split": "dev",
+  "hurdle_criteria": ["R007", "R009", "R010", "R011"],
   "split_group": "P15-A-FIN-DCF-001-HELDOUT-01",
   "oracle": "tests/oracles/dev.py",
   "input_files_dir": "data/input_files",
@@ -14,8 +15,7 @@
     {"id":"R008","description":"Every declared WACC-by-terminal-growth sensitivity coordinate is formula-linked and correct.","weight":3,"type":"positive","dimension":"sensitivity","method":"deterministic","method_params":{"implemented_check":"sensitivity_grid","oracle":"split_contract"}},
     {"id":"R009","description":"The terminal forecast revenue responds correctly to the declared growth perturbation.","weight":2,"type":"positive","dimension":"growth_recalculation","method":"deterministic","method_params":{"implemented_check":"growth_perturbation"}},
     {"id":"R010","description":"Enterprise value responds correctly to the declared WACC perturbation.","weight":2,"type":"positive","dimension":"wacc_recalculation","method":"deterministic","method_params":{"implemented_check":"wacc_perturbation"}},
-    {"id":"R011","description":"The declared historical source cells remain unchanged.","weight":2,"type":"positive","dimension":"change_locality","method":"deterministic","method_params":{"implemented_check":"historical_source_protection"}},
-    {"id":"P001","description":"Penalty for a material DCF value, formula, sensitivity, or source-integrity failure.","weight":-6,"type":"penalty","dimension":"critical_integrity","method":"deterministic","method_params":{"implemented_check":"material_failure_penalty_with_source_veto"}}
+    {"id":"R011","description":"The declared historical source cells remain unchanged.","weight":2,"type":"positive","dimension":"change_locality","method":"deterministic","method_params":{"implemented_check":"historical_source_protection"}}
   ],
   "formula_cells": [
     "Forecast!B5:F12",
@@ -63,6 +63,6 @@
     "Valuation",
     "Checks"
   ],
-  "semantic_version": "p15_v2",
+  "semantic_version": "p15_v3_contract",
   "task_id": "P15-A-FIN-DCF-001"
 }

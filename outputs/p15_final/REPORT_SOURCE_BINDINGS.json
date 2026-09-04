@@ -1,0 +1,35 @@
+{
+  "schema_version": "p15_feishu_report_sources_v0_4",
+  "report": "outputs/p15_final/FEISHU_SUBMISSION.md",
+  "data_cutoff_utc": "2026-09-04T03:09:31+00:00",
+  "scoring_version": "Judge V3 candidate",
+  "workbook_archive_sha256": "9c82e51528f29c365e04993b28cd1c1e33838140f01f9574589e316fb255e5ae",
+  "judge_manifest_sha256": "7fccc4edac8f8d65742fa0d1b63ba462b892cb1a3d64d3683691765920da0955",
+  "claims": [
+    {
+      "claim": "368 existing Excel results were replayed; 322 received numeric scores, 12 were unreadable by the scorer, 24 belonged to an invalid old task version, and 10 require native Excel recalculation.",
+      "source": "results/judge_v3_initial/judge_v3_candidate_full_archive_summary.json"
+    },
+    {
+      "claim": "The task-level analysis contains 286 current valid results with V3 scores; 191 passed and the mean score was 0.82459593.",
+      "source": "results/judge_v3_initial/judge_v3_candidate_task_audit_summary.csv"
+    },
+    {
+      "claim": "Among 98 results previously scored zero, 84 became nonzero, 9 could not be scored, 2 belonged to an old task version, and 3 remained zero.",
+      "source": "results/judge_v3_initial/judge_v3_candidate_full_archive_replay.csv"
+    },
+    {
+      "claim": "The old evaluator task table is retained as evidence for evaluator review, not as a task difficulty ranking.",
+      "source": "results/judge_v3_initial/old_evaluator_task_results.csv"
+    },
+    {
+      "claim": "Five tasks use public methods or data references and ten tasks mainly use project-constructed materials.",
+      "source": "references/SOURCE_CATALOG.md"
+    }
+  ],
+  "limitations": [
+    "The scoring manifest is a candidate and does not yet bind task.toml or archive membership.",
+    "The first complete replay did not rerun the three systems; it only rescored existing Excel outputs.",
+    "Task-level evaluator fairness review is not complete, so system rankings are not reported."
+  ]
+}

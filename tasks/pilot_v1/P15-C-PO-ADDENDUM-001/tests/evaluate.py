@@ -14,6 +14,8 @@ from pathlib import Path
 
 import openpyxl
 
+from judge_v2_support import build_result, resolve_sheet_roles, sheet_resolution_failures
+
 TASK = {
   "task_id": "P15-C-PO-ADDENDUM-001",
   "pass_threshold": 0.7,
@@ -78,8 +80,8 @@ TASK = {
     },
     {
       "id": "P001",
-      "description": "Penalty for overwriting an unlisted row, omitting an addendum change, or pasting a stale revised total.",
-      "weight": -6,
+      "description": "Penalty for contradictory source-file or addendum-page claims in provenance.",
+      "weight": -7,
       "type": "penalty",
       "dimension": "integrity",
       "method": "deterministic",
@@ -104,6 +106,36 @@ TASK["required_sheets"] = json.loads(
 )["required_sheets"]
 REF = re.compile(r"(?:(?:'([^']+)'|([A-Za-z_][A-Za-z0-9_]*))!)?\$?([A-Z]+)\$?(\d+)")
 RANGE = re.compile(r"(?:(?:'([^']+)'|([A-Za-z_][A-Za-z0-9_]*))!)?\$?([A-Z]+)\$?(\d+):\$?([A-Z]+)\$?(\d+)")
+
+
+TASK["hurdle_criteria"] = ["R003", "R004", "R005"]
+SHEET_ALIASES = {}
+
+
+def semantic_sheet_aliases(workbook):
+    signatures = {
+        "PO_Header": (("PO ID", "Purchase order ID"), ("Addendum",), ("Effective deadline", "Effective date"), ("Revision reason", "Reason"), ("Currency",)),
+        "Base_Schedule": (("Line ID", "ID"), ("Description",), ("Quantity", "Qty"), ("Unit price", "Price"), ("Extended total", "Line total"), ("Protected",)),
+        "Revised_Schedule": (("Line ID", "ID"), ("Description",), ("Quantity", "Qty"), ("Unit price", "Price"), ("Extended total", "Line total"), ("Revision status", "Status")),
+        "Revision_Log": (("Line ID", "ID"), ("Change type", "Change"), ("Old value", "Before"), ("New value", "After"), ("Source page", "Page")),
+        "Provenance": (("Line ID", "ID"), ("Source document", "Source file", "Document"), ("Page", "Source page"), ("Text locator", "Locator", "Source locator")),
+        "Checks": (("Check",), ("Observed",), ("Expected",), ("Interpretation",)),
+    }
+    aliases = {}
+    for role, groups in signatures.items():
+        candidates = []
+        for sheet in workbook.worksheets:
+            values = {
+                norm(cell.value).rstrip(":")
+                for row in sheet.iter_rows()
+                for cell in row
+                if cell.value not in (None, "")
+            }
+            if all(any(norm(alias).rstrip(":") in values for alias in group) for group in groups):
+                candidates.append(sheet.title)
+        if candidates:
+            aliases[role] = tuple(candidates)
+    return aliases
 
 
 def key(sheet, cell): return f"{sheet}!{cell}"
@@ -140,12 +172,17 @@ def load_oracle(split="dev"):
     return module.recompute()
 
 
+class UnsupportedFormulaError(ValueError):
+    """A valid Excel formula that this bounded replay engine cannot evaluate."""
+
+
 class FormulaEngine:
     def __init__(self, workbook, overrides=None):
         self.workbook = workbook; self.overrides = overrides or {}; self.memo = {}; self.stack = set()
 
     def value(self, sheet, cell):
-        current = key(sheet, cell)
+        resolved_sheet = self.workbook.actual_sheet_name(sheet) if hasattr(self.workbook, "actual_sheet_name") else sheet
+        current = key(resolved_sheet, cell)
         if current in self.overrides: return self.overrides[current]
         if current in self.memo: return self.memo[current]
         if current in self.stack: raise ValueError(f"CIRCULAR_REFERENCE:{current}")
@@ -153,7 +190,7 @@ class FormulaEngine:
         self.stack.add(current)
         try:
             raw = self.workbook[sheet][cell].value
-            result = self.formula(raw[1:], sheet) if isinstance(raw, str) and raw.startswith("=") else raw
+            result = self.formula(raw[1:], resolved_sheet) if isinstance(raw, str) and raw.startswith("=") else raw
             self.memo[current] = result
             return result
         finally:
@@ -190,7 +227,7 @@ class FormulaEngine:
             if isinstance(node.op, ast.Mult): return left * right
             if isinstance(node.op, ast.Div): return left / right
             if isinstance(node.op, ast.Pow): return left ** right
-            raise ValueError("UNSUPPORTED_OPERATOR")
+            raise UnsupportedFormulaError("UNSUPPORTED_FORMULA:OPERATOR")
         if isinstance(node, ast.Compare):
             left = self.safe_eval(node.left)
             for operator, comparator in zip(node.ops, node.comparators):
@@ -208,7 +245,7 @@ class FormulaEngine:
             if name == "AND": return all(args)
             if name == "ABS": return abs(args[0])
             if name == "ROUND": return round(args[0], int(args[1]))
-        raise ValueError(f"UNSUPPORTED_FORMULA_NODE:{ast.dump(node)}")
+        raise UnsupportedFormulaError(f"UNSUPPORTED_FORMULA:NODE:{ast.dump(node)}")
 
 
 def close(actual, expected, tolerance=0.01):
@@ -305,9 +342,9 @@ def change_type_role(value):
     words = set(re.findall(r"[a-z]+", norm(value).replace("-", " ")))
     if words & {"insert", "inserted", "new", "added", "addition"}:
         return "insertion"
-    if words & {"quantity", "qty", "count", "units"} and words & {"change", "changed", "update", "updated", "revision", "revised"}:
+    if words & {"quantity", "qty", "count", "units"}:
         return "quantity"
-    if words & {"price", "pricing", "cost", "rate"} and words & {"change", "changed", "update", "updated", "revision", "revised"}:
+    if words & {"price", "pricing", "cost", "rate"}:
         return "unit_price"
     return None
 
@@ -332,6 +369,18 @@ def readable_locator(value):
     return bool(rendered) and len(re.sub(r"\s+", "", rendered)) >= 3
 
 
+def source_field_matches(value, filename):
+    rendered, expected = norm(value), norm(filename)
+    return bool(rendered and expected and expected in rendered)
+
+
+def source_field_contradicts(value, filename):
+    rendered = text(value)
+    if not rendered or source_field_matches(rendered, filename):
+        return False
+    return re.search(r"\.(?:pdf|png|jpe?g|tiff?|xlsx?|csv)\b", rendered, re.IGNORECASE) is not None
+
+
 def present_formula(workbook, address):
     sheet, cell = address.split("!", 1)
     return sheet in workbook.sheetnames and isinstance(workbook[sheet][cell].value, str) and workbook[sheet][cell].value.startswith("=")
@@ -340,8 +389,71 @@ def present_formula(workbook, address):
 def formula_value(engine, sheet, cell):
     try:
         return engine.value(sheet, cell)
+    except UnsupportedFormulaError:
+        raise
     except Exception:
         return None
+
+
+def schedule_total_formula_cells(workbook, engine):
+    """Find formula cells on rows visibly labeled as the revised total."""
+    cells = []
+    for sheet in workbook.worksheets:
+        for row in range(1, sheet.max_row + 1):
+            labels = " ".join(
+                norm(sheet.cell(row=row, column=column).value)
+                for column in range(1, sheet.max_column + 1)
+                if text(sheet.cell(row=row, column=column).value)
+            )
+            if "total" not in labels or not any(token in labels for token in ("revised", "schedule")):
+                continue
+            for column in range(1, sheet.max_column + 1):
+                cell = sheet.cell(row=row, column=column)
+                if isinstance(cell.value, str) and cell.value.startswith("="):
+                    cells.append((sheet.title, cell.coordinate, formula_value(engine, sheet.title, cell.coordinate)))
+    return cells
+
+
+def po_perturbation_response_ok(workbook, split="dev"):
+    total_cells = schedule_total_formula_cells(workbook, FormulaEngine(workbook))
+    if not total_cells:
+        return False
+    for case in load_perturbations(split):
+        target = case["target"]
+        row = find_content_row(workbook, target)
+        if row is None:
+            return False
+        target_cell = f'{target["value_column"]}{row}'
+        baseline = FormulaEngine(workbook)
+        if not close(baseline.value(target["sheet"], target_cell), target["baseline"]):
+            return False
+        target_sheet = workbook.actual_sheet_name(target["sheet"]) if hasattr(workbook, "actual_sheet_name") else target["sheet"]
+        probe = FormulaEngine(workbook, {key(target_sheet, target_cell): target["perturbed"]})
+        expected_totals = {
+            float(expected["value"])
+            for expected in case.get("expected", [])
+            if norm(expected.get("sheet")) in {norm("Revised_Schedule"), norm("PO_Header")}
+        }
+        if len(expected_totals) != 1:
+            return False
+        expected_total = next(iter(expected_totals))
+        if not all(close(probe.value(sheet, cell), expected_total) for sheet, cell, _ in total_cells):
+            return False
+        for expected in case.get("expected_by_content", []):
+            expected_row = find_content_row(workbook, expected)
+            if expected_row is None or not close(
+                probe.value(expected["sheet"], f'{expected["value_column"]}{expected_row}'),
+                expected["value"],
+            ):
+                return False
+        for protected in case.get("protected_by_content", []):
+            protected_row = find_content_row(workbook, protected)
+            if protected_row is None or not close(
+                probe.value(protected["sheet"], f'{protected["value_column"]}{protected_row}'),
+                protected["value"],
+            ):
+                return False
+    return True
 
 
 def row_values(workbook, sheet, start, end, cols):
@@ -406,7 +518,9 @@ def task_checks(workbook, engine, oracle, split="dev"):
     )
     checks["R003"] = 1.0 if revised_ok else 0.0
     protected_expected = {row["line_id"]: row for row in oracle["revised"] if row.get("protected")}
-    protected_ok = bool(protected_expected) and all(
+    # An empty protected set means the oracle declared nothing to protect, so
+    # there is nothing to overwrite.  `all(())` is True, which is correct here.
+    protected_ok = all(
         line_id in revised_actual
         and norm(revised_actual[line_id]["description"]) == norm(item["description"])
         and close(revised_actual[line_id]["quantity"], item["quantity"])
@@ -421,11 +535,11 @@ def task_checks(workbook, engine, oracle, split="dev"):
         and close(item["extended"], item["quantity"] * item["unit_price"])
         for item in revised_actual.values()
     )
-    total_ok = close(engine.value("Revised_Schedule", "F8"), oracle["total"]) and close(engine.value("PO_Header", "B9"), oracle["total"])
-    total_formula_ok = present_formula(workbook, "Revised_Schedule!F8") and present_formula(workbook, "PO_Header!B9")
-    checks["R005"] = 1.0 if line_formula_ok and total_ok and total_formula_ok else 0.0
+    total_cells = schedule_total_formula_cells(workbook, engine)
+    total_ok = bool(total_cells) and all(close(value, oracle["total"]) for _, _, value in total_cells)
+    checks["R005"] = 1.0 if line_formula_ok and total_ok else 0.0
     try:
-        dynamic_ok = perturbation_response_ok(workbook, split)
+        dynamic_ok = po_perturbation_response_ok(workbook, split)
     except Exception as exc:
         dynamic_ok = False; failures.append(f"PO_PERTURBATION_FAILED:{type(exc).__name__}")
     checks["R006"] = 1.0 if dynamic_ok else 0.0
@@ -456,7 +570,7 @@ def task_checks(workbook, engine, oracle, split="dev"):
             return contains_number(record["before"], base["unit_price"]) and contains_number(record["after"], change["unit_price"])
         return False
 
-    log_ok = len(log_rows) == len(expected_changes) and set(log_rows) == set(expected_changes) and all(
+    log_ok = set(expected_changes).issubset(log_rows) and all(
         len(log_rows[line_id]) == 1
         and change_type_matches(log_rows[line_id][0]["change_type"], change["change_type"])
         and evidence_ok(line_id, change, log_rows[line_id][0])
@@ -473,52 +587,106 @@ def task_checks(workbook, engine, oracle, split="dev"):
                 text(provenance_sheet[f"B{row}"].value), provenance_sheet[f"C{row}"].value,
                 text(provenance_sheet[f"D{row}"].value), text(provenance_sheet[f"E{row}"].value)
             ))
-    locator_values = [norm(records[0][2]) for records in provenance_rows.values() if len(records) == 1]
-    provenance_ok = len(provenance_rows) == len(expected_changes) and set(provenance_rows) == set(expected_changes) and all(
+    provenance_population_ok = (
+        set(provenance_rows) == set(expected_changes)
+        and sum(len(records) for records in provenance_rows.values()) == len(expected_changes)
+        and all(len(records) == 1 for records in provenance_rows.values())
+    )
+    provenance_ok = provenance_population_ok and all(
         len(provenance_rows[line_id]) == 1
-        and norm(oracle["document"]["filename"]) in norm(" ".join(text(value) for value in (line_id, *provenance_rows[line_id][0])))
+        and source_field_matches(provenance_rows[line_id][0][0], oracle["document"]["filename"])
         and (
             page_matches(provenance_rows[line_id][0][1], change["page"])
-            or page_matches(" ".join(text(value) for value in provenance_rows[line_id][0]), change["page"])
         )
         and readable_locator(provenance_rows[line_id][0][2] or provenance_rows[line_id][0][3])
         for line_id, change in expected_changes.items()
-    ) and len(locator_values) == len(expected_changes) and len(set(locator_values)) == len(locator_values)
+    )
     checks["R008"] = 1.0 if provenance_ok else 0.0
     identity_ok = (
         not revised_duplicates
         and len(revised_actual) == len(revised_expected)
-        and len(log_rows) == len(expected_changes) and len(provenance_rows) == len(expected_changes)
+        and set(expected_changes).issubset(log_rows)
+        and all(len(records) == 1 for records in log_rows.values())
+        and provenance_population_ok
     )
     checks["R009"] = 1.0 if identity_ok else 0.0
-    checks["P001"] = 1.0 if not (
-        base_ok and revised_ok and protected_ok and line_formula_ok and total_ok
-        and total_formula_ok and dynamic_ok and log_ok and provenance_ok and identity_ok
-    ) else 0.0
+    false_provenance = any(
+        (
+            source_field_contradicts(record[0], oracle["document"]["filename"])
+        )
+        or (
+            line_id in expected_changes
+            and record[1] not in (None, "")
+            and not page_matches(record[1], expected_changes[line_id]["page"])
+        )
+        for line_id, records in provenance_rows.items()
+        for record in records
+    )
+    checks["P001"] = 1.0 if false_provenance else 0.0
+    if false_provenance:
+        failures.append("FABRICATED_ADDENDUM_PROVENANCE")
     return checks, failures
 
 
 def score(candidate, split=None):
     split = active_split(split)
     checks = {criterion["id"]: 0.0 for criterion in TASK["criteria"]}
+    failures = []
     if not candidate.exists() or candidate.stat().st_size == 0:
-        return {"status": "SCORED", "task_id": TASK["task_id"], "split": split, "pass": False, "normalized_score": 0.0, "criterion_scores": checks, "failure_codes": ["OUTPUT_MISSING"], "stderr": []}
+        return build_result(
+            task=TASK,
+            split=split,
+            candidate=str(candidate),
+            criteria=checks,
+            failures=["OUTPUT_MISSING"],
+        )
     try:
         workbook = openpyxl.load_workbook(candidate, data_only=False, read_only=False)
     except Exception as exc:
-        return {"status": "SCORED", "task_id": TASK["task_id"], "split": split, "pass": False, "normalized_score": 0.0, "criterion_scores": checks, "failure_codes": [f"MALFORMED_XLSX:{type(exc).__name__}"], "stderr": []}
-    missing = [sheet for sheet in TASK["required_sheets"] if sheet not in workbook.sheetnames]
-    if missing:
-        return {"status": "SCORED", "task_id": TASK["task_id"], "split": split, "pass": False, "normalized_score": 0.0, "criterion_scores": checks, "failure_codes": ["MISSING_SHEETS:" + ",".join(missing)], "stderr": []}
+        return build_result(
+            task=TASK,
+            split=split,
+            candidate=str(candidate),
+            criteria=checks,
+            failures=[f"MALFORMED_XLSX:{type(exc).__name__}"],
+        )
+
+    # R001 asks whether the workbook contains every requested sheet, not
+    # whether it spelled them the reference way.  The task-local aliases
+    # below are already accepted as establishing sheet identity for every
+    # other criterion, so scoring R001 on the literal pre-alias name match
+    # contradicts the same run's own role resolution.  Any renaming stays
+    # visible through the SHEET_ALIAS failure codes.
+    exact_layout = all(sheet in workbook.sheetnames for sheet in TASK["required_sheets"])
+    workbook, role_map, unresolved, ambiguous = resolve_sheet_roles(
+        workbook, TASK["required_sheets"], semantic_sheet_aliases(workbook)
+    )
+    checks["R001"] = 1.0 if (exact_layout or not (unresolved or ambiguous)) else 0.0
+    failures.extend(sheet_resolution_failures(role_map, unresolved, ambiguous))
+    if unresolved or ambiguous:
+        return build_result(
+            task=TASK,
+            split=split,
+            candidate=str(candidate),
+            criteria=checks,
+            failures=failures,
+        )
+
     try:
-        oracle = load_oracle(split); engine = FormulaEngine(workbook); checks, failures = task_checks(workbook, engine, oracle, split)
+        oracle = load_oracle(split)
+        engine = FormulaEngine(workbook)
+        checks, task_failures = task_checks(workbook, engine, oracle, split)
+        checks["R001"] = 1.0 if (exact_layout or not (unresolved or ambiguous)) else 0.0
+        failures.extend(task_failures)
     except Exception as exc:
-        return {"status": "SCORED", "task_id": TASK["task_id"], "split": split, "pass": False, "normalized_score": 0.0, "criterion_scores": checks, "failure_codes": [f"EVALUATION_ERROR:{type(exc).__name__}"], "stderr": []}
-    positive_total = sum(criterion["weight"] for criterion in TASK["criteria"] if criterion["type"] == "positive")
-    raw = sum(criterion["weight"] * checks.get(criterion["id"], 0.0) for criterion in TASK["criteria"] if criterion["type"] == "positive")
-    raw += sum(criterion["weight"] * checks.get(criterion["id"], 0.0) for criterion in TASK["criteria"] if criterion["type"] == "penalty")
-    normalized = max(0.0, min(1.0, raw / positive_total))
-    return {"status": "SCORED", "task_id": TASK["task_id"], "split": split, "pass": normalized >= TASK["pass_threshold"], "normalized_score": round(normalized, 6), "criterion_scores": checks, "failure_codes": failures, "stderr": []}
+        failures.append(f"EVALUATION_ERROR:{type(exc).__name__}:{exc}")
+    return build_result(
+        task=TASK,
+        split=split,
+        candidate=str(candidate),
+        criteria=checks,
+        failures=failures,
+    )
 
 
 if __name__ == "__main__":

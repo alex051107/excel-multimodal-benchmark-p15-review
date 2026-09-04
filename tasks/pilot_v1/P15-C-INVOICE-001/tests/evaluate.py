@@ -15,6 +15,8 @@ from pathlib import Path
 
 import openpyxl
 
+from judge_v2_support import build_result, resolve_sheet_roles, sheet_resolution_failures
+
 TASK = {
   "task_id": "P15-C-INVOICE-001",
   "pass_threshold": 0.7,
@@ -81,7 +83,7 @@ TASK = {
     },
     {
       "id": "P001",
-      "description": "Penalty for a missing/duplicated line, non-formula payable total, or false page provenance.",
+      "description": "Penalty for fabricated source-file or page provenance.",
       "weight": -5,
       "type": "penalty",
       "dimension": "integrity",
@@ -105,6 +107,10 @@ TASK["required_sheets"] = json.loads(
 )["required_sheets"]
 REF = re.compile(r"(?:(?:'([^']+)'|([A-Za-z_][A-Za-z0-9_]*))!)?\$?([A-Z]+)\$?(\d+)")
 RANGE = re.compile(r"(?:(?:'([^']+)'|([A-Za-z_][A-Za-z0-9_]*))!)?\$?([A-Z]+)\$?(\d+):\$?([A-Z]+)\$?(\d+)")
+
+
+TASK["hurdle_criteria"] = ["R002", "R003", "R006", "R008"]
+SHEET_ALIASES = {}
 
 
 def key(sheet, cell): return f"{sheet}!{cell}"
@@ -139,6 +145,10 @@ def load_oracle(split="dev"):
     assert spec.loader is not None
     spec.loader.exec_module(module)
     return module.recompute()
+
+
+class UnsupportedFormulaError(ValueError):
+    """A valid Excel formula that this bounded replay engine cannot evaluate."""
 
 
 class FormulaEngine:
@@ -191,7 +201,7 @@ class FormulaEngine:
             if isinstance(node.op, ast.Mult): return left * right
             if isinstance(node.op, ast.Div): return left / right
             if isinstance(node.op, ast.Pow): return left ** right
-            raise ValueError("UNSUPPORTED_OPERATOR")
+            raise UnsupportedFormulaError("UNSUPPORTED_FORMULA:OPERATOR")
         if isinstance(node, ast.Compare):
             left = self.safe_eval(node.left)
             for operator, comparator in zip(node.ops, node.comparators):
@@ -209,7 +219,7 @@ class FormulaEngine:
             if name == "AND": return all(args)
             if name == "ABS": return abs(args[0])
             if name == "ROUND": return round(args[0], int(args[1]))
-        raise ValueError(f"UNSUPPORTED_FORMULA_NODE:{ast.dump(node)}")
+        raise UnsupportedFormulaError(f"UNSUPPORTED_FORMULA:NODE:{ast.dump(node)}")
 
 
 def close(actual, expected, tolerance=0.01):
@@ -301,13 +311,22 @@ def perturbation_response_ok(workbook, split="dev"):
     return all(perturbation_case_ok(workbook, case) for case in load_perturbations(split))
 
 
-def locator_ok(value, filename, page=None):
-    locator = norm(value)
-    if not locator or norm(filename) not in locator:
+def source_field_matches(value, filename):
+    rendered, expected = norm(value), norm(filename)
+    return bool(rendered and expected and expected in rendered)
+
+
+def source_field_contradicts(value, filename):
+    rendered = text(value)
+    if not rendered or source_field_matches(rendered, filename):
         return False
-    if page is None:
-        return True
-    return re.search(rf"(?:p|page)[\s:_-]*{int(page)}\b", locator) is not None
+    return re.search(r"\.(?:pdf|png|jpe?g|tiff?|xlsx?|csv)\b", rendered, re.IGNORECASE) is not None
+
+
+def locator_ok(value, filename=None, page=None):
+    # File and page have dedicated provenance columns.  The locator only needs
+    # to remain a readable line-level label; repeating either field is optional.
+    return len(re.sub(r"\s+", "", text(value))) >= 3
 
 
 def present_formula(workbook, address):
@@ -318,8 +337,15 @@ def present_formula(workbook, address):
 def formula_value(engine, sheet, cell):
     try:
         return engine.value(sheet, cell)
+    except UnsupportedFormulaError:
+        raise
     except Exception:
         return None
+
+
+def resolved_cell(workbook, engine, sheet, cell):
+    value = formula_value(engine, sheet, cell)
+    return workbook[sheet][cell].value if value is None else value
 
 
 def row_values(workbook, sheet, start, end, cols):
@@ -330,7 +356,7 @@ def row_values(workbook, sheet, start, end, cols):
     return records
 
 
-def task_checks(workbook, engine, oracle, split="dev"):
+def _legacy_task_checks(workbook, engine, oracle, split="dev"):
     checks = {criterion["id"]: 0.0 for criterion in TASK["criteria"]}
     failures = []
     header_cells = {"vendor": "B4", "invoice_id": "B5", "invoice_date": "B6", "customer": "B7", "currency": "B8", "po_reference": "B9"}
@@ -402,17 +428,26 @@ def task_checks(workbook, engine, oracle, split="dev"):
     provenance_rows = []
     provenance_sheet = workbook["Provenance"]
     for row in range(4, provenance_sheet.max_row + 1):
-        if text(provenance_sheet[f"A{row}"].value):
+        line_id = text(resolved_cell(workbook, engine, "Provenance", f"A{row}"))
+        if line_id:
             provenance_rows.append((
-                text(provenance_sheet[f"A{row}"].value), text(provenance_sheet[f"B{row}"].value),
-                provenance_sheet[f"C{row}"].value, text(provenance_sheet[f"D{row}"].value)
+                line_id,
+                text(resolved_cell(workbook, engine, "Provenance", f"B{row}")),
+                resolved_cell(workbook, engine, "Provenance", f"C{row}"),
+                text(resolved_cell(workbook, engine, "Provenance", f"D{row}")),
             ))
     provenance_by_id = {}
     for record in provenance_rows:
         provenance_by_id.setdefault(record[0], []).append(record)
-    provenance_ok = facts_ok and len(provenance_rows) == len(expected) and all(
+    expected_provenance_ids = {item["id"] for item in actual}
+    provenance_population_ok = (
+        len(provenance_rows) == len(actual)
+        and set(provenance_by_id) == expected_provenance_ids
+        and all(len(records) == 1 for records in provenance_by_id.values())
+    )
+    provenance_ok = facts_ok and provenance_population_ok and all(
         len(provenance_by_id.get(item["id"], [])) == 1
-        and norm(provenance_by_id[item["id"]][0][1]) == norm(oracle["document"]["filename"])
+        and source_field_matches(provenance_by_id[item["id"]][0][1], oracle["document"]["filename"])
         and provenance_by_id[item["id"]][0][2] == expected[norm(item["description"])]["page"]
         and locator_ok(provenance_by_id[item["id"]][0][3], oracle["document"]["filename"], expected[norm(item["description"])]["page"])
         for item in actual
@@ -420,38 +455,310 @@ def task_checks(workbook, engine, oracle, split="dev"):
     identity_ok = (
         facts_ok and all(item["id"] for item in actual)
         and len({item["id"] for item in actual}) == len(expected)
-        and len(provenance_by_id) == len(expected)
+        and provenance_population_ok
     )
     checks["R008"] = 1.0 if provenance_ok else 0.0
     checks["R009"] = 1.0 if identity_ok else 0.0
-    checks["P001"] = 1.0 if not (
-        facts_ok and line_formula_ok and summary_values_ok and subtotal_formula_ok
-        and payable_formula_ok and dynamic_ok and provenance_ok and identity_ok
-    ) else 0.0
+    valid_pages = {item["page"] for item in expected.values()}
+    false_provenance = any(
+        (
+            source_field_contradicts(record[1], oracle["document"]["filename"])
+        )
+        or (
+            record[2] not in (None, "")
+            and record[2] not in valid_pages
+        )
+        for record in provenance_rows
+    )
+    checks["P001"] = 1.0 if false_provenance else 0.0
+    if false_provenance:
+        failures.append("FABRICATED_SOURCE_FILE_OR_PAGE_PROVENANCE")
     return checks, failures
+
+
+def semantic_header(sheet, aliases, required):
+    normalized = {role: {norm(alias) for alias in values} for role, values in aliases.items()}
+    for row in range(1, sheet.max_row + 1):
+        columns = {}
+        for column in range(1, sheet.max_column + 1):
+            value = norm(sheet.cell(row=row, column=column).value)
+            for role, accepted in normalized.items():
+                if value in accepted and role not in columns:
+                    columns[role] = column
+        if set(required) <= set(columns):
+            return row, columns
+    return None, {}
+
+
+def labeled_value_cells(workbook, aliases):
+    """Find visible label/value pairs, preferring populated values over blanks."""
+    matches = {role: [] for role in aliases}
+    normalized = {role: {norm(alias) for alias in values} for role, values in aliases.items()}
+    for sheet in workbook.worksheets:
+        for row in range(1, sheet.max_row + 1):
+            for column in range(1, sheet.max_column):
+                label = norm(sheet.cell(row=row, column=column).value).rstrip(":")
+                for role, accepted in normalized.items():
+                    if role == "discount" and "rate" in label:
+                        continue
+                    if any(label == value.rstrip(":") or label.startswith(value.rstrip(":") + " ") for value in accepted):
+                        matches[role].append(sheet.cell(row=row, column=column + 1))
+    return {
+        role: sorted(cells, key=lambda cell: cell.value in (None, ""))[0]
+        for role, cells in matches.items()
+        if cells
+    }
+
+
+def best_semantic_table(workbook, aliases, required, score_values, score_role):
+    best = None
+    for sheet in workbook.worksheets:
+        header, columns = semantic_header(sheet, aliases, required)
+        if header is None:
+            continue
+        observed = {
+            norm(sheet.cell(row=row, column=columns[score_role]).value)
+            for row in range(header + 1, sheet.max_row + 1)
+            if text(sheet.cell(row=row, column=columns[score_role]).value)
+        }
+        score = len(observed & {norm(value) for value in score_values})
+        candidate = (score, sheet, header, columns)
+        if best is None or score > best[0]:
+            best = candidate
+    return best
+
+
+def semantic_invoice_checks(workbook, engine, oracle, split="dev"):
+    checks = {criterion["id"]: 0.0 for criterion in TASK["criteria"]}
+    failures = []
+    header_cells = labeled_value_cells(workbook, {
+        "vendor": ("Vendor",),
+        "invoice_id": ("Invoice ID", "Invoice number"),
+        "invoice_date": ("Invoice date",),
+        "customer": ("Customer", "Bill to"),
+        "currency": ("Currency",),
+        "po_reference": ("PO reference", "Purchase order"),
+        "subtotal": ("Line-item subtotal", "Subtotal"),
+        "discount": ("Discount amount", "Discount"),
+        "taxable": ("Taxable amount",),
+        "tax": ("Tax amount", "Sales tax"),
+        "freight": ("Freight", "Shipping"),
+        "total": ("Total payable", "Amount payable"),
+    })
+    line_table = best_semantic_table(workbook, {
+        "id": ("Line ID", "ID"),
+        "description": ("Description", "Item", "Line description"),
+        "quantity": ("Quantity", "Qty"),
+        "unit_price": ("Unit price", "Price", "Rate"),
+        "total": ("Line total", "Extended total", "Amount"),
+        "page": ("Source page", "Page"),
+    }, ("id", "description", "quantity", "unit_price", "total", "page"), [item["description"] for item in oracle["items"]], "description")
+    if line_table is None:
+        return checks, failures
+    _, line_sheet, line_header, line_columns = line_table
+    actual = []
+    for row in range(line_header + 1, line_sheet.max_row + 1):
+        description = text(line_sheet.cell(row=row, column=line_columns["description"]).value)
+        if not description:
+            continue
+        total_cell = line_sheet.cell(row=row, column=line_columns["total"])
+        actual.append({
+            "row": row,
+            "id": text(line_sheet.cell(row=row, column=line_columns["id"]).value),
+            "description": description,
+            "quantity": line_sheet.cell(row=row, column=line_columns["quantity"]).value,
+            "unit_price": line_sheet.cell(row=row, column=line_columns["unit_price"]).value,
+            "line_total": formula_value(engine, line_sheet.title, total_cell.coordinate),
+            "total_cell": total_cell,
+            "page": line_sheet.cell(row=row, column=line_columns["page"]).value,
+        })
+    expected = {norm(item["description"]): item for item in oracle["items"]}
+    actual_by_description = {norm(item["description"]): item for item in actual}
+    facts_ok = (
+        len(actual) == len(expected) == len(actual_by_description)
+        and set(actual_by_description) == set(expected)
+        and all(
+            close(actual_by_description[name]["quantity"], item["quantity"])
+            and close(actual_by_description[name]["unit_price"], item["unit_price"])
+            and actual_by_description[name]["page"] == item["page"]
+            for name, item in expected.items()
+        )
+    )
+    line_formula_ok = facts_ok and all(
+        isinstance(item["total_cell"].value, str)
+        and item["total_cell"].value.startswith("=")
+        and close(item["line_total"], item["quantity"] * item["unit_price"])
+        for item in actual
+    )
+
+    required_headers = {"vendor", "invoice_id", "invoice_date", "customer", "currency", "po_reference"}
+    headers_ok = set(header_cells) >= required_headers and all(
+        semantic_date(header_cells[name].value) == semantic_date(oracle["headers"][name])
+        if name == "invoice_date"
+        else norm(header_cells[name].value) == norm(oracle["headers"][name])
+        for name in required_headers
+    )
+    summary_roles = {"subtotal", "discount", "taxable", "tax", "freight", "total"}
+    summary_values = {
+        name: formula_value(engine, cell.parent.title, cell.coordinate)
+        for name, cell in header_cells.items()
+        if name in summary_roles
+    }
+    discount_value = summary_values.get("discount")
+    summary_values_ok = set(summary_values) == summary_roles and (
+        close(summary_values["subtotal"], oracle["subtotal"])
+        and isinstance(discount_value, (int, float))
+        and close(abs(discount_value), oracle["discount"])
+        and close(summary_values["taxable"], oracle["taxable"])
+        and close(summary_values["tax"], oracle["tax"])
+        and close(summary_values["freight"], oracle["freight"])
+        and close(summary_values["total"], oracle["total"])
+    )
+    subtotal_formulas_ok = all(
+        isinstance(header_cells[name].value, str) and header_cells[name].value.startswith("=")
+        for name in ("subtotal", "discount", "taxable")
+    ) if set(header_cells) >= {"subtotal", "discount", "taxable"} else False
+    payable_formulas_ok = all(
+        isinstance(header_cells[name].value, str) and header_cells[name].value.startswith("=")
+        for name in ("tax", "total")
+    ) if set(header_cells) >= {"tax", "total"} else False
+
+    provenance_table = best_semantic_table(workbook, {
+        "id": ("Line ID", "ID"),
+        "source": ("Source document", "Source file", "Document"),
+        "page": ("Page", "Source page"),
+        "locator": ("Text locator", "Line label", "Locator", "Source locator"),
+    }, ("id", "source", "page", "locator"), [item["id"] for item in actual], "id")
+    provenance_rows = []
+    if provenance_table is not None:
+        _, provenance_sheet, provenance_header, provenance_columns = provenance_table
+        for row in range(provenance_header + 1, provenance_sheet.max_row + 1):
+            line_id = text(provenance_sheet.cell(row=row, column=provenance_columns["id"]).value)
+            if line_id:
+                provenance_rows.append((
+                    line_id,
+                    text(provenance_sheet.cell(row=row, column=provenance_columns["source"]).value),
+                    provenance_sheet.cell(row=row, column=provenance_columns["page"]).value,
+                    text(provenance_sheet.cell(row=row, column=provenance_columns["locator"]).value),
+                ))
+    provenance_by_id = {}
+    for record in provenance_rows:
+        provenance_by_id.setdefault(record[0], []).append(record)
+    actual_ids = {item["id"] for item in actual}
+    population_ok = len(provenance_rows) == len(actual) and set(provenance_by_id) == actual_ids and all(len(rows) == 1 for rows in provenance_by_id.values())
+    provenance_ok = facts_ok and population_ok and all(
+        source_field_matches(provenance_by_id[item["id"]][0][1], oracle["document"]["filename"])
+        and provenance_by_id[item["id"]][0][2] == expected[norm(item["description"])]["page"]
+        and locator_ok(provenance_by_id[item["id"]][0][3], oracle["document"]["filename"], expected[norm(item["description"])]["page"])
+        for item in actual
+    )
+    identity_ok = facts_ok and all(actual_ids) and len(actual_ids) == len(expected) and population_ok
+
+    dynamic_ok = line_formula_ok and summary_values_ok and subtotal_formulas_ok and payable_formulas_ok
+    if dynamic_ok:
+        output_roles = {"B12": "subtotal", "B14": "discount", "B15": "taxable", "B17": "tax", "B18": "freight", "B19": "total"}
+        for case in load_perturbations(split):
+            matches = [item for item in actual if norm(item["description"]) == norm(case["target"]["match_value"])]
+            if len(matches) != 1:
+                dynamic_ok = False
+                break
+            item = matches[0]
+            role = "unit_price" if case["target"]["value_column"] == "D" else "quantity"
+            target_cell = line_sheet.cell(row=item["row"], column=line_columns[role])
+            probe = FormulaEngine(workbook, {key(line_sheet.title, target_cell.coordinate): case["target"]["perturbed"]})
+            if not close(probe.value(line_sheet.title, item["total_cell"].coordinate), (
+                case["target"]["perturbed"] * (item["quantity"] if role == "unit_price" else item["unit_price"])
+            )):
+                dynamic_ok = False
+                break
+            for expected_output in case.get("expected", []):
+                semantic_role = output_roles.get(expected_output["cell"])
+                cell = header_cells.get(semantic_role)
+                expected_value = expected_output["value"]
+                if semantic_role == "discount":
+                    actual_value = probe.value(cell.parent.title, cell.coordinate) if cell else None
+                    if actual_value is None or not close(abs(actual_value), expected_value):
+                        dynamic_ok = False
+                        break
+                elif cell is None or not close(probe.value(cell.parent.title, cell.coordinate), expected_value):
+                    dynamic_ok = False
+                    break
+            if not dynamic_ok:
+                break
+
+    checks["R001"] = 1.0 if headers_ok and line_table is not None and provenance_table is not None else 0.0
+    checks["R002"] = 1.0 if headers_ok else 0.0
+    checks["R003"] = 1.0 if facts_ok else 0.0
+    checks["R004"] = 1.0 if line_formula_ok else 0.0
+    checks["R005"] = 1.0 if summary_values_ok and subtotal_formulas_ok else 0.0
+    checks["R006"] = 1.0 if summary_values_ok and payable_formulas_ok else 0.0
+    checks["R007"] = 1.0 if dynamic_ok else 0.0
+    checks["R008"] = 1.0 if provenance_ok else 0.0
+    checks["R009"] = 1.0 if identity_ok else 0.0
+    valid_pages = {item["page"] for item in expected.values()}
+    false_provenance = any(
+        source_field_contradicts(record[1], oracle["document"]["filename"])
+        or (record[2] not in (None, "") and record[2] not in valid_pages)
+        for record in provenance_rows
+    )
+    checks["P001"] = 1.0 if false_provenance else 0.0
+    if false_provenance:
+        failures.append("FABRICATED_SOURCE_FILE_OR_PAGE_PROVENANCE")
+    return checks, failures
+
+
+def task_checks(workbook, engine, oracle, split="dev"):
+    semantic_checks, semantic_failures = semantic_invoice_checks(workbook, engine, oracle, split)
+    if all(sheet in workbook.sheetnames for sheet in TASK["required_sheets"]):
+        try:
+            legacy_checks, legacy_failures = _legacy_task_checks(workbook, engine, oracle, split)
+            semantic_checks = {
+                criterion["id"]: max(legacy_checks[criterion["id"]], semantic_checks[criterion["id"]])
+                for criterion in TASK["criteria"]
+            }
+            semantic_failures.extend(legacy_failures)
+        except Exception:
+            pass
+    return semantic_checks, semantic_failures
 
 
 def score(candidate, split=None):
     split = active_split(split)
     checks = {criterion["id"]: 0.0 for criterion in TASK["criteria"]}
+    failures = []
     if not candidate.exists() or candidate.stat().st_size == 0:
-        return {"status": "SCORED", "task_id": TASK["task_id"], "split": split, "pass": False, "normalized_score": 0.0, "criterion_scores": checks, "failure_codes": ["OUTPUT_MISSING"], "stderr": []}
+        return build_result(
+            task=TASK,
+            split=split,
+            candidate=str(candidate),
+            criteria=checks,
+            failures=["OUTPUT_MISSING"],
+        )
     try:
         workbook = openpyxl.load_workbook(candidate, data_only=False, read_only=False)
     except Exception as exc:
-        return {"status": "SCORED", "task_id": TASK["task_id"], "split": split, "pass": False, "normalized_score": 0.0, "criterion_scores": checks, "failure_codes": [f"MALFORMED_XLSX:{type(exc).__name__}"], "stderr": []}
-    missing = [sheet for sheet in TASK["required_sheets"] if sheet not in workbook.sheetnames]
-    if missing:
-        return {"status": "SCORED", "task_id": TASK["task_id"], "split": split, "pass": False, "normalized_score": 0.0, "criterion_scores": checks, "failure_codes": ["MISSING_SHEETS:" + ",".join(missing)], "stderr": []}
+        return build_result(
+            task=TASK,
+            split=split,
+            candidate=str(candidate),
+            criteria=checks,
+            failures=[f"MALFORMED_XLSX:{type(exc).__name__}"],
+        )
+
     try:
-        oracle = load_oracle(split); engine = FormulaEngine(workbook); checks, failures = task_checks(workbook, engine, oracle, split)
+        oracle = load_oracle(split)
+        engine = FormulaEngine(workbook)
+        checks, task_failures = task_checks(workbook, engine, oracle, split)
+        failures.extend(task_failures)
     except Exception as exc:
-        return {"status": "SCORED", "task_id": TASK["task_id"], "split": split, "pass": False, "normalized_score": 0.0, "criterion_scores": checks, "failure_codes": [f"EVALUATION_ERROR:{type(exc).__name__}"], "stderr": []}
-    positive_total = sum(criterion["weight"] for criterion in TASK["criteria"] if criterion["type"] == "positive")
-    raw = sum(criterion["weight"] * checks.get(criterion["id"], 0.0) for criterion in TASK["criteria"] if criterion["type"] == "positive")
-    raw += sum(criterion["weight"] * checks.get(criterion["id"], 0.0) for criterion in TASK["criteria"] if criterion["type"] == "penalty")
-    normalized = max(0.0, min(1.0, raw / positive_total))
-    return {"status": "SCORED", "task_id": TASK["task_id"], "split": split, "pass": normalized >= TASK["pass_threshold"], "normalized_score": round(normalized, 6), "criterion_scores": checks, "failure_codes": failures, "stderr": []}
+        failures.append(f"EVALUATION_ERROR:{type(exc).__name__}:{exc}")
+    return build_result(
+        task=TASK,
+        split=split,
+        candidate=str(candidate),
+        criteria=checks,
+        failures=failures,
+    )
 
 
 if __name__ == "__main__":

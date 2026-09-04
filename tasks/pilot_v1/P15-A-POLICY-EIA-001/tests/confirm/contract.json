@@ -1,5 +1,6 @@
 {
   "task_id": "P15-A-POLICY-EIA-001",
+  "semantic_version": "p15_v3_semantic",
   "split": "confirm",
   "split_group": "P15-A-POLICY-EIA-001-HELDOUT-01",
   "capability_invariant": ["generation-scenario construction", "renewable and coal assumptions", "gas balancing", "emissions-factor linkage", "absolute and intensity comparison", "assumption perturbation"],
@@ -17,8 +18,14 @@
     "invocation": ["python", "tests/evaluate.py", "tests/confirm/reference.xlsx", "--split", "confirm"],
     "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}
   },
-  "required_sheets": ["Generation_Data", "Policy_Assumptions", "Scenario_Model", "Policy_Results", "Checks"],
-  "formula_cells": ["Scenario_Model!C5", "Scenario_Model!C6", "Scenario_Model!C7", "Scenario_Model!C8", "Scenario_Model!C9", "Policy_Results!B4", "Policy_Results!B5", "Policy_Results!B6"],
+  "archived_pre_v2_campaign_status": "TASK_INVALID before evaluator dispatch",
+  "current_task_contract": "v2 corrected; evaluator always scores this contract",
+  "canonical_reference_sheets": ["Generation_Data", "Policy_Assumptions", "Scenario_Model", "Policy_Results", "Checks"],
+  "canonical_reference_formula_cells": ["Scenario_Model!C5", "Scenario_Model!C6", "Scenario_Model!C7", "Scenario_Model!C8", "Scenario_Model!C10", "Policy_Results!B4", "Policy_Results!B5", "Policy_Results!B6"],
+  "semantic_acceptance": {
+    "layout": "One or more sheets are accepted; sheet names and fixed row numbers are not scored.",
+    "other_generation": "Other may be explicit or implied, but must remain constant between base and policy cases."
+  },
   "perturbations": [{"name": "coal_displacement", "address": "Policy_Assumptions!C4", "value": 0.14, "output": "Policy_Results!B4", "oracle_key": "emissions_reduction"}],
   "protected": {
     "Generation_Data!D4": 510000, "Generation_Data!D5": 1420000, "Generation_Data!D6": 515000, "Generation_Data!D7": 305000, "Generation_Data!D8": 3300000,

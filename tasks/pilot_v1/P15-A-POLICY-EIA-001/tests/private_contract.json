@@ -2,21 +2,28 @@
   "task_id": "P15-A-POLICY-EIA-001",
   "split": "dev",
   "split_group": "P15-A-POLICY-EIA-001-HELDOUT-01",
-  "semantic_version": "p15_v3_atomic",
+  "semantic_version": "p15_v3_semantic",
   "oracle": "tests/oracles/dev.py",
   "input_files_dir": "data/input_files",
-  "required_sheets": ["Generation_Data", "Policy_Assumptions", "Scenario_Model", "Policy_Results", "Checks"],
-  "formula_cells": ["Scenario_Model!C5", "Scenario_Model!C6", "Scenario_Model!C7", "Scenario_Model!C8", "Scenario_Model!C9", "Policy_Results!B4", "Policy_Results!B5", "Policy_Results!B6"],
+  "archived_pre_v2_campaign_status": "TASK_INVALID before evaluator dispatch",
+  "current_task_contract": "v2 corrected; evaluator always scores this contract",
+  "canonical_reference_sheets": ["Generation_Data", "Policy_Assumptions", "Scenario_Model", "Policy_Results", "Checks"],
+  "canonical_reference_formula_cells": ["Scenario_Model!C5", "Scenario_Model!C6", "Scenario_Model!C7", "Scenario_Model!C8", "Scenario_Model!C10", "Policy_Results!B4", "Policy_Results!B5", "Policy_Results!B6"],
+  "semantic_acceptance": {
+    "layout": "One or more sheets are accepted; sheet names and fixed row numbers are not scored.",
+    "source": "Locate the protected generation, demand, and emissions factors by labels and values.",
+    "other_generation": "Other may be explicit or implied, but must remain constant between base and policy cases."
+  },
   "perturbations": [
     {
       "name": "coal_displacement",
       "overrides": {"Policy_Assumptions!C4": 0.1},
       "expected": {
         "Scenario_Model!C5": 607500,
-        "Scenario_Model!C8": 2719690,
-        "Scenario_Model!C9": 1695376,
-        "Policy_Results!B4": 60424,
-        "Policy_Results!B6": 17690
+        "Scenario_Model!C8": 1859690,
+        "Scenario_Model!C10": 1351376000,
+        "Policy_Results!B4": 44424000,
+        "Policy_Results!B6": 57690
       },
       "invariants": {"Policy_Assumptions!C7": 0.01, "Scenario_Model!C6": 446250, "Scenario_Model!C7": 266560}
     },
@@ -28,11 +35,11 @@
         "Scenario_Model!C5": 621000,
         "Scenario_Model!C6": 446250,
         "Scenario_Model!C7": 266560,
-        "Scenario_Model!C8": 2766189.9999999995,
-        "Scenario_Model!C9": 1727475.9999999998,
-        "Policy_Results!B4": 28324.000000000233,
-        "Policy_Results!B5": 0.013268350639942028,
-        "Policy_Results!B6": 64189.999999999534
+        "Scenario_Model!C8": 1906190,
+        "Scenario_Model!C10": 1383476000,
+        "Policy_Results!B4": 12324000,
+        "Policy_Results!B5": 0.0115168292682927,
+        "Policy_Results!B6": 104190
       },
       "invariants": {"Policy_Assumptions!C4": 0.08, "Policy_Assumptions!C5": 0.05, "Policy_Assumptions!C6": 0.12}
     }
@@ -47,18 +54,17 @@
     "Generation_Data!E5": 0.4
   },
   "criteria": [
-    {"id": "R001", "description": "A readable scenario workbook opens and retains all requested sheets.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
-    {"id": "R002", "description": "Policy coal generation applies the documented displacement rate to the protected source value.", "weight": 3, "type": "positive", "dimension": "policy_coal_generation", "method": "deterministic", "method_params": {"implemented_check": "Scenario_Model!C5 formula and independent replay value"}},
-    {"id": "R003", "description": "Policy wind and solar generation apply their documented uplift schedules.", "weight": 2, "type": "positive", "dimension": "renewable_schedule", "method": "deterministic", "method_params": {"implemented_check": "Scenario_Model!C6:C7 formulas and independent replay values"}},
-    {"id": "R004", "description": "Gas generation closes the policy demand balance and the results sheet reports the gas change.", "weight": 3, "type": "positive", "dimension": "gas_balancing", "method": "deterministic", "method_params": {"implemented_check": "Scenario_Model!C8 and Policy_Results!B6 formulas and replay values"}},
-    {"id": "R005", "description": "Policy emissions match the independent replay and remain formula-linked.", "weight": 3, "type": "positive", "dimension": "policy_emissions", "method": "deterministic", "method_params": {"implemented_check": "Scenario_Model!C9 formula and replay value"}},
-    {"id": "R006", "description": "The results sheet calculates absolute emissions reduction from the two scenarios.", "weight": 2, "type": "positive", "dimension": "emissions_reduction", "method": "deterministic", "method_params": {"implemented_check": "Policy_Results!B4 formula and replay value"}},
-    {"id": "R007", "description": "The results sheet calculates emissions-intensity reduction from the two scenarios.", "weight": 2, "type": "positive", "dimension": "intensity_reduction", "method": "deterministic", "method_params": {"implemented_check": "Policy_Results!B5 formula and replay value"}},
+    {"id": "R001", "description": "A readable workbook opens and the source inputs, assumptions, scenarios, and results are identifiable without relying on sheet names.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {"implemented_check": "semantic_policy_content"}},
+    {"id": "R002", "description": "Policy coal generation applies the documented displacement rate to the protected source value.", "weight": 3, "type": "positive", "dimension": "policy_coal_generation", "method": "deterministic", "method_params": {"implemented_check": "semantic_policy_coal_formula_and_replay"}},
+    {"id": "R003", "description": "Policy wind and solar generation apply their documented uplift schedules.", "weight": 2, "type": "positive", "dimension": "renewable_schedule", "method": "deterministic", "method_params": {"implemented_check": "semantic_renewable_schedule_formula_and_replay"}},
+    {"id": "R004", "description": "Natural gas starts from the supplied historical base and closes the policy balance while Other generation stays constant.", "weight": 3, "type": "positive", "dimension": "gas_balancing", "method": "deterministic", "method_params": {"implemented_check": "historical_gas_plus_policy_balance"}},
+    {"id": "R005", "description": "Policy emissions use GWh × 1,000 × tCO2/MWh, match the independent replay, and remain formula-linked.", "weight": 3, "type": "positive", "dimension": "policy_emissions", "method": "deterministic", "method_params": {"implemented_check": "semantic_policy_emissions"}},
+    {"id": "R006", "description": "The reported result calculates absolute emissions reduction from the two scenarios.", "weight": 2, "type": "positive", "dimension": "emissions_reduction", "method": "deterministic", "method_params": {"implemented_check": "semantic_emissions_reduction_formula_and_replay"}},
+    {"id": "R007", "description": "The reported result calculates emissions-intensity reduction from the two scenarios.", "weight": 2, "type": "positive", "dimension": "intensity_reduction", "method": "deterministic", "method_params": {"implemented_check": "semantic_intensity_reduction_formula_and_replay"}},
     {"id": "R008", "description": "Changing the coal-displacement assumption updates coal, gas, policy emissions, and emissions reduction to the replayed values.", "weight": 2, "type": "positive", "dimension": "dynamic_recalculation", "method": "deterministic", "method_params": {"implemented_check": "coal-displacement perturbation propagation", "split_weights": {"dev": 2, "confirm": 3}}},
-    {"id": "R009", "description": "Base and policy modeled generation each balance to their corresponding demand.", "weight": 2, "type": "positive", "dimension": "demand_balance", "method": "deterministic", "method_params": {"implemented_check": "Scenario_Model B4:B8 and C4:C8 balance equations"}},
-    {"id": "R010", "description": "Emissions use the protected coal and gas factors through workbook formulas.", "weight": 2, "type": "positive", "dimension": "factor_linkage", "method": "deterministic", "method_params": {"implemented_check": "Scenario_Model!B9:C9 formula and factor-linked replay values"}},
-    {"id": "R011", "description": "Historical generation, demand, and emissions-factor inputs remain unchanged.", "weight": 2, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {"implemented_check": "Generation_Data D4:E8 protected values"}},
-    {"id": "R012", "description": "A distinct policy-demand-growth perturbation updates demand, balancing gas, emissions, intensity, and reported results while preserving source generation and the coal/renewable policy schedule.", "weight": 1, "type": "positive", "dimension": "demand_growth_recalculation", "method": "deterministic", "method_params": {"implemented_check": "demand-growth perturbation propagation", "applies_to": ["dev"]}},
-    {"id": "P001", "description": "Penalty for overwriting protected source values, hardcoding core scenario outputs, or breaking either demand balance.", "weight": -6, "type": "penalty", "dimension": "file_integrity", "method": "deterministic", "method_params": {"implemented_check": "critical conjunction of R002:R011"}}
+    {"id": "R009", "description": "Coal, gas, wind, solar, and explicit or implied Other generation balance to demand in both cases.", "weight": 2, "type": "positive", "dimension": "demand_balance", "method": "deterministic", "method_params": {"implemented_check": "semantic_balance_with_other"}},
+    {"id": "R010", "description": "Emissions respond to the protected coal and gas factors through workbook formulas and preserve the GWh-to-MWh conversion.", "weight": 2, "type": "positive", "dimension": "factor_linkage", "method": "deterministic", "method_params": {"implemented_check": "factor_perturbation_and_unit_conversion"}},
+    {"id": "R011", "description": "Historical generation, demand, and emissions-factor inputs remain unchanged.", "weight": 2, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {"implemented_check": "semantic_source_input_protection"}},
+    {"id": "R012", "description": "A distinct policy-demand-growth perturbation updates demand, balancing gas, emissions, intensity, and reported results while preserving source generation and the coal/renewable policy schedule.", "weight": 1, "type": "positive", "dimension": "demand_growth_recalculation", "method": "deterministic", "method_params": {"implemented_check": "demand-growth perturbation propagation", "applies_to": ["dev"]}}
   ]
 }

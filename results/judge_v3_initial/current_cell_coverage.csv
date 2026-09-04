@@ -1,0 +1,46 @@
+task_id,task_label,system,system_label,target_n,current_valid_n,current_scoreable_n,historical_reuse_available_n,historical_reuse_counted_n,effective_coverage_n,remaining_n,effective_n8_complete,current_score_n8_eligible
+P15-A-ENG-SIZING-001,A 工程选泵,claude_opus5,Claude Opus 5,8,7,7,1,1,8,0,True,False
+P15-A-ENG-SIZING-001,A 工程选泵,codex_gpt56sol,Codex GPT-5.6 Sol,8,7,7,0,0,7,1,False,False
+P15-A-ENG-SIZING-001,A 工程选泵,qwen38max,Qwen3.8-max,8,7,7,1,1,8,0,True,False
+P15-A-FIN-DCF-001,A 现金流估值,claude_opus5,Claude Opus 5,8,7,7,1,1,8,0,True,False
+P15-A-FIN-DCF-001,A 现金流估值,codex_gpt56sol,Codex GPT-5.6 Sol,8,8,8,0,0,8,0,True,True
+P15-A-FIN-DCF-001,A 现金流估值,qwen38max,Qwen3.8-max,8,7,7,1,1,8,0,True,False
+P15-A-FIN-DEBUG-001,A 财务纠错,claude_opus5,Claude Opus 5,8,7,7,2,1,8,0,True,False
+P15-A-FIN-DEBUG-001,A 财务纠错,codex_gpt56sol,Codex GPT-5.6 Sol,8,8,8,0,0,8,0,True,True
+P15-A-FIN-DEBUG-001,A 财务纠错,qwen38max,Qwen3.8-max,8,7,7,1,1,8,0,True,False
+P15-A-POLICY-EIA-001,A 政策情景,claude_opus5,Claude Opus 5,8,7,7,1,1,8,0,True,False
+P15-A-POLICY-EIA-001,A 政策情景,codex_gpt56sol,Codex GPT-5.6 Sol,8,8,8,0,0,8,0,True,True
+P15-A-POLICY-EIA-001,A 政策情景,qwen38max,Qwen3.8-max,8,7,7,1,1,8,0,True,False
+P15-A-STAT-EXPERIMENT-001,A 配对实验,claude_opus5,Claude Opus 5,8,7,7,1,1,8,0,True,False
+P15-A-STAT-EXPERIMENT-001,A 配对实验,codex_gpt56sol,Codex GPT-5.6 Sol,8,8,7,0,0,8,0,True,False
+P15-A-STAT-EXPERIMENT-001,A 配对实验,qwen38max,Qwen3.8-max,8,7,7,1,1,8,0,True,False
+P15-B-FIN-RECON-001,B 财务对账,claude_opus5,Claude Opus 5,8,7,7,1,1,8,0,True,False
+P15-B-FIN-RECON-001,B 财务对账,codex_gpt56sol,Codex GPT-5.6 Sol,8,8,8,0,0,8,0,True,True
+P15-B-FIN-RECON-001,B 财务对账,qwen38max,Qwen3.8-max,8,7,7,1,1,8,0,True,False
+P15-B-HEALTH-REPORT-001,B 健康数据报告,claude_opus5,Claude Opus 5,8,7,7,1,1,8,0,True,False
+P15-B-HEALTH-REPORT-001,B 健康数据报告,codex_gpt56sol,Codex GPT-5.6 Sol,8,8,8,0,0,8,0,True,True
+P15-B-HEALTH-REPORT-001,B 健康数据报告,qwen38max,Qwen3.8-max,8,7,7,1,1,8,0,True,False
+P15-B-OPS-CLEAN-JOIN-001,B 订单清洗合并,claude_opus5,Claude Opus 5,8,7,7,1,1,8,0,True,False
+P15-B-OPS-CLEAN-JOIN-001,B 订单清洗合并,codex_gpt56sol,Codex GPT-5.6 Sol,8,6,6,0,0,6,2,False,False
+P15-B-OPS-CLEAN-JOIN-001,B 订单清洗合并,qwen38max,Qwen3.8-max,8,6,6,1,1,7,1,False,False
+P15-B-PUBLIC-PIVOT-001,B 原生透视表,claude_opus5,Claude Opus 5,8,8,5,0,0,8,0,True,False
+P15-B-PUBLIC-PIVOT-001,B 原生透视表,codex_gpt56sol,Codex GPT-5.6 Sol,8,6,6,0,0,6,2,False,False
+P15-B-PUBLIC-PIVOT-001,B 原生透视表,qwen38max,Qwen3.8-max,8,8,8,0,0,8,0,True,True
+P15-B-SALES-DISCOVERY-001,B 销售数据选择,claude_opus5,Claude Opus 5,8,7,7,1,1,8,0,True,False
+P15-B-SALES-DISCOVERY-001,B 销售数据选择,codex_gpt56sol,Codex GPT-5.6 Sol,8,7,7,0,0,7,1,False,False
+P15-B-SALES-DISCOVERY-001,B 销售数据选择,qwen38max,Qwen3.8-max,8,7,7,1,1,8,0,True,False
+P15-C-INVOICE-001,C 发票整理,claude_opus5,Claude Opus 5,8,7,7,1,1,8,0,True,False
+P15-C-INVOICE-001,C 发票整理,codex_gpt56sol,Codex GPT-5.6 Sol,8,8,8,0,0,8,0,True,True
+P15-C-INVOICE-001,C 发票整理,qwen38max,Qwen3.8-max,8,7,7,1,1,8,0,True,False
+P15-C-PO-ADDENDUM-001,C 采购变更单,claude_opus5,Claude Opus 5,8,7,7,1,1,8,0,True,False
+P15-C-PO-ADDENDUM-001,C 采购变更单,codex_gpt56sol,Codex GPT-5.6 Sol,8,8,8,0,0,8,0,True,True
+P15-C-PO-ADDENDUM-001,C 采购变更单,qwen38max,Qwen3.8-max,8,7,7,1,1,8,0,True,False
+P15-C-QUOTE-001,C 报价单整理,claude_opus5,Claude Opus 5,8,8,8,1,0,8,0,True,True
+P15-C-QUOTE-001,C 报价单整理,codex_gpt56sol,Codex GPT-5.6 Sol,8,8,8,0,0,8,0,True,True
+P15-C-QUOTE-001,C 报价单整理,qwen38max,Qwen3.8-max,8,7,7,1,1,8,0,True,False
+P15-C-RECEIPTS-001,C 多张票据整理,claude_opus5,Claude Opus 5,8,7,7,1,1,8,0,True,False
+P15-C-RECEIPTS-001,C 多张票据整理,codex_gpt56sol,Codex GPT-5.6 Sol,8,7,7,0,0,7,1,False,False
+P15-C-RECEIPTS-001,C 多张票据整理,qwen38max,Qwen3.8-max,8,6,6,1,1,7,1,False,False
+P15-C-STATEMENT-001,C 银行账单整理,claude_opus5,Claude Opus 5,8,7,7,1,1,8,0,True,False
+P15-C-STATEMENT-001,C 银行账单整理,codex_gpt56sol,Codex GPT-5.6 Sol,8,8,8,0,0,8,0,True,True
+P15-C-STATEMENT-001,C 银行账单整理,qwen38max,Qwen3.8-max,8,7,7,1,1,8,0,True,False

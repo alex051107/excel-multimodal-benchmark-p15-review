@@ -1,0 +1,244 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "broken_demand_balance": {
+      "candidate_sha256": "cd9dc60da733514e4dd0ce114cc6a8e4f7f79172ff6ec07353cb18d5bf0cdcff",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.32,
+      "score_stddev": 0.0,
+      "signature_sha256": "32fd52a676b145be1f6d329921100f0af053918410855a8f7bdc9291105b3fe0",
+      "stable": true
+    },
+    "collateral_historical_edit": {
+      "candidate_sha256": "fdf91c7516013ee676243d67e277904e9faa14658cc087243a3ab91d7a34b17e",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "R010": 0.0,
+        "R011": 0.0,
+        "R012": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.2,
+      "score_stddev": 0.0,
+      "signature_sha256": "4b03060e89520572101f9eca6ad3a8414fd853e3fff7dea61355e11b2fccedf9",
+      "stable": true
+    },
+    "equivalent": {
+      "candidate_sha256": "1a68c6a501ae3bec6f65b46bfe0c101c4d74ed2b0a3bc6235f23bf797b50dfa4",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "14943edc8ac0a47b48243cffcc70e372540bf673a8c6312d5428780f884a9eee",
+      "stable": true
+    },
+    "hardcoded_emissions_reduction": {
+      "candidate_sha256": "4cc33cd59bd431778915afd71224423b34569996ff08e97e3e20b682511f6f85",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "failure_codes": [
+        "FORMULA_REQUIRED:Policy_Results!B4"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.8,
+      "score_stddev": 0.0,
+      "signature_sha256": "3bd5f637e386532bd890749346d1ce3ec86f67888dd29b7c04cd34b86b8c0a2b",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 0.0,
+        "R012": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "d65534140d227331b760d9b520c65d9e4c605e6c5c77689410fe4091720f11f3",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "9bb721cfa213fafdbdc528f89d4fb1a9ae5f80cfb38c73748c2cc6a631f13209",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "failure_codes": [
+        "FORMULA_REQUIRED:Policy_Results!B4",
+        "FORMULA_REQUIRED:Policy_Results!B5",
+        "FORMULA_REQUIRED:Policy_Results!B6",
+        "FORMULA_REQUIRED:Scenario_Model!C5",
+        "FORMULA_REQUIRED:Scenario_Model!C6",
+        "FORMULA_REQUIRED:Scenario_Model!C7",
+        "FORMULA_REQUIRED:Scenario_Model!C8",
+        "FORMULA_REQUIRED:Scenario_Model!C9",
+        "POLICY_BALANCE_EVALUATION_FAILED:TypeError"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.12,
+      "score_stddev": 0.0,
+      "signature_sha256": "479cb281896c7470d5271afcbd4ccf1c37adc32ae7621e33307b3409203b58fe",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "590c1bf491f89a3840ace331b50c72b2ab94005f9cc0c332b875a9a8bc6c0afe",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0,
+        "R012": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "14943edc8ac0a47b48243cffcc70e372540bf673a8c6312d5428780f884a9eee",
+      "stable": true
+    },
+    "wrong_generation_source": {
+      "candidate_sha256": "b06a0b05d36eb2f5aef8732aaeb1074df8aecba6ef3a646e2a7cb247865e7ac3",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 1.0,
+        "R010": 0.0,
+        "R011": 1.0,
+        "R012": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.28,
+      "score_stddev": 0.0,
+      "signature_sha256": "9fa834822113d91f307c329b25f635691829da5d47b307d27e82909eee779ad3",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "base": {
+      "coal": 675000.0,
+      "demand": 4040000.0,
+      "emissions": 1755800.0,
+      "gas": 2702000.0,
+      "intensity": 0.4346039603960396,
+      "solar": 238000.0,
+      "wind": 425000.0
+    },
+    "emissions_reduction": 52324.0,
+    "gas_change": 4190.0,
+    "intensity_reduction": 0.012951485148514852,
+    "policy": {
+      "coal": 621000.0,
+      "demand": 4040000.0,
+      "emissions": 1703476.0,
+      "gas": 2706190.0,
+      "intensity": 0.42165247524752475,
+      "solar": 266560.0,
+      "wind": 446250.0
+    },
+    "policy_emissions": 1703476.0
+  },
+  "judge_version": "v2-locality",
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY_JUDGE_V2",
+  "task_id": "P15-A-POLICY-EIA-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

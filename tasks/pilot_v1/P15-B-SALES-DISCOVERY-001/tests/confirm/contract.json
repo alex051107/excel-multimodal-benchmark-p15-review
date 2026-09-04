@@ -1,8 +1,9 @@
 {
   "task_id": "P15-B-SALES-DISCOVERY-001",
   "split": "confirm",
+  "hurdle_criteria": ["R002", "R003", "R004", "R005", "R007", "R008"],
   "split_group": "P15-B-SALES-DISCOVERY-001-SIBLING",
-  "capability_invariant": ["select the only approved complete production release", "preserve one source release", "calculate formula-linked KPIs and regional closure", "protect the release registry"],
+  "capability_invariant": ["select the only approved complete production release", "preserve one source release", "calculate correct KPIs and regional closure", "protect the release registry"],
   "distinctness": {
     "source_instance": "held-out Q2 commercial close with different release chain, record identities, product mix, and values",
     "dev_values_reused": false,
@@ -20,8 +21,6 @@
     "selection": {"cli": "--split confirm", "env": "P15_EVAL_SPLIT=confirm"}
   },
   "required_sheets": ["Release_Registry", "Selected_Sources", "Consolidated_Data", "KPI_Summary", "Coverage_Checks"],
-  "formula_cells": ["KPI_Summary!B4:B7", "Coverage_Checks!B4:C7"],
   "protected": {"Release_Registry!A4:G7": "exact replay of tests/confirm/input_files/release_registry.csv"},
-  "drivers": {"bookings_source_cell": "Consolidated_Data!E4", "bookings_delta": 100, "revenue_source_cell": "Consolidated_Data!F5", "revenue_delta": 100},
-  "perturbations": "tests/confirm/perturbations.json"
+  "layout_policy": "Semantic source, record, KPI, coverage, and provenance roles; no fixed cells or formula-only credit."
 }

@@ -1,20 +1,19 @@
 {
   "criteria": [
-    {"id":"R001","description":"The workbook opens and contains every required analysis sheet.","weight":1,"type":"positive","dimension":"file_usability","method":"deterministic","method_params":{"implemented_check":"required_sheets"}},
-    {"id":"R002","description":"Every included paired-difference row is formula-linked and numerically correct.","weight":2,"type":"positive","dimension":"paired_rows","method":"deterministic","method_params":{"implemented_check":"paired_differences","oracle":"split_contract"}},
+    {"id":"R001","description":"The workbook opens and the paired data and requested analysis are identifiable without relying on sheet names.","weight":1,"type":"positive","dimension":"file_usability","method":"deterministic","method_params":{"implemented_check":"semantic_analysis_content"}},
+    {"id":"R002","description":"Every paired-difference row uses Group 2 minus Group 1 and is numerically correct.","weight":2,"type":"positive","dimension":"paired_rows","method":"deterministic","method_params":{"implemented_check":"paired_differences","oracle":"split_contract"}},
     {"id":"R003","description":"Paired sample size and mean difference agree with the independent analysis.","weight":2,"type":"positive","dimension":"paired_location","method":"deterministic","method_params":{"implemented_check":"paired_n_mean","oracle":"split_contract"}},
     {"id":"R004","description":"Paired SD, SE, t statistic, and degrees of freedom agree with the independent analysis.","weight":3,"type":"positive","dimension":"paired_dispersion","method":"deterministic","method_params":{"implemented_check":"paired_sd_se_t_df","oracle":"split_contract"}},
     {"id":"R005","description":"The two-sided paired-test p-value uses the declared method and agrees with the independent analysis.","weight":3,"type":"positive","dimension":"two_sided_p_value","method":"deterministic","method_params":{"implemented_check":"two_sided_p_value","oracle":"split_contract"}},
     {"id":"R006","description":"Both 95% confidence-interval bounds agree with the independent paired analysis.","weight":2,"type":"positive","dimension":"confidence_interval","method":"deterministic","method_params":{"implemented_check":"confidence_interval","oracle":"split_contract"}},
     {"id":"R007","description":"The planned paired sample size equals the declared normal-approximation result.","weight":2,"type":"positive","dimension":"power_planning","method":"deterministic","method_params":{"implemented_check":"planned_sample_size","oracle":"split_contract"}},
-    {"id":"R008","description":"The chart remains bound to all paired-difference rows through formula-linked visualization cells.","weight":2,"type":"positive","dimension":"chart_binding","method":"deterministic","method_params":{"implemented_check":"paired_chart_binding"}},
-    {"id":"R009","description":"The p-value and paired-difference visualization respond correctly to the declared measurement-value perturbation.","weight":2,"type":"positive","dimension":"native_recalculation","method":"deterministic","method_params":{"implemented_check":"measurement_perturbation","split_weights":{"dev":2,"confirm":3}}},
+    {"id":"R008","description":"A chart is bound to all ten paired-difference rows, directly or through formula-linked helper cells.","weight":2,"type":"positive","dimension":"chart_binding","method":"deterministic","method_params":{"implemented_check":"paired_chart_binding"}},
+    {"id":"R009","description":"The paired-difference calculation and its chart-linked value update when a source observation changes.","weight":2,"type":"positive","dimension":"native_recalculation","method":"deterministic","method_params":{"implemented_check":"paired_chart_recalculation","split_weights":{"dev":2,"confirm":3}}},
     {"id":"R010","description":"The decision summary applies the declared two-sided 0.05 rule to the calculated p-value.","weight":2,"type":"positive","dimension":"decision_consistency","method":"deterministic","method_params":{"implemented_check":"decision_summary"}},
-    {"id":"R011","description":"All source observations and inclusion flags match the split-specific starting workbook.","weight":2,"type":"positive","dimension":"source_protection","method":"deterministic","method_params":{"implemented_check":"source_pairing_protection"}},
-    {"id":"R012","description":"Excluding one prespecified QC-flagged pair updates n, inference, and decision while preserving its raw measurements, planned sample size, and full-source chart binding.","weight":1,"type":"positive","dimension":"qc_inclusion_recalculation","method":"deterministic","method_params":{"implemented_check":"inclusion_flag_perturbation","applies_to":["dev"]}},
-    {"id":"P001","description":"Penalty for independent-group substitution, one-tailed inference, broken pairing, or source edits.","weight":-7,"type":"penalty","dimension":"method_integrity","method":"deterministic","method_params":{"implemented_check":"paired_method_penalty"}}
+    {"id":"R011","description":"All ten source pairs and their subject order match the supplied observations.","weight":2,"type":"positive","dimension":"source_protection","method":"deterministic","method_params":{"implemented_check":"source_pairing_protection"}}
   ],
+  "hurdle_criteria":["R005","R010","R011"],
   "pass_threshold":0.7,
-  "rubric_version":"p15_v2",
+  "rubric_version":"p15_v3_semantic",
   "task_id":"P15-A-STAT-EXPERIMENT-001"
 }

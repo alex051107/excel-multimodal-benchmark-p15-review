@@ -1,69 +1,21 @@
 {
   "task_id":"P15-A-STAT-EXPERIMENT-001",
-  "semantic_version":"p15_v2",
+  "semantic_version":"p15_v3_semantic",
+  "hurdle_criteria":["R005","R010","R011"],
   "split":"dev",
   "split_group":"P15-A-STAT-EXPERIMENT-001-HELDOUT-01",
   "oracle":"tests/oracles/dev.py",
   "input_files_dir":"data/input_files",
-  "baseline_workbook":"tests/dev_baseline.xlsx",
+  "expected_subject_ids":[1,2,3,4,5,6,7,8,9,10],
+  "canonical_reference_sheets":["Data","Plan","Analysis","Results","Visualization","Checks"],
   "semantic_acceptance": {
-    "metric_layout": "Resolve the declared paired-analysis metrics by their task-specific labels; professional row relocation is acceptable.",
-    "paired_difference": "One formula-linked raw paired-difference column is sufficient. An analysis-set helper is optional for ordinary observations but mandatory for the DEV inclusion-flag perturbation.",
-    "formula_compatibility": "Treat Excel _xlfn. and _xlws. compatibility prefixes as semantically inert for supported paired-analysis functions.",
-    "chart_binding": "Accept either an exact full-source Data paired-difference series or the canonical formula-linked Visualization helper series.",
-    "source_gate": "The starting workbook's raw observations and inclusion flags remain protected; missing inclusion flags are a real failure, not a layout equivalent."
+    "layout":"One, two, three, or more sheets are accepted; sheet names and fixed row numbers are not scored.",
+    "paired_difference":"Correct reported differences receive content credit. Formula-linked differences separately earn the source-change and chart-link criterion.",
+    "method":"A numerically correct p-value must also be identified as paired and two-sided.",
+    "chart_binding":"Accept a direct paired-difference series or a formula-linked helper series covering all ten pairs.",
+    "source_gate":"The ten ordered source pairs remain protected; inclusion flags were not requested and are not scored."
   },
-  "criteria": [
-    {"id":"R001","description":"The workbook opens and contains every required analysis sheet.","weight":1,"type":"positive","dimension":"file_usability","method":"deterministic","method_params":{"implemented_check":"required_sheets"}},
-    {"id":"R002","description":"Every included paired-difference row is formula-linked and numerically correct.","weight":2,"type":"positive","dimension":"paired_rows","method":"deterministic","method_params":{"implemented_check":"paired_differences","oracle":"split_contract"}},
-    {"id":"R003","description":"Paired sample size and mean difference agree with the independent analysis.","weight":2,"type":"positive","dimension":"paired_location","method":"deterministic","method_params":{"implemented_check":"paired_n_mean","oracle":"split_contract"}},
-    {"id":"R004","description":"Paired SD, SE, t statistic, and degrees of freedom agree with the independent analysis.","weight":3,"type":"positive","dimension":"paired_dispersion","method":"deterministic","method_params":{"implemented_check":"paired_sd_se_t_df","oracle":"split_contract"}},
-    {"id":"R005","description":"The two-sided paired-test p-value uses the declared method and agrees with the independent analysis.","weight":3,"type":"positive","dimension":"two_sided_p_value","method":"deterministic","method_params":{"implemented_check":"two_sided_p_value","oracle":"split_contract"}},
-    {"id":"R006","description":"Both 95% confidence-interval bounds agree with the independent paired analysis.","weight":2,"type":"positive","dimension":"confidence_interval","method":"deterministic","method_params":{"implemented_check":"confidence_interval","oracle":"split_contract"}},
-    {"id":"R007","description":"The planned paired sample size equals the declared normal-approximation result.","weight":2,"type":"positive","dimension":"power_planning","method":"deterministic","method_params":{"implemented_check":"planned_sample_size","oracle":"split_contract"}},
-    {"id":"R008","description":"The chart remains bound to all paired-difference rows through formula-linked visualization cells.","weight":2,"type":"positive","dimension":"chart_binding","method":"deterministic","method_params":{"implemented_check":"paired_chart_binding"}},
-    {"id":"R009","description":"The p-value and paired-difference visualization respond correctly to the declared measurement-value perturbation.","weight":2,"type":"positive","dimension":"native_recalculation","method":"deterministic","method_params":{"implemented_check":"measurement_perturbation","split_weights":{"dev":2,"confirm":3}}},
-    {"id":"R010","description":"The decision summary applies the declared two-sided 0.05 rule to the calculated p-value.","weight":2,"type":"positive","dimension":"decision_consistency","method":"deterministic","method_params":{"implemented_check":"decision_summary"}},
-    {"id":"R011","description":"All source observations and inclusion flags match the split-specific starting workbook.","weight":2,"type":"positive","dimension":"source_protection","method":"deterministic","method_params":{"implemented_check":"source_pairing_protection"}},
-    {"id":"R012","description":"Excluding one prespecified QC-flagged pair updates n, inference, and decision while preserving its raw measurements, planned sample size, and full-source chart binding.","weight":1,"type":"positive","dimension":"qc_inclusion_recalculation","method":"deterministic","method_params":{"implemented_check":"inclusion_flag_perturbation","applies_to":["dev"]}},
-    {"id":"P001","description":"Penalty for independent-group substitution, one-tailed inference, broken pairing, or source edits.","weight":-7,"type":"penalty","dimension":"method_integrity","method":"deterministic","method_params":{"implemented_check":"paired_method_penalty"}}
-  ],
-  "required_sheets":["Data","Plan","Analysis","Results","Visualization","Checks"],
-  "formula_cells":["Data!D4:D13","Data!H4:H13","Analysis!B4:B13","Results!B8","Visualization!B4:B13"],
   "perturbations":[
-    {
-      "name":"paired_observation",
-      "overrides":{"Data!C9":4.9},
-      "expected":{
-        "Data!D9":1.5000000000000004,
-        "Analysis!B4":10,
-        "Analysis!B5":1.6300000000000001,
-        "Analysis!B6":1.21385519912568,
-        "Analysis!B8":4.2463982440304,
-        "Analysis!B10":0.002153874369518475,
-        "Visualization!B9":1.5000000000000004
-      },
-      "invariants":{"Data!E9":"Yes","Analysis!B13":13}
-    },
-    {
-      "name":"qc_exclusion",
-      "overrides":{"Data!E12":"No"},
-      "expected":{
-        "Data!H12":"",
-        "Analysis!B4":9,
-        "Analysis!B5":1.2444444444444445,
-        "Analysis!B6":0.6597558470963163,
-        "Analysis!B7":0.2199186156987721,
-        "Analysis!B8":5.658658956588697,
-        "Analysis!B9":8,
-        "Analysis!B10":0.0004766164813209479,
-        "Analysis!B11":0.7373112072347471,
-        "Analysis!B12":1.7515776816541417,
-        "Analysis!B13":13,
-        "Visualization!B12":4.6
-      },
-      "invariants":{"Data!B12":0,"Data!C12":4.6,"Data!D12":4.6}
-    }
-  ],
-  "protected_ranges":["Data!B4:C13","Data!E4:E13"]
+    {"name":"paired_observation","source_pair_index":5,"delta_group_2":0.5,"expected_effect":"the paired difference and its chart-linked value both increase by 0.5"}
+  ]
 }

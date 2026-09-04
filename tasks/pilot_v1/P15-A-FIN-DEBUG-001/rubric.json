@@ -11,10 +11,10 @@
     {"id":"R009","description":"Only the declared root-cause formula cell differs from the starting workbook.","weight":3,"type":"positive","dimension":"repair_locality","method":"deterministic","method_params":{"implemented_check":"repair_locality"}},
     {"id":"R010","description":"Every declared assumption cell remains unchanged.","weight":2,"type":"positive","dimension":"assumption_protection","method":"deterministic","method_params":{"implemented_check":"assumption_protection"}},
     {"id":"R011","description":"Every declared downstream model output remains formula-linked.","weight":2,"type":"positive","dimension":"formula_integrity","method":"deterministic","method_params":{"implemented_check":"required_formulas"}},
-    {"id":"R012","description":"The receivables and free-cash-flow chain responds correctly to the distinct 2027 DSO perturbation while revenue, contribution, and interest remain invariant.","weight":1,"type":"positive","dimension":"working_capital_recalculation","method":"deterministic","method_params":{"implemented_check":"dso_perturbation","applies_to":["dev"]}},
-    {"id":"P001","description":"Penalty for a wrong or hardcoded root repair, collateral edits, or protected-assumption changes.","weight":-7,"type":"penalty","dimension":"repair_integrity","method":"deterministic","method_params":{"implemented_check":"repair_integrity_penalty"}}
+    {"id":"R012","description":"The receivables and free-cash-flow chain responds correctly to the distinct 2027 DSO perturbation while revenue, contribution, and interest remain invariant.","weight":1,"type":"positive","dimension":"working_capital_recalculation","method":"deterministic","method_params":{"implemented_check":"dso_perturbation","applies_to":["dev"]}}
   ],
+  "hurdle_criteria": ["R002", "R006", "R010"],
   "pass_threshold": 0.7,
-  "rubric_version": "p15_v2",
+  "rubric_version": "p15_v3_control",
   "task_id": "P15-A-FIN-DEBUG-001"
 }

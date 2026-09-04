@@ -1,0 +1,287 @@
+{
+  "all_expectations_met": true,
+  "cases": {
+    "alternate_layout": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "One clearly labeled sheet satisfies the analysis and chart requirements.",
+      "expected_pass": true,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": true,
+      "score": 1.0
+    },
+    "equivalent": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "Equivalent paired-analysis formulas must pass.",
+      "expected_pass": true,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": true,
+      "score": 1.0
+    },
+    "malformed": {
+      "criterion_scores": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0,
+        "R010": 0.0,
+        "R011": 0.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "A non-workbook cannot pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.0
+    },
+    "mutant:contradictory_decisions": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 0.0,
+        "R011": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "Opposite inferential conclusions cannot jointly satisfy the decision summary.",
+      "expected_pass": false,
+      "failure_codes": [
+        "DECISION_NOT_CONSISTENT_WITH_P_VALUE"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.913043
+    },
+    "mutant:duplicate_subject_identity": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 0.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "Duplicate or changed subject IDs break the frozen pairing identity even when the numeric columns are unchanged.",
+      "expected_pass": false,
+      "failure_codes": [
+        "SOURCE_PAIR_IDENTITIES_OR_OBSERVATIONS_CHANGED"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.913043
+    },
+    "mutant:independent_groups_error": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "This seed changes mean(differences) to mean(Group 2)-mean(Group 1), which is algebraically identical; the remaining SD, SE, and test stay paired, so it is an equivalent implementation rather than a true error.",
+      "expected_pass": true,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": true,
+      "score": 1.0
+    },
+    "mutant:missing_observation_error": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "The seeded statistical-method defect must prevent a pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "INFERENTIAL_VALUE_MISMATCH:ci_lower:Analysis!B11",
+        "INFERENTIAL_VALUE_MISMATCH:ci_upper:Analysis!B12",
+        "INFERENTIAL_VALUE_MISMATCH:df:Analysis!B9",
+        "INFERENTIAL_VALUE_MISMATCH:mean:Analysis!B5",
+        "INFERENTIAL_VALUE_MISMATCH:n:Analysis!B4",
+        "INFERENTIAL_VALUE_MISMATCH:p:Analysis!B10",
+        "INFERENTIAL_VALUE_MISMATCH:sd:Analysis!B6",
+        "INFERENTIAL_VALUE_MISMATCH:se:Analysis!B7",
+        "INFERENTIAL_VALUE_MISMATCH:t:Analysis!B8"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.565217
+    },
+    "mutant:one_tailed_error": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 0.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "The seeded statistical-method defect must prevent a pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "INFERENTIAL_VALUE_MISMATCH:p:Analysis!B10"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.869565
+    },
+    "mutant:wrong_variance_error": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "The seeded statistical-method defect must prevent a pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "INFERENTIAL_VALUE_MISMATCH:ci_lower:Analysis!B11",
+        "INFERENTIAL_VALUE_MISMATCH:ci_upper:Analysis!B12",
+        "INFERENTIAL_VALUE_MISMATCH:p:Analysis!B10",
+        "INFERENTIAL_VALUE_MISMATCH:sd:Analysis!B6",
+        "INFERENTIAL_VALUE_MISMATCH:se:Analysis!B7",
+        "INFERENTIAL_VALUE_MISMATCH:t:Analysis!B8"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.652174
+    },
+    "noop": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 0.0,
+        "R011": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "An uncompleted analysis workbook does not pass.",
+      "expected_pass": false,
+      "failure_codes": [
+        "DECISION_NOT_CONSISTENT_WITH_P_VALUE",
+        "INFERENTIAL_VALUE_MISMATCH:df:Checks!B5",
+        "METRIC_NOT_FOUND:ci_lower",
+        "METRIC_NOT_FOUND:ci_upper",
+        "METRIC_NOT_FOUND:mean",
+        "METRIC_NOT_FOUND:n",
+        "METRIC_NOT_FOUND:p",
+        "METRIC_NOT_FOUND:planned_n",
+        "METRIC_NOT_FOUND:sd",
+        "METRIC_NOT_FOUND:se",
+        "METRIC_NOT_FOUND:t"
+      ],
+      "meets_expectation": true,
+      "pass": false,
+      "score": 0.391304
+    },
+    "standard": {
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0,
+        "R010": 1.0,
+        "R011": 1.0
+      },
+      "evaluation_status": "OK",
+      "expectation_basis": "Reference paired analysis must pass.",
+      "expected_pass": true,
+      "failure_codes": [],
+      "meets_expectation": true,
+      "pass": true,
+      "score": 1.0
+    }
+  },
+  "generated_at": "2026-09-04T02:56:43.990178+00:00",
+  "judge_version": "v3-semantic",
+  "task_id": "P15-A-STAT-EXPERIMENT-001"
+}

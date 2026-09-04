@@ -1,0 +1,27 @@
+{
+  "judge_version": "P15_JUDGE_V3",
+  "validated_at_utc": "2026-09-04T02:15:33Z",
+  "command": "/opt/anaconda3/bin/python3 tests/validate_judge_v3.py",
+  "all_expectations_met": true,
+  "expectation_basis": "Native PivotTable, PivotCache, Q2 filter, SUM measures, refresh setting, linked KPIs, PivotChart, and exact source rows are explicit. Internal object names and sheet addresses are not. Missing Excel-cached KPI values require native recalculation rather than a numeric model score.",
+  "cases": {
+    "reference": {"score": 1.0, "pass": true, "native_status": "NATIVE_OBJECT_CHECKED", "expected": {"pass": true, "native_status": "NATIVE_OBJECT_CHECKED"}},
+    "confirm_reference": {"score": 1.0, "pass": true, "native_status": "NATIVE_OBJECT_CHECKED", "expected": {"pass": true, "native_status": "NATIVE_OBJECT_CHECKED"}},
+    "equivalent": {"score": 1.0, "pass": true, "native_status": "NATIVE_OBJECT_CHECKED", "expected": {"pass": true, "native_status": "NATIVE_OBJECT_CHECKED"}},
+    "alternative_layout:renamed_native_objects": {"score": 1.0, "pass": true, "native_status": "NATIVE_OBJECT_CHECKED", "expected": {"pass": true, "native_status": "NATIVE_OBJECT_CHECKED"}},
+    "native_recalc_pending": {"score": null, "pass": false, "native_status": "NATIVE_RECALC_REQUIRED", "expected": {"score": null, "pass": false, "native_status": "NATIVE_RECALC_REQUIRED"}},
+    "noop": {"score": 0.71875, "pass": false, "native_status": "NATIVE_OBJECT_CHECKED", "expected": {"pass": false, "native_status": "NATIVE_OBJECT_CHECKED"}},
+    "malformed": {"score": 0.0, "pass": false, "native_status": "TASK_INVALID", "expected": {"pass": false, "native_status": "TASK_INVALID"}},
+    "mutant:fake_pivot": {"score": 0.0, "pass": false, "native_status": "NATIVE_OBJECT_CHECKED", "expected": {"pass": false, "native_status": "NATIVE_OBJECT_CHECKED"}},
+    "mutant:stale_source_range": {"score": 0.25, "pass": false, "native_status": "NATIVE_OBJECT_CHECKED", "expected": {"pass": false, "native_status": "NATIVE_OBJECT_CHECKED"}},
+    "mutant:wrong_aggregation": {"score": 0.875, "pass": false, "native_status": "NATIVE_OBJECT_CHECKED", "expected": {"pass": false, "native_status": "NATIVE_OBJECT_CHECKED"}},
+    "mutant:wrong_chart_binding": {"score": 0.84375, "pass": false, "native_status": "NATIVE_OBJECT_CHECKED", "expected": {"pass": false, "native_status": "NATIVE_OBJECT_CHECKED"}}
+  },
+  "campaign_regression": {
+    "archive_member": "workbooks/20260902T140738Z-P15-B-PUBLIC-PIVOT-001-qwen-coder/native_excel/answer.xlsx",
+    "score": 1.0,
+    "pass": true,
+    "native_status": "NATIVE_OBJECT_CHECKED",
+    "basis": "Final receipt-bound native Excel canonical workbook, not the raw Harbor workbook."
+  }
+}

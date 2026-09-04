@@ -1,0 +1,332 @@
+{
+  "agent_screen": "NOT_STARTED",
+  "canonical_excel": "PENDING_EXTERNAL_WINDOWS_EXCEL",
+  "evaluator_repetitions": 5,
+  "fixtures": {
+    "dropped_exception": {
+      "candidate_sha256": "6fa682a6f145181328018ede568fb91faec7be819408d318920ec447256eed3a",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.538462,
+      "score_stddev": 0.0,
+      "signature_sha256": "12a471595da3994195ee0cc2185c0bf21f370cc5be12169999f104ead71cbcd6",
+      "stable": true
+    },
+    "duplicate_included": {
+      "candidate_sha256": "196277f617629040d2bb5af8f9adb442f204068107c08e2dc8c975ca30ed0af6",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.5,
+      "score_stddev": 0.0,
+      "signature_sha256": "c0de61ed5187d669bda3890748e35b12c4b3342c5014cd5f1193f0157c1b971f",
+      "stable": true
+    },
+    "equivalent": {
+      "candidate_sha256": "42a2c0cf0d5d1a16ff131029703c8e3b98788031811c1e1b6e34daa51179237f",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "0e8c6cc3c700dbad7609e28557c629032083a3054bd401af663f3f8b3de4e86b",
+      "stable": true
+    },
+    "hardcoded_extended_cost": {
+      "candidate_sha256": "483ce91df4723cf357d870ad027833693d4a0f108dab9d050df16ded97ff5b38",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.653846,
+      "score_stddev": 0.0,
+      "signature_sha256": "e1379e158d19be39c580e46164b9579912d28a5461b98a9e6d0b2b0c362ecf3c",
+      "stable": true
+    },
+    "malformed": {
+      "candidate_sha256": "d98d0dc17babd924509e7afea30c3cb3842b8b8a04ae39c89fae586f330894c1",
+      "criterion_scores": {
+        "R001": 0.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "MALFORMED_XLSX:BadZipFile"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "bc4fa19c7b2443953b0f15a967aa282e761a694022df4c69112a97cfb4e391f9",
+      "stable": true
+    },
+    "noop": {
+      "candidate_sha256": "8f8ad5b42a025da3c59a8cfc771b57500401a7d804fdfed280a91b3f9283a299",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "CLEAN_RECORDS_MISMATCH",
+        "MASTER_COST_PERTURBATION_FAILED:ValueError",
+        "RAW_UNITS_PERTURBATION_FAILED:ValueError"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.153846,
+      "score_stddev": 0.0,
+      "signature_sha256": "6d95630b20c3a96a954a77b0fd92cb3a77501ce81dbaaf8fcd761367139a0198",
+      "stable": true
+    },
+    "reference": {
+      "candidate_sha256": "c7455b48e95efa217d46efa4006fda4e527b29545969d5955df166ff042f1d94",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 1.0,
+        "R004": 1.0,
+        "R005": 1.0,
+        "R006": 1.0,
+        "R007": 1.0,
+        "R008": 1.0,
+        "R009": 1.0
+      },
+      "failure_codes": [],
+      "pass": true,
+      "repetitions": 5,
+      "score": 1.0,
+      "score_stddev": 0.0,
+      "signature_sha256": "0e8c6cc3c700dbad7609e28557c629032083a3054bd401af663f3f8b3de4e86b",
+      "stable": true
+    },
+    "wrong_cleaning_and_source_edit": {
+      "candidate_sha256": "37ae11f27b5444572f78ca15ed56910e1df7e2f4aeb9e240206f086bbe686ce4",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 0.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 0.0,
+        "R009": 0.0
+      },
+      "failure_codes": [
+        "CLEAN_RECORDS_MISMATCH",
+        "PROTECTED_SOURCE_TABLE_CHANGED"
+      ],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.038462,
+      "score_stddev": 0.0,
+      "signature_sha256": "3e00756b093c876a98672ed2e726bdab7eecd6412b65498c5467d7d2c7a07213",
+      "stable": true
+    },
+    "wrong_product_join": {
+      "candidate_sha256": "129e982df33219c81d5608dd4f7b0b98f7b1888cc3d15b56d5d76051ebd26f6e",
+      "criterion_scores": {
+        "R001": 1.0,
+        "R002": 1.0,
+        "R003": 0.0,
+        "R004": 0.0,
+        "R005": 0.0,
+        "R006": 0.0,
+        "R007": 0.0,
+        "R008": 1.0,
+        "R009": 0.0
+      },
+      "failure_codes": [],
+      "pass": false,
+      "repetitions": 5,
+      "score": 0.307692,
+      "score_stddev": 0.0,
+      "signature_sha256": "a573eab798da73cc82297b268a3ab95315ff670cebf2afd1013ec92044e3e128",
+      "stable": true
+    }
+  },
+  "harbor_semantic_smoke": "PENDING_ROUND_2",
+  "human_review": "PENDING_EXTERNAL_HUMAN_REVIEW",
+  "independent_oracle": {
+    "clean": [
+      [
+        "ORD-100",
+        "P-100",
+        "NY-01",
+        10,
+        "No",
+        "Yes",
+        "Yes",
+        "Join"
+      ],
+      [
+        "ORD-101",
+        "P-200",
+        "TX-01",
+        5,
+        "No",
+        "Yes",
+        "Yes",
+        "Join"
+      ],
+      [
+        "ORD-102",
+        "P-300",
+        "NY-01",
+        4,
+        "No",
+        "Yes",
+        "Yes",
+        "Join"
+      ],
+      [
+        "ORD-103",
+        "P-999",
+        "NY-01",
+        6,
+        "No",
+        "No",
+        "Yes",
+        "Exception: unmatched product"
+      ],
+      [
+        "ORD-104",
+        "P-100",
+        "ZZ-09",
+        8,
+        "No",
+        "Yes",
+        "No",
+        "Exception: unmatched location"
+      ],
+      [
+        "ORD-105",
+        "P-100",
+        "NY-01",
+        10,
+        "Yes",
+        "Yes",
+        "Yes",
+        "Exception: exact duplicate"
+      ],
+      [
+        "ORD-106",
+        "P-200",
+        "TX-01",
+        null,
+        "No",
+        "Yes",
+        "Yes",
+        "Exception: invalid units"
+      ]
+    ],
+    "exceptions": [
+      [
+        "ORD-103",
+        "UNMATCHED_PRODUCT"
+      ],
+      [
+        "ORD-104",
+        "UNMATCHED_LOCATION"
+      ],
+      [
+        "ORD-105",
+        "DUPLICATE"
+      ],
+      [
+        "ORD-106",
+        "INVALID_UNITS"
+      ]
+    ],
+    "joined": [
+      [
+        "ORD-100",
+        "Valve kit",
+        "Northeast",
+        10,
+        150,
+        1500
+      ],
+      [
+        "ORD-101",
+        "Sensor module",
+        "South",
+        5,
+        420,
+        2100
+      ],
+      [
+        "ORD-102",
+        "Filter cartridge",
+        "Northeast",
+        4,
+        85,
+        340
+      ]
+    ],
+    "northeast": 1840,
+    "total": 3940
+  },
+  "judge_version": "v2-locality",
+  "semantic_rebuild": true,
+  "status": "LOCAL_READY_JUDGE_V2",
+  "task_id": "P15-B-OPS-CLEAN-JOIN-001",
+  "validator": "scripts/run_pilot_local_checks.py"
+}

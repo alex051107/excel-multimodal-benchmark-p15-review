@@ -14,6 +14,8 @@ from pathlib import Path
 
 import openpyxl
 
+from judge_v2_support import build_result, resolve_sheet_roles, sheet_resolution_failures
+
 TASK = {
   "task_id": "P15-A-FIN-DEBUG-001",
   "pass_threshold": 0.7,
@@ -51,12 +53,15 @@ TASK = {
     {"id":"R009","description":"Only the declared root-cause formula cell differs from the starting workbook.","weight":3,"type":"positive","dimension":"repair_locality","method":"deterministic","method_params":{"implemented_check":"repair_locality"}},
     {"id":"R010","description":"Every declared assumption cell remains unchanged.","weight":2,"type":"positive","dimension":"assumption_protection","method":"deterministic","method_params":{"implemented_check":"assumption_protection"}},
     {"id":"R011","description":"Every declared downstream model output remains formula-linked.","weight":2,"type":"positive","dimension":"formula_integrity","method":"deterministic","method_params":{"implemented_check":"required_formulas"}},
-    {"id":"R012","description":"The receivables and free-cash-flow chain responds correctly to the distinct 2027 DSO perturbation while revenue, contribution, and interest remain invariant.","weight":1,"type":"positive","dimension":"working_capital_recalculation","method":"deterministic","method_params":{"implemented_check":"dso_perturbation","applies_to":["dev"]}},
-    {"id":"P001","description":"Penalty for a wrong or hardcoded root repair, collateral edits, or protected-assumption changes.","weight":-7,"type":"penalty","dimension":"repair_integrity","method":"deterministic","method_params":{"implemented_check":"repair_integrity_penalty"}}
+    {"id":"R012","description":"The receivables and free-cash-flow chain responds correctly to the distinct 2027 DSO perturbation while revenue, contribution, and interest remain invariant.","weight":1,"type":"positive","dimension":"working_capital_recalculation","method":"deterministic","method_params":{"implemented_check":"dso_perturbation","applies_to":["dev"]}}
   ]
 }
 REF = re.compile(r"(?:(?:'([^']+)'|([A-Za-z_][A-Za-z0-9_]*))!)?\$?([A-Z]+)\$?(\d+)")
 RANGE = re.compile(r"(?:(?:'([^']+)'|([A-Za-z_][A-Za-z0-9_]*))!)?\$?([A-Z]+)\$?(\d+):\$?([A-Z]+)\$?(\d+)")
+
+
+TASK["hurdle_criteria"] = ["R002", "R006", "R010"]
+SHEET_ALIASES = {}
 
 
 def cell_key(sheet, cell):
@@ -158,6 +163,10 @@ def student_t_inv_two_tail(alpha, df):
     return (lo + hi) / 2
 
 
+class UnsupportedFormulaError(RuntimeError):
+    """Valid Excel syntax that this bounded replay engine cannot evaluate."""
+
+
 class FormulaEngine:
     def __init__(self, workbook, overrides=None):
         self.workbook = workbook
@@ -176,12 +185,14 @@ class FormulaEngine:
         if sheet not in self.workbook.sheetnames:
             raise ValueError(f"MISSING_SHEET:{sheet}")
         self.stack.add(key)
-        raw = self.workbook[sheet][cell].value
-        if isinstance(raw, str) and raw.startswith("="):
-            result = self.formula(raw[1:], sheet)
-        else:
-            result = raw
-        self.stack.remove(key)
+        try:
+            raw = self.workbook[sheet][cell].value
+            if isinstance(raw, str) and raw.startswith("="):
+                result = self.formula(raw[1:], sheet)
+            else:
+                result = raw
+        finally:
+            self.stack.discard(key)
         self.memo[key] = result
         return result
 
@@ -216,7 +227,12 @@ class FormulaEngine:
 
         expression = sub_outside_strings(REF, replace_ref, expression)
         expression = re.sub(r"(?<![<>=!])=(?!=)", "==", expression)
-        tree = ast.parse(expression, mode="eval")
+        try:
+            tree = ast.parse(expression, mode="eval")
+        except SyntaxError as exc:
+            raise UnsupportedFormulaError(
+                f"UNSUPPORTED_FORMULA_SYNTAX:{expression}"
+            ) from exc
         return self.safe_eval(tree.body)
 
     def safe_eval(self, node):
@@ -234,7 +250,7 @@ class FormulaEngine:
             operators = {ast.Add: lambda a,b:a+b, ast.Sub: lambda a,b:a-b, ast.Mult: lambda a,b:a*b, ast.Div: lambda a,b:a/b, ast.Pow: lambda a,b:a**b}
             for cls, fun in operators.items():
                 if isinstance(node.op, cls): return fun(left, right)
-            raise ValueError("UNSUPPORTED_OPERATOR")
+            raise UnsupportedFormulaError("UNSUPPORTED_FORMULA_OPERATOR")
         if isinstance(node, ast.Compare):
             left = self.safe_eval(node.left)
             for op, comp in zip(node.ops, node.comparators):
@@ -276,7 +292,7 @@ class FormulaEngine:
                 return student_t_two_tail(args[0], args[1]) / 2
             if name == "T_INV_2T":
                 return student_t_inv_two_tail(args[0], args[1])
-        raise ValueError(f"UNSUPPORTED_FORMULA_NODE:{ast.dump(node)}")
+        raise UnsupportedFormulaError(f"UNSUPPORTED_FORMULA_NODE:{ast.dump(node)}")
 
 
 def close(actual, expected, tolerance):
@@ -320,7 +336,10 @@ def task_checks(workbook, engine, oracle, contract, oracle_module):
         sheet, cell = address.split("!", 1)
         try:
             observed = engine.value(sheet, cell)
-            ok = formula_present(workbook, address) and close(observed, target, 0.5)
+            tolerance = 0.005 if criterion_id == "R008" else 0.5
+            ok = formula_present(workbook, address) and close(observed, target, tolerance)
+        except UnsupportedFormulaError:
+            raise
         except Exception as exc:
             ok = False
             failures.append(f"MODEL_REPLAY_EVALUATION_FAILED:{address}:{type(exc).__name__}")
@@ -360,6 +379,8 @@ def task_checks(workbook, engine, oracle, contract, oracle_module):
             price = price_case["overrides"]["Assumptions!D5"]
             dynamic = FormulaEngine(workbook, price_case["overrides"]).value("Revenue_Build", "D6")
             dynamic_ok = close(dynamic, oracle_module.ASSUMPTIONS["volume"][-1] * price, 0.01)
+    except UnsupportedFormulaError:
+        raise
     except Exception as exc:
         dynamic_ok = False
         failures.append(f"PRICE_PERTURBATION_FAILED:{type(exc).__name__}")
@@ -370,6 +391,8 @@ def task_checks(workbook, engine, oracle, contract, oracle_module):
     if ACTIVE_SPLIT == "dev":
         try:
             dso_ok = perturbation_matches(perturbations["dso_2027"])
+        except UnsupportedFormulaError:
+            raise
         except Exception as exc:
             dso_ok = False
             failures.append(f"DSO_PERTURBATION_FAILED:{type(exc).__name__}")
@@ -378,6 +401,8 @@ def task_checks(workbook, engine, oracle, contract, oracle_module):
     try:
         fcf_bridge = engine.value("Summary", "D8") - (engine.value("Summary", "D5") + engine.value("Summary", "D6") - engine.value("Summary", "D7"))
         bridge_ok = close(fcf_bridge, 0.0, 0.01)
+    except UnsupportedFormulaError:
+        raise
     except Exception as exc:
         bridge_ok = False
         failures.append(f"FCF_BRIDGE_EVALUATION_FAILED:{type(exc).__name__}")
@@ -390,7 +415,6 @@ def task_checks(workbook, engine, oracle, contract, oracle_module):
     if collateral_changes:
         failures.append("COLLATERAL_EDIT:" + ",".join(collateral_changes[:12]))
     checks["R009"] = 1.0 if locality_ok else 0.0
-    checks["P001"] = 0.0 if all((root_ok, ar_ok, interest_ok, fcf_ok, dscr_ok, dynamic_ok, dso_ok, bridge_ok, locality_ok, protected_ok, required_formula_ok)) else 1.0
     return checks, failures
 
 
@@ -404,41 +428,44 @@ def evaluate(candidate):
     except Exception as exc:
         return criteria, [f"MALFORMED_XLSX:{type(exc).__name__}"]
     contract = load_contract()
-    for sheet in contract["required_sheets"]:
-        if sheet not in workbook.sheetnames:
-            failures.append(f"MISSING_SHEET:{sheet}")
-    if failures:
-        return criteria, failures
-    criteria["R001"] = 1.0
+    # R001 asks whether the workbook contains every requested sheet, not
+    # whether it spelled them the reference way.  The task-local aliases
+    # below are already accepted as establishing sheet identity for every
+    # other criterion, so scoring R001 on the literal pre-alias name match
+    # contradicts the same run's own role resolution.  Any renaming stays
+    # visible through the SHEET_ALIAS failure codes.
+    exact_layout = all(sheet in workbook.sheetnames for sheet in contract["required_sheets"])
+    workbook, role_map, unresolved, ambiguous = resolve_sheet_roles(
+        workbook, contract["required_sheets"], SHEET_ALIASES
+    )
+    criteria["R001"] = 1.0 if (exact_layout or not (unresolved or ambiguous)) else 0.0
+    failures.extend(sheet_resolution_failures(role_map, unresolved, ambiguous))
+    if unresolved or ambiguous:
+        return criteria, sorted(set(failures))
     try:
         oracle, oracle_module = load_oracle(contract)
         checks, task_failures = task_checks(workbook, FormulaEngine(workbook), oracle, contract, oracle_module)
         criteria.update(checks)
         failures.extend(task_failures)
+    except UnsupportedFormulaError as exc:
+        failures.append(f"UNSUPPORTED_FORMULA:{exc}")
     except Exception as exc:
         failures.append(f"SEMANTIC_EVALUATION_ERROR:{type(exc).__name__}:{exc}")
     return criteria, sorted(set(failures))
 
 
-def score(criteria):
-    active = [row for row in TASK["criteria"] if ACTIVE_SPLIT in row.get("method_params", {}).get("applies_to", [ACTIVE_SPLIT])]
-    criterion_weight = lambda row: row.get("method_params", {}).get("split_weights", {}).get(ACTIVE_SPLIT, row["weight"])
-    positive = sum(criterion_weight(row) for row in active if row["type"] == "positive")
-    earned = sum(criterion_weight(row) * criteria.get(row["id"], 0.0) for row in active if row["type"] == "positive")
-    penalty = sum(abs(row["weight"]) for row in TASK["criteria"] if row["type"] == "penalty" and criteria.get(row["id"], 0.0) > 0)
-    return max(0.0, round((earned - penalty) / positive, 6))
-
 
 def main():
     candidate = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("/app/output/answer.xlsx")
     criteria, failures = evaluate(candidate)
-    total = score(criteria)
-    payload = {"task_id": TASK["task_id"], "split": ACTIVE_SPLIT, "status": "SCORED", "candidate": str(candidate), "normalized_score": total, "pass": total >= TASK["pass_threshold"], "criterion_scores": criteria, "failure_codes": failures, "stderr": []}
+    payload = build_result(task=TASK, split=ACTIVE_SPLIT, candidate=str(candidate), criteria=criteria, failures=failures)
+    total = payload["normalized_score"]
     log_root = Path(os.environ.get("P15_VERIFIER_LOG_DIR", "/logs/verifier"))
     try:
         log_root.mkdir(parents=True, exist_ok=True)
         (log_root / "report.json").write_text(json.dumps(payload, indent=2, sort_keys=True) + "\\n")
-        (log_root / "reward.txt").write_text(str(total) + "\\n")
+        if total is not None:
+            (log_root / "reward.txt").write_text(str(total) + "\\n")
     except OSError:
         pass
     print(json.dumps(payload, indent=2, sort_keys=True))
