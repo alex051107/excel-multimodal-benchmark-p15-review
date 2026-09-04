@@ -1,0 +1,25 @@
+{
+  "harbor_version": "0.22.0",
+  "base_image": "p15-agent-base:harbor-0.22.0-agentset-1",
+  "image_contract": "p15-harbor-0.22.0-agentset-1",
+  "python_version_prefix": "3.11.",
+  "node_version": "22.23.2",
+  "openpyxl_version": "3.1.5",
+  "agents": {
+    "codex": {
+      "package": "@openai/codex",
+      "version": "0.151.0",
+      "version_command": "codex --version"
+    },
+    "claude-code": {
+      "package": "@anthropic-ai/claude-code",
+      "version": "2.1.251",
+      "version_command": "claude --version"
+    },
+    "qwen-coder": {
+      "package": "@qwen-code/qwen-code",
+      "version": "0.22.3",
+      "version_command": "qwen --version"
+    }
+  }
+}

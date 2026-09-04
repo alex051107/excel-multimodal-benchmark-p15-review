@@ -1,30 +1,184 @@
 {
-  "criteria": [
-    {"id": "R001", "description": "A readable workbook opens and the source inputs, assumptions, scenarios, and results are identifiable without relying on sheet names.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {"implemented_check": "semantic_policy_content"}},
-    {"id": "R002", "description": "Policy coal generation applies the documented displacement rate to the protected source value.", "weight": 3, "type": "positive", "dimension": "policy_coal_generation", "method": "deterministic", "method_params": {"implemented_check": "semantic_policy_coal_formula_and_replay"}},
-    {"id": "R003", "description": "Policy wind and solar generation apply their documented uplift schedules.", "weight": 2, "type": "positive", "dimension": "renewable_schedule", "method": "deterministic", "method_params": {"implemented_check": "semantic_renewable_schedule_formula_and_replay"}},
-    {"id": "R004", "description": "Natural gas starts from the supplied historical base and closes the policy balance while Other generation stays constant.", "weight": 3, "type": "positive", "dimension": "gas_balancing", "method": "deterministic", "method_params": {"implemented_check": "historical_gas_plus_policy_balance"}},
-    {"id": "R005", "description": "Policy emissions use GWh × 1,000 × tCO2/MWh, match the independent replay, and remain formula-linked.", "weight": 3, "type": "positive", "dimension": "policy_emissions", "method": "deterministic", "method_params": {"implemented_check": "semantic_policy_emissions"}},
-    {"id": "R006", "description": "The reported result calculates absolute emissions reduction from the two scenarios.", "weight": 2, "type": "positive", "dimension": "emissions_reduction", "method": "deterministic", "method_params": {"implemented_check": "semantic_emissions_reduction_formula_and_replay"}},
-    {"id": "R007", "description": "The reported result calculates emissions-intensity reduction from the two scenarios.", "weight": 2, "type": "positive", "dimension": "intensity_reduction", "method": "deterministic", "method_params": {"implemented_check": "semantic_intensity_reduction_formula_and_replay"}},
-    {"id": "R008", "description": "Changing the coal-displacement assumption updates coal, gas, policy emissions, and emissions reduction to the replayed values.", "weight": 2, "type": "positive", "dimension": "dynamic_recalculation", "method": "deterministic", "method_params": {"implemented_check": "coal-displacement perturbation propagation", "split_weights": {"dev": 2, "confirm": 3}}},
-    {"id": "R009", "description": "Coal, gas, wind, solar, and explicit or implied Other generation balance to demand in both cases.", "weight": 2, "type": "positive", "dimension": "demand_balance", "method": "deterministic", "method_params": {"implemented_check": "semantic_balance_with_other"}},
-    {"id": "R010", "description": "Emissions respond to the protected coal and gas factors through workbook formulas and preserve the GWh-to-MWh conversion.", "weight": 2, "type": "positive", "dimension": "factor_linkage", "method": "deterministic", "method_params": {"implemented_check": "factor_perturbation_and_unit_conversion"}},
-    {"id": "R011", "description": "Historical generation, demand, and emissions-factor inputs remain unchanged.", "weight": 2, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {"implemented_check": "semantic_source_input_protection"}},
-    {"id": "R012", "description": "A distinct policy-demand-growth perturbation updates demand, balancing gas, emissions, intensity, and reported results while preserving source generation and the coal/renewable policy schedule.", "weight": 1, "type": "positive", "dimension": "demand_growth_recalculation", "method": "deterministic", "method_params": {"implemented_check": "demand-growth perturbation propagation", "applies_to": ["dev"]}}
-  ],
+  "readme_zh": {
+    "file_role": "这份文件定义本题如何计分。criteria 中的每一项才是实际评分依据；review_notes 用于帮助人工审查评分项是否合理。",
+    "how_to_read": "先读 purpose_zh 和 answer_location_zh，再逐条阅读 criteria。每条中的 review_question_zh 是英文评分要求的中文直译，不新增要求。",
+    "scoring": "positive 项满足时按 weight 加分；penalty 项触发时按 weight 扣分。最终对外结果使用 0 至 1 的连续分数。",
+    "layout_rule": "评分项没有明确规定表名、列序、单元格或措辞时，不应仅因版式不同扣分；accepted_equivalents_zh 列出常见等价做法。",
+    "missing_evidence_rule": "程序暂时找不到答案时，先检查是否属于合理的替代表达或替代布局。只有确认交付中确实缺失或错误，才按该项扣分。",
+    "legacy_fields": "hurdle_criteria 和 pass_threshold 仍被旧运行接口读取，但不用于当前对外报告中的“达标”或“通过”结论。"
+  },
+  "task_id": "P15-A-POLICY-EIA-001",
+  "rubric_version": "p15_v3_semantic",
   "review_notes": {
     "purpose_zh": "检查基准与政策情景、发电量平衡、排放量、排放强度和 GWh 到 MWh 的单位换算。",
     "answer_location_zh": "本 rubric 只对应修正后的题面和输入，按能源类型、情景标签和平衡关系查找结果。",
-    "accepted_equivalents_zh": ["合理的工作表名和布局", "结果一致的公式"],
+    "accepted_equivalents_zh": [
+      "合理的工作表名和布局",
+      "结果一致的公式"
+    ],
     "not_scoreable_zh": "历史答卷来自来源和单位定义冲突的旧题，统一记为题目版本不可比，不用修正版 rubric 重新打分。",
     "known_limit_zh": "修正版还没有让三套系统重新运行，因此当前没有可比的新分数。",
     "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
   },
-  "hurdle_criteria": ["R005", "R006", "R011"],
-  "archived_pre_v2_campaign_status": "TASK_INVALID (assigned by the frozen campaign replay binding, not this evaluator)",
-  "current_task_contract": "v2 corrected task; tests/evaluate.py always scores this contract",
+  "criteria": [
+    {
+      "id": "R001",
+      "description": "A readable workbook opens and the source inputs, assumptions, scenarios, and results are identifiable without relying on sheet names.",
+      "review_question_zh": "工作簿能否正常打开，并能找到来源数据、假设、两个情景和最终结果；不要求固定表名？",
+      "weight": 1,
+      "type": "positive",
+      "dimension": "file_usability",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "semantic_policy_content"
+      }
+    },
+    {
+      "id": "R002",
+      "description": "Policy coal generation applies the documented displacement rate to the protected source value.",
+      "review_question_zh": "政策情景中的煤电量是否使用题目给定的替代比例计算？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "policy_coal_generation",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "semantic_policy_coal_formula_and_replay"
+      }
+    },
+    {
+      "id": "R003",
+      "description": "Policy wind and solar generation apply their documented uplift schedules.",
+      "review_question_zh": "政策情景中的风电和光伏是否使用题目给定的增长安排计算？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "renewable_schedule",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "semantic_renewable_schedule_formula_and_replay"
+      }
+    },
+    {
+      "id": "R004",
+      "description": "Natural gas starts from the supplied historical base and closes the policy balance while Other generation stays constant.",
+      "review_question_zh": "天然气是否从给定历史基数出发补足供需平衡，同时其他发电保持不变？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "gas_balancing",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "historical_gas_plus_policy_balance"
+      }
+    },
+    {
+      "id": "R005",
+      "description": "Policy emissions use GWh × 1,000 × tCO2/MWh, match the independent replay, and remain formula-linked.",
+      "review_question_zh": "排放量是否按 GWh × 1,000 × 吨二氧化碳/MWh 计算，并与独立复算一致且保留公式连接？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "policy_emissions",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "semantic_policy_emissions"
+      }
+    },
+    {
+      "id": "R006",
+      "description": "The reported result calculates absolute emissions reduction from the two scenarios.",
+      "review_question_zh": "最终结果是否计算了两个情景之间的排放量绝对减少值？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "emissions_reduction",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "semantic_emissions_reduction_formula_and_replay"
+      }
+    },
+    {
+      "id": "R007",
+      "description": "The reported result calculates emissions-intensity reduction from the two scenarios.",
+      "review_question_zh": "最终结果是否计算了两个情景之间的排放强度减少值？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "intensity_reduction",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "semantic_intensity_reduction_formula_and_replay"
+      }
+    },
+    {
+      "id": "R008",
+      "description": "Changing the coal-displacement assumption updates coal, gas, policy emissions, and emissions reduction to the replayed values.",
+      "review_question_zh": "改变煤电替代比例后，煤电、天然气、政策情景排放量和减排量是否正确更新？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "dynamic_recalculation",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "coal-displacement perturbation propagation",
+        "split_weights": {
+          "dev": 2,
+          "confirm": 3
+        }
+      }
+    },
+    {
+      "id": "R009",
+      "description": "Coal, gas, wind, solar, and explicit or implied Other generation balance to demand in both cases.",
+      "review_question_zh": "两个情景下，煤、气、风、光和其他发电之和是否都与需求量相等？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "demand_balance",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "semantic_balance_with_other"
+      }
+    },
+    {
+      "id": "R010",
+      "description": "Emissions respond to the protected coal and gas factors through workbook formulas and preserve the GWh-to-MWh conversion.",
+      "review_question_zh": "改变煤电和天然气排放因子后，排放量是否通过公式正确更新，并保留 GWh 到 MWh 的换算？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "factor_linkage",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "factor_perturbation_and_unit_conversion"
+      }
+    },
+    {
+      "id": "R011",
+      "description": "Historical generation, demand, and emissions-factor inputs remain unchanged.",
+      "review_question_zh": "题目给定的历史发电量、需求量和排放因子是否保持原样？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "change_locality",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "semantic_source_input_protection"
+      }
+    },
+    {
+      "id": "R012",
+      "description": "A distinct policy-demand-growth perturbation updates demand, balancing gas, emissions, intensity, and reported results while preserving source generation and the coal/renewable policy schedule.",
+      "review_question_zh": "单独改变政策情景需求增长率后，需求、用于平衡的天然气、排放量、排放强度和结果是否正确更新，同时来源发电量和政策安排保持不变？",
+      "weight": 1,
+      "type": "positive",
+      "dimension": "demand_growth_recalculation",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "demand-growth perturbation propagation",
+        "applies_to": [
+          "dev"
+        ]
+      }
+    }
+  ],
+  "hurdle_criteria": [
+    "R005",
+    "R006",
+    "R011"
+  ],
   "pass_threshold": 0.7,
-  "rubric_version": "p15_v3_semantic",
-  "task_id": "P15-A-POLICY-EIA-001"
+  "archived_pre_v2_campaign_status": "TASK_INVALID (assigned by the frozen campaign replay binding, not this evaluator)",
+  "current_task_contract": "v2 corrected task; tests/evaluate.py always scores this contract"
 }

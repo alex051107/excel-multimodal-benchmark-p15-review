@@ -1,0 +1,12 @@
+{
+  "tools": {
+    "eager": [
+      "run_shell_command",
+      "read_file",
+      "write_file",
+      "edit",
+      "glob",
+      "grep_search"
+    ]
+  }
+}

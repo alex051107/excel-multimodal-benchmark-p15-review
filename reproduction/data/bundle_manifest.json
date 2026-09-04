@@ -1,0 +1,12 @@
+{
+  "schema_version": "p15_public_replay_bundle_v1",
+  "workbook_count": 368,
+  "current_report_workbook_count": 286,
+  "archive_sha256": "b0b0bd6ca10bfaf1a4c95f136fc645c990cbb345d7f1861a048583e61d41f112",
+  "archive_bytes": 3665937,
+  "redaction": {
+    "workbooks_changed": 18,
+    "absolute_path_fields_replaced": 18,
+    "replacement": "Excel x15ac:absPath values were replaced with ./; workbook values and formulas were unchanged."
+  }
+}

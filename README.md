@@ -14,6 +14,8 @@ V3 已经纠正了一批明显误判，也把“业务结果为 0 分”与“�
 2. 再看 [V3 分数表和口径](results/judge_v3_initial/README.md)，确认 286、322、368 这几个数字分别表示什么。
 3. 审查具体规则时，打开 [15 道题的 Rubric 和 Evaluator 导航](docs/EVALUATOR_REVIEW_MAP.md)，再进入每道题的 `rubric.json` 和 `tests/evaluate.py`。
 4. 要追题目来源时，看 [公开数据、论文和 Benchmark 设计参考](references/SOURCE_CATALOG.md)。
+5. 要从实际答卷重新算出报告中的分数，按 [V3 结果复现说明](reproduction/README.md) 运行公开脚本。
+6. 要重新调用 Agent 跑题，按 [Harbor Benchmark 运行说明](benchmark/README.md) 选择任务、系统和重复次数；已执行的环境与复算检查见 [验证记录](benchmark/VALIDATION_RECEIPT.json)。
 
 ## 分数应该怎样读
 
@@ -43,7 +45,7 @@ V3 已经纠正了一批明显误判，也把“业务结果为 0 分”与“�
 5. 先记录最早的实质错误，后续数字变化用来说明影响，避免重复扣分。
 6. 能可靠判断时给出分数和分项结果；暂时无法判断时，记录具体原因。
 
-每道题的 `rubric.json` 新增了 `review_notes`。它用中文写明这道题检查什么、怎样找答案、接受哪些等价做法、哪些情况应暂时不算分，以及目前还有什么限制。具体代码实现仍在同一题目目录下的 `tests/evaluate.py`。
+每道题的 `rubric.json` 先用 `readme_zh` 解释字段和判分边界，再用 `review_notes` 说明本题检查什么、怎样找答案、接受哪些等价做法、哪些情况应暂时不算分。每条评分项旁边还有 `review_question_zh`，可直接对照英文原文审查。具体代码实现仍在同一题目目录下的 `tests/evaluate.py`。
 
 ## 目录
 
@@ -55,6 +57,8 @@ V3 已经纠正了一批明显误判，也把“业务结果为 0 分”与“�
 | [`figures/judge_v3_initial/`](figures/judge_v3_initial/) | 由对外分数表生成的四张图 |
 | [`references/`](references/) | 每道题的数据来源、公开论文和相关 Benchmark |
 | [`review/`](review/) | 人工审查步骤和记录表 |
+| [`reproduction/`](reproduction/) | 368 份去除本机路径后的答卷、公开清单和一键复算说明 |
+| [`benchmark/`](benchmark/) | Harbor 0.22.0 的 15 × 3 × 8 Job、固定环境和重新跑题说明 |
 
 ## 公开边界
 

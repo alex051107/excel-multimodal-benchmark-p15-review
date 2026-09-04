@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "validated_at_utc": "2026-09-04T04:52:00Z",
+  "validation_scope": "Public repository environment, Harbor task packaging, Agent setup reuse, and fixed-answer V3 score replay",
+  "environment": {
+    "harbor": "0.22.0",
+    "image": "p15-agent-base:harbor-0.22.0-agentset-1",
+    "image_id_on_validation_host": "sha256:00f693cc163c14c1aac9d5e04db148c2fdfc94252c39e3b720e7069ae8d6ed71",
+    "versions": {
+      "python": "3.11.16",
+      "node": "22.23.2",
+      "openpyxl": "3.1.5",
+      "codex": "0.151.0",
+      "claude-code": "2.1.251",
+      "qwen-coder": "0.22.3"
+    },
+    "first_prepare_action": "built",
+    "second_prepare_action": "reused",
+    "second_prepare_same_image_id": true
+  },
+  "full_job_dry_run": {
+    "systems_checked": [
+      "codex_gpt56sol",
+      "claude_opus5",
+      "qwen38max"
+    ],
+    "tasks_per_system": 15,
+    "attempts_per_task": 8,
+    "planned_trials_per_system": 120,
+    "all_harbor_configs_valid": true
+  },
+  "harbor_install_only": {
+    "online_model_calls": 0,
+    "all_task_environment_build": {
+      "system": "codex_gpt56sol",
+      "tasks_completed": 15,
+      "tasks_errored": 0,
+      "agent_version_reused_logs": 15
+    },
+    "representative_checks": [
+      {
+        "task_id": "P15-A-FIN-DCF-001",
+        "system": "codex_gpt56sol",
+        "status": "completed_no_exception",
+        "agent_setup": "matching preinstalled version reused"
+      },
+      {
+        "task_id": "P15-B-OPS-CLEAN-JOIN-001",
+        "system": "claude_opus5",
+        "status": "completed_no_exception",
+        "agent_setup": "matching preinstalled version reused"
+      },
+      {
+        "task_id": "P15-B-PUBLIC-PIVOT-001",
+        "system": "qwen38max",
+        "status": "completed_no_exception",
+        "agent_setup": "matching preinstalled version reused"
+      },
+      {
+        "task_id": "P15-C-INVOICE-001",
+        "system": "codex_gpt56sol",
+        "status": "completed_no_exception",
+        "agent_setup": "matching preinstalled version reused"
+      }
+    ]
+  },
+  "clean_harbor_check": {
+    "temporary_harbor_version": "0.22.0",
+    "qwen_adapter_sha256": "be710640f59a95d56c09c019874ed51ca371fb6b944478594fdb40e01b1977ce",
+    "adapter_state": "unmodified upstream Harbor 0.22.0",
+    "public_compatibility_shim_loaded": true,
+    "qwen_install_only_status": "completed_no_exception",
+    "qwen_repeated_install_observed": false
+  },
+  "offline_full_pipeline_smoke": {
+    "task_id": "P15-A-FIN-DCF-001",
+    "agent": "oracle",
+    "paid_model_calls": 0,
+    "completed_trials": 1,
+    "errored_trials": 0,
+    "reward": 1.0,
+    "artifact_and_separate_verifier_completed": true
+  },
+  "fixed_answer_replay": {
+    "runtime_python": "3.11.16",
+    "workbooks_replayed": 368,
+    "runner_errors": 0,
+    "expected_result_mismatches": 0,
+    "current_report_rows_checked": 286,
+    "current_report_score_mismatches": 0,
+    "archive_sha256": "b0b0bd6ca10bfaf1a4c95f136fc645c990cbb345d7f1861a048583e61d41f112",
+    "reproduction_ok": true
+  },
+  "boundary": "This validation did not call paid model endpoints. A new online run tests the same pipeline but can produce different workbooks because model generation is nondeterministic and requires the reader's own credentials."
+}

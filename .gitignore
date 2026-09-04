@@ -14,6 +14,8 @@ outputs/*
 !outputs/p15_final/**
 runtime/
 **/.runtime/
+benchmark_runs/
+reproduction/output/
 **/harbor_jobs/
 **/gateway_budget_runs/
 **/approval*.json

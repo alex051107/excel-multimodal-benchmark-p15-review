@@ -1,0 +1,73 @@
+{
+  "job_name": "p15_v3_three_systems_n8",
+  "jobs_dir": "benchmark_runs",
+  "n_attempts": 8,
+  "n_concurrent_trials": 1,
+  "retry": {
+    "max_retries": 0
+  },
+  "agents": [
+    {
+      "name": "codex",
+      "model_name": "gpt-5.6-sol",
+      "n_concurrent": 1,
+      "kwargs": {
+        "version": "0.151.0",
+        "reasoning_effort": "high",
+        "web_search": "disabled",
+        "config": {
+          "features": {
+            "responses_websockets": false,
+            "responses_websockets_v2": false
+          }
+        }
+      },
+      "env": {
+        "OPENAI_API_KEY": "${P15_OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "${P15_OPENAI_BASE_URL}"
+      }
+    },
+    {
+      "name": "claude-code",
+      "model_name": "claude-opus-5",
+      "n_concurrent": 1,
+      "kwargs": {
+        "version": "2.1.251",
+        "disallowed_tools": "WebSearch"
+      },
+      "env": {
+        "ANTHROPIC_API_KEY": "${P15_ANTHROPIC_API_KEY}",
+        "ANTHROPIC_BASE_URL": "${P15_ANTHROPIC_BASE_URL}"
+      }
+    },
+    {
+      "name": "qwen-coder",
+      "model_name": "openai/qwen3.8-max",
+      "n_concurrent": 1,
+      "kwargs": {
+        "version": "0.22.3"
+      },
+      "env": {
+        "OPENAI_API_KEY": "${P15_QWEN_API_KEY}",
+        "OPENAI_BASE_URL": "${P15_QWEN_BASE_URL}"
+      }
+    }
+  ],
+  "tasks": [
+    {"path": "tasks/pilot_v1/P15-A-ENG-SIZING-001"},
+    {"path": "tasks/pilot_v1/P15-A-FIN-DCF-001"},
+    {"path": "tasks/pilot_v1/P15-A-FIN-DEBUG-001"},
+    {"path": "tasks/pilot_v1/P15-A-POLICY-EIA-001"},
+    {"path": "tasks/pilot_v1/P15-A-STAT-EXPERIMENT-001"},
+    {"path": "tasks/pilot_v1/P15-B-FIN-RECON-001"},
+    {"path": "tasks/pilot_v1/P15-B-HEALTH-REPORT-001"},
+    {"path": "tasks/pilot_v1/P15-B-OPS-CLEAN-JOIN-001"},
+    {"path": "tasks/pilot_v1/P15-B-PUBLIC-PIVOT-001"},
+    {"path": "tasks/pilot_v1/P15-B-SALES-DISCOVERY-001"},
+    {"path": "tasks/pilot_v1/P15-C-INVOICE-001"},
+    {"path": "tasks/pilot_v1/P15-C-PO-ADDENDUM-001"},
+    {"path": "tasks/pilot_v1/P15-C-QUOTE-001"},
+    {"path": "tasks/pilot_v1/P15-C-RECEIPTS-001"},
+    {"path": "tasks/pilot_v1/P15-C-STATEMENT-001"}
+  ]
+}

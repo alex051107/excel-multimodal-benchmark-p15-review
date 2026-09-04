@@ -1,0 +1,28 @@
+name: Reproduce V3 scores
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "reproduction/**"
+      - "requirements-reproduction.txt"
+      - "scripts/reproduce_v3_results.py"
+      - "tasks/pilot_v1/**/tests/**"
+
+permissions:
+  contents: read
+
+jobs:
+  replay-fixed-workbooks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install evaluator dependencies
+        run: python -m pip install -r requirements-reproduction.txt
+      - name: Replay all published workbooks
+        run: python scripts/reproduce_v3_results.py --workers 4

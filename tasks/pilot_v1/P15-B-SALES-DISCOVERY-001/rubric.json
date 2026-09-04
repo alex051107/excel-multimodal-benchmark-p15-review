@@ -1,25 +1,133 @@
 {
-  "criteria": [
-    {"id": "R001", "description": "A readable workbook contains every requested operating-review sheet.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
-    {"id": "R002", "description": "The source-selection record identifies the only approved, complete 2024Q2 schema-1.1 release.", "weight": 3, "type": "positive", "dimension": "source_selection", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
-    {"id": "R003", "description": "Consolidated_Data contains exactly the six records from the selected release and no mixed-release records.", "weight": 4, "type": "positive", "dimension": "data_completeness", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
-    {"id": "R004", "description": "All four operating KPIs equal the independent replay of the selected records.", "weight": 3, "type": "positive", "dimension": "metric_correctness", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
-    {"id": "R005", "description": "The selection explanation addresses approval, reporting period, schema, and regional coverage.", "weight": 3, "type": "positive", "dimension": "selection_rationale", "method": "deterministic", "method_params": {}},
-    {"id": "R006", "description": "The chosen release identifier and file remain visible with the selected records.", "weight": 3, "type": "positive", "dimension": "source_provenance", "method": "deterministic", "method_params": {}},
-    {"id": "R007", "description": "Regional record counts and recognized revenue close to the six selected records.", "weight": 3, "type": "positive", "dimension": "coverage_correctness", "method": "deterministic", "method_params": {}},
-    {"id": "R008", "description": "Every release-registry source field is preserved exactly from release_registry.csv.", "weight": 3, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {"source": "data/input_files/release_registry.csv"}},
-    {"id": "R009", "description": "The chosen-source reason, four required-region statuses, and evidence labels remain reviewable.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}}
-  ],
+  "readme_zh": {
+    "file_role": "这份文件定义本题如何计分。criteria 中的每一项才是实际评分依据；review_notes 用于帮助人工审查评分项是否合理。",
+    "how_to_read": "先读 purpose_zh 和 answer_location_zh，再逐条阅读 criteria。每条中的 review_question_zh 是英文评分要求的中文直译，不新增要求。",
+    "scoring": "positive 项满足时按 weight 加分；penalty 项触发时按 weight 扣分。最终对外结果使用 0 至 1 的连续分数。",
+    "layout_rule": "评分项没有明确规定表名、列序、单元格或措辞时，不应仅因版式不同扣分；accepted_equivalents_zh 列出常见等价做法。",
+    "missing_evidence_rule": "程序暂时找不到答案时，先检查是否属于合理的替代表达或替代布局。只有确认交付中确实缺失或错误，才按该项扣分。",
+    "legacy_fields": "hurdle_criteria 和 pass_threshold 仍被旧运行接口读取，但不用于当前对外报告中的“达标”或“通过”结论。"
+  },
+  "task_id": "P15-B-SALES-DISCOVERY-001",
+  "rubric_version": "p15_judge_v3",
   "review_notes": {
     "purpose_zh": "检查是否选中已批准且覆盖完整的 Q2 版本，并让选择说明、明细、KPI 和地区覆盖检查指向同一份数据。",
     "answer_location_zh": "按版本内容、表头、期间、地区和批准状态查找交付，不因工作表名或公式形式不同而扣分。",
-    "accepted_equivalents_zh": ["说明文字的合理近义表达", "公式或静态的正确 KPI", "不同的表名和布局"],
+    "accepted_equivalents_zh": [
+      "说明文字的合理近义表达",
+      "公式或静态的正确 KPI",
+      "不同的表名和布局"
+    ],
     "not_scoreable_zh": "工作簿同时展示多个版本且没有明确最终选择，无法将说明与 KPI 归到同一来源时，应先记录定位问题。",
     "known_limit_zh": "还要加入更多合理布局，并防止评分程序从几张相互矛盾的表中拼出高分。",
     "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
   },
-  "hurdle_criteria": ["R002", "R003", "R004", "R005", "R007", "R008"],
-  "pass_threshold": 0.7,
-  "rubric_version": "p15_judge_v3",
-  "task_id": "P15-B-SALES-DISCOVERY-001"
+  "criteria": [
+    {
+      "id": "R001",
+      "description": "A readable workbook contains every requested operating-review sheet.",
+      "review_question_zh": "工作簿能否正常打开，并包含题目要求的经营复盘内容？",
+      "weight": 1,
+      "type": "positive",
+      "dimension": "file_usability",
+      "method": "deterministic",
+      "method_params": {}
+    },
+    {
+      "id": "R002",
+      "description": "The source-selection record identifies the only approved, complete 2024Q2 schema-1.1 release.",
+      "review_question_zh": "来源选择记录是否指向唯一被批准、覆盖完整且属于 2024Q2 的 schema 1.1 版本？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "source_selection",
+      "method": "deterministic",
+      "method_params": {
+        "oracle": "metadata/oracle_recompute.py"
+      }
+    },
+    {
+      "id": "R003",
+      "description": "Consolidated_Data contains exactly the six records from the selected release and no mixed-release records.",
+      "review_question_zh": "合并数据是否只包含该版本的 6 条记录，没有混入其他版本？",
+      "weight": 4,
+      "type": "positive",
+      "dimension": "data_completeness",
+      "method": "deterministic",
+      "method_params": {
+        "oracle": "metadata/oracle_recompute.py"
+      }
+    },
+    {
+      "id": "R004",
+      "description": "All four operating KPIs equal the independent replay of the selected records.",
+      "review_question_zh": "4 个经营指标是否都与对这 6 条记录的独立复算一致？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "metric_correctness",
+      "method": "deterministic",
+      "method_params": {
+        "oracle": "metadata/oracle_recompute.py"
+      }
+    },
+    {
+      "id": "R005",
+      "description": "The selection explanation addresses approval, reporting period, schema, and regional coverage.",
+      "review_question_zh": "来源选择说明是否同时交代批准状态、报告期间、schema 版本和地区覆盖？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "selection_rationale",
+      "method": "deterministic",
+      "method_params": {}
+    },
+    {
+      "id": "R006",
+      "description": "The chosen release identifier and file remain visible with the selected records.",
+      "review_question_zh": "所选版本编号和文件名是否与选中的记录一起保留下来？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "source_provenance",
+      "method": "deterministic",
+      "method_params": {}
+    },
+    {
+      "id": "R007",
+      "description": "Regional record counts and recognized revenue close to the six selected records.",
+      "review_question_zh": "各地区记录数和已确认收入是否能与 6 条所选记录闭合？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "coverage_correctness",
+      "method": "deterministic",
+      "method_params": {}
+    },
+    {
+      "id": "R008",
+      "description": "Every release-registry source field is preserved exactly from release_registry.csv.",
+      "review_question_zh": "版本登记表中的所有原始字段是否保持原样？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "change_locality",
+      "method": "deterministic",
+      "method_params": {
+        "source": "data/input_files/release_registry.csv"
+      }
+    },
+    {
+      "id": "R009",
+      "description": "The chosen-source reason, four required-region statuses, and evidence labels remain reviewable.",
+      "review_question_zh": "选择理由、4 个必需地区的状态和证据标签是否便于复核？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "auditability",
+      "method": "deterministic",
+      "method_params": {}
+    }
+  ],
+  "hurdle_criteria": [
+    "R002",
+    "R003",
+    "R004",
+    "R005",
+    "R007",
+    "R008"
+  ],
+  "pass_threshold": 0.7
 }

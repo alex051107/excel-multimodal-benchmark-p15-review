@@ -1,25 +1,127 @@
 {
-  "criteria": [
-    {"id": "R001", "description": "A readable workbook contains every requested operations sheet.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
-    {"id": "R002", "description": "Clean_Data classifies each raw order with the required normalization and duplicate policy.", "weight": 4, "type": "positive", "dimension": "data_cleaning", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
-    {"id": "R003", "description": "Joined_Data contains exactly the valid one-to-one joins with correct product, region, units, unit cost, and extended cost.", "weight": 4, "type": "positive", "dimension": "join_correctness", "method": "deterministic", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
-    {"id": "R004", "description": "Each accepted order uses the correct units and product cost to produce its extended cost.", "weight": 3, "type": "positive", "dimension": "cost_arithmetic", "method": "deterministic", "method_params": {}},
-    {"id": "R005", "description": "The accepted-order total is $3,940 and excludes duplicates and invalid joins.", "weight": 3, "type": "positive", "dimension": "total_correctness", "method": "deterministic", "method_params": {}},
-    {"id": "R006", "description": "A reviewable weekly order-cost view is present for the accepted records.", "weight": 3, "type": "positive", "dimension": "weekly_view", "method": "deterministic", "method_params": {}},
-    {"id": "R007", "description": "The four task-specific exceptions are complete and excluded from the accepted-order total.", "weight": 3, "type": "positive", "dimension": "exception_integrity", "method": "deterministic", "method_params": {}},
-    {"id": "R008", "description": "Every raw-order, product-master, and location-master source field is preserved exactly.", "weight": 3, "type": "positive", "dimension": "change_locality", "method": "deterministic", "method_params": {}},
-    {"id": "R009", "description": "Checks report the accepted count, exception count, and total cost in a reviewable form.", "weight": 2, "type": "positive", "dimension": "auditability", "method": "deterministic", "method_params": {}}
-  ],
+  "readme_zh": {
+    "file_role": "这份文件定义本题如何计分。criteria 中的每一项才是实际评分依据；review_notes 用于帮助人工审查评分项是否合理。",
+    "how_to_read": "先读 purpose_zh 和 answer_location_zh，再逐条阅读 criteria。每条中的 review_question_zh 是英文评分要求的中文直译，不新增要求。",
+    "scoring": "positive 项满足时按 weight 加分；penalty 项触发时按 weight 扣分。最终对外结果使用 0 至 1 的连续分数。",
+    "layout_rule": "评分项没有明确规定表名、列序、单元格或措辞时，不应仅因版式不同扣分；accepted_equivalents_zh 列出常见等价做法。",
+    "missing_evidence_rule": "程序暂时找不到答案时，先检查是否属于合理的替代表达或替代布局。只有确认交付中确实缺失或错误，才按该项扣分。",
+    "legacy_fields": "hurdle_criteria 和 pass_threshold 仍被旧运行接口读取，但不用于当前对外报告中的“达标”或“通过”结论。"
+  },
+  "task_id": "P15-B-OPS-CLEAN-JOIN-001",
+  "rubric_version": "p15_judge_v3",
   "review_notes": {
     "purpose_zh": "检查订单标准化、主数据连接、精确重复处理、全部异常保留、数量和金额总数。",
     "answer_location_zh": "按表头、订单键、产品键和地点键查找清洗表、连接表和异常表，再检查它们是否来自同一套交付。",
-    "accepted_equivalents_zh": ["不同列顺序", "不同工作表名", "公式或静态的正确结果"],
+    "accepted_equivalents_zh": [
+      "不同列顺序",
+      "不同工作表名",
+      "公式或静态的正确结果"
+    ],
     "not_scoreable_zh": "工作簿有多块相互矛盾的候选表，无法确认哪一套是最终交付时，应先记录 Judge 暂时无法判断。",
     "known_limit_zh": "当前连续分数与旧二元结果冲突，说明本题的定位和关键项判定还要继续审查。",
     "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
   },
-  "hurdle_criteria": ["R002", "R003", "R007", "R008"],
-  "pass_threshold": 0.7,
-  "rubric_version": "p15_judge_v3",
-  "task_id": "P15-B-OPS-CLEAN-JOIN-001"
+  "criteria": [
+    {
+      "id": "R001",
+      "description": "A readable workbook contains every requested operations sheet.",
+      "review_question_zh": "工作簿能否正常打开，并包含题目要求的运营数据表？",
+      "weight": 1,
+      "type": "positive",
+      "dimension": "file_usability",
+      "method": "deterministic",
+      "method_params": {}
+    },
+    {
+      "id": "R002",
+      "description": "Clean_Data classifies each raw order with the required normalization and duplicate policy.",
+      "review_question_zh": "清洗表是否按照题目规定的标准化和去重规则处理每一条原始订单？",
+      "weight": 4,
+      "type": "positive",
+      "dimension": "data_cleaning",
+      "method": "deterministic",
+      "method_params": {
+        "oracle": "metadata/oracle_recompute.py"
+      }
+    },
+    {
+      "id": "R003",
+      "description": "Joined_Data contains exactly the valid one-to-one joins with correct product, region, units, unit cost, and extended cost.",
+      "review_question_zh": "合并表是否只保留有效的一对一匹配，并正确带出产品、地区、数量、单位成本和扩展成本？",
+      "weight": 4,
+      "type": "positive",
+      "dimension": "join_correctness",
+      "method": "deterministic",
+      "method_params": {
+        "oracle": "metadata/oracle_recompute.py"
+      }
+    },
+    {
+      "id": "R004",
+      "description": "Each accepted order uses the correct units and product cost to produce its extended cost.",
+      "review_question_zh": "每一笔有效订单的扩展成本是否等于正确数量乘正确产品成本？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "cost_arithmetic",
+      "method": "deterministic",
+      "method_params": {}
+    },
+    {
+      "id": "R005",
+      "description": "The accepted-order total is $3,940 and excludes duplicates and invalid joins.",
+      "review_question_zh": "有效订单总成本是否为 3,940 美元，并排除了重复订单和无效连接？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "total_correctness",
+      "method": "deterministic",
+      "method_params": {}
+    },
+    {
+      "id": "R006",
+      "description": "A reviewable weekly order-cost view is present for the accepted records.",
+      "review_question_zh": "是否提供一张可复核的、按周查看有效订单成本的汇总？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "weekly_view",
+      "method": "deterministic",
+      "method_params": {}
+    },
+    {
+      "id": "R007",
+      "description": "The four task-specific exceptions are complete and excluded from the accepted-order total.",
+      "review_question_zh": "题目指定的 4 类异常是否全部列出，并从有效订单总额中排除？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "exception_integrity",
+      "method": "deterministic",
+      "method_params": {}
+    },
+    {
+      "id": "R008",
+      "description": "Every raw-order, product-master, and location-master source field is preserved exactly.",
+      "review_question_zh": "原始订单、产品主数据和地点主数据中的字段是否保持原样？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "change_locality",
+      "method": "deterministic",
+      "method_params": {}
+    },
+    {
+      "id": "R009",
+      "description": "Checks report the accepted count, exception count, and total cost in a reviewable form.",
+      "review_question_zh": "是否能直接复核有效订单数量、异常数量和总成本？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "auditability",
+      "method": "deterministic",
+      "method_params": {}
+    }
+  ],
+  "hurdle_criteria": [
+    "R002",
+    "R003",
+    "R007",
+    "R008"
+  ],
+  "pass_threshold": 0.7
 }

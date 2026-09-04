@@ -1,25 +1,127 @@
 {
-  "criteria": [
-    {"id": "R001", "description": "The workbook opens and contains the native reporting objects requested by the task.", "weight": 1, "type": "positive", "dimension": "file_usability", "method": "deterministic", "method_params": {}},
-    {"id": "R002", "description": "An Excel Table preserves exactly the eight supplied source events and six source fields.", "weight": 4, "type": "positive", "dimension": "source_table", "method": "ooxml", "method_params": {}},
-    {"id": "R003", "description": "A genuine PivotCache binds to that source table/range with the six source-field identities.", "weight": 4, "type": "positive", "dimension": "pivot_source_binding", "method": "ooxml", "method_params": {}},
-    {"id": "R004", "description": "The native PivotTable places Region in rows and Program in columns.", "weight": 4, "type": "positive", "dimension": "pivot_axes", "method": "ooxml", "method_params": {}},
-    {"id": "R005", "description": "Quarter is a page filter selected to exactly 2024Q2.", "weight": 4, "type": "positive", "dimension": "pivot_filter", "method": "ooxml", "method_params": {}},
-    {"id": "R006", "description": "Participants and Spend are native SUM measures.", "weight": 4, "type": "positive", "dimension": "pivot_measures", "method": "ooxml", "method_params": {}},
-    {"id": "R007", "description": "The PivotCache is refreshable and configured to refresh when the workbook opens.", "weight": 3, "type": "positive", "dimension": "refresh_semantics", "method": "ooxml", "method_params": {}},
-    {"id": "R008", "description": "GETPIVOTDATA-linked KPI cells have the Excel-calculated participant, spend, and split-specific focus values.", "weight": 4, "type": "positive", "dimension": "aggregation_correctness", "method": "ooxml", "method_params": {"oracle": "metadata/oracle_recompute.py"}},
-    {"id": "R009", "description": "A clustered-column PivotChart is bound to the native PivotTable; a regular range chart does not qualify.", "weight": 4, "type": "positive", "dimension": "pivot_chart_binding", "method": "ooxml", "method_params": {}}
-  ],
+  "readme_zh": {
+    "file_role": "这份文件定义本题如何计分。criteria 中的每一项才是实际评分依据；review_notes 用于帮助人工审查评分项是否合理。",
+    "how_to_read": "先读 purpose_zh 和 answer_location_zh，再逐条阅读 criteria。每条中的 review_question_zh 是英文评分要求的中文直译，不新增要求。",
+    "scoring": "positive 项满足时按 weight 加分；penalty 项触发时按 weight 扣分。最终对外结果使用 0 至 1 的连续分数。",
+    "layout_rule": "评分项没有明确规定表名、列序、单元格或措辞时，不应仅因版式不同扣分；accepted_equivalents_zh 列出常见等价做法。",
+    "missing_evidence_rule": "程序暂时找不到答案时，先检查是否属于合理的替代表达或替代布局。只有确认交付中确实缺失或错误，才按该项扣分。",
+    "legacy_fields": "hurdle_criteria 和 pass_threshold 仍被旧运行接口读取，但不用于当前对外报告中的“达标”或“通过”结论。"
+  },
+  "task_id": "P15-B-PUBLIC-PIVOT-001",
+  "rubric_version": "p15_judge_v3",
   "review_notes": {
     "purpose_zh": "检查 PivotCache、PivotTable、Q2 过滤、Region 行、Program 列、Participants/Spend 求和、原生 PivotChart 和 KPI。",
     "answer_location_zh": "直接检查 XLSX 内的原生透视表对象、缓存、源数据连接和图表绑定，不用普通值表代替。",
-    "accepted_equivalents_zh": ["不改变透视字段含义的布局变化", "合理的工作表名称"],
+    "accepted_equivalents_zh": [
+      "不改变透视字段含义的布局变化",
+      "合理的工作表名称"
+    ],
     "not_scoreable_zh": "文件需要 Microsoft Excel 刷新或重算时，应记为待原生重算，不先写成 0 分。",
     "known_limit_zh": "当前数据连接和 Excel 刷新证据还没有完成验证，因此暂时的 1.00 不能直接解释为稳定完成。",
     "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
   },
-  "hurdle_criteria": ["R002", "R003", "R004", "R005", "R006", "R008", "R009"],
-  "pass_threshold": 0.7,
-  "rubric_version": "p15_judge_v3",
-  "task_id": "P15-B-PUBLIC-PIVOT-001"
+  "criteria": [
+    {
+      "id": "R001",
+      "description": "The workbook opens and contains the native reporting objects requested by the task.",
+      "review_question_zh": "工作簿能否正常打开，并包含题目要求的 Excel 原生报表对象？",
+      "weight": 1,
+      "type": "positive",
+      "dimension": "file_usability",
+      "method": "deterministic",
+      "method_params": {}
+    },
+    {
+      "id": "R002",
+      "description": "An Excel Table preserves exactly the eight supplied source events and six source fields.",
+      "review_question_zh": "Excel Table 是否完整保留给定的 8 条事件和 6 个字段？",
+      "weight": 4,
+      "type": "positive",
+      "dimension": "source_table",
+      "method": "ooxml",
+      "method_params": {}
+    },
+    {
+      "id": "R003",
+      "description": "A genuine PivotCache binds to that source table/range with the six source-field identities.",
+      "review_question_zh": "真正的 PivotCache 是否连接到该源表或源区域，并保留 6 个源字段？",
+      "weight": 4,
+      "type": "positive",
+      "dimension": "pivot_source_binding",
+      "method": "ooxml",
+      "method_params": {}
+    },
+    {
+      "id": "R004",
+      "description": "The native PivotTable places Region in rows and Program in columns.",
+      "review_question_zh": "原生 PivotTable 是否把 Region 放在行区域、Program 放在列区域？",
+      "weight": 4,
+      "type": "positive",
+      "dimension": "pivot_axes",
+      "method": "ooxml",
+      "method_params": {}
+    },
+    {
+      "id": "R005",
+      "description": "Quarter is a page filter selected to exactly 2024Q2.",
+      "review_question_zh": "Quarter 是否作为页面筛选器，并且只选中 2024Q2？",
+      "weight": 4,
+      "type": "positive",
+      "dimension": "pivot_filter",
+      "method": "ooxml",
+      "method_params": {}
+    },
+    {
+      "id": "R006",
+      "description": "Participants and Spend are native SUM measures.",
+      "review_question_zh": "Participants 和 Spend 是否都使用原生 SUM 汇总？",
+      "weight": 4,
+      "type": "positive",
+      "dimension": "pivot_measures",
+      "method": "ooxml",
+      "method_params": {}
+    },
+    {
+      "id": "R007",
+      "description": "The PivotCache is refreshable and configured to refresh when the workbook opens.",
+      "review_question_zh": "PivotCache 是否可以刷新，并设置为打开工作簿时刷新？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "refresh_semantics",
+      "method": "ooxml",
+      "method_params": {}
+    },
+    {
+      "id": "R008",
+      "description": "GETPIVOTDATA-linked KPI cells have the Excel-calculated participant, spend, and split-specific focus values.",
+      "review_question_zh": "由 GETPIVOTDATA 连接的 KPI 是否得到 Excel 实际计算出的参与人数、支出和指定拆分值？",
+      "weight": 4,
+      "type": "positive",
+      "dimension": "aggregation_correctness",
+      "method": "ooxml",
+      "method_params": {
+        "oracle": "metadata/oracle_recompute.py"
+      }
+    },
+    {
+      "id": "R009",
+      "description": "A clustered-column PivotChart is bound to the native PivotTable; a regular range chart does not qualify.",
+      "review_question_zh": "簇状柱形 PivotChart 是否直接连接原生 PivotTable；普通区域图表不算？",
+      "weight": 4,
+      "type": "positive",
+      "dimension": "pivot_chart_binding",
+      "method": "ooxml",
+      "method_params": {}
+    }
+  ],
+  "hurdle_criteria": [
+    "R002",
+    "R003",
+    "R004",
+    "R005",
+    "R006",
+    "R008",
+    "R009"
+  ],
+  "pass_threshold": 0.7
 }

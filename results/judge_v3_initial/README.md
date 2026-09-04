@@ -4,6 +4,8 @@
 
 要审查一道题为什么这样算分，先打开 [Rubric 和 Evaluator 导航](../../docs/EVALUATOR_REVIEW_MAP.md)，再对照该题的题面、`rubric.json` 和 `tests/evaluate.py`。
 
+要从公开答卷重新得到这些分数，按 [V3 结果复现说明](../../reproduction/README.md) 运行 `scripts/reproduce_v3_results.py`。
+
 ## 结果怎么读
 
 - 新版规则检查了现有 368 份 Excel 文件，其中 322 份算出了分数。

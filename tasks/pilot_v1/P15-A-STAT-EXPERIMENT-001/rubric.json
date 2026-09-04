@@ -1,27 +1,174 @@
 {
-  "criteria": [
-    {"id":"R001","description":"The workbook opens and the paired data and requested analysis are identifiable without relying on sheet names.","weight":1,"type":"positive","dimension":"file_usability","method":"deterministic","method_params":{"implemented_check":"semantic_analysis_content"}},
-    {"id":"R002","description":"Every paired-difference row uses Group 2 minus Group 1 and is numerically correct.","weight":2,"type":"positive","dimension":"paired_rows","method":"deterministic","method_params":{"implemented_check":"paired_differences","oracle":"split_contract"}},
-    {"id":"R003","description":"Paired sample size and mean difference agree with the independent analysis.","weight":2,"type":"positive","dimension":"paired_location","method":"deterministic","method_params":{"implemented_check":"paired_n_mean","oracle":"split_contract"}},
-    {"id":"R004","description":"Paired SD, SE, t statistic, and degrees of freedom agree with the independent analysis.","weight":3,"type":"positive","dimension":"paired_dispersion","method":"deterministic","method_params":{"implemented_check":"paired_sd_se_t_df","oracle":"split_contract"}},
-    {"id":"R005","description":"The two-sided paired-test p-value uses the declared method and agrees with the independent analysis.","weight":3,"type":"positive","dimension":"two_sided_p_value","method":"deterministic","method_params":{"implemented_check":"two_sided_p_value","oracle":"split_contract"}},
-    {"id":"R006","description":"Both 95% confidence-interval bounds agree with the independent paired analysis.","weight":2,"type":"positive","dimension":"confidence_interval","method":"deterministic","method_params":{"implemented_check":"confidence_interval","oracle":"split_contract"}},
-    {"id":"R007","description":"The planned paired sample size equals the declared normal-approximation result.","weight":2,"type":"positive","dimension":"power_planning","method":"deterministic","method_params":{"implemented_check":"planned_sample_size","oracle":"split_contract"}},
-    {"id":"R008","description":"A chart is bound to all ten paired-difference rows, directly or through formula-linked helper cells.","weight":2,"type":"positive","dimension":"chart_binding","method":"deterministic","method_params":{"implemented_check":"paired_chart_binding"}},
-    {"id":"R009","description":"The paired-difference calculation and its chart-linked value update when a source observation changes.","weight":2,"type":"positive","dimension":"native_recalculation","method":"deterministic","method_params":{"implemented_check":"paired_chart_recalculation","split_weights":{"dev":2,"confirm":3}}},
-    {"id":"R010","description":"The decision summary applies the declared two-sided 0.05 rule to the calculated p-value.","weight":2,"type":"positive","dimension":"decision_consistency","method":"deterministic","method_params":{"implemented_check":"decision_summary"}},
-    {"id":"R011","description":"All ten source pairs and their subject order match the supplied observations.","weight":2,"type":"positive","dimension":"source_protection","method":"deterministic","method_params":{"implemented_check":"source_pairing_protection"}}
-  ],
+  "readme_zh": {
+    "file_role": "这份文件定义本题如何计分。criteria 中的每一项才是实际评分依据；review_notes 用于帮助人工审查评分项是否合理。",
+    "how_to_read": "先读 purpose_zh 和 answer_location_zh，再逐条阅读 criteria。每条中的 review_question_zh 是英文评分要求的中文直译，不新增要求。",
+    "scoring": "positive 项满足时按 weight 加分；penalty 项触发时按 weight 扣分。最终对外结果使用 0 至 1 的连续分数。",
+    "layout_rule": "评分项没有明确规定表名、列序、单元格或措辞时，不应仅因版式不同扣分；accepted_equivalents_zh 列出常见等价做法。",
+    "missing_evidence_rule": "程序暂时找不到答案时，先检查是否属于合理的替代表达或替代布局。只有确认交付中确实缺失或错误，才按该项扣分。",
+    "legacy_fields": "hurdle_criteria 和 pass_threshold 仍被旧运行接口读取，但不用于当前对外报告中的“达标”或“通过”结论。"
+  },
+  "task_id": "P15-A-STAT-EXPERIMENT-001",
+  "rubric_version": "p15_v3_semantic",
   "review_notes": {
     "purpose_zh": "检查受试者配对、配对差、描述统计、双侧检验、95% 区间、规划样本量和图表。",
     "answer_location_zh": "按表头、标签、受试者 ID 和数值关系定位，不要求六张固定名称的工作表。",
-    "accepted_equivalents_zh": ["单表或多表布局", "统计标签的常见近义词", "数值相同的等价公式"],
+    "accepted_equivalents_zh": [
+      "单表或多表布局",
+      "统计标签的常见近义词",
+      "数值相同的等价公式"
+    ],
     "not_scoreable_zh": "无法确认配对身份，或不同统计量显然来自不同数据区域时，应记录为无法可靠定位。",
     "known_limit_zh": "仍有少量真实答卷暂时算不出分，需要继续补充跨表布局。",
     "reporting_zh": "当前对外只使用 0 至 1 的连续分数和分项结果；hurdle_criteria 和 pass_threshold 仅为旧运行接口保留。"
   },
-  "hurdle_criteria":["R005","R010","R011"],
-  "pass_threshold":0.7,
-  "rubric_version":"p15_v3_semantic",
-  "task_id":"P15-A-STAT-EXPERIMENT-001"
+  "criteria": [
+    {
+      "id": "R001",
+      "description": "The workbook opens and the paired data and requested analysis are identifiable without relying on sheet names.",
+      "review_question_zh": "工作簿能否正常打开，并能找到配对原始数据和题目要求的分析；不要求固定表名？",
+      "weight": 1,
+      "type": "positive",
+      "dimension": "file_usability",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "semantic_analysis_content"
+      }
+    },
+    {
+      "id": "R002",
+      "description": "Every paired-difference row uses Group 2 minus Group 1 and is numerically correct.",
+      "review_question_zh": "每一行配对差值是否都按第二组减第一组计算，且数值正确？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "paired_rows",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "paired_differences",
+        "oracle": "split_contract"
+      }
+    },
+    {
+      "id": "R003",
+      "description": "Paired sample size and mean difference agree with the independent analysis.",
+      "review_question_zh": "配对样本量和平均差是否与独立分析一致？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "paired_location",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "paired_n_mean",
+        "oracle": "split_contract"
+      }
+    },
+    {
+      "id": "R004",
+      "description": "Paired SD, SE, t statistic, and degrees of freedom agree with the independent analysis.",
+      "review_question_zh": "配对差的标准差、标准误、t 统计量和自由度是否正确？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "paired_dispersion",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "paired_sd_se_t_df",
+        "oracle": "split_contract"
+      }
+    },
+    {
+      "id": "R005",
+      "description": "The two-sided paired-test p-value uses the declared method and agrees with the independent analysis.",
+      "review_question_zh": "双侧配对检验的 p 值是否使用声明的方法，并与独立分析一致？",
+      "weight": 3,
+      "type": "positive",
+      "dimension": "two_sided_p_value",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "two_sided_p_value",
+        "oracle": "split_contract"
+      }
+    },
+    {
+      "id": "R006",
+      "description": "Both 95% confidence-interval bounds agree with the independent paired analysis.",
+      "review_question_zh": "95% 置信区间的上下限是否与独立分析一致？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "confidence_interval",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "confidence_interval",
+        "oracle": "split_contract"
+      }
+    },
+    {
+      "id": "R007",
+      "description": "The planned paired sample size equals the declared normal-approximation result.",
+      "review_question_zh": "计划样本量是否等于题目指定的正态近似计算结果？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "power_planning",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "planned_sample_size",
+        "oracle": "split_contract"
+      }
+    },
+    {
+      "id": "R008",
+      "description": "A chart is bound to all ten paired-difference rows, directly or through formula-linked helper cells.",
+      "review_question_zh": "图表是否覆盖全部 10 条配对差值；允许通过公式连接的辅助区域作图？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "chart_binding",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "paired_chart_binding"
+      }
+    },
+    {
+      "id": "R009",
+      "description": "The paired-difference calculation and its chart-linked value update when a source observation changes.",
+      "review_question_zh": "修改一个原始观测值后，对应差值和图表数据是否随之更新？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "native_recalculation",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "paired_chart_recalculation",
+        "split_weights": {
+          "dev": 2,
+          "confirm": 3
+        }
+      }
+    },
+    {
+      "id": "R010",
+      "description": "The decision summary applies the declared two-sided 0.05 rule to the calculated p-value.",
+      "review_question_zh": "结论是否按照双侧 0.05 规则解释计算出的 p 值？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "decision_consistency",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "decision_summary"
+      }
+    },
+    {
+      "id": "R011",
+      "description": "All ten source pairs and their subject order match the supplied observations.",
+      "review_question_zh": "10 组原始配对数据及受试者顺序是否与题目提供的数据一致？",
+      "weight": 2,
+      "type": "positive",
+      "dimension": "source_protection",
+      "method": "deterministic",
+      "method_params": {
+        "implemented_check": "source_pairing_protection"
+      }
+    }
+  ],
+  "hurdle_criteria": [
+    "R005",
+    "R010",
+    "R011"
+  ],
+  "pass_threshold": 0.7
 }
