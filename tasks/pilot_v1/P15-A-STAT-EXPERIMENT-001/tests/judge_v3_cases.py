@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 import tempfile
 from datetime import datetime, timezone
@@ -61,6 +62,31 @@ def result(path):
     }
 
 
+def confirm_reference_result():
+    process = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "tests/evaluate.py"),
+            str(ROOT / "tests/confirm/reference.xlsx"),
+            "--split",
+            "confirm",
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if process.returncode != 0:
+        raise RuntimeError(process.stderr.strip() or "confirm Evaluator returned no diagnostic output")
+    payload = json.loads(process.stdout)
+    return {
+        "score": payload["normalized_score"],
+        "pass": payload["pass"],
+        "evaluation_status": payload["evaluation_status"],
+        "criterion_scores": payload["criterion_scores"],
+        "failure_codes": payload["failure_codes"],
+    }
+
+
 def build_subject_identity_mutant(path):
     workbook = openpyxl.load_workbook(ROOT / "solution/reference.xlsx")
     data = evaluate.v3_find_data_table(workbook)
@@ -114,6 +140,15 @@ def main():
             row = result(path)
             row.update({"expected_pass": expected_pass, "expectation_basis": basis, "meets_expectation": row["pass"] is expected_pass})
             observed[name] = row
+        confirm_row = confirm_reference_result()
+        confirm_row.update(
+            {
+                "expected_pass": True,
+                "expectation_basis": "The held-out batch-level reference uses valid baseline/intervention labels and must pass without renaming its columns.",
+                "meets_expectation": confirm_row["pass"] is True and confirm_row["score"] == 1.0,
+            }
+        )
+        observed["confirm_reference"] = confirm_row
     receipt = {
         "task_id": evaluate.TASK["task_id"], "judge_version": "v3-semantic",
         "generated_at": datetime.now(timezone.utc).isoformat(), "cases": observed,

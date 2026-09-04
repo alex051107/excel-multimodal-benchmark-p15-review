@@ -9,7 +9,7 @@
 | [`data/answer_workbooks.zip`](data/answer_workbooks.zip) | 368 份实际答卷。只保留 Excel 文件，不包含模型原始回复、账号、费用或本机运行目录 |
 | [`data/workbook_manifest.csv`](data/workbook_manifest.csv) | 每份答卷对应的题目、系统、归档位置、预期状态和预期分数 |
 | [`data/bundle_manifest.json`](data/bundle_manifest.json) | 答卷数量、压缩包校验值和公开前的清理记录 |
-| [`../scripts/validate_all_evaluators.py`](../scripts/validate_all_evaluators.py) | 在临时目录逐题运行 15 份 Evaluator 回归测试，不改动仓库中的验证回执 |
+| [`../scripts/validate_all_evaluators.py`](../scripts/validate_all_evaluators.py) | 在临时目录逐题运行 15 份 Evaluator 回归测试，并检查每题的开发与隐藏确认参考答案，不改动仓库中的验证回执 |
 | [`../scripts/reproduce_v3_results.py`](../scripts/reproduce_v3_results.py) | 解压答卷、调用每道题的 V3 Evaluator、逐行比较结果 |
 | [`../requirements-reproduction.txt`](../requirements-reproduction.txt) | 本次复算使用的 Python 依赖版本 |
 

@@ -820,7 +820,16 @@ def v3_value(workbook, engine, address, failures):
 
 def v3_header_role(label):
     text = v3_token(label)
-    if text in {"subject", "participant", "pair", "subject id", "participant id"}:
+    if text in {
+        "subject",
+        "participant",
+        "pair",
+        "batch",
+        "subject id",
+        "participant id",
+        "pair id",
+        "batch id",
+    }:
         return "subject"
     if "difference" in text and (
         "paired" in text
@@ -833,6 +842,12 @@ def v3_header_role(label):
     if re.search(r"(?:group|treatment|condition) 1\b", text):
         return "group_1"
     if re.search(r"(?:group|treatment|condition) 2\b", text):
+        return "group_2"
+    group_1_signal = bool(re.search(r"\b(?:baseline|before|control|pre intervention)\b", text))
+    group_2_signal = bool(re.search(r"\b(?:intervention|after|post intervention)\b", text))
+    if group_1_signal and not group_2_signal:
+        return "group_1"
+    if group_2_signal and not group_1_signal:
         return "group_2"
     return None
 

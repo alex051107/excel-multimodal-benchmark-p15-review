@@ -77,10 +77,64 @@ def run_validator(task_dir: Path, staging_root: Path, timeout: int) -> dict:
         "task_id": task_dir.name,
         "status": "PASS" if process.returncode == 0 else "FAIL",
         "returncode": process.returncode,
+        "regression_suite": "PASS" if process.returncode == 0 else "FAIL",
     }
     if process.returncode != 0:
         combined = "\n".join(part.strip() for part in (process.stdout, process.stderr) if part.strip())
         result["detail"] = combined[-4000:] if combined else "validator returned no diagnostic output"
+        return result
+
+    reference_checks = {}
+    references = {
+        "dev": staged_task / "solution" / "reference.xlsx",
+        "confirm": staged_task / "tests" / "confirm" / "reference.xlsx",
+    }
+    for split, candidate in references.items():
+        reference_environment = environment.copy()
+        reference_environment["P15_VERIFIER_LOG_DIR"] = str(staged_task / "validation-logs" / split)
+        try:
+            reference_process = subprocess.run(
+                [
+                    sys.executable,
+                    str(staged_task / "tests" / "evaluate.py"),
+                    str(candidate),
+                    "--split",
+                    split,
+                ],
+                cwd=staged_task,
+                env=reference_environment,
+                capture_output=True,
+                text=True,
+                timeout=timeout,
+                check=False,
+            )
+        except subprocess.TimeoutExpired:
+            reference_checks[split] = {"status": "TIMEOUT"}
+            continue
+        try:
+            payload = json.loads(reference_process.stdout)
+        except json.JSONDecodeError:
+            payload = {}
+        passed = (
+            reference_process.returncode == 0
+            and payload.get("pass") is True
+            and payload.get("normalized_score") == 1.0
+        )
+        reference_checks[split] = {
+            "status": "PASS" if passed else "FAIL",
+            "returncode": reference_process.returncode,
+            "score": payload.get("normalized_score"),
+            "evaluation_status": payload.get("evaluation_status"),
+        }
+        if not passed:
+            diagnostic = reference_process.stderr.strip() or reference_process.stdout.strip()
+            reference_checks[split]["detail"] = diagnostic[-2000:] or "Evaluator returned no result"
+
+    result["reference_checks"] = reference_checks
+    failed_references = [split for split, row in reference_checks.items() if row["status"] != "PASS"]
+    if failed_references:
+        result["status"] = "FAIL"
+        result["detail"] = "Reference checks failed: " + ", ".join(failed_references)
     return result
 
 
